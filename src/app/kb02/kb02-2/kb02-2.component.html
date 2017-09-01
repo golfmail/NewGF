@@ -1,0 +1,131 @@
+﻿<div id="gfForm2" style="display: none" >
+  <fieldset style="width:850px;">
+    <legend class="feildsetTag">กลับรายการ</legend>
+    <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBodyShot" style="width: 850px">
+      <tr>
+        <td>
+          &nbsp;<strong class="fontContentBlack">ชื่อเอกสาร</strong>
+        </td>
+        <td colspan="6" style="height: 22px">
+          ใบกลับรายการขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (กร. 02)&nbsp; &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px">
+          &nbsp;<strong class="fontContentBlack"><asp:Label ID="cssBukrs" runat="server" CssClass="fontContentBlue">รหัสหน่วยงาน</asp:Label></strong><asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
+                                                                                                                                                                                 ControlToValidate="tbBUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato">*</asp:RequiredFieldValidator><asp:RequiredFieldValidator ID="rvBukrs" runat="server" ControlToValidate="tbBUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน"
+                                                                                                                                                                                                                                                                                                                               ForeColor="Tomato" ValidationGroup="zzpmt">*</asp:RequiredFieldValidator><asp:RequiredFieldValidator ID="rvBukrsDisplay" runat="server" ControlToValidate="tbBUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ForeColor="Tomato" ValidationGroup="Display">*</asp:RequiredFieldValidator>
+        </td>
+        <td style="height: 18px; width: 209px;">
+          <asp:TextBox ID="tbBUKRS" runat="server" MaxLength="4" Width="112px" CssClass="fontContentBlack"></asp:TextBox>&nbsp;<asp:ImageButton ID="btBukrs" runat="server" CausesValidation="False" Height="20px" ImageAlign="AbsMiddle"
+                                                                                                                                                ImageUrl="assets/Images/SearchIcon.jpg" ToolTip="ค้นหา" Width="22px" OnClick="btBukrs_Click" />
+        </td>
+        <td style="height: 18px; width: 191px;">
+          <strong><asp:Label ID="cssBelnr" runat="server" CssClass="fontContentRed">เลขที่ใบขอเบิกเงิน</asp:Label></strong>
+          <asp:RequiredFieldValidator ID="rvBelnr" runat="server" ControlToValidate="tbBELNR"
+                                      ErrorMessage="กรุณากรอกเลขที่ใบขอเบิกเงิน" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ID="rvBelnrDisplay" runat="server" ControlToValidate="tbBELNR"
+                                      ErrorMessage="กรุณากรอกเลขที่ใบบันทึกรายการบัญชี" ForeColor="Tomato" ValidationGroup="Display">*</asp:RequiredFieldValidator>
+        </td>
+        <td style="height: 18px">
+          <asp:TextBox ID="tbBELNR" runat="server" CssClass="fontContentBlack" Width="100px" MaxLength="10"></asp:TextBox>
+        </td>
+        <td style="height: 18px">
+          <strong class="fontContentBlue">ปีงบประมาณ</strong>
+        </td>
+        <td style="height: 18px;">
+          <asp:DropDownList ID="ddYear" runat="server" CssClass="fontContentBlack" Width="50px">
+          </asp:DropDownList>
+        </td>
+        <td style="height: 18px; width: 85px;">
+          <input id="btnDisplay" runat="server" name="Submit" style="width: 80px; height: 20px" tabindex="0"
+                 type="submit" value="แสดงเอกสาร" onserverclick="btnDisplay_ServerClick" validationgroup="Display" />
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px"> &nbsp;</td>
+        <td colspan="6" style="height: 18px">
+          <asp:TextBox ID="lbBUKRS" runat="server" BackColor="White" BorderColor="White" BorderStyle="Solid"
+                       ForeColor="#666666" TabIndex="-1" Width="230px"></asp:TextBox>&nbsp; &nbsp;
+          &nbsp;&nbsp; &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px">
+          &nbsp;<asp:Label ID="cssGsber" runat="server" CssClass="fontContentBlue" Font-Bold="True">รหัสพื้นที่</asp:Label>
+        </td>
+        <td style="height: 18px; width: 209px;">
+          <asp:DropDownList ID="ddGsber" runat="server" Width="140px" CssClass="fontContentBlack">
+          </asp:DropDownList>
+        </td>
+        <td style="height: 18px; width: 191px;">
+          <strong class="fontContentBlue">วันที่ผ่านรายการ</strong>
+          <asp:RequiredFieldValidator ID="rvBudat" runat="server" ControlToValidate="tbBUDAT"
+                                      ErrorMessage="กรุณากรอกวันที่ผ่านรายการ" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+        </td>
+        <td colspan="4" style="height: 18px">
+          <asp:TextBox ID="tbBUDAT" runat="server" CssClass="fontContentBlack" MaxLength="8"
+                       Width="100px"></asp:TextBox>&nbsp;
+          <img id="calendar9" src="assets/Images/imgCal.jpg" />
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px"> &nbsp;</td>
+        <td colspan="6" style="height: 18px">
+          &nbsp; &nbsp; &nbsp;&nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;<strong class="fontContentBlack"><asp:Label ID="cssZzpmt" runat="server" CssClass="fontContentBlue">รหัสหน่วยเบิกจ่าย</asp:Label></strong><asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
+                                                                                                                                                                                      ControlToValidate="tbZZPMT" ErrorMessage="กรุณากรอกรหัสหน่วยเบิกจ่าย" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+        </td>
+        <td style="width: 209px">
+          <asp:TextBox ID="tbZZPMT" runat="server" MaxLength="15" Width="112px" CssClass="fontContentBlack"></asp:TextBox>&nbsp;<asp:ImageButton ID="btZzpmt" runat="server" Height="20px" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"
+                                                                                                                                                 OnClick="btZzpmt_Click" ToolTip="ค้นหา" ValidationGroup="zzpmt" Width="22px" />
+        </td>
+        <td style="width: 191px">
+          <strong><asp:Label ID="cssReason" runat="server" CssClass="fontContentRed">เหตุผลในการกลับรายการ</asp:Label></strong>
+          <asp:CustomValidator ID="cvReason" runat="server" ErrorMessage="กรุณาระบุเหตุผลในการกลับรายการ"
+                               ForeColor="Tomato" OnServerValidate="cvReason_ServerValidate">*</asp:CustomValidator>
+        </td>
+        <td colspan="4">
+          <asp:DropDownList ID="ddReason" runat="server" Width="241px" CssClass="fontContentBlack">
+          </asp:DropDownList>
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px"> &nbsp;</td>
+        <td colspan="6" style="height: 18px">
+          <asp:TextBox ID="lbZZPMT" runat="server" BackColor="White" BorderColor="White" BorderStyle="Solid"
+                       ForeColor="#666666" TabIndex="-1" Width="230px"></asp:TextBox>&nbsp; &nbsp;
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7" aling="left" style="height: 18px;">
+          <asp:ValidationSummary ID="ValidationSummary" runat="server" ForeColor="Tomato"
+                                 Width="304px" TabIndex="-1" />
+          <asp:Label ID="lbNotFound" runat="server" ForeColor="Tomato" TabIndex="-1"></asp:Label>&nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td style="height: 18px" align="center" colspan="7">
+          <asp:Button ID="btnReverse2" runat="server" OnClick="btnReverse_ServerClick" Text="กลับรายการ"
+                      Width="128px" />
+        </td>
+      </tr>
+      <tr>
+        <td align="center" colspan="7" style="height: 18px">
+          &nbsp;
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</div>
+
+<asp:TextBox ID="tbPopupCheck" runat="server" BackColor="White" BorderColor="White"
+             BorderStyle="Solid" ForeColor="White" Width="122px" TabIndex="-1"></asp:TextBox>
+<script type="text/javascript">MessageAlert('ucKb02_2_tbPopupCheck');</script>
+

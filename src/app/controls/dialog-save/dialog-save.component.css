@@ -1,0 +1,59 @@
+body {
+    background-color: yellow;
+}
+:host >>> table {
+    border-collapse: collapse;
+    width: 100%; 
+    table-layout: fixed;
+    border: 0px solid #ddd;
+}
+
+:host >>> th, :host >>> td {
+    padding: 3px;
+    /* width: 400px;  */
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 80%;  /* 1em = 10px */
+    font-family: Tahoma;
+}
+
+/* :host >>> tr:nth-child(even){background-color: #f2f2f2} */
+:host >>> tr:hover{
+	background-color:#ddd;
+/*	color: #0080ff; */
+}
+
+:host >>> th {
+    background-color: #B4C3F6;
+    color: #000000;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+:host >>> h1 {
+    font-size: 90%;  /* 1em = 10px */
+}
+
+:host >>> div.content {
+	font-family: Tahoma;
+}
+
+:host >>> button {
+    /* background-color: #4C6D96; */
+    margin: 10px;
+    font-size: 80%;  /* 1em = 10px */
+}
+
+:host >>> button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.divH {
+    width: 500px; 
+}
+:host >>> h1 {
+    text-align: left;
+    font-size: 80%;  /* 1em = 10px */
+    font-family: Tahoma;
+    font-weight: bold;
+}

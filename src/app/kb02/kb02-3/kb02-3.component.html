@@ -1,0 +1,352 @@
+﻿<fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
+  <legend class="feildsetTag">ค้นหา</legend>
+  <table cellpadding="0" cellspacing="0" style="width: 695px" id="TBSearchSection">
+    <tr>
+      <td colspan="" style="width: 820px">
+        <table cellpadding="0" cellspacing="0" style="width: 745px">
+          <tr>
+            <td id="TDSearchSelection1" runat="server" class="panelSearchHeader" style="border-top-style: solid; height: 24px; width: 310px;">
+              &nbsp;<asp:LinkButton ID="lnkBtnSearchSection1" runat="server" Text="ค้นหาตามเลขที่เอกสาร"
+                                    Font-Bold="True" CssClass="SearchSelection" OnClick="lnkBtnSearchSection1_Click" CausesValidation="False"></asp:LinkButton>
+            </td>
+            <td id="TDSearchSelection2" runat="server" class="panelSearchHeader_unselected" style="border-top-style: solid; height: 24px; width: 416px;">
+              <strong>&nbsp;</strong><asp:LinkButton ID="lnkBtnSearchSection2" runat="server" Text="ค้นหาตามเงื่อนไขอื่น" Font-Bold="True" CssClass="SearchSelection" OnClick="lnkBtnSearchSection2_Click" CausesValidation="False"></asp:LinkButton>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 820px">
+        <table id="TBSearchSection1" runat="server" visible="true" cellpadding="0" cellspacing="0"
+               class="searchPanel" style="width: 100%">
+          <tr>
+            <td style="width: 174px">
+              &nbsp;<strong class="fontContentRed">เลขที่ใบขอเบิกเงิน</strong><asp:CustomValidator ID="cvBelnrFrom" runat="server"
+                                                                                                   ControlToValidate="tbBELNRFrom" ErrorMessage="เลขที่ใบขอเบิกเงินต้องเป็นตัวเลขเท่านั้น กรุณาระบุเลขที่ใบขอเบิกเงินที่ต้องการค้นหาใหม่"
+                                                                                                   OnServerValidate="cvBelnrFrom_ServerValidate" ForeColor="Tomato">*</asp:CustomValidator>
+              <asp:CustomValidator ID="cvBelnr" runat="server" ControlToValidate="ddSearchDateType"
+                                   ErrorMessage="กรุณากรอกเลขที่ใบขอเบิกเงิน" ForeColor="Tomato" OnServerValidate="cvBelnr_ServerValidate">*</asp:CustomValidator>
+            </td>
+            <td style="width: 176px;">
+              <asp:TextBox ID="tbBELNRFrom" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+            </td>
+            <td style="width: 42px;">
+              &nbsp;<strong>ถึง</strong>
+            </td>
+            <td style="width: 459px">
+              <asp:TextBox ID="tbBELNRTo" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+            </td>
+          </tr>
+          <tr style="font-weight: bold">
+            <td style="width: 174px">
+              &nbsp;<strong class="fontContentBlue">ปีงบประมาณ</strong><asp:CustomValidator ID="cvYear" runat="server" ControlToValidate="ddYearFrom"
+                                                                                            ErrorMessage="ปีงบประมาณเริ่มต้น ต้องมีค่าน้อยกว่า หรือ เท่ากับ ปีงบประมาณสิ้นสุด กรุณาระบุปีงบประมาณที่ต้องการค้นหาใหม่"
+                                                                                            ForeColor="Tomato" OnServerValidate="cvYear_ServerValidate">*</asp:CustomValidator>
+            </td>
+            <td align="left" style="color: #000000">
+              <asp:DropDownList ID="ddYearFrom" runat="server" TabIndex="7" Width="50px" ForeColor="#333333">
+              </asp:DropDownList>
+            </td>
+            <td style="width: 42px">
+              &nbsp;&nbsp;
+            </td>
+            <td style="width: 459px">
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 174px">
+              &nbsp;
+            </td>
+            <td>
+              &nbsp;
+            </td>
+            <td style="width: 42px">
+              &nbsp;
+            </td>
+            <td style="width: 459px">
+              &nbsp;
+            </td>
+          </tr>
+        </table>
+        <table id="TBSearchSection2" runat="server" visible="false" cellpadding="0" cellspacing="0"
+               class="searchPanel" style="width: 100%">
+          <tr>
+            <td style="width: 244px">
+              &nbsp;<asp:DropDownList ID="ddSearchDateType" runat="server" CssClass="selectSearchType"
+                                      Font-Bold="True" Font-Names="12px" ForeColor="#1b2db7" Width="212px">
+                <asp:ListItem Value="DateSave" Selected="True">วันที่บันทึกรายการ</asp:ListItem>
+                <asp:ListItem Value="BUDAT">วันที่ผ่านรายการ</asp:ListItem>
+                <asp:ListItem Value="BLDAT">วันที่เอกสาร  </asp:ListItem>
+              </asp:DropDownList>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbSearchInfoFrom" runat="server" ForeColor="#333333"></asp:TextBox>
+              <img id="calendar1" src="assets/Images/imgCal.jpg" />
+            </td>
+            <td style="width: 37px">
+              &nbsp;<strong>ถึง</strong>
+            </td>
+            <td>
+              <asp:TextBox ID="tbSearchInfoTo" runat="server" ForeColor="#333333"></asp:TextBox>
+              <img id="calendar2" src="assets/Images/imgCal.jpg" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              &nbsp;<strong class="fontContentGreen">การอ้างอิง</strong>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbXBLNRFrom" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>
+            </td>
+            <td style="width: 37px">
+              &nbsp;<strong>ถึง</strong>
+            </td>
+            <td>
+              <asp:TextBox ID="tbXBLNRTo" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>&nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+              &nbsp;<strong class="fontContentGreen">รหัสประจำตัวผู้เสียภาษี (ผู้รับเงิน)</strong>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbSearchTerm" runat="server" ForeColor="#333333" MaxLength="13"></asp:TextBox>
+            </td>
+            <td style="width: 37px">
+              &nbsp;
+            </td>
+            <td>
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+              &nbsp;
+            </td>
+            <td style="width: 190px">
+              &nbsp;
+            </td>
+            <td style="width: 37px">
+              &nbsp;
+            </td>
+            <td>
+              &nbsp;
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBodyShot" id="TABLE1" language="javascript" style="width: 850px">
+    <tr>
+      <td colspan="4" style="height: 18px" valign="middle">
+        &nbsp;<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; border-bottom-style: none">
+          <tr>
+            <td colspan="5" style="border-bottom-style: none">
+              <asp:HiddenField ID="hfSeachStatus" runat="server" Value="1" />
+            </td>
+          </tr>
+        </table>
+        <table id="TBSearchSuper" runat="server" visible="false" border="1" bordercolor="#f5f5f5"
+               cellpadding="0" cellspacing="0" class="defaultTableBodyShot" style="width: 100%">
+          <tr id="Tr1" runat="server">
+            <td style="height: 25px;">
+              <strong>
+                &nbsp;<asp:Label ID="cssBukrs" runat="server" CssClass="fontContentBlack">รหัสหน่วยงาน</asp:Label>
+                <asp:RequiredFieldValidator ID="rvCcode" runat="server" ControlToValidate="tbCcode"
+                                            ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" ValidationGroup="zzpmt">*</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rvBurksSearch" runat="server" ControlToValidate="tbCcode"
+                                            ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" Enabled="False">*</asp:RequiredFieldValidator>
+              </strong>
+            </td>
+            <td valign="middle" style="height: 25px;" colspan="2">
+              <asp:TextBox ID="tbCcode" runat="server" MaxLength="4" Width="112px" CssClass="fontContentBlack"></asp:TextBox><asp:DropDownList ID="ddlCcode" runat="server" Height="25px" Width="140px"
+                                                                                                                                               Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddlCcode_SelectedIndexChanged" CssClass="fontContentBlack">
+              </asp:DropDownList>&nbsp;<asp:ImageButton (click)="onSearch()" ID="btBukrs" runat="server" CausesValidation="False"
+                                                        Height="20px" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" ToolTip="ค้นหา"
+                                                        Width="22px" />
+            </td>
+            <td style="height: 25px;" colspan="2">
+              <asp:TextBox ID="lbCcode" runat="server" BackColor="White" BorderColor="White" BorderStyle="Solid"
+                           ForeColor="#666666" TabIndex="-1" Width="280px"></asp:TextBox>
+            </td>
+          </tr>
+          <tr>
+            <td style="height: 25px">
+              &nbsp;<strong>
+                <asp:Label ID="cssZzpmt" runat="server" CssClass="fontContentBlack">รหัสหน่วยเบิกจ่าย</asp:Label>
+                <asp:RequiredFieldValidator ID="rvZzpmt2" runat="server" ControlToValidate="tbZzpmt2"
+                                            ErrorMessage="กรุณากรอกรหัสหน่วยเบิกจ่าย" ForeColor="Tomato" Enabled="False">*</asp:RequiredFieldValidator>
+              </strong>
+            </td>
+            <td valign="middle" style="height: 25px" colspan="2">
+              <asp:TextBox ID="tbZzpmt2" runat="server" MaxLength="4" Width="112px" CssClass="fontContentBlack"></asp:TextBox><asp:DropDownList ID="ddZzpmt" runat="server" Height="25px" Width="140px"
+                                                                                                                                                Visible="False" AutoPostBack="True" OnSelectedIndexChanged="ddZzpmt_SelectedIndexChanged" CssClass="fontContentBlack">
+              </asp:DropDownList>&nbsp;<asp:ImageButton ID="btZzpmt" runat="server" Height="20px"
+                                                        ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" OnClick="btZzpmt_Click"
+                                                        ToolTip="ค้นหา" ValidationGroup="zzpmt" Width="22px" />
+            </td>
+            <td colspan="2" style="height: 25px">
+              <asp:TextBox ID="lbZzpmt2" runat="server" BackColor="White" BorderColor="White" BorderStyle="Solid"
+                           ForeColor="#666666" TabIndex="-1" Width="280px"></asp:TextBox>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" align="left" valign="top" style="width: 729px">
+        <fieldset id="TRADMINSECTION" runat="server">
+          <legend>ส่วนของผู้ดูแลระบบ </legend>
+          <table bgcolor="#fffff0" border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+            <tr>
+              <td style="height: 19px" width="152">
+                รหัสผู้ใช้งาน<asp:RequiredFieldValidator ID="rvLUserId" runat="server" ControlToValidate="tbBukrs"
+                                                         ErrorMessage="กรุณากรอกรหัสผู้ใช้งาน" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+              </td>
+              <td style="">
+                <asp:TextBox ID="tbLuserID" runat="server" ForeColor="#666666" MaxLength="12"></asp:TextBox>
+              </td>
+              <td style="height: 19px"></td>
+            </tr>
+            <tr style="">
+              <td style="height: 24px" width="152">
+                รหัสหน่วยงาน<asp:RequiredFieldValidator ID="rvBukrs" runat="server" ControlToValidate="tbBukrs"
+                                                        ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+              </td>
+              <td style="height: 24px">
+                <asp:TextBox ID="tbBukrs" runat="server" ForeColor="#666666" MaxLength="4"></asp:TextBox>
+              </td>
+              <td style="height: 24px"></td>
+            </tr>
+            <tr>
+              <td style="height: 19px" width="155">
+                รหัสหน่วยเบิกจ่าย<asp:RequiredFieldValidator ID="rvZzpmt" runat="server" ControlToValidate="tbZzpmt"
+                                                             Enabled="false" ErrorMessage="กรุณากรอกรหัสหน่วยเบิกจ่าย" ForeColor="Tomato">*</asp:RequiredFieldValidator>
+              </td>
+              <td>
+                <asp:TextBox ID="tbZzpmt" runat="server" ForeColor="#666666" MaxLength="15"></asp:TextBox>
+              </td>
+              <td style="height: 19px"></td>
+            </tr>
+          </table>
+        </fieldset>
+        <asp:ValidationSummary ID="ValidationSummary" runat="server" Width="689px" ForeColor="Tomato" />
+        <asp:Label ID="lbNotFound" runat="server" ForeColor="Tomato"></asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="4" style="height: 18px; width: 729px;">
+        <asp:Button ID="btnSearch" runat="server" TabIndex="15" Text="ค้นหา" OnClick="btnSearch_Click"
+                    Height="20px" Width="128px" />
+      </td>
+    </tr>
+  </table>
+  <table id="TBSearchResult" runat="server" visible="false" border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBodyShot"
+         width="729">
+    <tr>
+      <td colspan="4" style="height: 21px">
+        <asp:Label ID="lbSortTitle" runat="server" Text="จัดลำดับตาม"></asp:Label>
+        <asp:Label ID="lbSortHeader" runat="server" Text="เลขที่ใบขอเบิกเงิน"
+                   Font-Bold="True"></asp:Label>
+        <asp:Label ID="lbSortFrom" runat="server" Text="จาก"></asp:Label>
+        <asp:Label ID="lbSortType" runat="server" Font-Bold="True">น้อยไปมาก</asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td style="height: 21px;" colspan="4">
+        <asp:Label ID="lbTitlePage" runat="server" Text="หน้าที่"></asp:Label>
+        <asp:Label ID="lbCurrentPage" runat="server" Text="1" Font-Bold="True"></asp:Label>
+        <asp:Label ID="lbTitleTotal" runat="server" Text="จากทั้งหมด"></asp:Label>
+        <asp:Label ID="lbTotalPage" runat="server" Text="1" Font-Bold="True"></asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <asp:GridView ID="gvBch01" runat="server" AllowPaging="True" PageSize="5" AutoGenerateColumns="False"
+                      HorizontalAlign="Center" OnSelectedIndexChanged="gvBch01_SelectedIndexChanged"
+                      OnPageIndexChanging="gvBch01_PageIndexChanging" AllowSorting="True" OnSorting="gvBch01_Sorting"
+                      OnRowDataBound="gvBch01_RowDataBound">
+          <Columns>
+            <asp:TemplateField HeaderText="เลือก">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <ItemTemplate>
+                <asp:ImageButton ID="btSelected" runat="server" CausesValidation="false" CommandName="Select"
+                                 ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" Text="เลือก" />
+              </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="BELNR" HeaderText="เลขที่ใบขอเบิกเงิน" SortExpression="BELNR">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="GJAHR" HeaderText="ปีงบประมาณ" SortExpression="GJAHR">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BLDAT" HeaderText="วันที่เอกสาร" SortExpression="BLDAT">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BUDAT" HeaderText="วันที่ผ่านรายการ" SortExpression="BUDAT">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BLART" HeaderText="ประเภท" SortExpression="BLART">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Zlsch" HeaderText="วิธีชำระเงิน" SortExpression="Zlsch">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Name1" HeaderText="ผู้รับเงิน" SortExpression="Name1">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="CPUDT" HeaderText="วันที่บันทึก" SortExpression="CPUDT" DataFormatString="{0:d MMMM yyyy}">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="WRBTR" HeaderText="จำนวนเงิน" SortExpression="WRBTR">
+              <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Doc_Status" HeaderText="สถานะ" SortExpression="Doc_Status">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Belnr_Rev" HeaderText="เลขที่เอกสารกลับรายการ" SortExpression="Belnr_Rev">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+          </Columns>
+          <RowStyle CssClass="LeftMenu" Font-Names="Tahoma" Font-Size="12px" />
+          <HeaderStyle BackColor="#B4C3F6" Font-Names="Tahoma" ForeColor="#051615" Font-Size="13px"
+                       BorderStyle="Outset" CssClass="GridviewHeader" Font-Underline="False" HorizontalAlign="Center" />
+        </asp:GridView>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="height: 21px">
+        <asp:Label ID="lbAnotationTitle" runat="server" Text="หมายเหตุ:"></asp:Label>
+        <asp:Label ID="lbAnotation1" runat="server" Text="1.คลิกที่คอลัมน์ที่มีเส้นใต้เพื่อจัดเรียงลำดับ"></asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="height: 21px">
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+        <asp:Label ID="lbAnotation2" runat="server" Text="2."></asp:Label>
+        <asp:Image ID="imAnotation" runat="server" ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" />
+        <asp:Label ID="lbAnotation3" runat="server" Text="คลิกเพื่อแสดงเอกสาร"></asp:Label>
+      </td>
+    </tr>
+  </table>
+</fieldset>

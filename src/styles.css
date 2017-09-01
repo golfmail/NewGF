@@ -1,0 +1,1068 @@
+﻿body {
+    MARGIN-LEFT: 0px;
+    MARGIN-TOP: 0px;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+
+
+.defaultTableBody {
+    background-color: White;
+    color: #666666;
+    font-family: tahoma;
+    font-size: 11px;
+    z-index: 2;
+}
+
+.defaultTableBody Table {
+    background-color: White;
+    color: #666666;
+    font-family: tahoma;
+    font-size: 11px;
+    z-index: 2;
+}
+
+table.defaultTableBody td {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #F5F5F5;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: solid;
+    border-top-width: 0px;
+    z-index: 2;
+}
+
+
+table.defaultTableBody input {
+    /*height:14px;*/
+    /*width:120px;
+		z-index:3;*/
+    font-family: tahoma;
+    font-size: 11px;
+    /*border-width:1px;
+		border-color:#999999;
+		border-style:solid;*/
+}
+
+.selectSearchType {
+    border-color: #FFFFFF;
+    border-style: none;
+    border-width: 1px;
+}
+
+
+table.defaultTableBody select {
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px;
+    font-family: tahoma;
+    font-size: 11px;
+    height: 18px;
+    width: 120px;
+    z-index: 3;
+}
+
+
+
+.defaultTableBodyShot {
+    color: #666666;
+    font-family: tahoma;
+    font-size: 11px;
+}
+
+table.defaultTableBodyShot td {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #F5F5F5;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: solid;
+    border-top-width: 0px;
+    height: 18px;
+    padding-left: 5px;
+}
+
+table.defaultTableBodyShot input {
+    /*
+        height:14px;
+		width:90px;
+        */
+    font-family: tahoma;
+    font-size: 11px;
+    /*
+        border-width:1px;
+		border-color:#999999;
+		border-style:solid;
+        */
+}
+
+table.defaultTableBodyShot select {
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px;
+    font-family: tahoma;
+    font-size: 11px;
+    height: 18px;
+    width: 90px;
+}
+
+.innerTable { border-style: none; }
+
+.innerTable TD {
+    border-bottom-color: #F2F2F2;
+    border-left-color: #F2F2F2;
+    border-right-color: #F2F2F2;
+    border-style: solid;
+    border-top-color: #F2F2F2;
+    border-width: 1px;
+}
+
+.feildsetTag {
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.style1 { color: #0C4778 }
+
+.style2 { color: #333333 }
+
+.footer {
+    color: #FFFFFF;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+.userLogin {
+    color: #233666;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: bolder;
+}
+
+.userLoginValue {
+    color: #5f6471;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+table.userLogin td { height: 16px; }
+
+.userLoginLabel {
+    color: #717171;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+.userLoginLink {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+.userProfiles {
+    color: #112759;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.userProfilesLabel {
+    color: #1435c4;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.userHeader {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.userHeaderDesc {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+}
+
+.gvHeaderHilight {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.gvHeaderHilightBlue {
+    color: #1b2db7;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.gvHeaderHilightGreen {
+    color: #3b9314;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.gvHeaderHilightBlack {
+    color: #333333;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+}
+
+.fontContentRed {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.fontContentBlue {
+    color: #1b2db7;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.fontContentGreen {
+    color: #3b9314;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: underline;
+}
+
+.fontContentBlack {
+    color: #333333;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+.fontNumberContentBlack {
+    color: #333333;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-align: right
+}
+
+.fontNumberContentGray {
+    color: #666666;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-align: right
+}
+
+.fontContentGray {
+    color: #666666;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+.fontMenuTop {
+    color: #BC1F00;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+input.image {
+    /*background: url(images/buttonHi.jpg);*/
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: bold;
+    height: 28;
+    width: 112;
+}
+
+.bottomdpl { bottom: auto; }
+
+/* MENU ITEMS /
+/*-----------------------------------------------------*/
+
+.menuItems {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Sub MENU ITEM Link*/
+
+/*-----------------------------------------------------*/
+
+a:link.menuItems {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.menuItems {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.menuItems {
+    color: #393857;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.menuItems {
+    color: #393857;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.menuItemDescription {
+    color: #7c7c7c;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+}
+
+/* NEWS /
+/*-----------------------------------------------------*/
+
+.newsSubject {
+    color: #ffffff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.newsHeader {
+    color: #21351a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.newsDescription {
+    color: #21351a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+}
+
+/*customGridPaging*/
+
+/*----------------------------------------------------*/
+
+a:link.customGridPaging {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.customGridPaging {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.customGridPaging {
+    color: #606060;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.customGridPaging {
+    color: #606060;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* Sub News Header Link*/
+
+/*-----------------------------------------------------*/
+
+a:link.newsHeader {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.newsHeader {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.newsHeader {
+    color: #606060;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.newsHeader {
+    color: #606060;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* Sub Category Link*/
+
+/*-----------------------------------------------------*/
+
+a:link.Subcategory {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.Subcategory {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.Subcategory {
+    color: #606060;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.Subcategory {
+    color: #504a4a;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* Attribute Selection*/
+
+/*-----------------------------------------------------*/
+
+a:link.AttributeList {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.AttributeList {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.AttributeList {
+    color: #7f7ea1;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.AttributeList {
+    color: #4c4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* ReportMenuItem Selection*/
+
+/*-----------------------------------------------------*/
+
+a:link.ReportMenuItem {
+    color: #3F8FA6;
+    font-family: tahoma, "ms Sans Serif";
+    text-decoration: none;
+}
+
+a:visited.ReportMenuItem {
+    color: #3F8FA6;
+    font-family: tahoma, "ms Sans Serif";
+    text-decoration: none;
+}
+
+a:hover.ReportMenuItem {
+    color: #5AA9C0;
+    font-family: tahoma, "ms Sans Serif";
+    text-decoration: none;
+}
+
+a:active.ReportMenuItem {
+    color: #3F8FA6;
+    font-family: tahoma, "ms Sans Serif";
+    text-decoration: none;
+}
+
+
+/* DataGrid Items Section*/
+
+/*-----------------------------------------------------*/
+
+.LeftMenu {
+    border-bottom-color: #7386b6;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 1px;
+    color: #4b4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.LeftMenu TD {
+    border-bottom-color: #E5E5E5;
+    border-bottom-style: solid;
+    border-left-color: #EFEFEF;
+    border-left-style: none;
+    border-left-width: 1px;
+    border-right-color: #555555;
+    border-right-style: none;
+    border-right-width: 1px;
+    border-top-style: none;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-decoration: none;
+}
+
+
+/* HyperLeftMenu Section*/
+
+/*-----------------------------------------------------*/
+
+.HyperLeftMenu {
+    border-bottom-color: #7386b6;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-width: 1px;
+    color: #4b4b71;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.HyperLeftMenu TD {
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    text-decoration: none;
+}
+
+
+HyperLeftMenu TD:rollover.over { background-color: #9babd5; }
+
+HyperLeftMenu TD:rollover.out { background-color: #8498cb; }
+
+a:link.HyperLeftMenu {
+    border-bottom-style: none;
+    color: #eeedfb;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:visited.HyperLeftMenu {
+    border-bottom-style: none;
+    color: #eeedfb;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:hover.HyperLeftMenu {
+    border-bottom-style: none;
+    color: #CCEAFF;
+    color: #f7f6ef;
+    color: #ffffff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:active.HyperLeftMenu {
+    border-bottom-style: none;
+    color: #eeedfb;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+LeftMenuAbs {
+    border-bottom-style: none;
+    color: #4c597d;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:link.LeftMenuAbs {
+    border-bottom-style: none;
+    color: #4c597d;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:visited.LeftMenuAbs {
+    border-bottom-style: none;
+    color: #4c597d;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:hover.LeftMenuAbs {
+    border-bottom-style: none;
+    color: #3b4563;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:active.LeftMenuAbs {
+    border-bottom-style: none;
+    color: #4c597d;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+LeftMenuNavigate {
+    border-bottom-style: none;
+    color: #bedfec;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:link.LeftMenuNavigate {
+    border-bottom-style: none;
+    color: #bedfec;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:visited.LeftMenuNavigate {
+    border-bottom-style: none;
+    color: #bedfec;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:hover.LeftMenuNavigate {
+    border-bottom-style: none;
+    color: #FFFFFF;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+a:active.LeftMenuNavigate {
+    border-bottom-style: none;
+    color: #bedfec;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    text-decoration: none;
+}
+
+
+
+
+
+
+/* SUBMIT CONFIRM STYLE */
+
+/*-----------------------------------------------------*/
+
+.submitStatus {
+    color: #666666;
+    font-family: tahoma;
+    font-size: 11px;
+}
+
+table.submitStatus {
+    background-color: #dcdcdc;
+    border: 1px;
+}
+
+table.submitStatus td {
+    background-color: #FFFFFB;
+    border-color: #dcdcdc;
+    height: 18px;
+}
+
+table.submitStatus input {
+    font-family: tahoma;
+    font-size: 11px;
+    /*height:14px;*/
+    width: 90px;
+    /*border-width:1px;
+			border-color:#999999;
+			border-style:solid;*/
+}
+
+table.submitStatus select {
+    border-color: #999999;
+    border-style: solid;
+    border-width: 1px;
+    font-family: tahoma;
+    font-size: 11px;
+    height: 18px;
+    width: 90px;
+}
+
+
+GridviewHeader {
+    color: #b4c3f6;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:link.GridviewHeader {
+    color: #ffffff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:visited.GridviewHeader {
+    color: #ffffff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:hover.GridviewHeader {
+    color: #fff0ff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a:active.GridviewHeader {
+    color: #ffffff;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* SubMenuItem Section*/
+
+/*-----------------------------------------------------*/
+
+SubMenuItem {
+    color: #546692;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:link.SubMenuItem {
+    color: #546692;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:visited.SubMenuItem {
+    color: #546692;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:hover.SubMenuItem {
+    color: #4A5B82;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:active.SubMenuItem {
+    color: #546692;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.POSelection {
+    color: #009966;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:link.POSelection {
+    color: #009966;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:visited.POSelection {
+    color: #009966;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:hover.POSelection {
+    color: #00CC99;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:active.POSelection {
+    color: #009966;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.POSelectionRed {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:link.POSelectionRed {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:visited.POSelectionRed {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:hover.POSelectionRed {
+    color: #ff4500;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+a:active.POSelectionRed {
+    color: #e31e1e;
+    font-family: tahoma, "ms Sans Serif";
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.panelSearchHeader td {
+    clear: inherit;
+    clear: both;
+}
+
+.panelSearchHeader {
+    background-color: #FDFDDE;
+    border-bottom-color: #666685;
+    border-bottom-style: none;
+    border-bottom-width: 1px;
+    border-left-color: #666685;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: #A0A0B9;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #666685;
+    border-top-style: solid;
+    border-top-width: 1px;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    /*padding-top:3px;
+	 padding-bottom:3px;*/
+    padding-left: 5px;
+}
+
+.panelSearchHeader_unselected {
+    background-color: #F0F0D0;
+    border-bottom-color: #666685;
+    border-bottom-style: none;
+    border-bottom-width: 1px;
+    border-left-color: #A0A0B9;
+    border-left-style: solid;
+    border-left-width: 0px;
+    border-right-color: #A0A0B9;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: #A0A0B9;
+    border-top-style: solid;
+    border-top-width: 1px;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: bold;
+    /*padding-top:3px;
+	 padding-bottom:3px;*/
+    padding-left: 5px;
+}
+
+.panelSearchHeader_Hover {
+    background-color: #FDFCE6;
+    border-bottom-color: #666685;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #666685;
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
+.lbSearchDescMsg {
+    font-family: Tahoma;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.searchPanel {
+    border-color: #A0A0B9;
+    border-style: solid;
+    border-top-style: solid;
+    border-width: 1px;
+    color: #666666;
+}
+
+.searchPanel TD {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-color: #F5F5F5;
+    border-top-style: solid;
+    border-top-width: 0px;
+    font-family: Tahoma;
+    font-size: 11px;
+    font-weight: normal;
+    height: 21px;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+
+
+table.searchPanel input {
+    /*height:14px;*/
+    /*width:120px;
+		z-index:3;*/
+    font-family: tahoma;
+    font-size: 11px;
+    /*border-width:1px;
+		border-color:#999999;
+		border-style:solid;*/
+}
+
+table.searchPanel select {
+    border-color: #999999;
+    border-style: solid;
+    /*width:120px;*/
+    border-width: 1px;
+    font-family: tahoma;
+    font-size: 11px;
+    height: 18px;
+    z-index: 3;
+}
+
+.lbSearchPanelDesc {
+    color: #ADADAD;
+    font-family: Tahoma;
+    font-size: 11px;
+}
+
+a:link.SearchSelection {
+    color: #666666;
+    text-decoration: none;
+}
+
+a:visited.SearchSelection {
+    color: #666666;
+    text-decoration: none;
+}
+
+a:hover.SearchSelection {
+    color: #888888;
+    text-decoration: none;
+}
+
+a:active.SearchSelection {
+    color: #666666;
+    text-decoration: none;
+}
+
+.messageBox {
+    background-color: #fffff4;
+    border-color: #4b6d96;
+    border-style: dashed;
+    border-width: 1px;
+    font-family: tahoma;
+    font-size: 12px;
+    height: 80px;
+    padding-left: 5px;
+    padding-top: 5px;
+    position: absolute;
+    width: 200px;
+}
+
+.spSubmitProgress {
+    color: #888888;
+    font-family: tahoma;
+    font-size: 11px;
+}
+
+fieldset {
+    /*display:inline-table;*/
+    width: 100%;
+}

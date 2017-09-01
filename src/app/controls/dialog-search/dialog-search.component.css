@@ -1,0 +1,83 @@
+.dialog {
+    background-color: #ddd;
+}
+
+md-dialog-content {
+    padding : 0;
+  }
+body {
+    background-color: yellow;
+}
+:host >>> table {
+    border-collapse: collapse;
+    width: 100%;
+    /* border: 1px solid #ddd; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* max-height: 300px;
+    min-width: 300px; */
+    /* width: 300px; */
+}
+
+:host >>> th, :host >>> td {
+    padding: 3px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 80%;  /* 1em = 10px */
+    font-family: Tahoma;
+}
+
+:host >>> tr:nth-child(even){background-color: #f2f2f2}
+:host >>> tr:hover{
+	background-color:#bcc2fa;
+/*	color: #0080ff; */
+}
+
+:host >>> th {
+    background-color: #4C6C96;
+    color: white;
+    text-align: center;
+    border: 1px solid #ddd;
+    /* border-left: 0px; */
+    border-right: 0px;
+}
+
+:host >>> div.content {
+	font-family: Tahoma;
+}
+
+:host >>> button-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modal-header-search {
+    color:#fff;
+    padding:9px 15px;
+    /* border-bottom:1px solid #eee; */
+    background-color: #4C6D96;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
+:host >>> h1 {
+    text-align: left;
+    font-size: 80%;  /* 1em = 10px */
+    font-family: Tahoma;
+    font-weight: bold;
+}
+
+.sText {
+    text-align: left;
+    font-size: 80%;  /* 1em = 10px */
+    font-family: Tahoma;
+    font-weight: bold;
+}
+/* .myTable {
+    width: 300px;
+} */

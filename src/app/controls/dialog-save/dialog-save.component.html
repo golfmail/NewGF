@@ -1,0 +1,50 @@
+<h1 md-dialog-title id="headerShow">จำลองการบันทึก</h1>
+<div class="divH">
+<div id='success' style="display:block">
+  <div align='center'>
+    <table width="100%">
+        <tr>
+          <th width="20%">ผลการบันทึก</th>
+          <th width="30%">รหัสข้อความ</th>
+          <th>คำอธิบาย</th>
+        </tr>
+        <tr>
+          <td width="20%">สำเร็จ</td>
+          <td width="30%"></td>
+          <td>ตรวจสอบเอกสาร - ไม่มีข้อผิดพลาด</td>
+        </tr>
+    </table>
+  </div>
+  <div md-dialog-actions align='center' class="button-row">
+    <!-- <button  md-raised-button (click)="confirmSave()" color="primary">บันทึกข้อมูล</button> 
+    <button  md-raised-button (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button> -->
+    <button  (click)="confirmSave()" color="primary">บันทึกข้อมูล</button> 
+    <button  (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+  </div>
+</div>
+<div id='showSuccess' style="display:none">
+  <div align='center'>
+    <tr>
+      <th>ผลการบันทึก</th>
+      <th>เลขที่เอกสาร</th>
+      <th>รหัสหน่วยงาน</th>
+      <th>ปีบัญชี</th>
+    </tr>
+    <tr>
+      <td>{{res}}</td>
+      <td>{{TBNUMTR}}</td>
+      <td>{{TBBUKRS}}</td>
+      <td>{{TBBUDAT}}</td>
+    </tr>
+  </div>
+  <!-- <hr> -->
+  <div md-dialog-actions align='center' class="button-row">
+    <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button> 
+    <button [disabled]="BTEDIT" id="BTEDIT" disabled (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+    <button disabled (click)="dialogRef.close()">สร้างเอกสารใหม่</button>
+    <button disabled (click)="dialogRef.close()">ค้นหาเอกสาร</button>
+    <button disabled (click)="dialogRef.close()">Log</button>
+  </div>
+</div>
+</div>
+

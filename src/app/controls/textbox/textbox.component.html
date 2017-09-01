@@ -1,0 +1,3 @@
+﻿<input *ngIf="textMode=='SingleLine'" [style.height]="height" [style.width]="width" type="text" name="{{name}}" [(ngModel)]="value"/>
+<textarea *ngIf="textMode=='MultiLine'" [style.height]="height" [style.width]="width" name="{{name}}" [(ngModel)]="value"></textarea>
+<span *ngIf="textMode=='ReadOnly'" [style.height]="height" [style.width]="width">{{value}}</span>
