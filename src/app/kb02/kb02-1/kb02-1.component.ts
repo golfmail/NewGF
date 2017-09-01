@@ -67,7 +67,12 @@ export class Kb021Component implements OnInit  {
   TBPRZNR = ''; // รหัสกิจกรรมย่อย
   TBKBLNR = '1200003245' // เลขที่เอกสารสำรองเงิน
 
+  // Test Date
   myDate = new Date('2017-04-17T03:24:00');
+
+  // Fiscal year
+  FCMONTH;
+  FCYEAR;
 
   // Label
   LBKOSTL = '';
@@ -470,6 +475,8 @@ export class Kb021Component implements OnInit  {
     const config = new MdDialogConfig();
     const dialogRef: MdDialogRef<DialogSaveComponent> = this.dialog.open(DialogSaveComponent, config);
     dialogRef.componentInstance.xml_s = this.xml;
+    dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
+    dialogRef.componentInstance.FCYEAR = this.FCYEAR;
       dialogRef.afterClosed()
       .subscribe(selection => {
         if (selection) {
@@ -544,6 +551,13 @@ export class Kb021Component implements OnInit  {
   // }
 
   ngOnInit() {
+    if (this.myDate.getMonth() <= 10 ) {
+      this.FCYEAR = Number(this.myDate.getFullYear()) - 1;
+      console.log('f' + this.FCYEAR);
+    } else {
+      this.FCYEAR = this.myDate.getFullYear();
+      console.log(this.FCYEAR);
+    }
   }
 
 }

@@ -12,8 +12,8 @@ export class DialogSaveComponent implements OnInit {
   xml_s: string;
   TBNUMTR = '-'; // 3100000041
   name_tr = 'Something'; // Something
-  TBBUKRS= this.TBBUKRS;
-  TBBUDAT=this.TBBUDAT;
+  TBBUKRS: string;
+  FCYEAR: number;
   res: string;
   BTSHOW;
   BTEDIT;
