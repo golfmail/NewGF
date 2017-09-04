@@ -36,11 +36,28 @@
       </div>-->
       <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="newItem.EndTime"  ngbDatepicker #d1="ngbDatepicker" required>
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
-          <md-input-container>
+       <!-- <md-input-container>
             <input mdInput [(ngModel)]="myDate" [mdDatepicker]="picker" >
             <button mdSuffix [mdDatepickerToggle]="picker"></button>
           </md-input-container>  
-          <md-datepicker #picker ></md-datepicker>   
+          
+          <md-datepicker #picker ></md-datepicker>    -->
+          <tr>
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                         name="dp" [(ngModel)]="myDate" ngbDatepicker #d="ngbDatepicker">
+                  <button class="input-group-addon" (click)="d.toggle()" type="button">
+                    <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
+                </div>
+              </div>
+            </form>
+            
+            <!-- <hr/> -->
+            <!-- <pre>Model: {{ model | json }}</pre> -->
+          </tr>
         </td>
       </tr>
       <tr>
@@ -114,7 +131,7 @@
                   <asp:ListItem>15</asp:ListItem>
                   <asp:ListItem>16</asp:ListItem>
                 </asp:DropDownList>-->
-                10
+                {{ddMonat}}
               </td>
               <td>
                 <!--<asp:TextBox BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="lbMonat" runat="server" Width="27px"></asp:TextBox>-->

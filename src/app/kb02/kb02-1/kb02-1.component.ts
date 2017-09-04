@@ -15,15 +15,65 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { MdDatepickerModule } from '@angular/material';
 import { MdNativeDateModule } from '@angular/material';
 // import { Popup } from 'ng2-opd-popup';
+import {NgbModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+export class NgbdDatepickerPopup {
+  model;
+}
+const now = new Date();
+const I18N_VALUES = {
+  'th': {
+    weekdays: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+    days: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
+    daysShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+    daysMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+    months: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+             'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+    monthsShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+    today: 'วันนี้'
+  }
+  // other languages you would support
+};
+
+// Define a service holding the language. You probably already have one if your app is i18ned. Or you could also
+// use the Angular LOCALE_ID value
+@Injectable()
+export class I18n {
+  language = 'th';
+}
+
+// Define custom service providing the months and weekdays translations
+@Injectable()
+export class CustomDatepickerI18n extends NgbDatepickerI18n {
+
+  constructor(private _i18n: I18n) {
+    super();
+  }
+
+  getWeekdayShortName(weekday: number): string {
+    return I18N_VALUES[this._i18n.language].weekdays[weekday ];
+  }
+  getMonthShortName(month: number): string {
+    return I18N_VALUES[this._i18n.language].months[month - 1];
+  }
+  getMonthFullName(month: number): string {
+    return this.getMonthShortName(month);
+  }
+}
 
 @Component({
   selector: 'kb02-1',
   templateUrl: './kb02-1.component.html',
-  styleUrls: ['./kb02-1.component.css']
+  styleUrls: ['./kb02-1.component.css'],
+  providers: [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
 })
 
 // @Injectable()
 export class Kb021Component implements OnInit  {
+  model: NgbDateStruct;
+  date: {year: number, month: number};
+
    res: string;
   ddblartList: string[] = [
     'เพื่อจ่ายผู้ขาย/คู่สัญญา', 'เพื่อชดใช้ใบสำคัญ', 'เพื่อจ่ายเงินเดือนและเงินอื่นที่จ่ายสิ้นเดือน', 'เพื่อจ่ายให้ยืม',
@@ -68,7 +118,8 @@ export class Kb021Component implements OnInit  {
   TBKBLNR = '1200003245' // เลขที่เอกสารสำรองเงิน
 
   // Test Date
-  myDate = new Date('2017-04-17T03:24:00');
+  // myDate = new Date('2017-04-17T03:24:00');
+  myDate = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
 
   // Fiscal year
   FCMONTH;
@@ -129,12 +180,17 @@ export class Kb021Component implements OnInit  {
   resultID: string;
   xml: string;
 
+  // งวด
+  ddMonat: number;
+
   constructor(public dialog: MdDialog, private httpService: Http) {
   }
   // constructor(private ListViewComponent: ListViewComponent) {
   // }
 
-
+  selectToday() {
+    this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  }
   detailSave() {
     console.log('detailSave');
   }
@@ -303,6 +359,7 @@ export class Kb021Component implements OnInit  {
   };
 
   formSave() {
+    console.log(this.myDate);
     this.ValidateList = [];
     this.checkform();
     if (this.ValidateList.length <= 0) {
@@ -551,13 +608,20 @@ export class Kb021Component implements OnInit  {
   // }
 
   ngOnInit() {
-    if (this.myDate.getMonth() <= 10 ) {
-      this.FCYEAR = Number(this.myDate.getFullYear()) - 1;
+    console.log(this.myDate);
+    if (this.myDate.month >= 10 ) {
+      this.FCYEAR = Number(this.myDate.year) + 1;
       console.log('f' + this.FCYEAR);
     } else {
-      this.FCYEAR = this.myDate.getFullYear();
+      this.FCYEAR = this.myDate.year;
       console.log(this.FCYEAR);
     }
+
+    if (this.myDate.month < 10) {
+        this.ddMonat = this.myDate.month + 3;
+    } else {
+      this.ddMonat = this.myDate.month - 9;
+      }
   }
 
 }

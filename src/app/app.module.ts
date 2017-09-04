@@ -44,7 +44,9 @@ import { ListDetailComponent } from './controls/list-detail/list-detail.componen
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import { PopupModule } from 'ng2-opd-popup';
-
+//calenda
+import { JsonpModule } from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdDialog,
   MdToolbarModule,
   MdButtonModule,
@@ -119,6 +121,8 @@ import { DialogSaveComponent } from './controls/dialog-save/dialog-save.componen
     MdNativeDateModule,
     // ReactiveFormsModule
     MdToolbarModule,
+     //calenda
+     JsonpModule, NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
