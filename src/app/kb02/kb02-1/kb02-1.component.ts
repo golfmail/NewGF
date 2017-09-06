@@ -118,8 +118,10 @@ export class Kb021Component implements OnInit  {
   TBKBLNR = '1200003245' // เลขที่เอกสารสำรองเงิน
 
   // Test Date
-  // myDate = new Date('2017-04-17T03:24:00');
-  myDate = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  DATEA = new Date();
+  DATEI = new Date();
+  DATEACC = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  DATEINV = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
 
   // Fiscal year
   FCMONTH;
@@ -132,6 +134,7 @@ export class Kb021Component implements OnInit  {
   LBPRZNR = '';
   LBZZOBJ = '';
   LBZZLOAN = '';
+  LBHKONT = '';
 
   // Disable & Show
   DSTBALL;
@@ -148,6 +151,10 @@ export class Kb021Component implements OnInit  {
   IDKOSTL = '101';
   IDHKONT = '1000002';
   IDWRBTR = '1000';
+  IDSTERM = '2032400000';
+  IDBLART = '';
+  IDDATEA = '01/01/2017'; // (ID) Account Date
+  IDDATEI = '02/01/2017'; // (ID) Date Invoiced
 
   // Other Variable
   TBNUMTR: string; // Number of Table List
@@ -158,9 +165,9 @@ export class Kb021Component implements OnInit  {
   contentRed    = 'fontContentRed';
   contentBlack  = 'fontContentBlack';
 
-  // Selected Value
-  selectedblart = this.soblartList[0].Name;
-  selectedZlsch = this.soZlschList[0].Name;
+  // Selected Value Doc. type
+  selectedblart = this.soblartList[0].id;
+  selectedZlsch = this.soZlschList[0].id;
 
   apiValues: string[] = [];
   saveTable: any []; // Array form save
@@ -181,7 +188,8 @@ export class Kb021Component implements OnInit  {
   xml: string;
 
   // งวด
-  ddMonat: number;
+  // ddMonat: number;
+    ddMonat = this.DATEI.getMonth() + 4;
 
   constructor(public dialog: MdDialog, private httpService: Http) {
   }
@@ -246,6 +254,11 @@ export class Kb021Component implements OnInit  {
                 this.TBPRZNR = this.resultTB; // Set Value
                 this.LBPRZNR = this.resultLB;
                 break;
+              case 'TBHKONT': // รหัสบัญชีแยกประเภททั่วไป
+                this.TBHKONT = this.resultTB; // Set Value
+                this.LBHKONT = this.resultLB;
+                this.IDHKONT = this.resultID;
+                break;
               }
         } else {
           // User clicked 'Cancel' or clicked outside the dialog
@@ -271,6 +284,41 @@ export class Kb021Component implements OnInit  {
     this.contentRed    = 'fontContentBlack';
     // this.contentBlack  = 'fontContentBlack';
   }
+
+  onSelectDate(typeDate) {
+    // ปีบัญชี และ งวด เริ่มต้น
+    if (typeDate === 'inv') {
+      console.log(this.DATEINV);
+      if (this.DATEINV.month >= 10 ) {
+        this.FCYEAR = Number(this.DATEINV.year) + 1;
+        console.log('f' + this.FCYEAR);
+      } else {
+        this.FCYEAR = this.DATEINV.year;
+        console.log(this.FCYEAR);
+      }
+      if (this.DATEINV.month < 10) {
+          this.ddMonat = this.DATEINV.month + 3;
+      } else {
+        this.ddMonat = this.DATEINV.month - 9;
+      }
+    } else if (typeDate === 'i') {
+      if (this.DATEI.getMonth() >= 9 ) {
+        this.FCYEAR = Number(this.DATEI.getFullYear()) + 1;
+        console.log('f' + this.FCYEAR);
+      } else {
+        this.FCYEAR = this.DATEI.getFullYear();
+        console.log('f' + this.FCYEAR);
+      }
+      if (this.DATEI.getMonth() < 9) {
+        console.log(this.DATEI.getMonth());
+        this.ddMonat = this.DATEI.getMonth() + 4;
+      } else {
+        this.ddMonat = this.DATEI.getMonth() - 8;
+        console.log(this.DATEI.getMonth());
+      }
+    }
+  }
+
   onSelect(save: TableList, i): void {
     // document.getElementById('lbNUMBER').innerText = i + 1;
     this.lbNUMBER = i + 1;
@@ -297,6 +345,10 @@ export class Kb021Component implements OnInit  {
     this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
     this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
     this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+    this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+    this.IDBLART = save.IDBLART; // (ID) Doc. Type
+    this.IDDATEA = save.IDDATEA; // (ID) Account Date
+    this.IDDATEI = save.IDDATEI; // (ID) Date Invoic
   }
 
   checkform() {
@@ -358,10 +410,47 @@ export class Kb021Component implements OnInit  {
     // document.getElementById('showSuccess').style.display = 'block';
   };
 
+  // Get Doc. type
+  getDcotype() {
+    console.log(this.selectedblart);
+    console.log(this.selectedZlsch);
+    if (this.selectedZlsch = '1') {
+        switch (this.selectedblart) {
+          case '1': this.IDBLART = 'KC'; break;
+          case '2': this.IDBLART = 'KL'; break;
+          case '3': this.IDBLART = 'K0'; break;
+          case '4': this.IDBLART = 'K1'; break;
+          case '5': this.IDBLART = 'K8'; break;
+          default: break;
+        }
+    } else if (this.selectedZlsch = '2') {
+      switch (this.selectedblart) {
+        case '1': this.IDBLART = 'KE'; break;
+        case '2': this.IDBLART = 'KL'; break;
+        case '3': this.IDBLART = 'K0'; break;
+        case '4': this.IDBLART = 'K1'; break;
+        case '5': this.IDBLART = 'K8'; break;
+        default: break;
+      }
+    }
+  }
+
+  // Get Account,Invoiced Date
+  getDateAI() {
+    // alert(this.DATEACC);
+    console.log(this.DATEI);
+    const DA = this.DATEA;
+    const DI = this.DATEI;
+    this.IDDATEA = DA.getDate() + '/' + (DA.getMonth() + 1) + '/' + DA.getFullYear();
+    this.IDDATEI = DI.getDate() + '/' + (DI.getMonth() + 1 ) + '/' + DI.getFullYear();
+    console.log('A: ' + this.IDDATEA + ', I: ' + this.IDDATEI);
+  }
+
   formSave() {
-    console.log(this.myDate);
     this.ValidateList = [];
     this.checkform();
+    this.getDcotype(); // get IDBLART
+    this.getDateAI(); // Get Date
     if (this.ValidateList.length <= 0) {
       console.log('0 0');
     // console.log('Array: ' + saveTable.length);
@@ -391,6 +480,10 @@ export class Kb021Component implements OnInit  {
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
           IDHKONT: this.IDHKONT, // (ID) รหัสบัญชีแยกประเภททั่วไป
           IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
+          IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
+          IDBLART: this.IDBLART, // (ID) Doc. Type
+          IDDATEA: this.IDDATEA, // (ID) Account Date
+          IDDATEI: this.IDDATEI, // (ID) Date Invoic
           }]
         // alert(SAVELIST.length);
     } else {
@@ -416,6 +509,10 @@ export class Kb021Component implements OnInit  {
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
           IDHKONT: this.IDHKONT, // (ID) รหัสบัญชีแยกประเภททั่วไป
           IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
+          IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
+          IDBLART: this.IDBLART, // (ID) Doc. Type
+          IDDATEA: this.IDDATEA, // (ID) Account Date
+          IDDATEI: this.IDDATEI, // (ID) Date Invoic
           });
         }
 
@@ -475,6 +572,10 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST[lbNUMBER].IDKOSTL = this.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
     this.SAVELIST[lbNUMBER].IDHKONT = this.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
     this.SAVELIST[lbNUMBER].IDWRBTR = this.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+    this.SAVELIST[lbNUMBER].IDSTERM = this.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+    this.SAVELIST[lbNUMBER].IDBLART = this.IDBLART; // (ID) Doc. Type
+    this.SAVELIST[lbNUMBER].IDDATEA = this.IDDATEA; // (ID) Account Date
+    this.SAVELIST[lbNUMBER].IDDATEI = this.IDDATEI; // (ID) Date Invoic
 
   };
 
@@ -527,6 +628,19 @@ export class Kb021Component implements OnInit  {
             </dataRow>\n\
           </modelCRUD>\n\
         </operation>`;
+
+      //   <field column="tbSearch_term">\n\
+      //   <val>${element.IDSTERM}</val>\n\
+      // </field>\n\
+      // <field column="BLART">\n\
+      //   <val>${element.IDBLART}</val>\n\
+      // </field>\n\
+      // <field column="TBBLDAT">\n\
+      //   <val>${element.IDDATEA}</val>\n\
+      // </field>\n\
+      // <field column="TBBUDAT">\n\
+      //   <val>${element.IDDATEI}</val>\n\
+      // </field>\n\
     }
     this.xml = this.xml + `\n\</operations>`;
     const config = new MdDialogConfig();
@@ -608,20 +722,22 @@ export class Kb021Component implements OnInit  {
   // }
 
   ngOnInit() {
-    console.log(this.myDate);
-    if (this.myDate.month >= 10 ) {
-      this.FCYEAR = Number(this.myDate.year) + 1;
-      console.log('f' + this.FCYEAR);
-    } else {
-      this.FCYEAR = this.myDate.year;
-      console.log(this.FCYEAR);
-    }
 
-    if (this.myDate.month < 10) {
-        this.ddMonat = this.myDate.month + 3;
-    } else {
-      this.ddMonat = this.myDate.month - 9;
-      }
+    // ปีบัญชี และ งวด เริ่มต้น
+    // console.log(this.DATEINV);
+    // if (this.DATEINV.month >= 10 ) {
+    //   this.FCYEAR = Number(this.DATEINV.year) + 1;
+    //   console.log('f' + this.FCYEAR);
+    // } else {
+    //   this.FCYEAR = this.DATEINV.year;
+    //   console.log(this.FCYEAR);
+    // }
+
+    // if (this.DATEINV.month < 10) {
+    //     this.ddMonat = this.DATEINV.month + 3;
+    // } else {
+    //   this.ddMonat = this.DATEINV.month - 9;
+    // }
   }
 
 }

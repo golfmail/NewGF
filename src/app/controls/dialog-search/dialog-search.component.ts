@@ -159,6 +159,23 @@ export class DialogSearchComponent implements OnInit {
                   <description>อุดรธาณี</description>
                 </row>
                 </table>`;
+
+  // เพิ่มรหัสบัญชีแยกประเภท
+  xmlTBHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <row>
+                  <id>xx</id>
+                  <Value>xxx</Value>
+                  <Name>xxx</Name>
+                  <description>xxx</description>
+                </row>
+                <row>
+                  <id>yy</id>
+                  <Value>yyy</Value>
+                  <Name>yyy</Name>
+                  <description>yyy</description>
+                </row>
+                </table>`;
+
   constructor( public dialogRef: MdDialogRef<DialogSearchComponent>, private httpService: Http) {};
 
   searchitem() {
@@ -194,6 +211,10 @@ export class DialogSearchComponent implements OnInit {
         console.log('C: ' + this.code_t);
         break;
       case 'TBZZLOAN':
+        this.resourcesList(this.name_t);
+        console.log('C: ' + this.code_t);
+        break;
+      case 'TBHKONT':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
@@ -235,6 +256,10 @@ export class DialogSearchComponent implements OnInit {
         break;
       case 'TBZZLOAN':
         this.gatherItem(this.xmlTBKOSTL); // for TEST
+        this.displayItem(name_r);
+        break;
+      case 'TBHKONT':
+        this.gatherItem(this.xmlTBHKONT); // for TEST
         this.displayItem(name_r);
         break;
     }

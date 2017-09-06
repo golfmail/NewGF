@@ -1,8 +1,8 @@
 export class TableList {
     TBBUKRS: string;
     LBBUKRS: string;
-    TBBLDAT: string;
-    TBBUDAT: string;
+    TBBLDAT: string; // (ID) Account Date
+    TBBUDAT: string; // (ID) Date Invoiced
     TBZZPMT: string;
     LBZZPMT: string;
     TBXBLNR: string;
@@ -21,6 +21,10 @@ export class TableList {
     IDKOSTL: string; // (ID) รหัสศูนย์ต้นทุน
     IDHKONT: string; // (ID) รหัสบัญชีแยกประเภททั่วไป
     IDWRBTR: string; // (ID) จำนวนเงินที่ขอเบิก
+    IDSTERM: string; // (ID) เลขประจำตัวผู้เสียภาษี
+    IDBLART: string; // (ID) Doc. Type
+    IDDATEA: string; // (ID) Account Date
+    IDDATEI: string; // (ID) Date Invoiced
 }
 
 export class SearchList {

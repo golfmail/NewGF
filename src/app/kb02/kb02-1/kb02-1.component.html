@@ -36,18 +36,18 @@
       </div>-->
       <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="newItem.EndTime"  ngbDatepicker #d1="ngbDatepicker" required>
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
-       <!-- <md-input-container>
-            <input mdInput [(ngModel)]="myDate" [mdDatepicker]="picker" >
-            <button mdSuffix [mdDatepickerToggle]="picker"></button>
-          </md-input-container>  
-          
-          <md-datepicker #picker ></md-datepicker>    -->
-          <tr>
+       <md-input-container>
+        <input mdInput [(ngModel)]="DATEA" [mdDatepicker]="aDatepicker"
+        (ngModelChange)="DATEACC = onSelectDate('a')">
+        <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button>
+      </md-input-container>
+      <md-datepicker #aDatepicker></md-datepicker>
+          <!-- <tr>
             <form class="form-inline">
               <div class="form-group">
                 <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd"
-                         name="dp" [(ngModel)]="myDate" ngbDatepicker #d="ngbDatepicker">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DATEACC" ngbDatepicker #d="ngbDatepicker"
+                         (ngModelChange)="DATEACC = onSelectDate('acc')" >
                   <button class="input-group-addon" (click)="d.toggle()" type="button">
                     <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                   </button>
@@ -55,9 +55,9 @@
               </div>
             </form>
             
-            <!-- <hr/> -->
-            <!-- <pre>Model: {{ model | json }}</pre> -->
-          </tr>
+            <hr/>
+            <pre>Model: {{ DATEACC | json }}</pre>
+          </tr> -->
         </td>
       </tr>
       <tr>
@@ -90,11 +90,30 @@
           <!--Update_Ton-->
           <!-- <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBUDAT" class="fontContentBlack" ID="TBBUDAT" MaxLength="8" OnTextChanged="TBBUDAT_TextChanged" runat="server" TabIndex="3" Width="100px">&nbsp; -->
           <!-- <img [hidden]="SHOWBT" id="calendar2" runat="server" src="assets/Images/imgCal.jpg" /> -->
+          
           <md-input-container>
-              <input mdInput [(ngModel)]="myDate" [mdDatepicker]="picker2" >
-              <button mdSuffix [mdDatepickerToggle]="picker2"></button>
-          </md-input-container>  
-          <md-datepicker  #picker2 ></md-datepicker>   
+            <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
+            (ngModelChange)="DATEINV = onSelectDate('i')">
+            <button mdSuffix [mdDatepickerToggle]="iDatepicker"></button>
+          </md-input-container>
+          <md-datepicker #iDatepicker></md-datepicker>
+          <!-- <tr>
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="dd-mm-yyyy" name="dp"  ngbDatepicker #dinv="ngbDatepicker"
+                         [(ngModel)]="DATEINV" (ngModelChange)="DATEINV = onSelectDate('inv')">
+                   
+                  <button class="input-group-addon" (click)="dinv.toggle()" type="button">
+                    <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                  </button>
+                </div>
+              </div>
+            </form>
+            
+            <hr/>
+            <pre>Model: {{ DATEINV | json }}</pre>
+          </tr> -->
         </td>
       </tr>
       <tr>
@@ -301,7 +320,7 @@
       </td>
       <td colspan="3" style="height: 18px">
         <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedblart">
-        <!--Update_Ton-->  <option *ngFor="let c of soblartList" [ngValue]="c.Name">{{c.Name}}</option>
+        <!--Update_Ton-->  <option *ngFor="let c of soblartList" [ngValue]="c.id">{{c.Name}}</option>
         <!--Update_Ton--></select>
         <!-- <asp:DropDownList [values]="ddblartList" class="fontContentBlack" ID="DDBLART" runat="server" TabIndex="7" Width="270px">
         </asp:DropDownList> -->
@@ -317,7 +336,7 @@
         <!-- <asp:DropDownList [values]="ddZlschList" class="fontContentBlack" ID="ddZlsch" runat="server" Width="270px">
         </asp:DropDownList> -->
         <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedZlsch">
-        <!--Update_Ton-->  <option *ngFor="let c of soZlschList">{{c.Name}}</option>
+        <!--Update_Ton-->  <option *ngFor="let c of soZlschList" [ngValue]="c.id">{{c.Name}}</option>
         <!--Update_Ton--></select>
       </td>
     </tr>
@@ -495,7 +514,7 @@
       </strong>
     </td>
   </tr>
-  <tr style="font-weight: bold">
+  <tr>
     <td style="height: 18px; width: 140px;">
       &nbsp;
     </td>
@@ -505,8 +524,8 @@
     <td style="height: 18px; width: 154px;">
       &nbsp;
     </td>
-    <td colspan="2" style="font-weight: bold; height: 18px; width: 159px;" valign="middle">
-      <asp:TextBox TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBHKONT" runat="server" Width="250px"></asp:TextBox>
+    <td colspan="2" style=" height: 18px; width: 159px;" valign="middle">
+      <asp:TextBox [(ngModel)]="LBHKONT" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBHKONT" runat="server" Width="250px"></asp:TextBox>
     </td>
   </tr>
   <tr style="font-weight: bold">
