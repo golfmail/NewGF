@@ -1066,3 +1066,8 @@ fieldset {
     /*display:inline-table;*/
     width: 100%;
 }
+
+.myapp-no-padding-dialog .mat-dialog-container {
+    padding: 24px;
+    padding-top: 0px;
+  }

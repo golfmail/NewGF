@@ -169,6 +169,7 @@ export class Kb021Component implements OnInit  {
   selectedblart = this.soblartList[0].id;
   selectedZlsch = this.soZlschList[0].id;
 
+
   apiValues: string[] = [];
   saveTable: any []; // Array form save
   evilTitle = 'Template <i>Jo</i>';
@@ -208,7 +209,7 @@ export class Kb021Component implements OnInit  {
     this.codetx = textcode;
     this.nametx = document.getElementById(textname).textContent;
     const config = new MdDialogConfig();
-    const dialogRef: MdDialogRef<DialogSearchComponent> = this.dialog.open(DialogSearchComponent, config);
+    const dialogRef: MdDialogRef<DialogSearchComponent> = this.dialog.open(DialogSearchComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.componentInstance.code_t = this.codetx;
     dialogRef.componentInstance.name_t = this.nametx;
     // cssKOSTL
@@ -725,13 +726,13 @@ export class Kb021Component implements OnInit  {
 
     // ปีบัญชี และ งวด เริ่มต้น
     // console.log(this.DATEINV);
-    // if (this.DATEINV.month >= 10 ) {
-    //   this.FCYEAR = Number(this.DATEINV.year) + 1;
-    //   console.log('f' + this.FCYEAR);
-    // } else {
-    //   this.FCYEAR = this.DATEINV.year;
-    //   console.log(this.FCYEAR);
-    // }
+    if (this.DATEINV.month >= 10 ) {
+      this.FCYEAR = Number(this.DATEINV.year) + 1;
+      console.log('f' + this.FCYEAR);
+    } else {
+      this.FCYEAR = this.DATEINV.year;
+      console.log(this.FCYEAR);
+    }
 
     // if (this.DATEINV.month < 10) {
     //     this.ddMonat = this.DATEINV.month + 3;
