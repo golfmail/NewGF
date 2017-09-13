@@ -192,6 +192,9 @@ export class Kb021Component implements OnInit  {
   // ddMonat: number;
     ddMonat = this.DATEI.getMonth() + 4;
 
+  //  Validate for "Save to Lists"
+  is_valid: boolean;
+
   constructor(public dialog: MdDialog, private httpService: Http) {
   }
   // constructor(private ListViewComponent: ListViewComponent) {
@@ -447,12 +450,73 @@ export class Kb021Component implements OnInit  {
     console.log('A: ' + this.IDDATEA + ', I: ' + this.IDDATEI);
   }
 
+  chkValidate() {
+    console.log(this.TBFISTL.length);
+    const F_TBFISTL = this.TBFISTL.substr(0, 5); // รหัสงบประมาณ 5 หลักแรก
+    const F_TBKOSTL = this.TBKOSTL.substr(0, 5); // รหัสศูนย์ต้นทุน 5 หลักแรก
+    const F_TBFKBER = this.TBFKBER.substr(0, 5); // รหัสกิจกรรมหลัก 5 หลักแรก
+    const P_TBKOSTL = this.TBKOSTL.substr(1, 5); // รหัสจังหวัดจากศูนย์ต้นทุน
+    const P_TBFKBER = this.TBFKBER.substr(1, 5); // รหัสจังหวัดในกิจกรรมหลัก
+    if (this.TBGEBER.substr(2, 2) === '19' // แหล่งเงิน เป็น YY19xxxx
+        && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
+        && this.TBFKBER.substr(0, 5) === this.TBKOSTL.substr(0, 5)) {
+      console.log('Y!1')
+      this.is_valid = true;
+    } else if ((this.TBGEBER.substr(2, 1) === '2' || this.TBGEBER.substr(2, 1) === '3') // แหล่งเงิน เป็น  YY2xxxx หรือ YY3xxxxxx
+        && this.TBFISTL.length === 5 // รหัสงบประมาณมี 5 หลัก
+        && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
+        && P_TBKOSTL === P_TBFKBER) { // รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดในกิจกรรมหลัก
+      console.log('Y!2')
+      this.is_valid = true;
+    } else if (this.TBGEBER.substr(2, 1) === '1') { // แหล่งเงิน เป็น YY1xxxxxx
+      console.log('Y!3')
+      if (this.TBGEBER.substr(2, 2) === '11' // แหล่งเงิน เป็น YY11xxxxx
+          && this.TBFISTL.length === 16 // รหัสงบประมาณ 16 หลัก
+          && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
+          && P_TBKOSTL === P_TBFKBER // รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดในกิจกรรมหลัก
+          && F_TBKOSTL === F_TBFKBER) { // รหัสศูนย์ต้นทุน 5 หลักแรก = รหัสกิจกรรมหลัก 5 หลักแรก
+          console.log('Y!3.1')
+          this.is_valid = true;
+        } else if (this.TBGEBER.substr(2, 2) === '11' // แหล่งเงิน เป็น YY11xxxxx
+          && this.TBFISTL.length === 16 // รหัสงบประมาณ 16 หลัก
+          && F_TBFISTL === '80808' // รหัสงบประมาณ 5 หลักแรก = 80808
+          && F_TBFKBER === '80808' // รหัสกิจกรรมหลัก 5 หลักแรก = 80808
+          && F_TBKOSTL === F_TBFKBER) { // รหัสศูนย์ต้นทุน 5 หลักแรก = รหัสกิจกรรมหลัก 5 หลักแรก
+          console.log('Y!3.2')
+          this.is_valid = true;
+        } else if (this.TBGEBER.substr(2, 2) === '10' // แหล่งเงิน เป็น YY10xxxxx
+          && (this.TBFISTL.length === (10 || 12 || 14 || 16) ) // รหัสงบประมาณ เป็น 10 หรือ 12 หรือ 14 หรือ 16 หลัก
+          && F_TBFISTL === '90909') { // รหัสงบประมาณ 5 หลักแรก = 90909
+          console.log('Y!3.3')
+          this.is_valid = true;
+      } else {
+        console.log('N!3')
+        this.is_valid = false;
+      }
+    } else if (this.TBGEBER.substr(2, 1) === '4' // แหล่งเงิน เป็น YY4xxxxxx
+        && this.TBFISTL.length === 16 // รหัสงบประมาณ เป็น 16 หลัก
+        && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
+        && P_TBKOSTL === P_TBFKBER ) {// รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดใน กิจกรรมหลัก
+      console.log('Y!4')
+      this.is_valid = true;
+    } else if (this.TBGEBER.substr(2, 2) === '41' // แหล่งเงิน เป็น YY41xxxxx
+        && this.TBFISTL.length === (10 || 12 || 14 || 16) // รหัสงบประมาณ เป็น 10 หรือ 12 หรือ 14 หรือ 16 หลัก
+        && F_TBFISTL === '90909' ) {// รหัสงบประมาณ 5 หลักแรก = 90909
+      console.log('Y!5')
+      this.is_valid = true;
+    } else {
+      console.log('N!')
+      this.is_valid = false;
+    }
+  }
+
   formSave() {
     this.ValidateList = [];
     this.checkform();
     this.getDcotype(); // get IDBLART
     this.getDateAI(); // Get Date
-    if (this.ValidateList.length <= 0) {
+    this.chkValidate(); // Check Validate form
+    if (this.ValidateList.length <= 0) { // && this.is_valid === true
       console.log('0 0');
     // console.log('Array: ' + saveTable.length);
     // console.log(ListViewComponent.title);
@@ -542,7 +606,7 @@ export class Kb021Component implements OnInit  {
       // console.log(this.selectedList.LBZZPMT);
       console.log('Total array: ' + this.SAVELIST.length);
     } else {
-      alert('กรุณาเลือกรายการ');
+      alert('กรอกข้อมูลไม่ครบหรือข้อมูลไม่สัมพันธ์กัน');
     }
     this.valuelist = 0;
 
