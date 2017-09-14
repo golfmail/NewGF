@@ -90,6 +90,25 @@ export class Kb021Component implements OnInit  {
     {id: '1', Name: 'จ่ายตรงเข้าบัญชีเงินฝากธนาคารของผู้ขาย/คู่สัญญา'},
     {id: '2', Name: 'จ่ายผ่านบัญชีเงินฝากธนาคารของหน่วยงาน'},
   ];
+
+  HEADER  =  [
+    {id: 'LBBUKRS', Val: ''},
+    {id: 'TBZZPMT', Val: ''},
+    {id: 'LBZZPMT', Val: ''},
+    {id: 'LUSERID', Val: ''},
+    {id: 'DDGSBER', Val: ''}, // IDBLART
+    {id: 'IDBLART', Val: ''},
+    {id: 'IDDATEA', Val: ''},
+    {id: 'IDDATEI', Val: ''},
+    {id: 'TBXBLNR', Val: ''},
+    {id: 'tbSearch_term', Val: ''},
+    {id: 'LIFNR', Val: ''},
+    {id: 'NAME1', Val: ''},
+    {id: 'ZLSCH', Val: ''},
+    {id: 'TBKBLNR', Val: ''},
+    {id: 'LBKBLNR', Val: ''},
+  ];
+
   ValidateList: string[] = [];
   DDGSBER = '1000'; // รหัสพื้นที่
 
@@ -116,18 +135,31 @@ export class Kb021Component implements OnInit  {
   TBZZLOAN = ''; // รหัสหมวดพัสดุ
   TBPRZNR = ''; // รหัสกิจกรรมย่อย
   TBKBLNR = '1200003245' // เลขที่เอกสารสำรองเงิน
+  TBZZUNIT = ''; // รหัสเจ้าของบัญชีย่อย
+  TBVBUND = ''; // รหัสหน่วยงานคู่ค้า
+  // TBZZFIELD1 = ''; // รหัสหมวดพัสดุ
 
   // Test Date
   DATEA = new Date();
   DATEI = new Date();
   DATEACC = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
   DATEINV = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  DATENOW = new Date(); // TEST NEW DATE
+  CPUDT = ''; // DATE ex: 11.12.2017
+  CPUTIME = ''; // TIME ex: 22:40:59
+  LOGYEAR: Number; // YEAR NOW ex: 2017
+  LOGNO: Number = 0; // Log No. // eTEST
 
   // Fiscal year
   FCMONTH;
-  FCYEAR;
+  GJAHR;
 
-  // Label
+  // TEXT
+  SGTXT = '';
+
+  // Hard coding for Label
+  LBTERM = 'มหาวิทยาลัยธรรมศาสตร์';
+  LBKBLNR = 'xxxx'; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
   LBKOSTL = '';
   LBFKBER = '';
   LBFISTL = '';
@@ -135,6 +167,8 @@ export class Kb021Component implements OnInit  {
   LBZZOBJ = '';
   LBZZLOAN = '';
   LBHKONT = '';
+  LBZZUNIT = ''; // (N) รหัสเจ้าของบัญชีย่อย
+  LBVBUND = ''; // (N) รหัสหน่วยงานคู่ค้า
 
   // Disable & Show
   DSTBALL;
@@ -156,8 +190,15 @@ export class Kb021Component implements OnInit  {
   IDDATEA = '01/01/2017'; // (ID) Account Date
   IDDATEI = '02/01/2017'; // (ID) Date Invoiced
 
+  // Hard coding for UserID
+  LUSERID = this.TBZZPMT + '10' ; // UserID: หน่วยเบอกจ่าย + 10
+
   // Other Variable
   TBNUMTR: string; // Number of Table List
+  TBBELNR = ''; // Doc No.
+  LIFNR = '' // LIFNR
+  ZLSCH = '' // ZLSCH
+  SUMCOST: Number = 0; // เงินรวม
 
   // Corlor Content
   contentBlue   = 'fontContentBlue';
@@ -187,6 +228,7 @@ export class Kb021Component implements OnInit  {
   resultLB: string;
   resultID: string;
   xml: string;
+  xml_log: string;
 
   // งวด
   // ddMonat: number;
@@ -294,11 +336,11 @@ export class Kb021Component implements OnInit  {
     if (typeDate === 'inv') {
       console.log(this.DATEINV);
       if (this.DATEINV.month >= 10 ) {
-        this.FCYEAR = Number(this.DATEINV.year) + 1;
-        console.log('f' + this.FCYEAR);
+        this.GJAHR = Number(this.DATEINV.year) + 1;
+        console.log('f' + this.GJAHR);
       } else {
-        this.FCYEAR = this.DATEINV.year;
-        console.log(this.FCYEAR);
+        this.GJAHR = this.DATEINV.year;
+        console.log(this.GJAHR);
       }
       if (this.DATEINV.month < 10) {
           this.ddMonat = this.DATEINV.month + 3;
@@ -307,11 +349,11 @@ export class Kb021Component implements OnInit  {
       }
     } else if (typeDate === 'i') {
       if (this.DATEI.getMonth() >= 9 ) {
-        this.FCYEAR = Number(this.DATEI.getFullYear()) + 1;
-        console.log('f' + this.FCYEAR);
+        this.GJAHR = Number(this.DATEI.getFullYear()) + 1;
+        console.log('f' + this.GJAHR);
       } else {
-        this.FCYEAR = this.DATEI.getFullYear();
-        console.log('f' + this.FCYEAR);
+        this.GJAHR = this.DATEI.getFullYear();
+        console.log('f' + this.GJAHR);
       }
       if (this.DATEI.getMonth() < 9) {
         console.log(this.DATEI.getMonth());
@@ -329,7 +371,7 @@ export class Kb021Component implements OnInit  {
     this.valuelist = i + 1;
     this.selectedList = save; // => Selected
     this.TBBUKRS = save.TBBUKRS;
-    this.LBBUKRS = save.TBBUKRS;
+    this.LBBUKRS = save.LBBUKRS;
     this.TBBLDAT = save.TBBLDAT;
     this.TBBUDAT = save.TBBUDAT;
     this.TBZZPMT = save.TBZZPMT;
@@ -344,6 +386,24 @@ export class Kb021Component implements OnInit  {
     this.TBFISTL = save.TBFISTL; // รหัสงบประมาณ
     this.TBFKBER = save.TBFKBER; // รหัสกิจกรรมหลัก
     this.TBWRBTR = save.TBWRBTR; // จำนวนเงินที่ขอเบิก
+    this.TBPRZNR = save.TBPRZNR; // รหัสกิจกรรมย่อย
+    this.TBZZOBJ = save.TBZZOBJ; // รหัสบัญชีย่อย
+    this.TBZZUNIT = save.TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
+    this.TBZZLOAN = save.TBZZLOAN; // รหัสหมวดพัสดุ
+    this.TBVBUND = save.TBVBUND; // รหัสหน่วยงานคู่ค้า
+
+    this.GJAHR = save.GJAHR; // ปีบัญชี
+    this.SGTXT = save.SGTXT; // รายละเอียดบรรทัดรายการ
+
+    this.LBHKONT = save.LBHKONT; // (ช) ชื่อบัญชีแยกประเภททั่วไป
+    this.LBKOSTL = save.LBKOSTL; // (N) ชื่อศูนย์ต้นทุน
+    this.LBFISTL = save.LBFISTL; // (N) ชื่องบประมาณ
+    this.LBFKBER = save.LBFKBER; // (N) ชื่อกิจกรรมหลัก
+    this.LBPRZNR = save.LBPRZNR; // (N) ชื่อกิจกรรมย่อย
+    this.LBZZOBJ = save.LBZZOBJ; // (N) รหัสบัญชีย่อย
+    this.LBZZUNIT = this.LBZZUNIT; // (N) รหัสเจ้าของบัญชีย่อย
+    this.LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+    this.LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
 
     this.IDFISTL = save.IDFISTL; // (ID) รหัสงบประมาณ
     this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
@@ -406,11 +466,12 @@ export class Kb021Component implements OnInit  {
             // this.totalAmount = total;
         }
     }
+    this.SUMCOST = total;
     return total;
 }
   setTotal(result) {
     this.res = result;
-    document.getElementById('success').style.display = 'block';
+    // document.getElementById('success').style.display = 'block';
     // document.getElementById('showSuccess').style.display = 'block';
   };
 
@@ -526,7 +587,7 @@ export class Kb021Component implements OnInit  {
         // alert('undefined')
         this.SAVELIST = [{
           TBBUKRS: this.TBBUKRS,
-          LBBUKRS: this.TBBUKRS,
+          LBBUKRS: this.LBBUKRS,
           TBBLDAT: this.TBBLDAT,
           TBBUDAT: this.TBBUDAT,
           TBZZPMT: this.TBZZPMT,
@@ -541,6 +602,11 @@ export class Kb021Component implements OnInit  {
           TBFISTL: this.TBFISTL, // รหัสงบประมาณ
           TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
           TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+          TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
+          TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
+          TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
+          TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+          TBVBUND: this.TBVBUND, // รหัสหน่วยงานคู่ค้า
           IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
           IDHKONT: this.IDHKONT, // (ID) รหัสบัญชีแยกประเภททั่วไป
@@ -549,13 +615,24 @@ export class Kb021Component implements OnInit  {
           IDBLART: this.IDBLART, // (ID) Doc. Type
           IDDATEA: this.IDDATEA, // (ID) Account Date
           IDDATEI: this.IDDATEI, // (ID) Date Invoic
+          GJAHR: this.GJAHR, // ปีบัญชี
+          SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
+          LBHKONT: this.LBHKONT, // (N) ชื่อบัญชีแยกประเภททั่วไป
+          LBKOSTL: this.LBKOSTL, // (N) ชื่อศูนย์ต้นทุน
+          LBFISTL: this.LBFISTL, // (N) ชื่องบประมาณ
+          LBFKBER: this.LBFKBER, // (N) ชื่อกิจกรรมหลัก
+          LBPRZNR: this.LBPRZNR, // (N) ชื่อกิจกรรมย่อย
+          LBZZOBJ: this.LBZZOBJ, // (N) รหัสบัญชีย่อย
+          LBZZUNIT: this.LBZZUNIT, // (N) รหัสเจ้าของบัญชีย่อย
+          LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+          LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
           }]
         // alert(SAVELIST.length);
     } else {
         // this.valuelist = Number(this.lbNUMBER); // TEST
         this.SAVELIST.push({
           TBBUKRS: this.TBBUKRS,
-          LBBUKRS: this.TBBUKRS,
+          LBBUKRS: this.LBBUKRS,
           TBBLDAT: this.TBBLDAT,
           TBBUDAT: this.TBBUDAT,
           TBZZPMT: this.TBZZPMT,
@@ -570,6 +647,11 @@ export class Kb021Component implements OnInit  {
           TBFISTL: this.TBFISTL, // รหัสงบประมาณ
           TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
           TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+          TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
+          TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
+          TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
+          TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+          TBVBUND: this.TBVBUND, // รหัสหน่วยงานคู่ค้า
           IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
           IDHKONT: this.IDHKONT, // (ID) รหัสบัญชีแยกประเภททั่วไป
@@ -578,6 +660,17 @@ export class Kb021Component implements OnInit  {
           IDBLART: this.IDBLART, // (ID) Doc. Type
           IDDATEA: this.IDDATEA, // (ID) Account Date
           IDDATEI: this.IDDATEI, // (ID) Date Invoic
+          GJAHR: this.GJAHR, // ปีบัญชี
+          SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
+          LBHKONT: this.LBHKONT, // (N) ชื่อบัญชีแยกประเภททั่วไป
+          LBKOSTL: this.LBKOSTL, // (N) ชื่อศูนย์ต้นทุน
+          LBFISTL: this.LBFISTL, // (N) ชื่องบประมาณ
+          LBFKBER: this.LBFKBER, // (N) ชื่อกิจกรรมหลัก
+          LBPRZNR: this.LBPRZNR, // (N) ชื่อกิจกรรมย่อย
+          LBZZOBJ: this.LBZZOBJ, // (N) รหัสบัญชีย่อย
+          LBZZUNIT: this.LBZZUNIT, // (N) รหัสเจ้าของบัญชีย่อย
+          LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+          LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
           });
         }
 
@@ -633,6 +726,11 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST[lbNUMBER].TBFISTL = this.TBFISTL; // รหัสงบประมาณ
     this.SAVELIST[lbNUMBER].TBFKBER = this.TBFKBER; // รหัสกิจกรรมหลัก
     this.SAVELIST[lbNUMBER].TBWRBTR = this.TBWRBTR; // จำนวนเงินที่ขอเบิก
+    this.SAVELIST[lbNUMBER].TBPRZNR = this.TBPRZNR; // รหัสกิจกรรมย่อย
+    this.SAVELIST[lbNUMBER].TBZZOBJ = this.TBZZOBJ; // รหัสบัญชีย่อย
+    this.SAVELIST[lbNUMBER].TBZZUNIT = this.TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
+    this.SAVELIST[lbNUMBER].TBZZLOAN = this.TBZZLOAN; // รหัสหมวดพัสดุ
+    this.SAVELIST[lbNUMBER].TBVBUND = this.TBVBUND; // รหัสหน่วยงานคู่ค้า
     this.SAVELIST[lbNUMBER].IDFISTL = this.IDFISTL; // (ID) รหัสงบประมาณ
     this.SAVELIST[lbNUMBER].IDKOSTL = this.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
     this.SAVELIST[lbNUMBER].IDHKONT = this.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
@@ -641,6 +739,17 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST[lbNUMBER].IDBLART = this.IDBLART; // (ID) Doc. Type
     this.SAVELIST[lbNUMBER].IDDATEA = this.IDDATEA; // (ID) Account Date
     this.SAVELIST[lbNUMBER].IDDATEI = this.IDDATEI; // (ID) Date Invoic
+    this.SAVELIST[lbNUMBER].GJAHR = this.GJAHR; // ปีบัญชี
+    this.SAVELIST[lbNUMBER].SGTXT = this.SGTXT; // รายละเอียดบรรทัดรายการ
+    this.SAVELIST[lbNUMBER].LBHKONT = this.LBHKONT; // (N) ชื่อบัญชีแยกประเภททั่วไป
+    this.SAVELIST[lbNUMBER].LBKOSTL = this.LBKOSTL; // (N) ชื่อศูนย์ต้นทุน
+    this.SAVELIST[lbNUMBER].LBFISTL = this.LBFISTL; // (N) ชื่องบประมาณ
+    this.SAVELIST[lbNUMBER].LBFKBER = this.LBFKBER; // (N) ชื่อกิจกรรมหลัก
+    this.SAVELIST[lbNUMBER].LBPRZNR = this.LBPRZNR; // (N) ชื่อกิจกรรมย่อย
+    this.SAVELIST[lbNUMBER].LBZZOBJ = this.LBZZOBJ; // (N) รหัสบัญชีย่อย
+    this.SAVELIST[lbNUMBER].LBZZUNIT = this.LBZZUNIT; // (N) รหัสเจ้าของบัญชีย่อย
+    this.SAVELIST[lbNUMBER].LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+    this.SAVELIST[lbNUMBER].LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
 
   };
 
@@ -649,14 +758,6 @@ export class Kb021Component implements OnInit  {
   }
   formSend() {
     this.xml = '';
-    // const model = {
-    //   TBFISTL: this.TBFISTL, // รหัสงบประมาณ
-    //   TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
-    //   TBKOSTL: this.TBKOSTL, // รหัสศูนย์ต้นทุน
-    //   TBHKONT: this.TBHKONT, // รหัสบัญชีแยกประเภท
-    //   tbSearch_term: this.tbSearch_term, // เลขประจำตัวผู้เสียภาษี
-    //   TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
-    // };
      this.xml = `<operations>\n\
      <operation>\n\
       <modelCRUD>\n\
@@ -706,13 +807,31 @@ export class Kb021Component implements OnInit  {
       // <field column="TBBUDAT">\n\
       //   <val>${element.IDDATEI}</val>\n\
       // </field>\n\
+      // ^ รอ Service Adempire พร้อม
     }
     this.xml = this.xml + `\n\</operations>`;
     const config = new MdDialogConfig();
     const dialogRef: MdDialogRef<DialogSaveComponent> = this.dialog.open(DialogSaveComponent, config);
     dialogRef.componentInstance.xml_s = this.xml;
     dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
-    dialogRef.componentInstance.FCYEAR = this.FCYEAR;
+    dialogRef.componentInstance.GJAHR = this.GJAHR;
+    dialogRef.componentInstance.savelist = this.savelist;
+    dialogRef.componentInstance.LBBUKRS =  this.LBBUKRS;
+    dialogRef.componentInstance.TBZZPMT =  this.TBZZPMT;
+    dialogRef.componentInstance.LBZZPMT =  this.LBZZPMT;
+    dialogRef.componentInstance.LUSERID =  this.LUSERID;
+    dialogRef.componentInstance.DDGSBER =  this.DDGSBER;
+    dialogRef.componentInstance.IDBLART =  this.IDBLART;
+    dialogRef.componentInstance.IDDATEA =  this.IDDATEA;
+    dialogRef.componentInstance.IDDATEI =  this.IDDATEI;
+    dialogRef.componentInstance.TBXBLNR =  this.TBXBLNR;
+    dialogRef.componentInstance.tbSearch_term =  this.tbSearch_term;
+    dialogRef.componentInstance.LIFNR =  this.LIFNR;
+    dialogRef.componentInstance.LBTERM =  this.LBTERM;
+    dialogRef.componentInstance.ZLSCH =  this.ZLSCH;
+    dialogRef.componentInstance.TBKBLNR =  this.TBKBLNR;
+    dialogRef.componentInstance.LBKBLNR = this.LBKBLNR;
+    dialogRef.componentInstance.SUMCOST = this.SUMCOST;
       dialogRef.afterClosed()
       .subscribe(selection => {
         if (selection) {
@@ -722,6 +841,11 @@ export class Kb021Component implements OnInit  {
           this.onColor(); // Change Color Content on Page after Success!
           console.log('R: ' + this.resultTB + ' | ' + this.resultLB);
           this.TBNUMTR = this.resultTB;
+          this.TBBELNR = this.resultTB; // Doc No.
+          // this.LOGNO = Number(this.GJAHR + this.resultTB);
+          // console.log(this.GJAHR + this.resultTB); // TEST
+          // console.log(this.LOGNO); // TEST
+          // this.createXMLlog(); // (OK) Create XML for Log
           document.getElementById('afterSuccess1').style.display = 'table-row';
           document.getElementById('afterSuccess2').style.display = 'table-row';
           document.getElementById('afterSuccess3').style.display = 'table-row';
@@ -762,40 +886,16 @@ export class Kb021Component implements OnInit  {
     console.log('Call Function! - Work');
   }
 
-
-
-  // kb02Save(xml: string) {
-  //   const headers = new Headers({ 'Content-Type': 'application/xml' });
-  //   const options = new RequestOptions({ headers: headers });
-
-  //   // this.httpService.post('http://idp.yai.io:8082/rest/kb02', xml, options).subscribe(values => {
-  //     this.httpService.post('http://10.156.0.83:82/wsangu/service1.asmx/AngularInsertDB', xml, options).subscribe(values => {
-  //     // this.httpService.post('http://10.156.0.83:82/wsangu/service1.asmx/AngularInsertDB?
-  // Search_term=abc&TBFISTL=cde&TBKOSTL=efg&TBHKONT=hij&TBWRBTR=klm', xml, options)
- // .subscribe(values => {
-  //     console.log('return', values);
-  //     if (values.ok) {
-  //       const result: any = values.json();
-  //       console.log(result);
-  //       alert(`บันทึกเรียบร้อย  ${result.response.message}`);
-  //       console.log(result);
-  //       console.log('details: ', result.response.details);
-  //     } else {
-  //       alert(values.toString());
-  //     }
-  //   });
-  // }
-
   ngOnInit() {
 
     // ปีบัญชี และ งวด เริ่มต้น
     // console.log(this.DATEINV);
     if (this.DATEINV.month >= 10 ) {
-      this.FCYEAR = Number(this.DATEINV.year) + 1;
-      console.log('f' + this.FCYEAR);
+      this.GJAHR = Number(this.DATEINV.year) + 1;
+      console.log('f' + this.GJAHR);
     } else {
-      this.FCYEAR = this.DATEINV.year;
-      console.log(this.FCYEAR);
+      this.GJAHR = this.DATEINV.year;
+      console.log(this.GJAHR);
     }
 
     // if (this.DATEINV.month < 10) {

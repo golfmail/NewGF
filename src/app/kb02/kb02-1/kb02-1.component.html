@@ -390,7 +390,7 @@
     <tr>
       <td align="left" style="height: 17px; width: 162px;">&nbsp;</td>
       <td colspan="3" style="height: 17px">
-        <asp:TextBox BackColor="White" TextMode="ReadOnly"  BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBKBLNR" runat="server" Width="379px" ></asp:TextBox>&nbsp;
+        <asp:TextBox [(ngModel)]="LBKBLNR" BackColor="White" TextMode="ReadOnly"  BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBKBLNR" runat="server" Width="379px" ></asp:TextBox>&nbsp;
       </td>
     </tr>
     <tr>
@@ -425,7 +425,9 @@
     </tr>
     <tr>
       <td style="height: 18px; width: 162px;"><Label class="fontContentBlack" ID="cssBankn" runat="server"></Label></td>
-      <td style="height: 18px; width: 244px;">มหาวิทยาลัยธรรมศาสตร์</td>
+      <td style="height: 18px; width: 244px;">
+        <TextBox [(ngModel)]="LBTERM" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBTERM" runat="server" Width="230px"></TextBox>
+      </td>
       <td style="height: 18px;">
         <!--<table border="0" cellpadding="0" cellspacing="0" id="ucKb02_1_TBPermisTrns">
           <tbody>
@@ -616,7 +618,8 @@
       <asp:CustomValidator ControlToValidate="TBZZUNIT" ErrorMessage="รหัสเจ้าของบัญชีย่อยไม่ถูกต้อง" ForeColor="Tomato" ID="cvZzunit" OnServerValidate="cvZzunit_ServerValidate" runat="server" ValidationGroup="kb02">*</asp:CustomValidator>
     </td>
     <td colspan="2" style="color: #000000; font-weight: bold; height: 18px; width: 159px;" valign="middle">
-      <asp:TextBox TextMode="ReadOnly"  BorderColor="White" BorderStyle="None" class="fontContentGray" ID="TBZZUNIT" MaxLength="10" ReadOnly="True" runat="server" TabIndex="21" Width="112px"></asp:TextBox>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+        <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZUNIT" class="fontContentBlack" ID="TBZZUNIT" MaxLength="12" runat="server" Width="112px">
+      <!-- <asp:TextBox  BorderColor="White" BorderStyle="None" class="fontContentGray" ID="TBZZUNIT" MaxLength="10" ReadOnly="True" runat="server" TabIndex="21" Width="112px"></asp:TextBox>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; -->
     </td>
   </tr>
   <tr>
@@ -645,7 +648,8 @@
       </strong>
     </td>
     <td colspan="2" style="height: 18px; width: 159px;">
-      <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBVBUND" MaxLength="5" runat="server" TabIndex="21" Width="112px"></asp:TextBox>
+        <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBVBUND" class="fontContentBlack" ID="TBVBUND" MaxLength="12" runat="server" Width="112px">
+      <!-- <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBVBUND" MaxLength="5" runat="server" TabIndex="21" Width="112px"></asp:TextBox> -->
     </td>
   </tr>
   <tr>
