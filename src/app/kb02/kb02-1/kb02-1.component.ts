@@ -15,12 +15,12 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { MdDatepickerModule } from '@angular/material';
 import { MdNativeDateModule } from '@angular/material';
 // import { Popup } from 'ng2-opd-popup';
-import {NgbModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-export class NgbdDatepickerPopup {
-  model;
-}
+// import {NgbModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+// import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+// import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+// export class NgbdDatepickerPopup {
+//   model;
+// }
 const now = new Date();
 const I18N_VALUES = {
   'th': {
@@ -44,34 +44,34 @@ export class I18n {
 }
 
 // Define custom service providing the months and weekdays translations
-@Injectable()
-export class CustomDatepickerI18n extends NgbDatepickerI18n {
+// @Injectable()
+// export class CustomDatepickerI18n extends NgbDatepickerI18n {
 
-  constructor(private _i18n: I18n) {
-    super();
-  }
+//   constructor(private _i18n: I18n) {
+//     super();
+//   }
 
-  getWeekdayShortName(weekday: number): string {
-    return I18N_VALUES[this._i18n.language].weekdays[weekday ];
-  }
-  getMonthShortName(month: number): string {
-    return I18N_VALUES[this._i18n.language].months[month - 1];
-  }
-  getMonthFullName(month: number): string {
-    return this.getMonthShortName(month);
-  }
-}
+//   getWeekdayShortName(weekday: number): string {
+//     return I18N_VALUES[this._i18n.language].weekdays[weekday ];
+//   }
+//   getMonthShortName(month: number): string {
+//     return I18N_VALUES[this._i18n.language].months[month - 1];
+//   }
+//   getMonthFullName(month: number): string {
+//     return this.getMonthShortName(month);
+//   }
+// }
 
 @Component({
   selector: 'kb02-1',
   templateUrl: './kb02-1.component.html',
   styleUrls: ['./kb02-1.component.css'],
-  providers: [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
+  // providers: [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
 })
 
 // @Injectable()
 export class Kb021Component implements OnInit  {
-  model: NgbDateStruct;
+  // model: NgbDateStruct;
   date: {year: number, month: number};
 
    res: string;
@@ -242,9 +242,9 @@ export class Kb021Component implements OnInit  {
   // constructor(private ListViewComponent: ListViewComponent) {
   // }
 
-  selectToday() {
-    this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
-  }
+  // selectToday() {
+  //   this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  // }
   detailSave() {
     console.log('detailSave');
   }

@@ -7,9 +7,17 @@
 })
 export class Kb023Component implements OnInit {
 
+  dateList  =  [
+    {id: '1', Name: 'วันที่บันทึกรายการ'},
+    {id: '2', Name: 'วันที่ผ่านรายการ'},
+    {id: '3', Name: 'วันที่เอกสาร'},
+  ];
+
+  SELECTED_DATE = this.dateList[0].id;
+
   constructor() {}
-  onSearch() {
-    console.log('OnSearch');
+  onSearch(tab) {
+    console.log(tab);
   }
 
   ngOnInit() {

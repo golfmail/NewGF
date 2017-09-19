@@ -1,4 +1,146 @@
 ﻿<fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
+<legend class="feildsetTag">ค้นหา</legend>
+<div style="height:210px">
+  <md-tab-group selectedIndex="0" #tabGroup class="defaultTableBodyShot">
+    <md-tab label="ค้นหาตามเลขที่เอกสาร" class="disable-select">
+      <br>
+      <div>
+      <table>
+        <tr>
+          <td>
+              <strong class="fontContentBlue">ใขขอเบิกเงินจากระบบ</strong>
+          </td>
+          <td colspan="3">
+            <md-radio-group>
+              <md-radio-button class="md-accent" checked="true" class="fontContentBlack" value="web">Web Online</md-radio-button>
+              &nbsp;&nbsp;&nbsp;
+              <md-radio-button class="fontContentBlack" value="excel">Excel Loader</md-radio-button>
+            </md-radio-group>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 174px">
+            <strong class="fontContentRed">เลขที่ใบขอเบิกเงิน</strong>
+           </td>
+          <td style="width: 176px;">
+            <asp:TextBox ID="tbBELNRFrom" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+          </td>
+          <td style="width: 42px;">
+            &nbsp;<strong>ถึง</strong>
+          </td>
+          <td style="width: 459px">
+            <asp:TextBox ID="tbBELNRTo" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+          </td>
+          </tr>
+          <tr style="font-weight: bold">
+            <td style="width: 174px">
+              <strong class="fontContentBlue">ปีงบประมาณ</strong></td>
+            <td align="left" style="color: #000000">
+              <asp:DropDownList ID="ddYearFrom" runat="server" TabIndex="7" Width="50px" ForeColor="#333333">
+              </asp:DropDownList>
+            </td>
+            <td style="width: 42px">
+              &nbsp;&nbsp;
+            </td>
+            <td style="width: 459px">
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" style="height: 21px">
+              <Label Text="หมายเหตุ:"></Label>
+              <Label Text="ใบขอเบิกเงินของระบบ Excel Loader ค้นหาได้ตามเลขที่เอกสารเท่านั้น"></Label>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </md-tab>
+    <md-tab label="ค้นหาตามเงื่อนไขอื่น">
+      <br>
+      <div>
+        <table>
+          <tr>
+            <td style="width: 174px"  >
+              <select class="fontContentBlue" [(ngModel)]="SELECTED_DATE">
+              <option *ngFor="let c of dateList" [ngValue]="c.id"><strong>{{c.Name}}</strong></option>
+              </select>
+            </td>
+            <td style="width: 130px">
+              <md-input-container style="width: 100px">
+                <input mdInput [(ngModel)]="F_DATE" [mdDatepicker]="fDatepicker"
+                (ngModelChange)="DATEACC = onSelectDate('f')">
+                <md-datepicker-toggle mdSuffix [for]="fDatepicker"></md-datepicker-toggle>
+              </md-input-container>
+              <md-datepicker #fDatepicker></md-datepicker>
+            </td>
+            <td style="width: 42px;">
+              &nbsp;<strong>ถึง</strong>
+            </td>
+            <td style="width: 130px">
+              <md-input-container style="width: 100px">
+                <input mdInput [(ngModel)]="T_DATE" [mdDatepicker]="tDatepicker"
+                (ngModelChange)="DATEACC = onSelectDate('t')" >
+                <md-datepicker-toggle mdSuffix [for]="tDatepicker"></md-datepicker-toggle>
+              </md-input-container>
+              <md-datepicker #tDatepicker></md-datepicker>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="fontContentGreen">การอ้างอิง</strong>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbXBLNRFrom" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>
+            </td>
+            <td style="width: 37px">
+              &nbsp;<strong>ถึง</strong>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbXBLNRTo" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong class="fontContentGreen">รหัสประจำตัวผู้เสียภาษี (ผู้ขาย)</strong>
+            </td>
+            <td style="width: 190px">
+              <asp:TextBox ID="tbSearchTerm" runat="server" ForeColor="#333333" MaxLength="13"></asp:TextBox>
+            </td>
+            <td style="width: 37px">
+              &nbsp;
+            </td>
+            <td>
+              &nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <strong class="fontContentGreen">ประเภทเอกสาร</strong>
+            </td>
+            <td>
+              <select [disabled]="DSTBALL" class="fontContentBlack" style="width: 100%">
+                <option value="none">---- ไม่กำหนด ----</option>
+              </select>
+            </td>
+            <td></td>
+            <td>
+              <select [disabled]="DSTBALL" class="fontContentBlack" style="width: 100%">
+                <option value="none">---- ไม่กำหนด ----</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </md-tab>
+  </md-tab-group>
+  </div>
+  <hr>
+  <div align="center">
+    <button (click)="onSearch(this.tabGroup.selectedIndex)">ค้นหา</button>
+  </div>
+</fieldset>
+
+<!-- <fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
   <legend class="feildsetTag">ค้นหา</legend>
   <table cellpadding="0" cellspacing="0" style="width: 695px" id="TBSearchSection">
     <tr>
@@ -349,4 +491,4 @@
       </td>
     </tr>
   </table>
-</fieldset>
+</fieldset> -->

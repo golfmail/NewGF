@@ -1,14 +1,14 @@
-import { GfwebPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('gfweb App', () => {
-  let page: GfwebPage;
+describe('web-online App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new GfwebPage();
+    page = new AppPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

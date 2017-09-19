@@ -39,7 +39,8 @@
        <md-input-container>
         <input mdInput [(ngModel)]="DATEA" [mdDatepicker]="aDatepicker"
         (ngModelChange)="DATEACC = onSelectDate('a')">
-        <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button>
+        <!-- <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button> -->
+        <md-datepicker-toggle mdSuffix [for]="aDatepicker"></md-datepicker-toggle>
       </md-input-container>
       <md-datepicker #aDatepicker></md-datepicker>
           <!-- <tr>
@@ -94,7 +95,8 @@
           <md-input-container>
             <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
             (ngModelChange)="DATEINV = onSelectDate('i')">
-            <button mdSuffix [mdDatepickerToggle]="iDatepicker"></button>
+            <md-datepicker-toggle mdSuffix [for]="iDatepicker"></md-datepicker-toggle>
+            <!-- <button mdSuffix [mdDatepickerToggle]="iDatepicker"></button> -->
           </md-input-container>
           <md-datepicker #iDatepicker></md-datepicker>
           <!-- <tr>

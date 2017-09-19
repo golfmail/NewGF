@@ -46,7 +46,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import { PopupModule } from 'ng2-opd-popup';
 //calenda
 import { JsonpModule } from '@angular/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdDialog,
   MdToolbarModule,
   MdButtonModule,
@@ -54,6 +54,7 @@ import { MdDialog,
   MdTooltipModule,
   MdDatepickerModule,
   MdInputModule,
+  MdTabsModule,
   MdNativeDateModule} from '@angular/material';
 import { DialogSearchComponent } from './controls/dialog-search/dialog-search.component';
 import { MaterialModule } from '@angular/material';
@@ -109,20 +110,20 @@ import { DialogSaveComponent } from './controls/dialog-save/dialog-save.componen
   imports: [
     AppRoutingModule,
     BrowserModule,
+    MaterialModule,
     FormsModule,
     HttpModule,
     // MdDialog,
     MdButtonModule, MdCheckboxModule,
     MdTooltipModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    MdTabsModule,
     MdDatepickerModule,
     MdInputModule,
     MdNativeDateModule,
     // ReactiveFormsModule
     MdToolbarModule,
-     //calenda
-     JsonpModule, NgbModule.forRoot()
+    //  JsonpModule, NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

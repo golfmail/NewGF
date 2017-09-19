@@ -4,14 +4,15 @@ import { MdSnackBarRef } from './snack-bar-ref';
  * This should only be used internally by the snack bar service.
  */
 export declare class SimpleSnackBar {
-    /** The message to be shown in the snack bar. */
-    message: string;
-    /** The label for the button in the snack bar. */
-    action: string;
-    /** The instance of the component making up the content of the snack bar. */
     snackBarRef: MdSnackBarRef<SimpleSnackBar>;
-    /** Dismisses the snack bar. */
-    dismiss(): void;
+    /** Data that was injected into the snack bar. */
+    data: {
+        message: string;
+        action: string;
+    };
+    constructor(snackBarRef: MdSnackBarRef<SimpleSnackBar>, data: any);
+    /** Performs the action on the snack bar. */
+    action(): void;
     /** If the action button should be shown. */
     readonly hasAction: boolean;
 }
