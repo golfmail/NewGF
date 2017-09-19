@@ -10,3 +10,34 @@ select{
     -moz-user-select: -moz-none;
     user-select: none;
 }
+
+:host /deep/ .mat-tab-label {
+    /* min-width: 0!important;
+    padding: 3px!important;
+    margin: 3px!important; */
+    background-color: #F0F0D0;
+    font-size: 12px !important;
+    font-weight: bold;
+    color: black !important;
+    height: 25px !important;
+}
+:host >>> .mat-tab-label-active {
+    background-color: #FDFDDE;
+    color: black !important;
+}
+:host >>> .selected-tab-0 md-ink-bar {
+    background-color: #8296C8;
+}
+:host >>> .selected-tab-1 md-ink-bar {
+    background-color: #8296C8;
+}
+
+/* :host /deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: DodgerBlue;
+}
+
+:host /deep/ .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: DodgerBlue;
+} */
+
+

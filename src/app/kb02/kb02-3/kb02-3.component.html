@@ -1,21 +1,30 @@
 ﻿<fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
 <legend class="feildsetTag">ค้นหา</legend>
 <div style="height:210px">
-  <md-tab-group selectedIndex="0" #tabGroup class="defaultTableBodyShot">
+  <md-tab-group selectedIndex="0" #tabGroup class="selected-tab-{{tabGroup.selectedIndex}}">
     <md-tab label="ค้นหาตามเลขที่เอกสาร" class="disable-select">
       <br>
       <div>
-      <table>
+      <table class="defaultTableBodyShot">
         <tr>
           <td>
-              <strong class="fontContentBlue">ใขขอเบิกเงินจากระบบ</strong>
+              <strong class="fontContentBlue">ใบขอเบิกเงินจากระบบ</strong>
           </td>
           <td colspan="3">
-            <md-radio-group>
-              <md-radio-button class="md-accent" checked="true" class="fontContentBlack" value="web">Web Online</md-radio-button>
+            <md-radio-group [(ngModel)]="RADIO_TYPE">
+              <md-radio-button class="md-primary" checked="true" class="fontContentBlack" value="web">Web Online</md-radio-button>
               &nbsp;&nbsp;&nbsp;
               <md-radio-button class="fontContentBlack" value="excel">Excel Loader</md-radio-button>
             </md-radio-group>
+            <!-- <form> -->
+                <!-- <md-radio-group [(ngModel)]="RADIO_TYPE">
+              <input md-radio-button type="radio" checked="true" id="web" name="type" value="web">
+                <label align="center" for="web">Web Online</label>
+              <input md-radio-button type="radio" id="excel" name="type" value="excel">
+                <label for="excel">Excel Loader</label>
+                </md-radio-group>
+                <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div> -->
+            <!-- </form> -->
           </td>
         </tr>
         <tr>
@@ -58,7 +67,7 @@
     <md-tab label="ค้นหาตามเงื่อนไขอื่น">
       <br>
       <div>
-        <table>
+        <table class="defaultTableBodyShot">
           <tr>
             <td style="width: 174px"  >
               <select class="fontContentBlue" [(ngModel)]="SELECTED_DATE">

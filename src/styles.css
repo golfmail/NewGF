@@ -1072,3 +1072,5 @@ fieldset {
     padding: 24px;
     padding-top: 0px;
   }
+
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
