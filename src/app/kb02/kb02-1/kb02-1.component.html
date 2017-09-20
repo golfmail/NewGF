@@ -27,10 +27,10 @@
           <!--Update_Ton-->
           <!-- <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBLDAT" class="fontContentBlack" ID="TBBLDAT" MaxLength="8" runat="server" Width="100px" TabIndex="1">
           &nbsp;&nbsp;<img [hidden]="SHOWBT" id="calendar1" runat="server" src="assets/Images/imgCal.jpg"/>  -->
-          
-       
+
+
             <!--<TextBox [(ngModel)]="TBBLDAT" class="fontContentBlack" ID="TBBLDAT" MaxLength="8"  #abc runat="server" Width="100px" TabIndex="1"></TextBox>
-          &nbsp;&nbsp;<img id="TBBLDAT_calendar1" runat="server" src="assets/Images/imgCal.jpg"/> 
+          &nbsp;&nbsp;<img id="TBBLDAT_calendar1" runat="server" src="assets/Images/imgCal.jpg"/>
           <div style="display:inline-none; min-height:290px;">
         <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
       </div>-->
@@ -55,7 +55,7 @@
                 </div>
               </div>
             </form>
-            
+
             <hr/>
             <pre>Model: {{ DATEACC | json }}</pre>
           </tr> -->
@@ -91,7 +91,7 @@
           <!--Update_Ton-->
           <!-- <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBUDAT" class="fontContentBlack" ID="TBBUDAT" MaxLength="8" OnTextChanged="TBBUDAT_TextChanged" runat="server" TabIndex="3" Width="100px">&nbsp; -->
           <!-- <img [hidden]="SHOWBT" id="calendar2" runat="server" src="assets/Images/imgCal.jpg" /> -->
-          
+
           <md-input-container>
             <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
             (ngModelChange)="DATEINV = onSelectDate('i')">
@@ -105,14 +105,14 @@
                 <div class="input-group">
                   <input class="form-control" placeholder="dd-mm-yyyy" name="dp"  ngbDatepicker #dinv="ngbDatepicker"
                          [(ngModel)]="DATEINV" (ngModelChange)="DATEINV = onSelectDate('inv')">
-                   
+
                   <button class="input-group-addon" (click)="dinv.toggle()" type="button">
                     <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                   </button>
                 </div>
               </div>
             </form>
-            
+
             <hr/>
             <pre>Model: {{ DATEINV | json }}</pre>
           </tr> -->
@@ -206,7 +206,7 @@
         </td>
         <td style="height: 18px">
           &nbsp;
-          <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>          
+          <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
            <!-- <asp:TextBox [(ngModel)]="TBXBLNR" TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox> -->
         </td>
       </tr>
@@ -220,7 +220,7 @@
           </strong><asp:RequiredFieldValidator ControlToValidate="TBXBLNR" ErrorMessage="กรุณากรอกการอ้างอิง" ForeColor="Tomato" ID="rvXBLNR" runat="server">*</asp:RequiredFieldValidator>
         </td>
         <td style="height: 18px; width: 338px;">
-            <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>            
+            <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
           <!-- <asp:TextBox [(ngModel)]="TBXBLNR" TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox> -->
         </td>
         <td style="height: 18px; width: 144px;">
@@ -681,7 +681,7 @@
   <tr>
     <td style="height: 18px; width: 140px;">&nbsp;</td>
     <td colspan="4" style="height: 18px">
-      
+
     </td>
   </tr>
   <tr>
@@ -691,7 +691,7 @@
       </strong><asp:RequiredFieldValidator ControlToValidate="tbSgtxt" ErrorMessage="กรุณากรอกรายละเอียดบรรทัดรายการ" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
     </td>
      <td colspan="4" style="height: 18px">
-       <input name="tbSgtxt" type="text" maxlength="50" id="tbSgtxt" class="fontContentBlack" style="width:470px;" />
+       <input name="tbSgtxt" [disabled]="DSTBALL" type="text" maxlength="50" id="tbSgtxt" class="fontContentBlack" style="width:470px;" />
      </td>
   </tr>
   <tr>
@@ -798,7 +798,7 @@
 
 <tr>
   <td>
-      <!-- <p><span [innerHTML]="evilTitle"></span> </p> 
+      <!-- <p><span [innerHTML]="evilTitle"></span> </p>
      <a [innerHTML]="evilTitle"></a>   -->
   <table  border="1"bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" style="width: 850px">
    <TR style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #b4c3f6" align=center>
@@ -810,7 +810,7 @@
     <TH style="WHITE-SPACE: nowrap" scope=col>รหัสงบประมาณ</TH>
     <TH style="WHITE-SPACE: nowrap" scope=col>รหัสกิจกรรมหลัก</TH>
     <TH style="WHITE-SPACE: nowrap" scope=col>จำนวนเงิน</TH>
-  </TR> 
+  </TR>
   <tr *ngFor="let save of savelist; let i='index';"
         [class.selected]="save === selectedList"
         (click)="onSelect(save,i)">
@@ -826,7 +826,7 @@
     <td style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma;">{{save.TBFKBER}}</td>
     <td  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma;text-align:right">{{save.TBWRBTR}}</td>
   </tr>
- 
+
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center"></td>
     <td></td>
@@ -870,13 +870,13 @@
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอรับ</td>
     <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{ getTotal() }} </td>
   </tr>
-  
+
   </table>
     <!-- <ul class="heroes">
       <li *ngFor="let save of savelist; let i='index'"
         [class.selected]="save === selectedList"
         (click)="onSelect(save,i)"> -->
-        <!-- <span class="badge">{{save.TBFISTL}}</span> {{save.LBZZPMT}} | {{save.TBFKBER}} | 
+        <!-- <span class="badge">{{save.TBFISTL}}</span> {{save.LBZZPMT}} | {{save.TBFKBER}} |
         <span class="badge">{{i+1}}</span> -->
         <!-- <table>
           <tr>
@@ -930,11 +930,11 @@
 <tr>
     <td>
       <div>
-  
+
         <ul style="color:red">
-            <li *ngFor="let c of ValidateList">{{c}}</li>    
+            <li *ngFor="let c of ValidateList">{{c}}</li>
         </ul>
-        
+
       </div>
     </td>
   </tr>

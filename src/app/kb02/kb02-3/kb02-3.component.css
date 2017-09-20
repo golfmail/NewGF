@@ -32,6 +32,11 @@ select{
     background-color: #8296C8;
 }
 
+tdCenter {
+  text-align: center; /* center textbox horizontally */
+  vertical-align: middle; /* center textbox vertically */
+}
+
 /* :host /deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: DodgerBlue;
 }
