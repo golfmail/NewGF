@@ -1,5 +1,5 @@
 select{
-    text-align-last:center;
+    text-align-last:left;
 }
 
 :not(input):not(textarea),
@@ -36,6 +36,8 @@ tdCenter {
   text-align: center; /* center textbox horizontally */
   vertical-align: middle; /* center textbox vertically */
 }
+
+
 
 /* :host /deep/ .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
     border-color: DodgerBlue;

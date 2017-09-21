@@ -1,3 +1,141 @@
-<p>
-  grid-view works!
-</p>
+<div>
+  <table class="defaultTableBody">
+    <tr>
+      <th>เลือก</th>
+      <th>เลขที่ใบขอเบิกเงิน</th>
+      <th>ปีงบประมาณ</th>
+      <th>วันที่เอกสาร</th>
+      <th>วันที่ผ่านรายการ</th>
+      <th>ประเภท</th>
+      <th>วิธีชำระเงิน</th>
+      <th>ผู้ขาย</th>
+      <th>วันที่บันทึก</th>
+      <th>จำนวนเงิน</th>
+      <th>สถานะ</th>
+      <th>วันที่เอกสารกลับรายการ</th>
+    </tr>
+    <tr *ngFor="let doc of docList; let i='index';">
+          <!-- [class.selected]="doc === selectedList" > -->
+      <td align="center">
+        <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
+          alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image (click)="selectedDoc(doc,i)">
+      </td>
+      <td>{{doc.TBNUMTR}}</td>
+      <td>{{doc.GJAHR}}</td>
+      <td>{{doc.BLDAT  | date}}</td>
+      <td>{{doc.BUDAT | date}}</td>
+      <td align="center">{{BLART}}</td>
+      <td>{{doc.HOWPAY}}</td>
+      <td>{{doc.NAME1}}</td>
+      <td>{{doc.CPUDT | date}}</td>
+      <td>{{doc.SUMCOSR}}</td>
+      <td>{{doc.STATUS}}</td>
+      <td>{{doc.NUMDOCI}}</td>
+    </tr>
+  </table>
+  <!-- <md-table #table [dataSource]="docList">
+    <ng-container mdColumnDef="TBNUMTR">
+      <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+      <md-cell *mdCellDef="let doc"> {{doc.TBNUMTR}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table> -->
+  <md-paginator
+  [length]="docList.length"
+  [pageIndex]="0"
+  [pageSize]="5"
+  (page)="pageEvent = $event">
+</md-paginator>
+</div>
+<!-- <table id="TBSearchResult" border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBodyShot" width="729">
+    <tr>
+      <td style="height: 21px;" colspan="4">
+        <asp:Label ID="lbTitlePage" runat="server" Text="หน้าที่"></asp:Label>
+        <asp:Label ID="lbCurrentPage" runat="server" Text="1" Font-Bold="True"></asp:Label>
+        <asp:Label ID="lbTitleTotal" runat="server" Text="จากทั้งหมด"></asp:Label>
+        <asp:Label ID="lbTotalPage" runat="server" Text="1" Font-Bold="True"></asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <asp:GridView ID="gvBch01" runat="server" AllowPaging="True" PageSize="5" AutoGenerateColumns="False"
+                      HorizontalAlign="Center" OnSelectedIndexChanged="gvBch01_SelectedIndexChanged"
+                      OnPageIndexChanging="gvBch01_PageIndexChanging" AllowSorting="True" OnSorting="gvBch01_Sorting"
+                      OnRowDataBound="gvBch01_RowDataBound">
+          <Columns>
+            <asp:TemplateField HeaderText="เลือก">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <ItemTemplate>
+                <asp:ImageButton ID="btSelected" runat="server" CausesValidation="false" CommandName="Select"
+                                  ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" Text="เลือก" />
+              </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="BELNR" HeaderText="เลขที่ใบขอเบิกเงิน" SortExpression="BELNR">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="GJAHR" HeaderText="ปีงบประมาณ" SortExpression="GJAHR">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BLDAT" HeaderText="วันที่เอกสาร" SortExpression="BLDAT">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BUDAT" HeaderText="วันที่ผ่านรายการ" SortExpression="BUDAT">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="BLART" HeaderText="ประเภท" SortExpression="BLART">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Zlsch" HeaderText="วิธีชำระเงิน" SortExpression="Zlsch">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Name1" HeaderText="ผู้รับเงิน" SortExpression="Name1">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="CPUDT" HeaderText="วันที่บันทึก" SortExpression="CPUDT" DataFormatString="{0:d MMMM yyyy}">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="WRBTR" HeaderText="จำนวนเงิน" SortExpression="WRBTR">
+              <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Doc_Status" HeaderText="สถานะ" SortExpression="Doc_Status">
+              <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Belnr_Rev" HeaderText="เลขที่เอกสารกลับรายการ" SortExpression="Belnr_Rev">
+              <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+              <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+            </asp:BoundField>
+          </Columns>
+          <RowStyle CssClass="LeftMenu" Font-Names="Tahoma" Font-Size="12px" />
+          <HeaderStyle BackColor="#B4C3F6" Font-Names="Tahoma" ForeColor="#051615" Font-Size="13px"
+                        BorderStyle="Outset" CssClass="GridviewHeader" Font-Underline="False" HorizontalAlign="Center" />
+        </asp:GridView>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="height: 21px">
+        <asp:Label ID="lbAnotationTitle" runat="server" Text="หมายเหตุ:"></asp:Label>
+        <asp:Label ID="lbAnotation1" runat="server" Text="1.คลิกที่คอลัมน์ที่มีเส้นใต้เพื่อจัดเรียงลำดับ"></asp:Label>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="height: 21px">
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+        <asp:Label ID="lbAnotation2" runat="server" Text="2."></asp:Label>
+        <asp:Image ID="imAnotation" runat="server" ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" />
+        <asp:Label ID="lbAnotation3" runat="server" Text="คลิกเพื่อแสดงเอกสาร"></asp:Label>
+      </td>
+    </tr>
+    </table> -->

@@ -216,14 +216,14 @@ export class Kb021Component implements OnInit  {
   evilTitle = 'Template <i>Jo</i>';
   evilTitle2 ;
   logs: string[] = [];
-  SAVELIST: any[] = []
+  SAVELIST: any[] = [];
   savelist = this.SAVELIST;
   selectedList: TableList;
   valuelist = 0;
   lbNUMBER = '0';
   // dialogRef: MdDialogRef<DialogSearchComponent>;
   codetx: string;
-  nametx: string
+  nametx: string;
   resultTB: string;
   resultLB: string;
   resultID: string;
@@ -626,7 +626,7 @@ export class Kb021Component implements OnInit  {
           LBZZUNIT: this.LBZZUNIT, // (N) รหัสเจ้าของบัญชีย่อย
           LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
           LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
-          }]
+          }];
         // alert(SAVELIST.length);
     } else {
         // this.valuelist = Number(this.lbNUMBER); // TEST

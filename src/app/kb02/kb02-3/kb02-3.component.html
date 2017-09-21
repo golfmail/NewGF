@@ -1,6 +1,6 @@
 ﻿<fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
 <legend class="feildsetTag">ค้นหา</legend>
-<div style="min-height:210px">
+<div style="min-height:170px">
   <md-tab-group selectedIndex="0" #tabGroup class="selected-tab-{{tabGroup.selectedIndex}}">
     <!-- TAB 1 -->
     <md-tab label="ค้นหาตามเลขที่เอกสาร" class="disable-select">
@@ -71,60 +71,6 @@
           </tr>
         </table>
       </div>
-      <div>
-        <br>
-        <table>
-          <tr>
-            <td style="width: 174px">
-              <strong>
-                <Label ID="cssBukrs" Class="fontContentBlue">รหัสหน่วยงาน</Label>
-              </strong>
-            </td>
-            <td valign="middle" style="height: 25px;" style="width: 176px;">
-              <input type="text" [(ngModel)]="TBBUKRS" MaxLength="4" id="TBBUKRS" Class="fontContentBlack">&nbsp;
-              <input type="image" (click)="dialogSearch('TBBUKRS', 'cssBukrs')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/>
-            </td>
-            <td style="width: 42px;"></td>
-            <td style="height: 25px;"  Class="fontContentBlack">
-                <Label runat="server">{{LBBUKRS}}</Label>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 174px">
-              <strong>
-                <Label ID="cssZzpmt" Class="fontContentBlue">รหัสหน่วยเบิกจ่าย</Label>
-              </strong>
-            </td>
-            <td valign="middle" style="height: 25px;" style="width: 176px;">
-              <input type="text" [(ngModel)]="TBZZPMT" MaxLength="4" id="TBZZPMT" Class="fontContentBlack">&nbsp;
-              <input type="image" (click)="dialogSearch('TBZZPMT', 'cssZzpmt')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/>
-            </td>
-            <td style="width: 42px;"></td>
-            <td style="height: 25px;"  Class="fontContentBlack">
-                <Label runat="server">{{LBZZPMT}}</Label>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <fieldset class="feildsetTag" style="width: 97%">
-          <legend>ส่วนของผู้ดูแลระบบ </legend>
-          <table>
-            <tr>
-              <td style="width: 162px">
-                <strong>
-                  <Label ID="cssZzpmt" Class="fontContentGreen">รหัสผู้ใช้งาน</Label>
-                </strong>
-              </td>
-              <td valign="middle" style="height: 25px;" style="width: 176px;">
-                <input type="text" [(ngModel)]="USERID" MaxLength="4" id="USERID" Class="fontContentBlack">&nbsp;
-                <!-- <input type="image" (click)="dialogSearch('TBZZPMT', 'cssZzpmt')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/> -->
-              </td>
-              <td style="width: 42px;"></td>
-            </tr>
-          </table>
-        </fieldset>
-      </div>
     </md-tab>
     <!-- TAB 2 -->
     <md-tab label="ค้นหาตามเงื่อนไขอื่น">
@@ -133,8 +79,8 @@
         <table class="defaultTableBodyShot">
           <tr>
             <td style="width: 174px"  >
-              <select class="fontContentBlue" [(ngModel)]="SELECTED_DATE">
-              <option *ngFor="let c of dateList" [ngValue]="c.id"><strong>{{c.Name}}</strong></option>
+              <select class="fontContentBlue" [(ngModel)]="SELECTED_DATE" style="font-weight:bold; width: 120px; text-align-last:left;">
+                <option *ngFor="let c of dateList" [ngValue]="c.id">{{c.Name}}</option>
               </select>
             </td>
             <td style="width: 130px">
@@ -204,9 +150,74 @@
     </md-tab>
   </md-tab-group>
   </div>
+  <div [hidden]="forAdmin">
+    <hr>
+    <!-- <br> -->
+    <table>
+      <tr>
+        <td style="width: 174px">
+          <strong>
+            <Label ID="cssBukrs" Class="fontContentBlue">รหัสหน่วยงาน</Label>
+          </strong>
+        </td>
+        <td valign="middle" style="height: 25px;" style="width: 176px;">
+          <input type="text" [(ngModel)]="TBBUKRS" MaxLength="4" id="TBBUKRS" Class="fontContentBlack">&nbsp;
+          <input type="image" (click)="dialogSearch('TBBUKRS', 'cssBukrs')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/>
+        </td>
+        <td style="width: 42px;"></td>
+        <td style="height: 25px;"  Class="fontContentBlack">
+            <Label runat="server">{{LBBUKRS}}</Label>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 174px">
+          <strong>
+            <Label ID="cssZzpmt" Class="fontContentBlue">รหัสหน่วยเบิกจ่าย</Label>
+          </strong>
+        </td>
+        <td valign="middle" style="height: 25px;" style="width: 176px;">
+          <input type="text" [(ngModel)]="TBZZPMT" MaxLength="4" id="TBZZPMT" Class="fontContentBlack">&nbsp;
+          <input type="image" (click)="dialogSearch('TBZZPMT', 'cssZzpmt')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/>
+        </td>
+        <td style="width: 42px;"></td>
+        <td style="height: 25px;"  Class="fontContentBlack">
+            <Label runat="server">{{LBZZPMT}}</Label>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div [hidden]="forAdmin">
+    <fieldset class="feildsetTag" style="width: 97%">
+      <legend>ส่วนของผู้ดูแลระบบ </legend>
+      <table>
+        <tr>
+          <td style="width: 162px">
+            <strong>
+              <Label ID="cssZzpmt" Class="fontContentGreen">รหัสผู้ใช้งาน</Label>
+            </strong>
+          </td>
+          <td valign="middle" style="height: 25px;" style="width: 176px;">
+            <input type="text" [(ngModel)]="USERID" MaxLength="4" id="USERID" Class="fontContentBlack">&nbsp;
+            <!-- <input type="image" (click)="dialogSearch('TBZZPMT', 'cssZzpmt')" Align="AbsMiddle" src="assets/Images/SearchIcon.jpg"/> -->
+          </td>
+          <td style="width: 42px;"></td>
+        </tr>
+      </table>
+    </fieldset>
+  </div>
   <hr>
   <div align="center">
     <button (click)="onSearch(this.tabGroup.selectedIndex)">ค้นหา</button>
+  </div>
+  <div [hidden]="forResult">
+    <span class="defaultTableBodyShot">
+        <Label ID="lbSortTitle" Text="จัดลำดับตาม"></Label>
+        <Label ID="lbSortHeader" Text="เลขที่ใบขอเบิกเงิน"
+          style="font-weight:bold" ></Label>
+        <Label ID="lbSortFrom" runat="server" Text="จาก"></Label>
+        <Label ID="lbSortType" style="font-weight:bold">น้อยไปมาก</Label>
+    </span>
+    <app-grid-view></app-grid-view>
   </div>
 </fieldset>
 

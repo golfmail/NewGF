@@ -40,6 +40,10 @@ export class Kb023Component implements OnInit {
   // User ID
   USERID;
 
+  // Hide
+  forAdmin: boolean;
+  forResult: boolean;
+
   constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,) {
     // TEST
     // console.log('Route:' + route.url);
@@ -62,12 +66,15 @@ export class Kb023Component implements OnInit {
   onSearch(tab) {
     console.log(tab);
     console.log(this.RADIO_TYPE);
+    // this.forResult = false;
   }
 
 
   ngOnInit() {
     this.MenuTop.onClick(this.route.url); // TEST
     this.MenuTop.topMenu_s = 'fontMenuTop'; // TEST
+    this.forAdmin = true; // TEST NOT ADMIN
+    this.forResult = true; // TEST HIDE
   }
 
 }
