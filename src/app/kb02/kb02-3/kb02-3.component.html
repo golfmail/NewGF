@@ -40,21 +40,26 @@
             <strong class="fontContentRed">เลขที่ใบขอเบิกเงิน</strong>
            </td>
           <td style="width: 176px;">
-            <asp:TextBox ID="tbBELNRFrom" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+            <input type="text" [(ngModel)]="BELNR1">
+            <!-- <asp:TextBox ID="tbBELNRFrom" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox> -->
           </td>
           <td style="width: 42px;">
             &nbsp;<strong>ถึง</strong>
           </td>
           <td style="width: 459px">
-            <asp:TextBox ID="tbBELNRTo" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox>
+              <input type="text" [(ngModel)]="BELNR2">
+            <!-- <asp:TextBox ID="tbBELNRTo" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox> -->
           </td>
           </tr>
           <tr style="font-weight: bold">
             <td style="width: 174px">
               <strong class="fontContentBlue">ปีงบประมาณ</strong></td>
             <td align="left" style="color: #000000">
-              <asp:DropDownList ID="ddYearFrom" runat="server" TabIndex="7" Width="50px" ForeColor="#333333">
-              </asp:DropDownList>
+              <!-- <asp:DropDownList ID="ddYearFrom" runat="server" TabIndex="7" Width="50px" ForeColor="#333333">
+              </asp:DropDownList> -->
+              <select [(ngModel)]="YEAR">
+                <option *ngFor="let c of yearList" [ngValue]="c.YESR">{{c.YESR}}</option>
+              </select>
             </td>
             <td style="width: 42px">
               &nbsp;&nbsp;
@@ -106,13 +111,15 @@
               <strong class="fontContentGreen">การอ้างอิง</strong>
             </td>
             <td style="width: 190px">
-              <asp:TextBox ID="tbXBLNRFrom" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>
+              <input type="text" [(ngModel)]="TBXBLNR1">
+              <!-- <asp:TextBox ID="TBXBLNR" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox> -->
             </td>
             <td style="width: 37px">
               &nbsp;<strong>ถึง</strong>
             </td>
             <td style="width: 190px">
-              <asp:TextBox ID="tbXBLNRTo" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox>
+                <input type="text" [(ngModel)]="TBXBLNR2">
+              <!-- <asp:TextBox ID="tbXBLNRTo" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox> -->
             </td>
           </tr>
           <tr>
@@ -120,7 +127,8 @@
               <strong class="fontContentGreen">รหัสประจำตัวผู้เสียภาษี (ผู้ขาย)</strong>
             </td>
             <td style="width: 190px">
-              <asp:TextBox ID="tbSearchTerm" runat="server" ForeColor="#333333" MaxLength="13"></asp:TextBox>
+              <input type="text" [(ngModel)]="TBSTERM">
+              <!-- <asp:TextBox ID="tbSearchTerm" runat="server" ForeColor="#333333" MaxLength="13"></asp:TextBox> -->
             </td>
             <td style="width: 37px">
               &nbsp;
@@ -134,14 +142,14 @@
                 <strong class="fontContentGreen">ประเภทเอกสาร</strong>
             </td>
             <td>
-              <select [disabled]="DSTBALL" class="fontContentBlack" style="width: 100%">
-                <option value="none">---- ไม่กำหนด ----</option>
+              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART1" class="fontContentBlack" style="width: 100%">
+                <option value="none" >---- ไม่กำหนด ----</option>
               </select>
             </td>
             <td></td>
             <td>
-              <select [disabled]="DSTBALL" class="fontContentBlack" style="width: 100%">
-                <option value="none">---- ไม่กำหนด ----</option>
+              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART2" class="fontContentBlack" style="width: 100%">
+                <option value="none" >---- ไม่กำหนด ----</option>
               </select>
             </td>
           </tr>
