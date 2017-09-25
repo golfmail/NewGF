@@ -143,13 +143,13 @@
             </td>
             <td>
               <select [disabled]="DSTBALL" [(ngModel)]="IDBLART1" class="fontContentBlack" style="width: 100%">
-                <option value="none" >---- ไม่กำหนด ----</option>
+                <option *ngFor="let o of typeDocList" [ngValue]="o.id">{{o.Name}}</option>
               </select>
             </td>
             <td></td>
             <td>
               <select [disabled]="DSTBALL" [(ngModel)]="IDBLART2" class="fontContentBlack" style="width: 100%">
-                <option value="none" >---- ไม่กำหนด ----</option>
+                <option *ngFor="let o of typeDocList" [ngValue]="o.id">{{o.Name}}</option>
               </select>
             </td>
           </tr>
@@ -225,7 +225,7 @@
         <Label ID="lbSortFrom" runat="server" Text="จาก"></Label>
         <Label ID="lbSortType" style="font-weight:bold">น้อยไปมาก</Label>
     </span>
-    <app-grid-view></app-grid-view>
+    <app-grid-view [parentData]="RESLIST"></app-grid-view>
   </div>
 </fieldset>
 

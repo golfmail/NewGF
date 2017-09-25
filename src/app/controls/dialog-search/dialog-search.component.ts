@@ -4,7 +4,7 @@ import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
 import { TableList } from 'app/kb02/table-list-view';
 import { Http, Headers, RequestOptions} from '@angular/http';
 
-let RESLIST: any[] = []
+let RESLIST: any[] = [];
 
 @Component({
   selector: 'app-dialog-search',
@@ -317,10 +317,10 @@ export class DialogSearchComponent implements OnInit {
       for (i = 0; i < x.length; i++) {
 //          txt += x[i].childNodes[0].nodeValue + '<br>'; // TEST
         RESLIST.push({
-          id:    x[i].childNodes[0].nodeValue,
-          Value:        value[i].childNodes[0].nodeValue,
-          Name:         name[i].childNodes[0].nodeValue,
-          description:  description[i].childNodes[0].nodeValue
+          id:    x[i].innerHTML,
+          Value:        value[i].innerHTML,
+          Name:         name[i].innerHTML,
+          description:  description[i].innerHTML
         });
       }
   //    document.getElementById('demo').innerHTML = txt; // TEST
@@ -352,8 +352,8 @@ export class DialogSearchComponent implements OnInit {
     let cell1, cell2, cell3, cell4;
     let dialogRef = this.dialogRef;
     let confirmSelection = this.confirmSelection;
- 
-    
+
+
     // console.log(RESLIST.length);
     // console.log(RESLIST[1].results.Name);
     for (let i = 0; i < RESLIST.length; i++) {

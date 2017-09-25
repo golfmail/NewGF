@@ -12,23 +12,23 @@
       <th>วันที่บันทึก</th>
       <th>จำนวนเงิน</th>
       <th>สถานะ</th>
-      <th>วันที่เอกสารกลับรายการ</th>
+      <th>เลขที่เอกสารกลับรายการ</th>
     </tr>
-    <tr *ngFor="let doc of docList; let i='index';">
+    <tr *ngFor="let doc of RESLIST; let i='index';">
           <!-- [class.selected]="doc === selectedList" > -->
       <td align="center">
         <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
           alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image (click)="selectedDoc(doc,i)">
       </td>
-      <td>{{doc.TBNUMTR}}</td>
+      <td>{{doc.BELNR}}</td>
       <td>{{doc.GJAHR}}</td>
-      <td>{{doc.BLDAT  | date}}</td>
-      <td>{{doc.BUDAT | date}}</td>
-      <td align="center">{{BLART}}</td>
+      <td>{{doc.BLDAT}}</td>
+      <td>{{doc.BUDAT}}</td>
+      <td align="center">{{doc.BLART}}</td>
       <td>{{doc.HOWPAY}}</td>
       <td>{{doc.NAME1}}</td>
-      <td>{{doc.CPUDT | date}}</td>
-      <td>{{doc.SUMCOSR}}</td>
+      <td>{{doc.CPUDT}}</td>
+      <td>{{doc.SUMCOST}}</td>
       <td>{{doc.STATUS}}</td>
       <td>{{doc.NUMDOCI}}</td>
     </tr>
@@ -43,7 +43,7 @@
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table> -->
   <md-paginator
-  [length]="docList.length"
+  [length]="RESLIST.length"
   [pageIndex]="0"
   [pageSize]="5"
   (page)="pageEvent = $event">

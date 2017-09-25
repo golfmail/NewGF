@@ -2,13 +2,15 @@
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
+import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
+import { Http, Headers, RequestOptions} from '@angular/http';
 
 @Component({
   selector: 'app-kb02-3',
   templateUrl: './kb02-3.component.html',
   styleUrls: ['./kb02-3.component.css'],
-  providers: [MenuTopComponent]
+  providers: [MenuTopComponent, GridViewComponent]
 })
 export class Kb023Component implements OnInit {
 
@@ -18,8 +20,53 @@ export class Kb023Component implements OnInit {
     {id: '3', Name: 'วันที่เอกสาร'},
   ];
 
+  typeDocList = [
+    {id: '', Name: '---- ไม่กำหนด ----'},
+    {id: 'K0', Name: 'K0 - เงินจ่ายสิ้นเดือน'},
+    {id: 'K1', Name: 'K1 - ลูกหนี้เงินยืม'},
+    {id: 'K8', Name: 'K8 - เงินอุดหนุน'},
+    {id: 'KC', Name: 'KC - ขอเบิก(1.ข)'},
+    {id: 'KD', Name: 'KD - ขอเบิก(1.ข) กันเงิน'},
+    {id: 'KE', Name: 'KE - ขอเบิก(2.ข)'},
+    {id: 'KF', Name: 'KF - ขอเบิก(2.ข) กันเงิน'},
+    {id: 'KL', Name: 'KL - ใบสำคัญงปม(2)'},
+    {id: 'KM', Name: 'KM - ใบสำคัญงปม(2) กันเงิน'},
+  ];
+
+  // TEST
+  xmlResult = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <row>
+      <BELNR>3100000004</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>01/02/2017</BLDAT>
+      <BUDAT>03/04/2017</BUDAT>
+      <BLART>KC</BLART>
+      <HOWPAY>1</HOWPAY>
+      <NAME1>มหาวิทยาลัยธรรมศาสตร์</NAME1>
+      <CPUDT>05/06/2017</CPUDT>
+      <SUMCOST>2000.22</SUMCOST>
+      <STATUS>เอกสารผ่านรายการ</STATUS>
+      <NUMDOCI>1</NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000005</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>07/08/2017</BLDAT>
+      <BUDAT>09/10/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>2</HOWPAY>
+      <NAME1>มหาวิทยาลัยขอนแก่น</NAME1>
+      <CPUDT>11/12/2017</CPUDT>
+      <SUMCOST>3000.33</SUMCOST>
+      <STATUS>เอกสารผ่านรายการ</STATUS>
+      <NUMDOCI></NUMDOCI>
+    </row>
+  </table>`;
+
   SELECTED_DATE = this.dateList[0].id;
   RADIO_TYPE = 'web';
+
+  RESLIST: any[] = [];
 
   // Disable & Show
   DSTBALL;
@@ -31,8 +78,8 @@ export class Kb023Component implements OnInit {
   TBXBLNR1 = ''; // การอ้างอิง 1
   TBXBLNR2 = ''; // การอ้างอิง 2
   TBSTERM = ''; // รหัสประจำตัวผู้เสียภาษี
-  IDBLART1 = ''; // ประเภทเอกสาร
-  IDBLART2 = ''; // ประเภทเอกสาร
+  IDBLART1 = this.typeDocList[0].id; // ประเภทเอกสาร
+  IDBLART2 = this.typeDocList[0].id; // ประเภทเอกสาร
 
   // Label
   LBBUKRS = 'กรมอนามัย'; // TEST รหัสงบประมาณ
@@ -50,23 +97,28 @@ export class Kb023Component implements OnInit {
   YEAR = Number(this.GJAHR.getFullYear());
 
   // เลขที่ใบขอเบิก
-  BELNR1 = '3100000005';
+  BELNR1 = '3100000004';
   BELNR2 = '3100000006';
 
   // User ID
   USERID;
 
   // XML
-  xml_search = ''; // Gen XML for send to service
+  xml_searchDoc = ''; // Gen XML for send to service
 
   // Hide
   forAdmin: boolean;
   forResult: boolean;
 
-  constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,) {
+  // TEST ONLY
+  sampleData: String = 'some parent Data';
+  sampleChildData: String = '';
+
+  constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,
+              private httpService: Http, private GridViewComponent: GridViewComponent) {
     // TEST
     // console.log('Route:' + route.url);
-    this.MenuTop.onClick(route.url);
+    // this.MenuTop.onClick(route.url);
   }
 
   // Open Dialog Search
@@ -85,9 +137,11 @@ export class Kb023Component implements OnInit {
   onSearch(tab) {
     console.log(tab);
     console.log(this.RADIO_TYPE);
-    // this.forResult = false;
     this.coverDateFT();
     this.getXMLSearch(tab);
+    // this.sendXMLSearch(); TEST
+    this.genArrayXML();
+    this.forResult = false;
   }
 
   coverDateFT() {
@@ -97,8 +151,8 @@ export class Kb023Component implements OnInit {
 
   getXMLSearch(tab) {
     if (tab === 0) {
-      this.xml_search = '';
-      this.xml_search = `<operation>
+      this.xml_searchDoc = '';
+      this.xml_searchDoc = `<operation>
       <modelCRUD>
         <tableName>SearchDoc</tableName>
           <recordID>0</recordID>
@@ -123,8 +177,8 @@ export class Kb023Component implements OnInit {
 		      </modelCRUD>
 	      </operation>`;
     } else if (tab === 1) {
-      this.xml_search = '';
-      this.xml_search = `<operation>
+      this.xml_searchDoc = '';
+      this.xml_searchDoc = `<operation>
       <modelCRUD>
         <tableName>SearchDoc</tableName>
           <recordID>0</recordID>
@@ -161,9 +215,120 @@ export class Kb023Component implements OnInit {
 		      </modelCRUD>
 	      </operation>`;
     }
-    console.log(this.xml_search);
+    console.log(this.xml_searchDoc);
   }
 
+  sendXMLSearch() {
+    // รอ service log พร้อมใช้งาน
+    const headers = new Headers({ 'Content-Type': 'application/xml' });
+    const options = new RequestOptions({ headers: headers });
+    this.httpService.post('http://idp.yai.io:8082/rest/kb02', this.xml_searchDoc, options).subscribe(values => {
+      console.log('return', values);
+      if (values.ok) {
+        const result: any = values.json();
+        let mes = result.response.message;
+        if (mes !== 'Fail') {
+          console.log('Suc');
+        } else {
+          console.log('Fail');
+        }
+      } else {
+        console.log('F');
+        alert(values.toString());
+      }
+    });
+    // TEST
+
+  }
+
+  genArrayXML() {
+    this.RESLIST = [];
+    let  i, BELNR, GJAHR, BLDAT, BUDAT, BLART, HOWPAY, NAME1, CPUDT, SUMCOST, STATUS, NUMDOCI;
+    const parser = new DOMParser();
+    const dd = new Date('11/14/2017');
+    console.log(dd);
+    const xmlDoc = parser.parseFromString(this.xmlResult, 'text/xml');
+    BELNR   = xmlDoc.getElementsByTagName('BELNR');
+    GJAHR   = xmlDoc.getElementsByTagName('GJAHR');
+    BLDAT   = xmlDoc.getElementsByTagName('BLDAT');
+    BUDAT   = xmlDoc.getElementsByTagName('BUDAT');
+    BLART   = xmlDoc.getElementsByTagName('BLART');
+    HOWPAY  = xmlDoc.getElementsByTagName('HOWPAY');
+    NAME1   = xmlDoc.getElementsByTagName('NAME1');
+    CPUDT   = xmlDoc.getElementsByTagName('CPUDT');
+    SUMCOST = xmlDoc.getElementsByTagName('SUMCOST');
+    STATUS  = xmlDoc.getElementsByTagName('STATUS');
+    NUMDOCI = xmlDoc.getElementsByTagName('NUMDOCI');
+    for (i = 0; i < BELNR.length; i++) {
+      console.log('C:' + BLART[i].innerHTML); // TEST
+      this.RESLIST.push({
+        BELNR:    BELNR[i].innerHTML,
+        GJAHR:    GJAHR[i].innerHTML,
+        BLDAT:    this.coverDate(BLDAT[i].innerHTML),
+        BUDAT:    this.coverDate(BUDAT[i].innerHTML),
+        BLART:    BLART[i].innerHTML,
+        HOWPAY:   HOWPAY[i].innerHTML,
+        NAME1:    NAME1[i].innerHTML,
+        CPUDT:    this.coverDate(CPUDT[i].innerHTML),
+        SUMCOST:  SUMCOST[i].innerHTML,
+        STATUS:   STATUS[i].innerHTML,
+        NUMDOCI:  NUMDOCI[i].innerHTML,
+      });
+    }
+  console.log(this.RESLIST);
+  }
+
+  coverDate(num) {
+    let date: String;
+    if (num !== undefined) {
+      const dateParts = num.split('/');
+      // let dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0])
+      console.log(dateParts[2], dateParts[1], dateParts[0]);
+      switch (dateParts[1]) {
+        case '01':
+          date = dateParts[0] + ' มกราคม ' + dateParts[2];
+          break;
+        case '02':
+          date = dateParts[0] + ' กุมภาพันธ์ ' + dateParts[2];
+          break;
+        case '03':
+          date = dateParts[0] + ' มีนาคม ' + dateParts[2];
+          break;
+        case '04':
+          date = dateParts[0] + ' เมษายน ' + dateParts[2];
+          break;
+        case '05':
+          date = dateParts[0] + ' พฤษภาคม ' + dateParts[2];
+          break;
+        case '06':
+          date = dateParts[0] + ' มิถุนายน ' + dateParts[2];
+          break;
+        case '07':
+          date = dateParts[0] + ' กรกฎาคม ' + dateParts[2];
+          break;
+        case '08':
+          date = dateParts[0] + ' สิงหาคม ' + dateParts[2];
+          break;
+        case '09':
+          date = dateParts[0] + ' กันยายน ' + dateParts[2];
+          break;
+        case '10':
+          date = dateParts[0] + ' ตุลาคม ' + dateParts[2];
+          break;
+        case '11':
+          date = dateParts[0] + ' พฤศจิกายน ' + dateParts[2];
+          break;
+        case '12':
+          date = dateParts[0] + ' ธันวาคม ' + dateParts[2];
+          break;
+        default: date = '';
+          break;
+      }
+      return date;
+    } else {
+      return '';
+    }
+  }
 
   ngOnInit() {
     this.MenuTop.onClick(this.route.url); // TEST
