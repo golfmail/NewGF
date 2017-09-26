@@ -141,6 +141,7 @@ export class Kb023Component implements OnInit {
     this.getXMLSearch(tab);
     // this.sendXMLSearch(); TEST
     this.genArrayXML();
+    // this.GridViewComponent.click();
     this.forResult = false;
   }
 
@@ -246,7 +247,7 @@ export class Kb023Component implements OnInit {
     let  i, BELNR, GJAHR, BLDAT, BUDAT, BLART, HOWPAY, NAME1, CPUDT, SUMCOST, STATUS, NUMDOCI;
     const parser = new DOMParser();
     const dd = new Date('11/14/2017');
-    console.log(dd);
+    // console.log(dd); // TEST
     const xmlDoc = parser.parseFromString(this.xmlResult, 'text/xml');
     BELNR   = xmlDoc.getElementsByTagName('BELNR');
     GJAHR   = xmlDoc.getElementsByTagName('GJAHR');
@@ -260,7 +261,8 @@ export class Kb023Component implements OnInit {
     STATUS  = xmlDoc.getElementsByTagName('STATUS');
     NUMDOCI = xmlDoc.getElementsByTagName('NUMDOCI');
     for (i = 0; i < BELNR.length; i++) {
-      console.log('C:' + BLART[i].innerHTML); // TEST
+      // console.log('C:' + BLART[i].innerHTML); // TEST
+      // console.log(this.numberWithCommas(SUMCOST[i].innerHTML)); // TEST
       this.RESLIST.push({
         BELNR:    BELNR[i].innerHTML,
         GJAHR:    GJAHR[i].innerHTML,
@@ -270,7 +272,7 @@ export class Kb023Component implements OnInit {
         HOWPAY:   HOWPAY[i].innerHTML,
         NAME1:    NAME1[i].innerHTML,
         CPUDT:    this.coverDate(CPUDT[i].innerHTML),
-        SUMCOST:  SUMCOST[i].innerHTML,
+        SUMCOST:  this.numberWithCommas(SUMCOST[i].innerHTML),
         STATUS:   STATUS[i].innerHTML,
         NUMDOCI:  NUMDOCI[i].innerHTML,
       });
@@ -278,12 +280,20 @@ export class Kb023Component implements OnInit {
   console.log(this.RESLIST);
   }
 
+  numberWithCommas(x) {
+    const parts = x.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return parts.join('.');
+  }
+
   coverDate(num) {
     let date: String;
+    let yearBH;
     if (num !== undefined) {
       const dateParts = num.split('/');
-      // let dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0])
-      console.log(dateParts[2], dateParts[1], dateParts[0]);
+      yearBH = Number(dateParts[2]) + 543; // Cover Year
+      dateParts[2] = yearBH.toString();
+      // console.log(dateParts[2], dateParts[1], dateParts[0]); // TSET
       switch (dateParts[1]) {
         case '01':
           date = dateParts[0] + ' มกราคม ' + dateParts[2];
@@ -339,7 +349,7 @@ export class Kb023Component implements OnInit {
     // For Selected Years
     if (this.GJAHR.getMonth() >= 9 ) {
       this.GJAHR.setFullYear(Number(this.GJAHR.getFullYear()) + 544);
-      console.log('f' + this.GJAHR);
+      // console.log('f' + this.GJAHR); // TEST
     } else {
       this.GJAHR.setFullYear(Number(this.GJAHR.getFullYear()) + 543);
     }
@@ -348,11 +358,10 @@ export class Kb023Component implements OnInit {
     iGJAHR = iGJAHR - 8;
     for (let index = -7; index < 7; index++) {
       iGJAHR = iGJAHR + 1;
-      console.log(iGJAHR);
+      // console.log(iGJAHR); // TEST
       this.yearList.push({YESR: iGJAHR});
 
     }
-    console.log(this.YEAR);
   }
 
 }

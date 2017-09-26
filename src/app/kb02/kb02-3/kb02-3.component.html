@@ -1,6 +1,6 @@
 ﻿<fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >
 <legend class="feildsetTag">ค้นหา</legend>
-<div style="min-height:170px">
+<div style="min-height:173px">
   <md-tab-group selectedIndex="0" #tabGroup class="selected-tab-{{tabGroup.selectedIndex}}">
     <!-- TAB 1 -->
     <md-tab label="ค้นหาตามเลขที่เอกสาร" class="disable-select">
@@ -218,13 +218,6 @@
     <button (click)="onSearch(this.tabGroup.selectedIndex)">ค้นหา</button>
   </div>
   <div [hidden]="forResult">
-    <span class="defaultTableBodyShot">
-        <Label ID="lbSortTitle" Text="จัดลำดับตาม"></Label>
-        <Label ID="lbSortHeader" Text="เลขที่ใบขอเบิกเงิน"
-          style="font-weight:bold" ></Label>
-        <Label ID="lbSortFrom" runat="server" Text="จาก"></Label>
-        <Label ID="lbSortType" style="font-weight:bold">น้อยไปมาก</Label>
-    </span>
     <app-grid-view [parentData]="RESLIST"></app-grid-view>
   </div>
 </fieldset>
