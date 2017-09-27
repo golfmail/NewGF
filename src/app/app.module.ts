@@ -43,6 +43,7 @@ import { Tab } from './controls/drop-down-view/drop-down-view.interface';
 import { ListDetailComponent } from './controls/list-detail/list-detail.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 // import { PopupModule } from 'ng2-opd-popup';
 //calenda
 import { JsonpModule } from '@angular/http';
@@ -123,6 +124,7 @@ import { DialogSaveComponent } from './controls/dialog-save/dialog-save.componen
     MdNativeDateModule,
     // ReactiveFormsModule
     MdToolbarModule,
+    NgxPaginationModule
     //  JsonpModule, NgbModule.forRoot()
   ],
   providers: [],

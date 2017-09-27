@@ -1,8 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { GridViewComponent } from './../../controls/grid-view/grid-view.component';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
-import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
+// import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
 
@@ -38,14 +39,14 @@ export class Kb023Component implements OnInit {
     <row>
       <BELNR>3100000004</BELNR>
       <GJAHR>2560</GJAHR>
-      <BLDAT>01/02/2017</BLDAT>
-      <BUDAT>03/04/2017</BUDAT>
+      <BLDAT>01/11/2017</BLDAT>
+      <BUDAT>03/11/2017</BUDAT>
       <BLART>KC</BLART>
       <HOWPAY>1</HOWPAY>
       <NAME1>มหาวิทยาลัยธรรมศาสตร์</NAME1>
-      <CPUDT>05/06/2017</CPUDT>
+      <CPUDT>05/11/2017</CPUDT>
       <SUMCOST>2000.22</SUMCOST>
-      <STATUS>เอกสารผ่านรายการ</STATUS>
+      <STATUS>ผ่าน</STATUS>
       <NUMDOCI>1</NUMDOCI>
     </row>
     <row>
@@ -58,8 +59,73 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยขอนแก่น</NAME1>
       <CPUDT>11/12/2017</CPUDT>
       <SUMCOST>3000.33</SUMCOST>
-      <STATUS>เอกสารผ่านรายการ</STATUS>
+      <STATUS>ผ่าน</STATUS>
       <NUMDOCI></NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000006</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>11/12/2017</BLDAT>
+      <BUDAT>13/06/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>2</HOWPAY>
+      <NAME1>มหาวิทยาลัยเชียงใหม่</NAME1>
+      <CPUDT>02/01/2017</CPUDT>
+      <SUMCOST>456789.10</SUMCOST>
+      <STATUS>ผ่าน</STATUS>
+      <NUMDOCI>3</NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000006</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>30/12/2017</BLDAT>
+      <BUDAT>11/11/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>1</HOWPAY>
+      <NAME1>มหาวิทยาลัยพะเยา</NAME1>
+      <CPUDT>12/03/2017</CPUDT>
+      <SUMCOST>98765</SUMCOST>
+      <STATUS>ผ่าน</STATUS>
+      <NUMDOCI>4</NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000007</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>30/12/2017</BLDAT>
+      <BUDAT>11/11/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>1</HOWPAY>
+      <NAME1>มหาวิทยาลัยน่าน</NAME1>
+      <CPUDT>12/03/2017</CPUDT>
+      <SUMCOST>98765</SUMCOST>
+      <STATUS>ผ่าน</STATUS>
+      <NUMDOCI>5</NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000008</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>30/12/2017</BLDAT>
+      <BUDAT>11/11/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>1</HOWPAY>
+      <NAME1>มหาวิทยาลัยสตูล</NAME1>
+      <CPUDT>12/03/2017</CPUDT>
+      <SUMCOST>98765</SUMCOST>
+      <STATUS>ผ่าน</STATUS>
+      <NUMDOCI>6</NUMDOCI>
+    </row>
+    <row>
+      <BELNR>3100000009</BELNR>
+      <GJAHR>2560</GJAHR>
+      <BLDAT>30/12/2017</BLDAT>
+      <BUDAT>11/11/2017</BUDAT>
+      <BLART>K0</BLART>
+      <HOWPAY>1</HOWPAY>
+      <NAME1>มหาวิทยาลัยหัวหิน</NAME1>
+      <CPUDT>12/03/2017</CPUDT>
+      <SUMCOST>98765</SUMCOST>
+      <STATUS>ผ่าน</STATUS>
+      <NUMDOCI>7</NUMDOCI>
     </row>
   </table>`;
 
@@ -98,7 +164,7 @@ export class Kb023Component implements OnInit {
 
   // เลขที่ใบขอเบิก
   BELNR1 = '3100000004';
-  BELNR2 = '3100000006';
+  BELNR2 = '3100000009';
 
   // User ID
   USERID;
@@ -141,7 +207,6 @@ export class Kb023Component implements OnInit {
     this.getXMLSearch(tab);
     // this.sendXMLSearch(); TEST
     this.genArrayXML();
-    // this.GridViewComponent.click();
     this.forResult = false;
   }
 

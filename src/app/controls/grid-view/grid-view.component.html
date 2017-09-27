@@ -14,35 +14,42 @@
       <th>เลือก</th>
       <th>เลขที่ใบขอเบิกเงิน</th>
       <th>ปีงบ ประมาณ</th>
-      <th>วันที่เอกสาร</th>
-      <th>วันที่ผ่านรายการ</th>
+      <th class="row-4 row-DATE">วันที่เอกสาร</th>
+      <th class="row-5 row-DATE">วันที่ผ่านรายการ</th>
       <th>ประ เภท</th>
       <th>วิธีชำระเงิน</th>
       <th>ผู้ขาย</th>
-      <th>วันที่บันทึก</th>
+      <th class="row-9 row-DATE">วันที่บันทึก</th>
       <th>จำนวนเงิน</th>
-      <th>สถานะ</th>
+      <th class="row-11 row-STATUS">สถานะ</th>
       <th>เลขที่เอกสารกลับรายการ</th>
     </tr>
-    <tr *ngFor="let doc of RESLIST; let i='index';" align="center">
-          <!-- [class.selected]="doc === selectedList" > -->
+    <tr *ngFor="let doc of RESLIST | paginate: { itemsPerPage: 5, currentPage: page }; let i='index';" align="center">
       <td align="center">
         <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
-          alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image (click)="selectedDoc(doc,i)">
+          alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image (click)="selectedDoc(doc,i)"
+          routerLinkActive="active" routerLink="/kb021">
       </td>
       <td style="width: 50px">{{doc.BELNR}}</td>
       <td style="width: 5px">{{doc.GJAHR}}</td>
-      <td style="width: 100px" align="left">{{doc.BLDAT}}</td>
+      <td align="left">{{doc.BLDAT}}</td>
       <td style="width: 100px" align="left">{{doc.BUDAT}}</td>
       <td style="width: 10px">{{doc.BLART}}</td>
       <td style="width: 5px">{{doc.HOWPAY}}</td>
       <td style="width: 150px" align="left">{{doc.NAME1}}</td>
       <td style="width: 100px" align="left">{{doc.CPUDT}}</td>
       <td style="width: 100px" align="right">{{doc.SUMCOST}}</td>
-      <td style="width: 100px">{{doc.STATUS}}</td>
+      <td>{{doc.STATUS}}</td>
       <td style="width: 50px">{{doc.NUMDOCI}}</td>
     </tr>
   </table>
+  <div class="defaultTableBody">
+    <pagination-controls
+      (pageChange)="page = $event"
+      previousLabel="ย้อนกลับ"
+      nextLabel="ถัดไป">
+    </pagination-controls>
+  </div>
 </div>
 <div>
   <table class="defaultTableBodyShot">

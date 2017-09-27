@@ -3,3 +3,12 @@ th {
   COLOR: #051615;
   /* WHITE-SPACE: nowrap; */
 }
+
+/* Column widths are based on these cells */
+.row-DATE {
+  min-width: 98px;
+}
+.row-STATUS {
+  min-width: 70px;
+  max-width: 70px;
+}
