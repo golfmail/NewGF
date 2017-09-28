@@ -58,3 +58,7 @@ export class SearchList {
   name:        string;
   description: string;
 }
+
+export class DocSearch {
+  docList: any[];
+}

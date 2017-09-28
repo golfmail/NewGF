@@ -1,17 +1,18 @@
 ﻿import { GridViewComponent } from './../../controls/grid-view/grid-view.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, forwardRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
 // import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
+import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
 
 @Component({
   selector: 'app-kb02-3',
   templateUrl: './kb02-3.component.html',
   styleUrls: ['./kb02-3.component.css'],
-  providers: [MenuTopComponent, GridViewComponent]
+  providers: [MenuTopComponent , Kb021Component]
 })
 export class Kb023Component implements OnInit {
 
@@ -133,6 +134,7 @@ export class Kb023Component implements OnInit {
   RADIO_TYPE = 'web';
 
   RESLIST: any[] = [];
+  RLINK = '/kb021';
 
   // Disable & Show
   DSTBALL;
@@ -180,10 +182,14 @@ export class Kb023Component implements OnInit {
   sampleData: String = 'some parent Data';
   sampleChildData: String = '';
 
+  // to show Data on KB021
+  SBELNR: String = '';
+
   constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,
-              private httpService: Http, private GridViewComponent: GridViewComponent) {
+              private httpService: Http, private _Kb021Component: Kb021Component) {
     // TEST
-    // console.log('Route:' + route.url);
+    console.log('Route x:' + route.url);
+    // this.GridViewComponent.RLINK = '/kb021';
     // this.MenuTop.onClick(route.url);
   }
 
@@ -207,6 +213,7 @@ export class Kb023Component implements OnInit {
     this.getXMLSearch(tab);
     // this.sendXMLSearch(); TEST
     this.genArrayXML();
+    // this.GridViewComponent.RLINK = this.route.url;
     this.forResult = false;
   }
 
@@ -403,6 +410,21 @@ export class Kb023Component implements OnInit {
     } else {
       return '';
     }
+  }
+
+  gotoKB021(doc) {
+    if (doc !== undefined) {
+      console.log('Doc is : ' + doc);
+      this.SBELNR = doc;
+      this._Kb021Component.showDocSearch(doc);
+    } else {
+
+    }
+
+  }
+
+  hello() {
+    console.log('Hello!');
   }
 
   ngOnInit() {

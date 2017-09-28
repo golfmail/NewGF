@@ -1,4 +1,7 @@
-﻿import { Component, OnInit, Injectable, Output, EventEmitter, Inject} from '@angular/core';
+﻿// import { DocSearch } from './../table-list-view';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit, Injectable, Output, EventEmitter, Inject} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,13 +10,20 @@ import { ListViewComponent } from 'app/controls/list-view/list-view.component';
 import { AppComponent } from 'app/app.component';
 import { Tab } from 'app/controls/drop-down-view/drop-down-view.interface';
 import { DropDownViewComponent } from 'app/controls/drop-down-view/drop-down-view.component';
-// import { TableList } from 'app/kb02/kb02-1/table-list';
+import { DocSearch } from 'app/kb02/table-list-view';
 import { TableList } from 'app/kb02/table-list-view';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
 import { DialogSaveComponent } from 'app/controls/dialog-save/dialog-save.component';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { MdDatepickerModule } from '@angular/material';
 import { MdNativeDateModule } from '@angular/material';
+
+// import { Subscription } from 'rxjs/Subscription';
+
+import { MenuTopComponent } from 'app/menu-top/menu-top.component';
+
+
+import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
 // import { Popup } from 'ng2-opd-popup';
 // import {NgbModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 // import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
@@ -21,27 +31,27 @@ import { MdNativeDateModule } from '@angular/material';
 // export class NgbdDatepickerPopup {
 //   model;
 // }
-const now = new Date();
-const I18N_VALUES = {
-  'th': {
-    weekdays: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-    days: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
-    daysShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-    daysMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-    months: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-             'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-    monthsShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
-    today: 'วันนี้'
-  }
+
+// const I18N_VALUES = {
+//   'th': {
+//     weekdays: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+//     days: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
+//     daysShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+//     daysMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
+//     months: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+//              'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+//     monthsShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+//     today: 'วันนี้'
+//   }
   // other languages you would support
-};
+// };
 
 // Define a service holding the language. You probably already have one if your app is i18ned. Or you could also
 // use the Angular LOCALE_ID value
-@Injectable()
-export class I18n {
-  language = 'th';
-}
+// @Injectable()
+// export class I18n {
+//   language = 'th';
+// }
 
 // Define custom service providing the months and weekdays translations
 // @Injectable()
@@ -66,6 +76,7 @@ export class I18n {
   selector: 'kb02-1',
   templateUrl: './kb02-1.component.html',
   styleUrls: ['./kb02-1.component.css'],
+  providers: [ MenuTopComponent]
   // providers: [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
 })
 
@@ -73,6 +84,7 @@ export class I18n {
 export class Kb021Component implements OnInit  {
   // model: NgbDateStruct;
   date: {year: number, month: number};
+  now = new Date();
 
    res: string;
   ddblartList: string[] = [
@@ -142,8 +154,8 @@ export class Kb021Component implements OnInit  {
   // Test Date
   DATEA = new Date();
   DATEI = new Date();
-  DATEACC = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
-  DATEINV = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  DATEACC = {year: this.now.getFullYear(), month: this.now.getMonth() + 1, day: this.now.getDate()};
+  DATEINV = {year: this.now.getFullYear(), month: this.now.getMonth() + 1, day: this.now.getDate()};
   DATENOW = new Date(); // TEST NEW DATE
   CPUDT = ''; // DATE ex: 11.12.2017
   CPUTIME = ''; // TIME ex: 22:40:59
@@ -237,7 +249,12 @@ export class Kb021Component implements OnInit  {
   //  Validate for "Save to Lists"
   is_valid: boolean;
 
-  constructor(public dialog: MdDialog, private httpService: Http) {
+  constructor(
+    public dialog: MdDialog,
+    private httpService: Http,
+    private route: ActivatedRoute,
+    private router: Router) {
+    // this.showDocSearch();
   }
   // constructor(private ListViewComponent: ListViewComponent) {
   // }
@@ -858,7 +875,23 @@ export class Kb021Component implements OnInit  {
       });
 
 
-  };
+  }
+
+  showDocSearch(doc) {
+    let x = '';
+    // this._Kb023Component.hello();
+    console.log('SBELNR d:' + doc);
+    if (doc) {
+      // Router.prototype.
+
+      this.TBWRBTR = '1111';
+      this.onDisable(); // Disable Input All
+    } else {
+
+    }
+
+
+  }
 
   // kb02Save(Method) Not working pass parameter to/from dialog-save(Module) | Don't Use in Here.
   kb02Save(xml: string) {
@@ -895,8 +928,22 @@ export class Kb021Component implements OnInit  {
       console.log('f' + this.GJAHR);
     } else {
       this.GJAHR = this.DATEINV.year;
-      console.log(this.GJAHR);
+      console.log('f' + this.GJAHR);
     }
+
+    // this.TBHKONT = this.route.paramMap
+    // .switchMap((params: ParamMap) =>
+    //   this.service.getHero(params.get('id')));
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== null) {
+      this.TBNUMTR = id;
+      this.onDisable();
+      this.onColor();
+    } else {
+
+    }
+    console.log('this.TBNUMTR:' + this.TBNUMTR);
 
     // if (this.DATEINV.month < 10) {
     //     this.ddMonat = this.DATEINV.month + 3;

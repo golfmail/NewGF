@@ -9,6 +9,10 @@ const routes: Routes = [
         component: Kb021Component
     },
     {
+        path: 'kb021/:id',
+        component: Kb021Component
+    },
+    {
         path: 'Kb023',
         component: Kb023Component
     }
