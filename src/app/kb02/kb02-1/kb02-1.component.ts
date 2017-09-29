@@ -146,7 +146,7 @@ export class Kb021Component implements OnInit  {
   TBZZOBJ = ''; // รหัสบัญชีย่อย
   TBZZLOAN = ''; // รหัสหมวดพัสดุ
   TBPRZNR = ''; // รหัสกิจกรรมย่อย
-  TBKBLNR = '1200003245' // เลขที่เอกสารสำรองเงิน
+  TBKBLNR = '1200003245'; // เลขที่เอกสารสำรองเงิน
   TBZZUNIT = ''; // รหัสเจ้าของบัญชีย่อย
   TBVBUND = ''; // รหัสหน่วยงานคู่ค้า
   // TBZZFIELD1 = ''; // รหัสหมวดพัสดุ
@@ -185,6 +185,9 @@ export class Kb021Component implements OnInit  {
   // Disable & Show
   DSTBALL;
   SHOWBT;
+  SHOWTR: Boolean = true; // TR
+  HIDEBT: Boolean = false; // 3
+  AFTDOC: Boolean = true; // After Have Document ID | for Show สร้างเอกสารใหม่, พิมพ์รายงาน, Log
 
   // // Declaration Variable of Value ID
   // IDFISTL: string; // (ID) รหัสงบประมาณ
@@ -208,8 +211,8 @@ export class Kb021Component implements OnInit  {
   // Other Variable
   TBNUMTR: string; // Number of Table List
   TBBELNR = ''; // Doc No.
-  LIFNR = '' // LIFNR
-  ZLSCH = '' // ZLSCH
+  LIFNR = ''; // LIFNR
+  ZLSCH = ''; // ZLSCH
   SUMCOST: Number = 0; // เงินรวม
 
   // Corlor Content
@@ -229,10 +232,10 @@ export class Kb021Component implements OnInit  {
   evilTitle2 ;
   logs: string[] = [];
   SAVELIST: any[] = [];
-  savelist = this.SAVELIST;
+  // savelist = this.SAVELIST;
   selectedList: TableList;
   valuelist = 0;
-  lbNUMBER = '0';
+  lbNUMBER: Number = 0;
   // dialogRef: MdDialogRef<DialogSearchComponent>;
   codetx: string;
   nametx: string;
@@ -341,11 +344,59 @@ export class Kb021Component implements OnInit  {
     // cssBukrs
   }
 
-  onColor() {
-    this.contentBlue   = 'fontContentBlack';
-    this.contentGreen  = 'fontContentBlack';
-    this.contentRed    = 'fontContentBlack';
+  onEnableInput(what) {
+    switch (what) {
+      case 'Y':
+        this.DSTBALL = false;
+        this.SHOWBT = false;
+        break;
+      case 'N':
+        this.DSTBALL = true;
+        this.SHOWBT = true;
+        break;
+      default:
+        this.DSTBALL = false;
+        this.SHOWBT = false;
+        break;
+    }
+  }
+
+  onColor(what) {
+    switch (what) {
+      case 'Y': // All font Default
+        this.contentBlue   = 'fontContentBlue';
+        this.contentGreen  = 'fontContentGreen';
+        this.contentRed    = 'fontContentRed';
+        break;
+      case 'N': // All font Disable
+        this.contentBlue   = 'fontContentBlack';
+        this.contentGreen  = 'fontContentBlack';
+        this.contentRed    = 'fontContentBlack';
+        break;
+      default:
+        this.contentBlue   = 'fontContentBlue';
+        this.contentGreen  = 'fontContentGreen';
+        this.contentRed    = 'fontContentRed';
+        break;
+    }
     // this.contentBlack  = 'fontContentBlack';
+  }
+
+  onShowDocID() {
+    // + Function for Show Doc.Number | Hiden 3 Button
+    this.SHOWTR = false; // Show Doc
+    this.HIDEBT = true; // Hide จำลองการบันทึก & 3 Save
+    this.AFTDOC = false; // Show 3 Button Log
+  }
+  onNewDoc() {
+    this.router.navigate(['/kb021']);
+    this.SAVELIST = []; // Clear List
+    this.SAVELIST = [];
+    this.SHOWTR = true; // Hide Doc
+    this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
+    this.AFTDOC = true; // Hide 3 Button Log
+    this.onColor('Y');
+    this.onEnableInput('Y'); // Y = Enable All Input
   }
 
   onSelectDate(typeDate) {
@@ -477,9 +528,9 @@ export class Kb021Component implements OnInit  {
   // summary total rows keng
   getTotal() {
     let total = 0;
-    for (let i = 0; i < this.savelist.length; i++) {
-        if (this.savelist[i].TBWRBTR) {
-            total += Number(this.savelist[i].TBWRBTR);
+    for (let i = 0; i < this.SAVELIST.length; i++) {
+        if (this.SAVELIST[i].TBWRBTR) {
+            total += Number(this.SAVELIST[i].TBWRBTR);
             // this.totalAmount = total;
         }
     }
@@ -490,7 +541,7 @@ export class Kb021Component implements OnInit  {
     this.res = result;
     // document.getElementById('success').style.display = 'block';
     // document.getElementById('showSuccess').style.display = 'block';
-  };
+  }
 
   // Get Doc. type
   getDcotype() {
@@ -538,52 +589,52 @@ export class Kb021Component implements OnInit  {
     if (this.TBGEBER.substr(2, 2) === '19' // แหล่งเงิน เป็น YY19xxxx
         && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
         && this.TBFKBER.substr(0, 5) === this.TBKOSTL.substr(0, 5)) {
-      console.log('Y!1')
+      console.log('Y!1');
       this.is_valid = true;
     } else if ((this.TBGEBER.substr(2, 1) === '2' || this.TBGEBER.substr(2, 1) === '3') // แหล่งเงิน เป็น  YY2xxxx หรือ YY3xxxxxx
         && this.TBFISTL.length === 5 // รหัสงบประมาณมี 5 หลัก
         && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
         && P_TBKOSTL === P_TBFKBER) { // รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดในกิจกรรมหลัก
-      console.log('Y!2')
+      console.log('Y!2');
       this.is_valid = true;
     } else if (this.TBGEBER.substr(2, 1) === '1') { // แหล่งเงิน เป็น YY1xxxxxx
-      console.log('Y!3')
+      console.log('Y!3');
       if (this.TBGEBER.substr(2, 2) === '11' // แหล่งเงิน เป็น YY11xxxxx
           && this.TBFISTL.length === 16 // รหัสงบประมาณ 16 หลัก
           && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
           && P_TBKOSTL === P_TBFKBER // รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดในกิจกรรมหลัก
           && F_TBKOSTL === F_TBFKBER) { // รหัสศูนย์ต้นทุน 5 หลักแรก = รหัสกิจกรรมหลัก 5 หลักแรก
-          console.log('Y!3.1')
+          console.log('Y!3.1');
           this.is_valid = true;
         } else if (this.TBGEBER.substr(2, 2) === '11' // แหล่งเงิน เป็น YY11xxxxx
           && this.TBFISTL.length === 16 // รหัสงบประมาณ 16 หลัก
           && F_TBFISTL === '80808' // รหัสงบประมาณ 5 หลักแรก = 80808
           && F_TBFKBER === '80808' // รหัสกิจกรรมหลัก 5 หลักแรก = 80808
           && F_TBKOSTL === F_TBFKBER) { // รหัสศูนย์ต้นทุน 5 หลักแรก = รหัสกิจกรรมหลัก 5 หลักแรก
-          console.log('Y!3.2')
+          console.log('Y!3.2');
           this.is_valid = true;
         } else if (this.TBGEBER.substr(2, 2) === '10' // แหล่งเงิน เป็น YY10xxxxx
           && (this.TBFISTL.length === (10 || 12 || 14 || 16) ) // รหัสงบประมาณ เป็น 10 หรือ 12 หรือ 14 หรือ 16 หลัก
           && F_TBFISTL === '90909') { // รหัสงบประมาณ 5 หลักแรก = 90909
-          console.log('Y!3.3')
+          console.log('Y!3.3');
           this.is_valid = true;
       } else {
-        console.log('N!3')
+        console.log('N!3');
         this.is_valid = false;
       }
     } else if (this.TBGEBER.substr(2, 1) === '4' // แหล่งเงิน เป็น YY4xxxxxx
         && this.TBFISTL.length === 16 // รหัสงบประมาณ เป็น 16 หลัก
         && F_TBFISTL === F_TBKOSTL // รหัสงบประมาณ 5 หลักแรก = รหัสศูนย์ต้นทุน 5 หลักแรก
         && P_TBKOSTL === P_TBFKBER ) {// รหัสจังหวัดจากศูนย์ต้นทุน = รหัสจังหวัดใน กิจกรรมหลัก
-      console.log('Y!4')
+      console.log('Y!4');
       this.is_valid = true;
     } else if (this.TBGEBER.substr(2, 2) === '41' // แหล่งเงิน เป็น YY41xxxxx
         && this.TBFISTL.length === (10 || 12 || 14 || 16) // รหัสงบประมาณ เป็น 10 หรือ 12 หรือ 14 หรือ 16 หลัก
         && F_TBFISTL === '90909' ) {// รหัสงบประมาณ 5 หลักแรก = 90909
-      console.log('Y!5')
+      console.log('Y!5');
       this.is_valid = true;
     } else {
-      console.log('N!')
+      console.log('N!');
       this.is_valid = false;
     }
   }
@@ -595,12 +646,8 @@ export class Kb021Component implements OnInit  {
     this.getDateAI(); // Get Date
     this.chkValidate(); // Check Validate form
     if (this.ValidateList.length <= 0) { // && this.is_valid === true
-      console.log('0 0');
-    // console.log('Array: ' + saveTable.length);
-    // console.log(ListViewComponent.title);
-    // this.ListViewComponent.formSave2();
     this.valuelist = 0;
-    if (typeof this.SAVELIST === 'undefined') { // this.saveTable
+    if (typeof this.SAVELIST === 'undefined' && this.lbNUMBER === 0) { // this.saveTable
         // alert('undefined')
         this.SAVELIST = [{
           TBBUKRS: this.TBBUKRS,
@@ -645,7 +692,9 @@ export class Kb021Component implements OnInit  {
           LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
           }];
         // alert(SAVELIST.length);
-    } else {
+        this.lbNUMBER = this.SAVELIST.length;
+        console.log('GotoJO');
+    } else  {
         // this.valuelist = Number(this.lbNUMBER); // TEST
         this.SAVELIST.push({
           TBBUKRS: this.TBBUKRS,
@@ -689,6 +738,16 @@ export class Kb021Component implements OnInit  {
           LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
           LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
           });
+
+          if (this.lbNUMBER === 0) {
+            this.lbNUMBER = this.SAVELIST.length;
+          } else {
+
+          }
+
+          // this.selectedList === this.SAVELIST[this.lbNUMBER.toString()];
+          // console.log(this.lbNUMBER + '-' + this.selectedList);
+          // this.onSelect(this.SAVELIST[this.lbNUMBER.toString()], (Number(this.lbNUMBER) - 1));
         }
 
         console.log(this.SAVELIST);
@@ -720,7 +779,7 @@ export class Kb021Component implements OnInit  {
     }
     this.valuelist = 0;
 
-  };
+  }
 
   formEdit() {
     // console.log('Log: Edit');
@@ -768,7 +827,7 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST[lbNUMBER].LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
     this.SAVELIST[lbNUMBER].LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
 
-  };
+  }
 
   formShow() {
     console.log('Show');
@@ -788,8 +847,8 @@ export class Kb021Component implements OnInit  {
 			        </dataRow>\n\
 		      </modelCRUD>\n\
 	      </operation>`;
-    for (let index = 0; index < this.savelist.length; index++) {
-      let element = this.savelist[index];
+    for (let index = 0; index < this.SAVELIST.length; index++) {
+      const element = this.SAVELIST[index];
       this.xml = this.xml + `\n\<operation>
 		  <modelCRUD>\n\
 			  <tableName>InvoiceLine</tableName>\n\
@@ -832,7 +891,7 @@ export class Kb021Component implements OnInit  {
     dialogRef.componentInstance.xml_s = this.xml;
     dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
     dialogRef.componentInstance.GJAHR = this.GJAHR;
-    dialogRef.componentInstance.savelist = this.savelist;
+    dialogRef.componentInstance.SAVELIST = this.SAVELIST;
     dialogRef.componentInstance.LBBUKRS =  this.LBBUKRS;
     dialogRef.componentInstance.TBZZPMT =  this.TBZZPMT;
     dialogRef.componentInstance.LBZZPMT =  this.LBZZPMT;
@@ -854,8 +913,10 @@ export class Kb021Component implements OnInit  {
         if (selection) {
           this.resultTB = selection.value;
           this.resultLB = selection.name;
-          this.onDisable(); // Disable Textbox on Page after Success!
-          this.onColor(); // Change Color Content on Page after Success!
+          // this.onDisable(); // Disable Textbox on Page after Success!
+          this.onEnableInput('N'); // N = Disable All Input this Page
+          this.onColor('N'); // 'N' = Change Color Content Black on Page after Success!
+          this.onShowDocID(); // Show Doc ID after Success!
           console.log('R: ' + this.resultTB + ' | ' + this.resultLB);
           this.TBNUMTR = this.resultTB;
           this.TBBELNR = this.resultTB; // Doc No.
@@ -863,11 +924,6 @@ export class Kb021Component implements OnInit  {
           // console.log(this.GJAHR + this.resultTB); // TEST
           // console.log(this.LOGNO); // TEST
           // this.createXMLlog(); // (OK) Create XML for Log
-          document.getElementById('afterSuccess1').style.display = 'table-row';
-          document.getElementById('afterSuccess2').style.display = 'table-row';
-          document.getElementById('afterSuccess3').style.display = 'table-row';
-          document.getElementById('afterSuccess4').style.display = 'table-row';
-
         } else {
           // User clicked 'Cancel' or clicked outside the dialog
           console.log('Cccc');
@@ -878,14 +934,15 @@ export class Kb021Component implements OnInit  {
   }
 
   showDocSearch(doc) {
-    let x = '';
+    const x = '';
     // this._Kb023Component.hello();
     console.log('SBELNR d:' + doc);
     if (doc) {
       // Router.prototype.
 
       this.TBWRBTR = '1111';
-      this.onDisable(); // Disable Input All
+      // this.onDisable(); // Disable Input All
+      this.onEnableInput('N'); // N = Disable All Input
     } else {
 
     }
@@ -931,15 +988,14 @@ export class Kb021Component implements OnInit  {
       console.log('f' + this.GJAHR);
     }
 
-    // this.TBHKONT = this.route.paramMap
-    // .switchMap((params: ParamMap) =>
-    //   this.service.getHero(params.get('id')));
-
+    // for Doc ID
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {
       this.TBNUMTR = id;
-      this.onDisable();
-      this.onColor();
+      // this.onDisable();
+      this.onEnableInput('N'); // N = Diable All Input
+      this.onColor('N'); // N = No Color
+      this.onShowDocID();
     } else {
 
     }
