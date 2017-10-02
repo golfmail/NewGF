@@ -6,13 +6,13 @@ import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.
 // import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
-import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
+// import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
 
 @Component({
   selector: 'app-kb02-3',
   templateUrl: './kb02-3.component.html',
   styleUrls: ['./kb02-3.component.css'],
-  providers: [MenuTopComponent , Kb021Component]
+  providers: [MenuTopComponent ] // , Kb021Component
 })
 export class Kb023Component implements OnInit {
 
@@ -186,7 +186,7 @@ export class Kb023Component implements OnInit {
   SBELNR: String = '';
 
   constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,
-              private httpService: Http, private _Kb021Component: Kb021Component) {
+              private httpService: Http) {
     // TEST
     console.log('Route x:' + route.url);
     // this.GridViewComponent.RLINK = '/kb021';
@@ -210,9 +210,9 @@ export class Kb023Component implements OnInit {
     console.log(tab);
     console.log(this.RADIO_TYPE);
     this.coverDateFT();
-    this.getXMLSearch(tab);
+    this.genXMLSearch(tab);
     // this.sendXMLSearch(); TEST
-    this.genArrayXML();
+    this.getArrayXML();
     // this.GridViewComponent.RLINK = this.route.url;
     this.forResult = false;
   }
@@ -222,7 +222,7 @@ export class Kb023Component implements OnInit {
     this.T_DATEC = this.T_DATE.getDate() + '/' + Number(this.T_DATE.getMonth() + 1) + '/' + this.T_DATE.getFullYear();
   }
 
-  getXMLSearch(tab) {
+  genXMLSearch(tab) {
     if (tab === 0) {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
@@ -314,7 +314,7 @@ export class Kb023Component implements OnInit {
 
   }
 
-  genArrayXML() {
+  getArrayXML() {
     this.RESLIST = [];
     let  i, BELNR, GJAHR, BLDAT, BUDAT, BLART, HOWPAY, NAME1, CPUDT, SUMCOST, STATUS, NUMDOCI;
     const parser = new DOMParser();
@@ -416,7 +416,6 @@ export class Kb023Component implements OnInit {
     if (doc !== undefined) {
       console.log('Doc is : ' + doc);
       this.SBELNR = doc;
-      this._Kb021Component.showDocSearch(doc);
     } else {
 
     }

@@ -12,11 +12,6 @@
               <strong class="fontContentBlue">ใบขอเบิกเงินจากระบบ</strong>
           </td>
           <td colspan="3" class="tdCenter">
-            <!-- <md-radio-group [(ngModel)]="RADIO_TYPE">
-              <md-radio-button class="md-primary" checked="true" class="fontContentBlack" value="web">Web Online</md-radio-button>
-              &nbsp;&nbsp;&nbsp;
-              <md-radio-button class="fontContentBlack" value="excel">Excel Loader</md-radio-button>
-            </md-radio-group> -->
             <form #f="ngForm">
               <input type="radio" value="web" id="web" name="type" [(ngModel)]="RADIO_TYPE">
               <label align="center" for="web">Web Online</label>
@@ -24,15 +19,6 @@
               <input type="radio" value="excel"  id="excel" name="type" [(ngModel)]="RADIO_TYPE">
               <label for="excel">Excel Loader</label>
             </form>
-            <!-- <form> -->
-                <!-- <md-radio-group [(ngModel)]="RADIO_TYPE">
-              <input md-radio-button type="radio" checked="true" id="web" name="type" value="web">
-                <label align="center" for="web">Web Online</label>
-              <input md-radio-button type="radio" id="excel" name="type" value="excel">
-                <label for="excel">Excel Loader</label>
-                </md-radio-group>
-                <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div> -->
-            <!-- </form> -->
           </td>
         </tr>
         <tr>
@@ -218,7 +204,7 @@
     <button (click)="onSearch(this.tabGroup.selectedIndex)">ค้นหา</button>
   </div>
   <div [hidden]="forResult">
-    <app-grid-view [parentData]="RESLIST"></app-grid-view>
+    <app-grid-view [RLINK]="RLINK" [RESLIST]="RESLIST"></app-grid-view>
   </div>
 </fieldset>
 

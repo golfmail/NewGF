@@ -1,6 +1,7 @@
 ﻿// import { DocSearch } from './../table-list-view';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/filter';
 import { Component, OnInit, Injectable, Output, EventEmitter, Inject} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -76,7 +77,7 @@ import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
   selector: 'kb02-1',
   templateUrl: './kb02-1.component.html',
   styleUrls: ['./kb02-1.component.css'],
-  providers: [ MenuTopComponent]
+  providers: [ MenuTopComponent, Kb023Component]
   // providers: [I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}], // define custom NgbDatepickerI18n provider
 })
 
@@ -246,8 +247,7 @@ export class Kb021Component implements OnInit  {
   xml_log: string;
 
   // งวด
-  // ddMonat: number;
-    ddMonat = this.DATEI.getMonth() + 4;
+  ddMonat: Number = 0;
 
   //  Validate for "Save to Lists"
   is_valid: boolean;
@@ -256,8 +256,8 @@ export class Kb021Component implements OnInit  {
     public dialog: MdDialog,
     private httpService: Http,
     private route: ActivatedRoute,
-    private router: Router) {
-    // this.showDocSearch();
+    private router: Router,
+    private _Kb023Component: Kb023Component) {
   }
   // constructor(private ListViewComponent: ListViewComponent) {
   // }
@@ -388,6 +388,8 @@ export class Kb021Component implements OnInit  {
     this.HIDEBT = true; // Hide จำลองการบันทึก & 3 Save
     this.AFTDOC = false; // Show 3 Button Log
   }
+
+  // button: สร้างเอกสารใหม่
   onNewDoc() {
     this.router.navigate(['/kb021']);
     this.SAVELIST = []; // Clear List
@@ -918,7 +920,7 @@ export class Kb021Component implements OnInit  {
           this.onColor('N'); // 'N' = Change Color Content Black on Page after Success!
           this.onShowDocID(); // Show Doc ID after Success!
           console.log('R: ' + this.resultTB + ' | ' + this.resultLB);
-          this.TBNUMTR = this.resultTB;
+          // this.TBNUMTR = this.resultTB;
           this.TBBELNR = this.resultTB; // Doc No.
           // this.LOGNO = Number(this.GJAHR + this.resultTB);
           // console.log(this.GJAHR + this.resultTB); // TEST
@@ -933,43 +935,52 @@ export class Kb021Component implements OnInit  {
 
   }
 
-  showDocSearch(doc) {
-    const x = '';
-    // this._Kb023Component.hello();
-    console.log('SBELNR d:' + doc);
-    if (doc) {
-      // Router.prototype.
-
-      this.TBWRBTR = '1111';
-      // this.onDisable(); // Disable Input All
-      this.onEnableInput('N'); // N = Disable All Input
-    } else {
-
-    }
-
-
+  onGetDocSearch(id) {
+    const xmlHead = this.getHeadDoc(id); // get Head Doc KB023
+    this.getXMLServiceDoc(xmlHead); // getXML Doc result
   }
 
-  // kb02Save(Method) Not working pass parameter to/from dialog-save(Module) | Don't Use in Here.
-  kb02Save(xml: string) {
+  getHeadDoc(id) {
+    let xmlHeader = '';
+    xmlHeader =
+    `<operation>\n\
+      <modelCRUD>\n\
+      <tableName>xmlHeader</tableName>\n\
+      <recordID>0</recordID>\n\
+      <action>CreateUpdate</action>\n\
+        <dataRow>\n\
+          <field column="BELNR">\n\
+            <val>${id}</val>\n\
+          </field>\n\
+        </dataRow>\n\
+        </modelCRUD>\n\
+      </operation>`;
+    // let headerDoc: any[];
+    // this._Kb023Component.onGetDoc(id);
+    return xmlHeader;
+  }
+
+  getXMLServiceDoc(xmlHead) {
+    // รอ service get Doc พร้อมใช้งาน
+    // มี XML กลับมา
+    // console.log('Work!'); // TEST-ONLY
     const headers = new Headers({ 'Content-Type': 'application/xml' });
     const options = new RequestOptions({ headers: headers });
-
-
-    this.httpService.post('http://idp.yai.io:8082/rest/kb02', xml, options).subscribe(values => {
-      console.log('return', values);
-      if (values.ok) {
-        const result: any = values.json();
-
-        console.log(result);
-
-        alert(`บันทึกเรียบร้อย  ${result.response.message}`);
-        console.log(result);
-        console.log('details: ', result.response.details);
-      } else {
-        alert(values.toString());
-      }
-    });
+    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', xmlHead, options).subscribe(values => {
+    //   console.log('return', values);
+    //   if (values.ok) {
+    //     const result: any = values.json();
+    //     let mes = result.response.message;
+    //     if (mes !== 'Fail') {
+    //       console.log('Suc');
+    //     } else {
+    //       console.log('Fail');
+    //     }
+    //   } else {
+    //     console.log('F');
+    //     alert(values.toString());
+    //   }
+    // });
   }
 
   callFunction() {
@@ -978,8 +989,7 @@ export class Kb021Component implements OnInit  {
 
   ngOnInit() {
 
-    // ปีบัญชี และ งวด เริ่มต้น
-    // console.log(this.DATEINV);
+    // ปีบัญชีเริ่มต้น
     if (this.DATEINV.month >= 10 ) {
       this.GJAHR = Number(this.DATEINV.year) + 1;
       console.log('f' + this.GJAHR);
@@ -988,24 +998,36 @@ export class Kb021Component implements OnInit  {
       console.log('f' + this.GJAHR);
     }
 
-    // for Doc ID
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id !== null) {
-      this.TBNUMTR = id;
-      // this.onDisable();
+    // งวดเริ่มต้น
+    if (this.DATEINV.month < 10) {
+      this.ddMonat = this.DATEINV.month + 3;
+    } else {
+      this.ddMonat = this.DATEINV.month - 9;
+    }
+
+    // Rounter Doc ID
+    // const id = this.route.snapshot.paramMap.get('BELNR');
+    // if (id !== null) {
+    //   this.TBBELNR = id;
+    //   this.onEnableInput('N'); // N = Diable All Input
+    //   this.onColor('N'); // N = No Color
+    //   this.onShowDocID();
+    //   this.onGetDocSearch(id); // Get Doc by Doc ID
+    // } else {
+    // }
+
+    // get Parameter for Header Doc
+    this.route.queryParams
+    .filter(params => params.BELNR)
+    .subscribe(params => {
+      this.TBBELNR = params.BELNR;
       this.onEnableInput('N'); // N = Diable All Input
       this.onColor('N'); // N = No Color
       this.onShowDocID();
-    } else {
+      this.onGetDocSearch(params.BELNR); // Get Doc by Doc ID
+    });
 
-    }
-    console.log('this.TBNUMTR:' + this.TBNUMTR);
-
-    // if (this.DATEINV.month < 10) {
-    //     this.ddMonat = this.DATEINV.month + 3;
-    // } else {
-    //   this.ddMonat = this.DATEINV.month - 9;
-    // }
+    console.log('this.TBBELNR:' + this.TBBELNR);
   }
 
 }

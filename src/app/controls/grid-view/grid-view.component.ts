@@ -1,38 +1,29 @@
 ﻿import { Component, EventEmitter, ViewChild, OnInit, Input, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
-
 
 @Component({
   selector: 'app-grid-view',
   templateUrl: './grid-view.component.html',
-  styleUrls: ['./grid-view.component.css'],
-  // providers: [Kb023Component]
+  styleUrls: ['./grid-view.component.css']
 })
 
 export class GridViewComponent implements OnInit {
 
-  @Input('parentData') RESLIST: any[];
+  @Input() RESLIST: any[]; // Data | array lists.
+  @Input() RLINK: String; // LINK | from source component.
+  // @Input('parentData') RLINK: String;
   // @Input('rounte') RLINK: String;
   // @Output('childData') outgoingData = new EventEmitter<string>();
 
-  public RLINK: String;
-
-  constructor(private router: Router, private _Kb023Component: Kb023Component) {
-    // console.log('r:' + route.url);
-    this.RLINK = _Kb023Component.RLINK;
-  }
+  constructor(private router: Router) {}
 
   // Selected Doc
   selectedDoc(doc, index) {
-    console.log(this.RESLIST[index].BELNR);
-    console.log('RLINK = ' + this.RLINK);
-    this.router.navigate([this.RLINK, doc]);
-    this._Kb023Component.gotoKB021(doc);
-
+    console.log(this.RESLIST[index].BELNR); // TEST-ONLY
+    console.log('RLINK = ' + this.RLINK); // TEST-ONLY
+    this.router.navigate([this.RLINK], { queryParams: { BELNR: doc, GJAHR: this.RESLIST[index].GJAHR } });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
