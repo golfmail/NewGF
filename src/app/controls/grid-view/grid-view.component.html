@@ -2,27 +2,27 @@
   <hr>
   <span class="defaultTableBodyShot">
       <Label ID="lbSortTitle" Text="จัดลำดับตาม"></Label>
-      <Label ID="lbSortHeader" Text="เลขที่ใบขอเบิกเงิน"
-        style="font-weight:bold" ></Label>
+      <Label ID="lbSortHeader"
+        style="font-weight:bold" >{{txsort}}</Label>
       <Label ID="lbSortFrom" runat="server" Text="จาก"></Label>
-      <Label ID="lbSortType" style="font-weight:bold">น้อยไปมาก</Label>
+      <Label ID="lbSortType" style="font-weight:bold">{{sortby}}</Label>
   </span>
 </div>
 <div ng-controller="PageCtrl">
   <table class="defaultTableBody">
     <tr>
       <th>เลือก</th>
-      <th>เลขที่ใบขอเบิกเงิน</th>
-      <th>ปีงบ ประมาณ</th>
-      <th class="row-4 row-DATE">วันที่เอกสาร</th>
-      <th class="row-5 row-DATE">วันที่ผ่านรายการ</th>
-      <th>ประ เภท</th>
-      <th>วิธีชำระเงิน</th>
-      <th>ผู้ขาย</th>
-      <th class="row-9 row-DATE">วันที่บันทึก</th>
-      <th>จำนวนเงิน</th>
-      <th class="row-11 row-STATUS">สถานะ</th>
-      <th>เลขที่เอกสารกลับรายการ</th>
+      <th (click)="sortByTh('BELNR','เลขที่ใบขอเบิกเงิน')">เลขที่ใบขอเบิกเงิน</th>
+      <th (click)="sortByTh('GJAHR', 'ปีงบประมาณ')">ปีงบ ประมาณ</th>
+      <th (click)="sortByTh('BLDAT', 'วันที่เอกสาร')" class="row-4 row-DATE">วันที่เอกสาร</th>
+      <th (click)="sortByTh('BUDAT', 'วันที่ผ่านรายการ')" class="row-5 row-DATE">วันที่ผ่านรายการ</th>
+      <th (click)="sortByTh('BLART', 'ประเภท')" >ประ เภท</th>
+      <th (click)="sortByTh('HOWPAY', 'วิธีชำระเงิน')">วิธีชำระเงิน</th>
+      <th (click)="sortByTh('NAME1', 'ผู้ขาย')">ผู้ขาย</th>
+      <th (click)="sortByTh('CPUDT', 'วันที่บันทึก')" class="row-9 row-DATE">วันที่บันทึก</th>
+      <th (click)="sortByTh('SUMCOST', 'จำนวนเงิน')">จำนวนเงิน</th>
+      <th (click)="sortByTh('STATUS', 'สถานะ')" class="row-11 row-STATUS">สถานะ</th>
+      <th (click)="sortByTh('NUMDOCI', 'เลขที่เอกสารกลับรายการ')">เลขที่เอกสารกลับรายการ</th>
     </tr>
     <tr *ngFor="let doc of RESLIST | paginate: { itemsPerPage: 5, currentPage: page }; let i='index';" align="center">
       <td align="center">

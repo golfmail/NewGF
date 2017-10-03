@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./grid-view.component.css']
 })
 
+
+
 export class GridViewComponent implements OnInit {
 
   @Input() RESLIST: any[]; // Data | array lists.
@@ -15,6 +17,11 @@ export class GridViewComponent implements OnInit {
   // @Input('rounte') RLINK: String;
   // @Output('childData') outgoingData = new EventEmitter<string>();
 
+  isDesc: Boolean = false;
+  column: String = 'BELNR';
+  txsort: String = 'เลขที่ใบขอเบิกเงิน';
+  sortby: String = 'น้อยไปมาก';
+
   constructor(private router: Router) {}
 
   // Selected Doc
@@ -22,6 +29,26 @@ export class GridViewComponent implements OnInit {
     console.log(this.RESLIST[index].BELNR); // TEST-ONLY
     console.log('RLINK = ' + this.RLINK); // TEST-ONLY
     this.router.navigate([this.RLINK], { queryParams: { BELNR: doc, GJAHR: this.RESLIST[index].GJAHR } });
+  }
+
+  sortByTh(property, text) {
+    this.txsort = text;
+    this.isDesc = !this.isDesc;
+    this.column = property;
+    let direction = this.isDesc ? 1 : -1;
+
+    this.RESLIST.sort(function(a, b){
+      if (a[property] < b[property]) {
+        // console.log('มากไปน้อย');
+          return -1 * direction;
+      } else if ( a[property] > b[property]) {
+        // console.log('น้อยไปมาก');
+          return 1 * direction;
+      } else {
+          return 0;
+      }
+  });
+    // console.log(this.RESLIST); // TEST-ONLY
   }
 
   ngOnInit() {}

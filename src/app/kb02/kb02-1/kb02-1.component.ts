@@ -935,38 +935,47 @@ export class Kb021Component implements OnInit  {
 
   }
 
-  onGetDocSearch(id) {
-    const xmlHead = this.getHeadDoc(id); // get Head Doc KB023
-    this.getXMLServiceDoc(xmlHead); // getXML Doc result
+  onGetDocSearch(BELNR, GJAHR) {
+    const xmlHead = this.getHeadDoc(BELNR, GJAHR); // get XML Head Doc
+    this.getXMLServiceDoc(xmlHead); // send XML Doc to Service and Get Result
+
+    // After Get Doc Detail
+    this.TBBELNR = BELNR;
+    this.onEnableInput('N'); // N = Diable All Input
+    this.onColor('N'); // N = No Color
+    this.onShowDocID();
   }
 
-  getHeadDoc(id) {
+  getHeadDoc(id, GJAHR) {
     let xmlHeader = '';
     xmlHeader =
-    `<operation>\n\
-      <modelCRUD>\n\
-      <tableName>xmlHeader</tableName>\n\
-      <recordID>0</recordID>\n\
-      <action>CreateUpdate</action>\n\
-        <dataRow>\n\
-          <field column="BELNR">\n\
-            <val>${id}</val>\n\
-          </field>\n\
-        </dataRow>\n\
-        </modelCRUD>\n\
+    `<operation>
+      <modelCRUD>
+      <tableName>DocHeader</tableName>
+      <recordID>0</recordID>
+      <action>CreateUpdate</action>
+        <dataRow>
+          <field column="BELNR">
+            <val>${id}</val>
+          </field>
+          <field column="GJAHR">
+            <val>${GJAHR}</val>
+          </field>
+        </dataRow>
+        </modelCRUD>
       </operation>`;
     // let headerDoc: any[];
     // this._Kb023Component.onGetDoc(id);
     return xmlHeader;
   }
 
-  getXMLServiceDoc(xmlHead) {
+  getXMLServiceDoc(xmlDocHeader) {
     // รอ service get Doc พร้อมใช้งาน
     // มี XML กลับมา
-    // console.log('Work!'); // TEST-ONLY
+    console.log(xmlDocHeader); // TEST-ONLY
     const headers = new Headers({ 'Content-Type': 'application/xml' });
     const options = new RequestOptions({ headers: headers });
-    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', xmlHead, options).subscribe(values => {
+    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', xmlDocHeader, options).subscribe(values => {
     //   console.log('return', values);
     //   if (values.ok) {
     //     const result: any = values.json();
@@ -1020,11 +1029,7 @@ export class Kb021Component implements OnInit  {
     this.route.queryParams
     .filter(params => params.BELNR)
     .subscribe(params => {
-      this.TBBELNR = params.BELNR;
-      this.onEnableInput('N'); // N = Diable All Input
-      this.onColor('N'); // N = No Color
-      this.onShowDocID();
-      this.onGetDocSearch(params.BELNR); // Get Doc by Doc ID
+      this.onGetDocSearch(params.BELNR, params.GJAHR); // Get Doc by Doc ID
     });
 
     console.log('this.TBBELNR:' + this.TBBELNR);

@@ -1,7 +1,14 @@
 th {
   BACKGROUND-COLOR: #b4c3f6;
   COLOR: #051615;
+  cursor:pointer;
   /* WHITE-SPACE: nowrap; */
+}
+
+th:hover{
+  background-color:#8399CB;
+  text-decoration: underline;
+/*	color: #0080ff; */
 }
 
 /* Column widths are based on these cells */

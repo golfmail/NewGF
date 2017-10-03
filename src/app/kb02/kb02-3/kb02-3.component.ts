@@ -243,7 +243,7 @@ export class Kb023Component implements OnInit {
                 <field column="BELNR2">
                   <val>${this.BELNR2}</val>
                 </field>
-                  <field column="GJAHR">
+                <field column="GJAHR">
                   <val>${this.YEAR}</val>
                 </field>
 			        </dataRow>
