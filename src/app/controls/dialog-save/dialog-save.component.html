@@ -1,7 +1,7 @@
 <h1 md-dialog-title id="headerShow">จำลองการบันทึก</h1>
 <div class="divH">
 <div id='success' style="display:block">
-  <div align='center'>
+  <div align='center' [hidden]="H_TABLE">
     <table width="100%">
         <tr>
           <th width="20%">ผลการบันทึก</th>
@@ -15,10 +15,17 @@
         </tr>
     </table>
   </div>
+  <div [hidden]="H_WAIT">
+    <md-progress-bar id="progress-bar" mode="query"></md-progress-bar>
+  </div>
+  <div [hidden]="H_ERROR" class="error">
+    <br>
+    {{ERR_TEXT}}
+  </div>
   <div md-dialog-actions align='center' class="button-row">
-    <!-- <button  md-raised-button (click)="confirmSave()" color="primary">บันทึกข้อมูล</button> 
+    <!-- <button  md-raised-button (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
     <button  md-raised-button (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button> -->
-    <button  (click)="confirmSave()" color="primary">บันทึกข้อมูล</button> 
+    <button  (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
     <button  (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
   </div>
 </div>
@@ -39,7 +46,7 @@
   </div>
   <!-- <hr> -->
   <div md-dialog-actions align='center' class="button-row">
-    <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button> 
+    <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button>
     <button [disabled]="BTEDIT" id="BTEDIT" disabled (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
     <button disabled (click)="dialogRef.close()">สร้างเอกสารใหม่</button>
     <button disabled (click)="dialogRef.close()">ค้นหาเอกสาร</button>

@@ -21,7 +21,7 @@ export class DialogSaveComponent implements OnInit {
   BTEDIT;
 
   // FOR XML_LOG
-  SAVELIST: any[] = []
+  SAVELIST: any[] = [];
   savelist = this.SAVELIST;
   CPUDT = ''; // DATE ex: 11.12.2017
   CPUTIME = ''; // TIME ex: 22:40:59
@@ -45,9 +45,18 @@ export class DialogSaveComponent implements OnInit {
   LBKBLNR = '';
   SUMCOST: Number = 0;
 
+  // Progress
+  H_WAIT: Boolean = true;
+  H_TABLE: Boolean = false;
+  H_ERROR: Boolean = true;
+  ERR_TEXT: String; // Error Text
+
   constructor(public dialogRef: MdDialogRef<DialogSaveComponent>, private httpService: Http ) { }
 
   confirmSave() {
+    this.H_TABLE = true;
+    this.H_WAIT = false;
+    this.H_ERROR = true;
     console.log('xml_s: ' + this.xml_s);
     const headers = new Headers({ 'Content-Type': 'application/xml' });
     const options = new RequestOptions({ headers: headers });
@@ -72,17 +81,28 @@ export class DialogSaveComponent implements OnInit {
           this.BTEDIT = true;
           this.LOGNO = Number(this.GJAHR + this.TBNUMTR);
           this.saveLog(); // TEST Save Log
+          this.H_WAIT = true;
+          this.H_TABLE = false;
         } else {
           console.log('Fail');
           this.showSuccess('ไม่สำเร็จ');
           this.BTSHOW = true;
           this.BTEDIT = false;
+          this.H_WAIT = true;
+          this.H_TABLE = false;
         }
       } else {
         console.log('F');
         alert(values.toString());
       }
-    });
+    }
+  , error => {
+    console.log(error);
+    this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์';
+    this.H_WAIT = true;
+    this.H_TABLE = false;
+    this.H_ERROR = false;
+  });
   }
 
   saveLog() {
@@ -299,7 +319,7 @@ export class DialogSaveComponent implements OnInit {
     document.getElementById('headerShow').innerText = 'ผลการบันทึกรายการ';
     document.getElementById('success').style.display = 'none';
     document.getElementById('showSuccess').style.display = 'block';
-  };
+  }
 
   showDetail() {
     console.log('Show Detail');

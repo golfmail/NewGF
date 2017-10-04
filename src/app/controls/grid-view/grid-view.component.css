@@ -5,7 +5,7 @@ th {
   /* WHITE-SPACE: nowrap; */
 }
 
-th:hover{
+.sort:hover {
   background-color:#8399CB;
   text-decoration: underline;
 /*	color: #0080ff; */

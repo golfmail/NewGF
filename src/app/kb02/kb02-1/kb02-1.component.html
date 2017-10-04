@@ -467,7 +467,7 @@
 <table border="0" cellpadding="0" cellspacing="0" id="section2">
 <tr>
 <td style="width: 850px">
-<table border="0" cellpadding="0" cellspacing="0" id="TBHeaderDetailTable" style="width: 100%">
+<!-- <table border="0" cellpadding="0" cellspacing="0" id="TBHeaderDetailTable" style="width: 100%">
   <tr>
     <td align="left" style="background-color: #eeeef7;">
       <strong>
@@ -493,7 +493,20 @@
       <asp:LinkButton class="customGridPaging" ID="lbCustGridNext" OnClick="lbCustGridNext_Click" runat="server">ถัดไป »</asp:LinkButton>
     </td>
   </tr>
-</table><table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
+</table> -->
+<md-expansion-panel [expanded]='EXPAND'>
+  <md-expansion-panel-header>
+    <md-panel-title>
+      รายละเอียดเอกสาร
+    </md-panel-title>
+    <md-panel-description>
+    </md-panel-description>
+  </md-expansion-panel-header>
+  <br>
+
+
+
+<table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
   <tr>
     <td style="height: 22px; width: 140px;">
       &nbsp;<strong class="fontContentBlack">ลำดับ</strong> &nbsp; &nbsp;
@@ -704,102 +717,18 @@
     <asp:Button (click)="formSave();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/>
     <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/>
     <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="แก้ไขรายการ"/>
-  <!--<div>
-    <span mdTooltip="เพิ่มรายการก่อนกด จำลองการบันทึก"
-    mdTooltipPosition="below">(คำแนะนำ - test)</span>
-  </div>-->
   </td>
 </tr>
-  <!--<tr>
-    <td align="center" colspan="5" style="height: 18px">
-      <!--<asp:Button (click)="detailSave()" Height="22px" ID="btnSave" OnClick="btnSave_Click" runat="server" TabIndex="26" Text="จัดเก็บรายการนี้ลงในตาราง" ValidationGroup="kb02" Width="150px"/>-->
-      <!--<asp:Button CausesValidation="False" Enabled="False" Height="22px" ID="btnDelete" OnClick="btnDelete_Click" runat="server" TabIndex="27" Text="ลบข้อมูลรายการนี้" Width="150px"/>
-      <asp:Button Enabled="False" Height="22px" ID="btnCopy" OnClick="btnCopy_Click" runat="server" TabIndex="28" Text="สร้างข้อมูลรายการใหม่" ValidationGroup="kb02" Width="150px"/>
-      <asp:Button CausesValidation="False" Height="22px" ID="btnWageInfo" runat="server" TabIndex="26" Text="ระบุข้อมูลเงินหักผลักส่ง" Width="150px"/>-->
-   <!-- </td>
-  </tr>-->
 </table>
+<!-- <br> -->
+</md-expansion-panel>
+
 </td>
 </tr>
-<!-- <tr>
-  <td style="width: 850px">
-    &nbsp;<asp:GridView AllowPaging="True" AutoGenerateColumns="False" HorizontalAlign="Center" ID="gvKb" OnPageIndexChanging="gvKb_PageIndexChanging" OnRowCreated="gvKb_RowCreated" OnRowDataBound="gvKb_RowDataBound" OnSelectedIndexChanged="gvKb_SelectedIndexChanged" PageSize="6" runat="server" ShowFooter="True" Width="850px">
-      <FooterStyle BackColor="#EBEBEB" Font-Bold="False" Font-Names="Tahoma" Font-Size="12px"/>
-      <Columns>
-        <asp:CommandField ButtonType="Image" HeaderText="เลือก" SelectImageUrl="assets/Images/Icon/record_(show)_16x16.gif" SelectText="เลือก" ShowSelectButton="True">
-          <HeaderStyle Wrap="False"/>
-          <ItemStyle HorizontalAlign="Center"/>
-        </asp:CommandField>
-        <asp:BoundField DataField="AccountOrder" DataFormatString="{0:d}&#160;" HeaderText="ลำดับ" SortExpression="AccountOrder">
-          <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Wrap="False"/>
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="BschlDescription" HeaderText="PK" SortExpression="BschlDescription" Visible="False">
-          <ItemStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Bschl" HeaderText="PK" SortExpression="Bschl" Visible="False">
-          <HeaderStyle Wrap="False"/>
-          <ItemStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="HkontDeacription" HeaderText="ชื่อบัญชี" SortExpression="HkontDeacription">
-          <ItemStyle Wrap="False"/>
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Hkont" HeaderText="รหัสบัญชีแยกประเภท" SortExpression="Hkont">
-          <ItemStyle Wrap="False"/>
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Kostl" HeaderText="รหัสศูนย์ต้นทุน" SortExpression="Kostl">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Geber" HeaderText="แหล่งของเงิน" SortExpression="Geber" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Fistl" HeaderText="รหัสงบประมาณ" SortExpression="Fistl">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzobj" HeaderText="รหัสบัญชีย่อย" SortExpression="Zzobj">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Fkber" HeaderText="รหัสกิจกรรมหลัก" SortExpression="Fkber">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Kblnr" HeaderText="รหัสเอกสารสำรองเงิน" SortExpression="Kblnr" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzdeposit" HeaderText="รหัสบัญชีเงินฝากคลัง" SortExpression="Zzdeposit" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzowner" HeaderText="รหัสเจ้าของบัญชีเงินฝากคลัง" SortExpression="Zzowner" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzunit" HeaderText="รหัสเจ้าของบัญชีย่อย" SortExpression="Zzunit" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzbank" HeaderText="รหัสบัญชีธนาคารย่อย" SortExpression="Zzbank" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Zzloan" HeaderText="หมวดพัสดุ" SortExpression="Zzloan" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Sgtxt" HeaderText="รายละเอียดบรรทัดรายการ" SortExpression="Sgtxt" Visible="False">
-          <HeaderStyle Wrap="False"/>
-        </asp:BoundField>
-        <asp:BoundField DataField="Wrbtr" HeaderText="จำนวนเงิน" SortExpression="Wrbtr">
-          <HeaderStyle Wrap="False"/>
-          <ItemStyle HorizontalAlign="Right"/>
-        </asp:BoundField>
-      </Columns>
-      <SelectedRowStyle BackColor="Info" Wrap="True"/>
-      <HeaderStyle BackColor="#B4C3F6" Font-Names="Tahoma" Font-Size="13px" ForeColor="#051615" HorizontalAlign="Center" Wrap="False"/>
-    </asp:GridView>
-  </td>
-</tr> -->
 
 <tr>
   <td>
-      <!-- <p><span [innerHTML]="evilTitle"></span> </p>
-     <a [innerHTML]="evilTitle"></a>   -->
+    <br>
   <table  border="1"bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" style="width: 850px">
    <TR style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #b4c3f6" align=center>
     <TH style="WHITE-SPACE: nowrap" scope=col>เลือก</TH>
@@ -870,49 +799,7 @@
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอรับ</td>
     <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{ getTotal() }} </td>
   </tr>
-
   </table>
-    <!-- <ul class="heroes">
-      <li *ngFor="let save of SAVELIST; let i='index'"
-        [class.selected]="save === selectedList"
-        (click)="onSelect(save,i)"> -->
-        <!-- <span class="badge">{{save.TBFISTL}}</span> {{save.LBZZPMT}} | {{save.TBFKBER}} |
-        <span class="badge">{{i+1}}</span> -->
-        <!-- <table>
-          <tr>
-            <td>{{i+1}}</td>
-            <td>{{save.LBZZPMT}}</td>
-            <td>{{save.TBHKONT}}</td>
-            <td>{{save.TBKOSTL}}</td>
-            <td>{{save.TBFISTL}}</td>
-            <td>{{save.TBFKBER}}</td>
-            <td>{{save.TBWRBTR}}</td>
-        </table>
-      </li>
-    </ul> -->
-     <!-- <app-list-detail [save]="selectedList"></app-list-detail>  -->
-
-
-        <!-- <asp:app-list-view></asp:app-list-view>     -->
-     <!-- <app-list-view (selected)="log($event.selectedTab)">
-      <app-drop-down-view [tabTitle]="'Title 1'">
-        Content 1
-      </app-drop-down-view>
-      <app-drop-down-view tabTitle="Title 2">
-        Content 2
-      </app-drop-down-view>
-      <app-drop-down-view [tabTitle]="'Title 3'">
-        Content 3
-      </app-drop-down-view>
-    </app-list-view>  -->
-<!-- <h3>Logs:</h3>
-<ul>
-  <li *ngFor="let log of logs">
-    {{log}}
-  </li>
-</ul>
-<hr> -->
-    <!--<router-outlet></router-outlet>-->
   </td>
 </tr>
 <tr id="TRAnotation1" runat="server" style="height: 21px" visible="false">

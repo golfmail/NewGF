@@ -46,3 +46,63 @@
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
+
+:host >>> md-expansion-panel{
+  animation: false !important;
+  padding-left: 0px  !important;
+  box-shadow: 0 0 0 0 transparent !important;
+}
+
+:host >>> md-expansion-panel-header{
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+  animation: false !important;
+  color: #595467;
+  background-color: #eeeef7 !important;
+  animation: false !important;
+}
+
+:host >>> div.mat-expansion-panel-body{
+  padding: 0px  !important;
+}
+
+/* TEST-ONLY */
+:host >>> mat-expansion-panel-header{
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+  animation: false !important;
+  color: #595467;
+  background-color: #eeeef7;
+}
+:host >>> md-panel-title {
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+  color: #595467;
+}
+:host >>> ng-trigger-expansionHeight {
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+}
+:host >>> md-panel-description {
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+}
+:host >>> mat-expansion-panel-header-title {
+  height: 20px !important;
+  padding-left: 5px  !important;
+  font-size: 12px !important;
+  font-weight: bold;
+}
+
+
+

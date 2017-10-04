@@ -3,7 +3,7 @@ body {
 }
 :host >>> table {
     border-collapse: collapse;
-    width: 100%; 
+    width: 100%;
     table-layout: fixed;
     border: 0px solid #ddd;
 }
@@ -49,11 +49,19 @@ body {
   justify-content: space-around;
 }
 .divH {
-    width: 500px; 
+    width: 500px;
 }
 :host >>> h1 {
     text-align: left;
     font-size: 80%;  /* 1em = 10px */
     font-family: Tahoma;
     font-weight: bold;
+}
+
+:host >>> .error {
+  text-align: center;
+  font-size: 80%;  /* 1em = 10px */
+  font-family: Tahoma;
+  font-weight: bold;
+  color: red;
 }

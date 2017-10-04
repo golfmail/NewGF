@@ -12,17 +12,17 @@
   <table class="defaultTableBody">
     <tr>
       <th>เลือก</th>
-      <th (click)="sortByTh('BELNR','เลขที่ใบขอเบิกเงิน')">เลขที่ใบขอเบิกเงิน</th>
-      <th (click)="sortByTh('GJAHR', 'ปีงบประมาณ')">ปีงบ ประมาณ</th>
-      <th (click)="sortByTh('BLDAT', 'วันที่เอกสาร')" class="row-4 row-DATE">วันที่เอกสาร</th>
-      <th (click)="sortByTh('BUDAT', 'วันที่ผ่านรายการ')" class="row-5 row-DATE">วันที่ผ่านรายการ</th>
-      <th (click)="sortByTh('BLART', 'ประเภท')" >ประ เภท</th>
-      <th (click)="sortByTh('HOWPAY', 'วิธีชำระเงิน')">วิธีชำระเงิน</th>
-      <th (click)="sortByTh('NAME1', 'ผู้ขาย')">ผู้ขาย</th>
-      <th (click)="sortByTh('CPUDT', 'วันที่บันทึก')" class="row-9 row-DATE">วันที่บันทึก</th>
-      <th (click)="sortByTh('SUMCOST', 'จำนวนเงิน')">จำนวนเงิน</th>
-      <th (click)="sortByTh('STATUS', 'สถานะ')" class="row-11 row-STATUS">สถานะ</th>
-      <th (click)="sortByTh('NUMDOCI', 'เลขที่เอกสารกลับรายการ')">เลขที่เอกสารกลับรายการ</th>
+      <th class="sort" (click)="sortByTh('BELNR','เลขที่ใบขอเบิกเงิน')">เลขที่ใบขอเบิกเงิน</th>
+      <th class="sort" (click)="sortByTh('GJAHR', 'ปีงบประมาณ')">ปีงบ ประมาณ</th>
+      <th class="none" (click)="sortByTh('BLDAT', 'วันที่เอกสาร')" class="row-4 row-DATE">วันที่เอกสาร</th>
+      <th class="none" (click)="sortByTh('BUDAT', 'วันที่ผ่านรายการ')" class="row-5 row-DATE">วันที่ผ่านรายการ</th>
+      <th class="sort" (click)="sortByTh('BLART', 'ประเภท')" >ประ เภท</th>
+      <th class="sort" (click)="sortByTh('HOWPAY', 'วิธีชำระเงิน')">วิธีชำระเงิน</th>
+      <th class="sort" (click)="sortByTh('NAME1', 'ผู้ขาย')">ผู้ขาย</th>
+      <th class="none" (click)="sortByTh('CPUDT', 'วันที่บันทึก')" class="row-9 row-DATE">วันที่บันทึก</th>
+      <th class="none" (click)="sortByTh('SUMCOST', 'จำนวนเงิน')">จำนวนเงิน</th>
+      <th class="none" (click)="sortByTh('STATUS', 'สถานะ')" class="row-11 row-STATUS">สถานะ</th>
+      <th class="sort" (click)="sortByTh('NUMDOCI', 'เลขที่เอกสารกลับรายการ')">เลขที่เอกสารกลับรายการ</th>
     </tr>
     <tr *ngFor="let doc of RESLIST | paginate: { itemsPerPage: 5, currentPage: page }; let i='index';" align="center">
       <td align="center">

@@ -252,6 +252,9 @@ export class Kb021Component implements OnInit  {
   //  Validate for "Save to Lists"
   is_valid: boolean;
 
+  // EXPAND
+  EXPAND: Boolean = true;
+
   constructor(
     public dialog: MdDialog,
     private httpService: Http,
@@ -392,6 +395,7 @@ export class Kb021Component implements OnInit  {
   // button: สร้างเอกสารใหม่
   onNewDoc() {
     this.router.navigate(['/kb021']);
+    this.EXPAND = true;
     this.SAVELIST = []; // Clear List
     this.SAVELIST = [];
     this.SHOWTR = true; // Hide Doc
@@ -936,6 +940,7 @@ export class Kb021Component implements OnInit  {
   }
 
   onGetDocSearch(BELNR, GJAHR) {
+    this.EXPAND = false;
     const xmlHead = this.getHeadDoc(BELNR, GJAHR); // get XML Head Doc
     this.getXMLServiceDoc(xmlHead); // send XML Doc to Service and Get Result
 
@@ -944,6 +949,7 @@ export class Kb021Component implements OnInit  {
     this.onEnableInput('N'); // N = Diable All Input
     this.onColor('N'); // N = No Color
     this.onShowDocID();
+
   }
 
   getHeadDoc(id, GJAHR) {

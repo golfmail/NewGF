@@ -39,16 +39,25 @@ export class GridViewComponent implements OnInit {
 
     this.RESLIST.sort(function(a, b){
       if (a[property] < b[property]) {
-        // console.log('มากไปน้อย');
           return -1 * direction;
       } else if ( a[property] > b[property]) {
-        // console.log('น้อยไปมาก');
           return 1 * direction;
       } else {
           return 0;
       }
-  });
-    // console.log(this.RESLIST); // TEST-ONLY
+    });
+
+    // น้อยไปมาก มากไปน้อย
+    if (this.RESLIST !== undefined || this.RESLIST.length > 1) {
+      const first = this.RESLIST[0][property] ;
+      const last = this.RESLIST[this.RESLIST.length - 1][property];
+      // console.log('F:' + first + ' L:' + last); // TEST-ONLY
+      if (first < last) {
+        this.sortby = 'น้อยไปมาก';
+      } else if (first > last) {
+        this.sortby = 'มากไปน้อย';
+      }
+    } else {}
   }
 
   ngOnInit() {}
