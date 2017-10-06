@@ -47,7 +47,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยธรรมศาสตร์</NAME1>
       <CPUDT>05/11/2017</CPUDT>
       <SUMCOST>2000.22</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>1</NUMDOCI>
     </row>
     <row>
@@ -60,7 +60,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยขอนแก่น</NAME1>
       <CPUDT>11/12/2017</CPUDT>
       <SUMCOST>3000.33</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI></NUMDOCI>
     </row>
     <row>
@@ -73,7 +73,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยเชียงใหม่</NAME1>
       <CPUDT>02/01/2017</CPUDT>
       <SUMCOST>456789.10</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>3</NUMDOCI>
     </row>
     <row>
@@ -86,7 +86,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยพะเยา</NAME1>
       <CPUDT>12/03/2017</CPUDT>
       <SUMCOST>98765</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>4</NUMDOCI>
     </row>
     <row>
@@ -99,7 +99,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยน่าน</NAME1>
       <CPUDT>12/03/2017</CPUDT>
       <SUMCOST>98765</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>5</NUMDOCI>
     </row>
     <row>
@@ -112,7 +112,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยสตูล</NAME1>
       <CPUDT>12/03/2017</CPUDT>
       <SUMCOST>98765</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>6</NUMDOCI>
     </row>
     <row>
@@ -125,7 +125,7 @@ export class Kb023Component implements OnInit {
       <NAME1>มหาวิทยาลัยหัวหิน</NAME1>
       <CPUDT>12/03/2017</CPUDT>
       <SUMCOST>98765</SUMCOST>
-      <STATUS>ผ่าน</STATUS>
+      <STATUS>ผ่านรายการ</STATUS>
       <NUMDOCI>7</NUMDOCI>
     </row>
   </table>`;
@@ -227,16 +227,10 @@ export class Kb023Component implements OnInit {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
       <modelCRUD>
-        <tableName>SearchDoc</tableName>
+        <tableName>SearchDocT1</tableName>
           <recordID>0</recordID>
             <action>CreateUpdate</action>
               <dataRow>
-                <field column="TAB">
-                  <val>${tab}</val>
-                </field>
-                <field column="TYPE">
-                  <val>${this.RADIO_TYPE}</val>
-                </field>
                 <field column="BELNR1">
                   <val>${this.BELNR1}</val>
                 </field>
@@ -253,13 +247,10 @@ export class Kb023Component implements OnInit {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
       <modelCRUD>
-        <tableName>SearchDoc</tableName>
+        <tableName>SearchDocT2</tableName>
           <recordID>0</recordID>
             <action>CreateUpdate</action>
               <dataRow>
-                <field column="TAB">
-                  <val>${tab}</val>
-                </field>
                 <field column="DATETYPE">
                   <val>${this.SELECTED_DATE}</val>
                 </field>
@@ -353,9 +344,13 @@ export class Kb023Component implements OnInit {
   }
 
   numberWithCommas(x) {
-    const parts = x.toString().split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return parts.join('.');
+    const number = x.toString();
+    let baht = number.split('.')[0];
+    const cents = (number.split('.')[1] || '') + '00';
+    baht = baht.split('').reverse().join('')
+        .replace(/(\d{3}(?!$))/g, '$1,')
+        .split('').reverse().join('');
+    return baht + '.' + cents.slice(0, 2);
   }
 
   coverDate(num) {

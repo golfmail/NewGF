@@ -77,6 +77,8 @@
   animation: false !important;
   color: #595467;
   background-color: #eeeef7;
+  vertical-align:middle !important;
+  display:table-cell !important;
 }
 :host >>> md-panel-title {
   height: 20px !important;
@@ -84,6 +86,8 @@
   font-size: 12px !important;
   font-weight: bold;
   color: #595467;
+  vertical-align:middle !important;
+  display:table-cell !important;
 }
 :host >>> ng-trigger-expansionHeight {
   height: 20px !important;
@@ -102,6 +106,13 @@
   padding-left: 5px  !important;
   font-size: 12px !important;
   font-weight: bold;
+}
+
+md-spinner {
+  float:left;
+  width: 20px;
+  height: 20px;
+  margin: 5px 10px 0px 0px;
 }
 
 

@@ -36,7 +36,7 @@
       </div>-->
       <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="newItem.EndTime"  ngbDatepicker #d1="ngbDatepicker" required>
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
-       <md-input-container>
+       <md-input-container style="width: 144px;">
         <input mdInput [(ngModel)]="DATEA" [mdDatepicker]="aDatepicker"
         (ngModelChange)="DATEACC = onSelectDate('a')">
         <!-- <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button> -->
@@ -92,7 +92,7 @@
           <!-- <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBUDAT" class="fontContentBlack" ID="TBBUDAT" MaxLength="8" OnTextChanged="TBBUDAT_TextChanged" runat="server" TabIndex="3" Width="100px">&nbsp; -->
           <!-- <img [hidden]="SHOWBT" id="calendar2" runat="server" src="assets/Images/imgCal.jpg" /> -->
 
-          <md-input-container>
+          <md-input-container style="width: 144px;">
             <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
             (ngModelChange)="DATEINV = onSelectDate('i')">
             <md-datepicker-toggle mdSuffix [for]="iDatepicker"></md-datepicker-toggle>
@@ -321,7 +321,7 @@
         <asp:CustomValidator ControlToValidate="DDBLART" ErrorMessage="วิธีการชำระเงินไม่ตรงกับประเภทรายการขอเบิก" ForeColor="Tomato" ID="cvBlart" OnServerValidate="cvBlart_ServerValidate" runat="server">*</asp:CustomValidator>
       </td>
       <td colspan="3" style="height: 18px">
-        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedblart">
+        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedblart" style="width:260px">
         <!--Update_Ton-->  <option *ngFor="let c of soblartList" [ngValue]="c.id">{{c.Name}}</option>
         <!--Update_Ton--></select>
         <!-- <asp:DropDownList [values]="ddblartList" class="fontContentBlack" ID="DDBLART" runat="server" TabIndex="7" Width="270px">
@@ -337,7 +337,7 @@
       <td colspan="3" style="height: 18px">
         <!-- <asp:DropDownList [values]="ddZlschList" class="fontContentBlack" ID="ddZlsch" runat="server" Width="270px">
         </asp:DropDownList> -->
-        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedZlsch">
+        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedZlsch" style="width:260px">
         <!--Update_Ton-->  <option *ngFor="let c of soZlschList" [ngValue]="c.id">{{c.Name}}</option>
         <!--Update_Ton--></select>
       </td>
@@ -361,7 +361,8 @@
       </td>
       <td colspan="3" style="height: 17px">
         <!--Update_Ton--><select [disabled]="DSTBALL" class="fontContentBlack" ID="ddGeberYear" runat="server" Width="50px">
-        <!--Update_Ton-->  <option value="2559">2559</option>
+        <option value="2559">2560</option>
+        <option value="2559">2561</option>
         <!--Update_Ton--></select>
         <!-- <asp:DropDownList class="fontContentBlack" ID="ddGeberYear" runat="server" Width="50px">
           <asp:ListItem value="2559">256</asp:ListItem>
@@ -453,7 +454,7 @@
     <tr style="font-weight: bold">
       <td align="center" colspan="4" rowspan="2">
         <strong></strong>
-        <!--Update_Ton--><textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" Width="653px"></textarea>
+        <!--Update_Ton--><textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" style="Width: 653px"></textarea>
         <!--Update_Ton--><!-- <asp:TextBox Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" Width="653px"></asp:TextBox> -->
       </td>
     </tr>
@@ -680,7 +681,7 @@
       </strong><asp:RequiredFieldValidator ControlToValidate="TBWRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
     </td>
     <td style="height: 18px; width: 299px;">
-       <!--Update_Ton2--><input type="text" [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px">&nbsp; <strong>บาท</strong>
+     <!--Update_Ton2--><input type="text" [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px">&nbsp; <strong>บาท</strong>
       <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBWRBTR"  class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px"></asp:TextBox> -->
     </td>
     <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
@@ -714,9 +715,12 @@
   </tr>
   <tr>
   <td align="center" colspan="5" style="height: 18px" [hidden]="HIDEBT">
-    <asp:Button (click)="formSave();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/>
-    <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/>
-    <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="แก้ไขรายการ"/>
+    <!-- <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/> -->
+    <!-- <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/> -->
+    <!-- <asp:Button  (click)="formNew();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="สร้างข้อมูลใหม่"/> -->
+    <button [disabled]="BTSAVE" (click)="formEdit()">จัดเก็บรายการนี้ลงตาราง</button>
+    <button [disabled]="BTDEL" (click)="formDelete()">ลบข้อมูลรายการนี้</button>
+    <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลใหม่</button>
   </td>
 </tr>
 </table>
@@ -748,12 +752,12 @@
         alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image>
     </td>
     <td align="center">{{i+1}}</td>
-    <td>{{save.LBZZPMT}}</td>
+    <td>{{save.LBHKONT}}</td>
     <td>{{save.TBHKONT}}</td>
     <td>{{save.TBKOSTL}}</td>
     <td>{{save.TBFISTL}}</td>
-    <td style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma;">{{save.TBFKBER}}</td>
-    <td  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma;text-align:right">{{save.TBWRBTR}}</td>
+    <td>{{save.TBFKBER}}</td>
+    <td  style="text-align:right">{{numberWithCommas(save.TBWRBTR)}}</td>
   </tr>
 
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
@@ -764,7 +768,7 @@
     <td></td>
     <td></td>
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอเบิก</td>
-    <td style="background-color: #FEF6E0;font-size:11px;text-align:right">{{ getTotal() }} </td>
+    <td style="background-color: #FEF6E0;font-size:11px;text-align:right">{{ numberWithCommas(getTotal()) }} </td>
   </tr>
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -775,7 +779,7 @@
     <td></td>
     <td></td>
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินภาษีหัก ณ ที่จ่าย</td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">0</td>
+    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{numberWithCommas(0)}}</td>
   </tr>
     <tr style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -786,7 +790,7 @@
     <td></td>
     <td></td>
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินค่าปรับ </td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">0</td>
+    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{numberWithCommas(0)}}</td>
   </tr>
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -797,7 +801,7 @@
     <td></td>
     <td></td>
     <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอรับ</td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{ getTotal() }} </td>
+    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{ numberWithCommas(getTotal()) }} </td>
   </tr>
   </table>
   </td>

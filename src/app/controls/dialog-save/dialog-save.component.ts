@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog-save',
@@ -16,9 +17,14 @@ export class DialogSaveComponent implements OnInit {
   name_tr = 'Something'; // Something
   TBBUKRS: string;
   GJAHR: number;
-  res: string;
-  BTSHOW;
-  BTEDIT;
+  res: String = 'สำเร็จ';
+  code: String;
+  detail: String = 'ตรวจสอบเอกสาร - ไม่มีข้อผิดพลาด';
+  BTSHOW: Boolean = false;
+  BTEDIT: Boolean = true;
+  BTNEW: Boolean = false;
+  BTSEARCH: Boolean = false;
+  BTLOG: Boolean = false;
 
   // FOR XML_LOG
   SAVELIST: any[] = [];
@@ -49,14 +55,20 @@ export class DialogSaveComponent implements OnInit {
   H_WAIT: Boolean = true;
   H_TABLE: Boolean = false;
   H_ERROR: Boolean = true;
+  H_LERROR: Boolean = true; // For Log error
+  B_EDIT: Boolean = true;
+  B_SAVE: Boolean = false;
   ERR_TEXT: String; // Error Text
+  LOG_ERR: String; // Log Error
 
-  constructor(public dialogRef: MdDialogRef<DialogSaveComponent>, private httpService: Http ) { }
+  constructor(public dialogRef: MdDialogRef<DialogSaveComponent>, private httpService: Http,
+    private router: Router ) { }
 
   confirmSave() {
-    this.H_TABLE = true;
+    this.H_TABLE = false;
     this.H_WAIT = false;
     this.H_ERROR = true;
+    this.B_SAVE = true;
     console.log('xml_s: ' + this.xml_s);
     const headers = new Headers({ 'Content-Type': 'application/xml' });
     const options = new RequestOptions({ headers: headers });
@@ -66,7 +78,8 @@ export class DialogSaveComponent implements OnInit {
       console.log('return', values);
       if (values.ok) {
         const result: any = values.json();
-        let mes = result.response.message;
+        const mes = result.response.message;
+        const codeX = result.response.code;
         this.TBNUMTR = '';
         // mes = 'Doc No: 10000195';
         // let code = result.response.code;
@@ -85,11 +98,15 @@ export class DialogSaveComponent implements OnInit {
           this.H_TABLE = false;
         } else {
           console.log('Fail');
-          this.showSuccess('ไม่สำเร็จ');
+          // this.showSuccess('ไม่สำเร็จ');
+          this.code = codeX;
+          this.detail = mes;
+          this.showError('ไม่สำเร็จ');
           this.BTSHOW = true;
           this.BTEDIT = false;
           this.H_WAIT = true;
           this.H_TABLE = false;
+          this.B_EDIT = false;
         }
       } else {
         console.log('F');
@@ -102,6 +119,7 @@ export class DialogSaveComponent implements OnInit {
     this.H_WAIT = true;
     this.H_TABLE = false;
     this.H_ERROR = false;
+    this.B_SAVE = false;
   });
   }
 
@@ -109,25 +127,42 @@ export class DialogSaveComponent implements OnInit {
     this.getDateNow();
     this.createXMLlog(); // Gen XML LOG
     console.log('xml_log: \n' + this.xml_log); // TEST
-    const headers = new Headers({ 'Content-Type': 'application/xml' });
+    const headers = new Headers({ 'Content-Type': 'text/xml' ,
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '',
+      'Access-Control-Allow-Methods' : 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
+      'Access-Control-Allow-Credentials': true
+    });
     const options = new RequestOptions({ headers: headers });
+    console.log(options);
 
     // รอ service log พร้อมใช้งาน
-    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', this.xml_log, options).subscribe(values => {
-    //   console.log('return', values);
-    //   if (values.ok) {
-    //     const result: any = values.json();
-    //     let mes = result.response.message;
-    //     if (mes !== 'Fail') {
-    //       console.log('Suc');
-    //     } else {
-    //       console.log('Fail');
-    //     }
-    //   } else {
-    //     console.log('F');
-    //     alert(values.toString());
-    //   }
-    // });
+    this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.xml_log, options).subscribe(values => {
+      console.log('return', values);
+      if (values.ok) {
+        const result: any = values.json();
+        const mes = result.a;
+        if (mes !== 'false') {
+          console.log('Suc');
+        } else {
+          this.H_LERROR = false;
+          this.LOG_ERR = 'ERROR (LOG SERVICE): ' + mes + ' | บันทึก LOG ไม่สำเร็จ';
+          console.log('Fail log save');
+        }
+      } else {
+        console.log('F');
+        alert(values.toString());
+      }
+    }
+    , error => {
+      console.log(error);
+      this.H_LERROR = false;
+      this.LOG_ERR = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์';
+      // this.H_WAIT = true;
+      // this.H_TABLE = false;
+      // this.H_ERROR = false;
+      // this.B_SAVE = false;
+    });
   }
 
   createXMLlog() {
@@ -206,7 +241,7 @@ export class DialogSaveComponent implements OnInit {
          </modelCRUD>\n\
        </operation>`;
     for (let index = 0; index < this.savelist.length; index++) {
-    let element = this.savelist[index];
+    const element = this.savelist[index];
     this.xml_log = this.xml_log + `\n\<operation>
     <modelCRUD>\n\
       <tableName>logDetail</tableName>\n\
@@ -302,13 +337,20 @@ export class DialogSaveComponent implements OnInit {
       </operation>`;
     }
       //  console.log(this.xml_log); // TEST OUTPUT
+      this.xml_log = ''; // Clear TEST-ONLY
+      this.xml_log = `${this.LOGYEAR},${this.LOGNO},${this.TBBUKRS},
+      ${this.LBBUKRS},${this.TBZZPMT},${this.LBZZPMT},${this.LUSERID},${this.DDGSBER},
+      ${this.IDBLART},${this.IDDATEA},${this.IDDATEI},${this.TBXBLNR},${this.tbSearch_term},,
+      ${this.LBTERM},,${this.CPUDT},${this.CPUTIME},
+      ${this.TBKBLNR},${this.LBKBLNR},${this.SUMCOST}`;
+      console.log(this.xml_log);
 
   }
 
   getDateNow() {
     // this.DATENOW = new Date();
     const DN = new Date();
-    this.CPUDT = DN.getDate() + '.' + (DN.getMonth() + 1 ) + '.' + DN.getFullYear();
+    this.CPUDT = DN.getDate() + '/' + (DN.getMonth() + 1 ) + '/' + DN.getFullYear();
     this.CPUTIME = DN.getHours() + ':' + DN.getMinutes() + ':' + DN.getSeconds();
     this.LOGYEAR = DN.getFullYear(); // Set Year Log
     console.log('NOW: ' + this.CPUDT + ', TIME: ' + this.CPUTIME);
@@ -321,9 +363,18 @@ export class DialogSaveComponent implements OnInit {
     document.getElementById('showSuccess').style.display = 'block';
   }
 
+  showError(result) {
+    this.res = result;
+  }
+
   showDetail() {
     console.log('Show Detail');
     this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr});
+  }
+
+  toSearch() {
+    this.dialogRef.close();
+    this.router.navigate(['/Kb023']);
   }
 
   ngOnInit() {

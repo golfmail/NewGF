@@ -51,28 +51,16 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
   xmlTBFISTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
-                  <id>1000000</id>
-                  <Value>4999999</Value>
-                  <Name>สำนักบริหารกลาง</Name>
-                  <description>สบก.</description>
+                  <id>100</id>
+                  <Value>0300213001120001</Value>
+                  <Name>โครงการจัดตั้งศูนย์ค</Name>
+                  <description>โครงการจัดตั้งศูนย์ค..</description>
                 </row>
                 <row>
-                  <id>11</id>
-                  <Value>2100910101500001</Value>
+                  <id>101</id>
+                  <Value>0300213001120002</Value>
                   <Name>เงินอุดหนุนทั่วไป</Name>
                   <description>เงินอุดหนุนทั่วไป : เงินอุดหนุนการสร้าง</description>
-                </row>
-                <row>
-                  <id>80001</id>
-                  <Value>80001</Value>
-                  <Name>กองทุน 80001</Name>
-                  <description>กองทุน 80001</description>
-                </row>
-                <row>
-                  <id>9090973008000018</id>
-                  <Value>9090973008000018</Value>
-                  <Name>ค่าผลิตและจัดส่งบ้าน</Name>
-                  <description>ค่าผลิตและจัดส่งบ้านแบบ Knock Down จำนวน</description>
                 </row>
                 </table>`;
   xmlTBPRZNR = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -163,15 +151,15 @@ export class DialogSearchComponent implements OnInit {
   // เพิ่มรหัสบัญชีแยกประเภท
   xmlTBHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
-                  <id>xx</id>
-                  <Value>xxx</Value>
-                  <Name>xxx</Name>
+                  <id>1000002</id>
+                  <Value>5104010107</Value>
+                  <Name>ค่าซ่อมแซมและค่าบำรุงรักษา</Name>
                   <description>xxx</description>
                 </row>
                 <row>
-                  <id>yy</id>
-                  <Value>yyy</Value>
-                  <Name>yyy</Name>
+                  <id>1000001</id>
+                  <Value>5202020201</Value>
+                  <Name>ค่าอื่นๆ</Name>
                   <description>yyy</description>
                 </row>
                 </table>`;

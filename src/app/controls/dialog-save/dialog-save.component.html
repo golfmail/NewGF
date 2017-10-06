@@ -9,13 +9,14 @@
           <th>คำอธิบาย</th>
         </tr>
         <tr>
-          <td width="20%">สำเร็จ</td>
-          <td width="30%"></td>
-          <td>ตรวจสอบเอกสาร - ไม่มีข้อผิดพลาด</td>
+          <td width="20%">{{res}}</td>
+          <td width="30%">{{code}}</td>
+          <td>{{detail}}</td>
         </tr>
     </table>
   </div>
   <div [hidden]="H_WAIT">
+    <br>
     <md-progress-bar id="progress-bar" mode="query"></md-progress-bar>
   </div>
   <div [hidden]="H_ERROR" class="error">
@@ -25,8 +26,8 @@
   <div md-dialog-actions align='center' class="button-row">
     <!-- <button  md-raised-button (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
     <button  md-raised-button (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button> -->
-    <button  (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
-    <button  (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+    <button [disabled]="B_SAVE" (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
+    <button [disabled]="B_EDIT" (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
   </div>
 </div>
 <div id='showSuccess' style="display:none">
@@ -44,13 +45,21 @@
       <td>{{GJAHR}}</td>
     </tr>
   </div>
+  <div [hidden]="H_LERROR" class="error">
+    <br>
+    {{LOG_ERR}}
+  </div>
   <!-- <hr> -->
   <div md-dialog-actions align='center' class="button-row">
-    <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button>
-    <button [disabled]="BTEDIT" id="BTEDIT" disabled (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
-    <button disabled (click)="dialogRef.close()">สร้างเอกสารใหม่</button>
-    <button disabled (click)="dialogRef.close()">ค้นหาเอกสาร</button>
-    <button disabled (click)="dialogRef.close()">Log</button>
+    <span>
+        <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button>
+        <button [disabled]="BTEDIT" id="BTEDIT" (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+        <button [disabled]="BTNEW" (click)="dialogRef.close()">สร้างเอกสารใหม่</button>
+    </span>
+    <span>
+        <button [disabled]="BTSEARCH" (click)="toSearch()" >ค้นหาเอกสาร</button>
+        <button [disabled]="BTLOG" (click)="dialogRef.close()">Log</button>
+      </span>
   </div>
 </div>
 </div>

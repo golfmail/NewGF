@@ -126,28 +126,28 @@ export class Kb021Component implements OnInit  {
   DDGSBER = '1000'; // รหัสพื้นที่
 
   ddZlschList: string[] = ['จ่ายตรงเข้าบัญชีเงินฝากธนาคารของผู้ขาย/คู่สัญญา', 'จ่ายผ่านบัญชีเงินฝากธนาคารของหน่วยงาน'];
-  TBBUKRS = '1205';
-  LBBUKRS = 'กรมพัฒนาพลังงานทดแทน&อนุร';
+  TBBUKRS = '0302';
+  LBBUKRS = 'สนงใปลัดกระทรวงการคลัง';
   TBBLDAT = '25 กรกฎาคม 2559';
   TBBUDAT = '25 กรกฎาคม 2559';
-  TBZZPMT = '1200500001';
-  LBZZPMT = 'สำนักงานเลขานุการกรม';
-  TBXBLNR = 'P60_098340';
-  TBGEBER = '5911500'; // แหล่งของเงิน
+  TBZZPMT = '0300200005'; // หน่วยเบิกจ่าย
+  LBZZPMT = 'สำนักบริการกลาง';
+  TBXBLNR = 'P60_KIJE019';
+  TBGEBER = '6011220'; // แหล่งของเงิน
   LBGEBER = 'งบรายจ่ายอื่น/งบสรก.';
-  tbSearch_term = '2032400000'; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี      [Send to API]
-  tbBankn = '0261060163'; // เลขที่บัญชีเงินฝากธนาคาร
+  tbSearch_term = '3011005842123'; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี      [Send to API]
+  tbBankn = '1701013835'; // เลขที่บัญชีเงินฝากธนาคาร
 
-  TBHKONT = '1000002'; // รหัสบัญชีแยกประเภททั่วไป       [Send to API]
+  TBHKONT = '5104010107'; // รหัสบัญชีแยกประเภททั่วไป       [Send to API]
   TBKOSTL = '0300200005'; // รหัสศูนย์ต้นทุน        [Send to API]
-  TBFISTL = '100'; // รหัสงบประมาณ   [Send to API]
-  TBFKBER = 'P1000'; // รหัสกิจกรรมหลัก             [Send to API]
-  TBWRBTR = '1000'; // จำนวนเงินที่ขอเบิก            [Send to API]
+  TBFISTL = '0300213001120001'; // รหัสงบประมาณ   [Send to API]
+  TBFKBER = '030021000E0482'; // รหัสกิจกรรมหลัก             [Send to API]
+  TBWRBTR = ''; // จำนวนเงินที่ขอเบิก            [Send to API]
 
   TBZZOBJ = ''; // รหัสบัญชีย่อย
   TBZZLOAN = ''; // รหัสหมวดพัสดุ
   TBPRZNR = ''; // รหัสกิจกรรมย่อย
-  TBKBLNR = '1200003245'; // เลขที่เอกสารสำรองเงิน
+  TBKBLNR = ''; // เลขที่เอกสารสำรองเงิน
   TBZZUNIT = ''; // รหัสเจ้าของบัญชีย่อย
   TBVBUND = ''; // รหัสหน่วยงานคู่ค้า
   // TBZZFIELD1 = ''; // รหัสหมวดพัสดุ
@@ -172,14 +172,14 @@ export class Kb021Component implements OnInit  {
 
   // Hard coding for Label
   LBTERM = 'มหาวิทยาลัยธรรมศาสตร์';
-  LBKBLNR = 'xxxx'; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
-  LBKOSTL = '';
-  LBFKBER = '';
-  LBFISTL = '';
+  LBKBLNR = ''; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
+  LBKOSTL = 'สำนักบริหารกลาง';
+  LBFKBER = 'การติดตาม เร่งรัด การดำเน';
+  LBFISTL = 'โครงการจัดตั้งศูนย์ค';
   LBPRZNR = '';
   LBZZOBJ = '';
   LBZZLOAN = '';
-  LBHKONT = '';
+  LBHKONT = 'ค่าซ่อมแซมและค่าบำรุงรักษา';
   LBZZUNIT = ''; // (N) รหัสเจ้าของบัญชีย่อย
   LBVBUND = ''; // (N) รหัสหน่วยงานคู่ค้า
 
@@ -236,7 +236,7 @@ export class Kb021Component implements OnInit  {
   // savelist = this.SAVELIST;
   selectedList: TableList;
   valuelist = 0;
-  lbNUMBER: Number = 0;
+  lbNUMBER: Number = 1;
   // dialogRef: MdDialogRef<DialogSearchComponent>;
   codetx: string;
   nametx: string;
@@ -254,6 +254,11 @@ export class Kb021Component implements OnInit  {
 
   // EXPAND
   EXPAND: Boolean = true;
+
+  // Button All
+  BTSAVE: Boolean = false;
+  BTNEW: Boolean = true;
+  BTDEL: Boolean = true;
 
   constructor(
     public dialog: MdDialog,
@@ -441,6 +446,8 @@ export class Kb021Component implements OnInit  {
 
   onSelect(save: TableList, i): void {
     // document.getElementById('lbNUMBER').innerText = i + 1;
+    this.BTDEL = false;
+    this.BTNEW = false;
     this.lbNUMBER = i + 1;
     this.valuelist = i + 1;
     this.selectedList = save; // => Selected
@@ -547,6 +554,16 @@ export class Kb021Component implements OnInit  {
     this.res = result;
     // document.getElementById('success').style.display = 'block';
     // document.getElementById('showSuccess').style.display = 'block';
+  }
+
+  numberWithCommas(x) {
+    const number = x.toString();
+    let baht = number.split('.')[0];
+    const cents = (number.split('.')[1] || '') + '00';
+    baht = baht.split('').reverse().join('')
+        .replace(/(\d{3}(?!$))/g, '$1,')
+        .split('').reverse().join('');
+    return baht + '.' + cents.slice(0, 2);
   }
 
   // Get Doc. type
@@ -745,11 +762,8 @@ export class Kb021Component implements OnInit  {
           LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
           });
 
-          if (this.lbNUMBER === 0) {
-            this.lbNUMBER = this.SAVELIST.length;
-          } else {
+            this.lbNUMBER = this.SAVELIST.length + 1;
 
-          }
 
           // this.selectedList === this.SAVELIST[this.lbNUMBER.toString()];
           // console.log(this.lbNUMBER + '-' + this.selectedList);
@@ -766,72 +780,129 @@ export class Kb021Component implements OnInit  {
 
 
   formDelete() {
-    if (this.valuelist > 0) {
-      let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
-      console.log('Del No. ' + lbNUMBER);
-      lbNUMBER = lbNUMBER - 1;
-      this.SAVELIST.splice(lbNUMBER, 1); // Delete with ลำดับ
-      if (this.SAVELIST.length === 0) {
-        // document.getElementById('table-show-list').style.display = 'none';
-        // document.getElementById('TRAnotation1').style.display = 'none';
-      } else {
-        // document.getElementById('table-show-list').style.display = 'block';
-        // document.getElementById('TRAnotation1').style.display = 'block';
-      }
-      // console.log(this.selectedList.LBZZPMT);
-      console.log('Total array: ' + this.SAVELIST.length);
-    } else {
-      alert('กรอกข้อมูลไม่ครบหรือข้อมูลไม่สัมพันธ์กัน');
-    }
-    this.valuelist = 0;
+    this.BTDEL = true;
+    this.BTNEW = true;
+    const row = Number(this.lbNUMBER) - 1;
+    this.SAVELIST.splice(row, 1); // Delete with ลำดับ
+    console.log('Total array: ' + this.SAVELIST.length);
+    this.lbNUMBER = this.SAVELIST.length + 1;
+    // if (this.valuelist > 0) {
+    //   let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
+    //   console.log('Del No. ' + lbNUMBER);
+    //   lbNUMBER = lbNUMBER - 1;
+    //   this.SAVELIST.splice(lbNUMBER, 1); // Delete with ลำดับ
+    // } else {
+    //   alert('กรอกข้อมูลไม่ครบหรือข้อมูลไม่สัมพันธ์กัน');
+    // }
+    // this.valuelist = 0;
+  }
 
+  formNew() {
+    this.SAVELIST.push({
+      TBBUKRS: this.TBBUKRS,
+      LBBUKRS: this.LBBUKRS,
+      TBBLDAT: this.TBBLDAT,
+      TBBUDAT: this.TBBUDAT,
+      TBZZPMT: this.TBZZPMT,
+      LBZZPMT: this.LBZZPMT,
+      TBXBLNR: this.TBXBLNR,
+      TBGEBER: this.TBGEBER, // แหล่งของเงิน
+      LBGEBER: this.LBGEBER,
+      tbSearch_term: this.tbSearch_term, // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+      tbBankn: this.tbBankn, // เลขที่บัญชีเงินฝากธนาคาร
+      TBHKONT: this.TBHKONT, // รหัสบัญชีแยกประเภททั่วไป
+      TBKOSTL: this.TBKOSTL, // รหัสศูนย์ต้นทุน
+      TBFISTL: this.TBFISTL, // รหัสงบประมาณ
+      TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
+      TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+      TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
+      TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
+      TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
+      TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+      TBVBUND: this.TBVBUND, // รหัสหน่วยงานคู่ค้า
+      IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
+      IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
+      IDHKONT: this.IDHKONT, // (ID) รหัสบัญชีแยกประเภททั่วไป
+      IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
+      IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
+      IDBLART: this.IDBLART, // (ID) Doc. Type
+      IDDATEA: this.IDDATEA, // (ID) Account Date
+      IDDATEI: this.IDDATEI, // (ID) Date Invoic
+      GJAHR: this.GJAHR, // ปีบัญชี
+      SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
+      LBHKONT: this.LBHKONT, // (N) ชื่อบัญชีแยกประเภททั่วไป
+      LBKOSTL: this.LBKOSTL, // (N) ชื่อศูนย์ต้นทุน
+      LBFISTL: this.LBFISTL, // (N) ชื่องบประมาณ
+      LBFKBER: this.LBFKBER, // (N) ชื่อกิจกรรมหลัก
+      LBPRZNR: this.LBPRZNR, // (N) ชื่อกิจกรรมย่อย
+      LBZZOBJ: this.LBZZOBJ, // (N) รหัสบัญชีย่อย
+      LBZZUNIT: this.LBZZUNIT, // (N) รหัสเจ้าของบัญชีย่อย
+      LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+      LBVBUND: this.LBVBUND, // (N) รหัสหน่วยงานคู่ค้า
+      });
+      this.lbNUMBER = this.SAVELIST.length + 1;
+      this.BTDEL = true;
+      this.BTNEW = true;
   }
 
   formEdit() {
     // console.log('Log: Edit');
-    let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
+    // this.lbNUMBER
+    // let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
+    let lbNUMBER = Number(this.lbNUMBER);
     console.log('Edit No. ' + lbNUMBER);
     lbNUMBER = lbNUMBER - 1; // ตำแหน่ง Array
-    this.SAVELIST[lbNUMBER].TBBUKRS = this.TBBUKRS;
-    this.SAVELIST[lbNUMBER].LBBUKRS = this.LBBUKRS;
-    this.SAVELIST[lbNUMBER].TBBLDAT = this.TBBLDAT;
-    this.SAVELIST[lbNUMBER].TBBUDAT = this.TBBUDAT;
-    this.SAVELIST[lbNUMBER].TBZZPMT = this.TBZZPMT;
-    this.SAVELIST[lbNUMBER].LBZZPMT = this.LBZZPMT;
-    this.SAVELIST[lbNUMBER].TBXBLNR = this.TBXBLNR;
-    this.SAVELIST[lbNUMBER].TBGEBER = this.TBGEBER; // แหล่งของเงิน
-    this.SAVELIST[lbNUMBER].LBGEBER = this.LBGEBER;
-    this.SAVELIST[lbNUMBER].tbSearch_term = this.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
-    this.SAVELIST[lbNUMBER].tbBankn = this.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
-    this.SAVELIST[lbNUMBER].TBHKONT = this.TBHKONT; // รหัสบัญชีแยกประเภททั่วไป
-    this.SAVELIST[lbNUMBER].TBKOSTL = this.TBKOSTL; // รหัสศูนย์ต้นทุน
-    this.SAVELIST[lbNUMBER].TBFISTL = this.TBFISTL; // รหัสงบประมาณ
-    this.SAVELIST[lbNUMBER].TBFKBER = this.TBFKBER; // รหัสกิจกรรมหลัก
-    this.SAVELIST[lbNUMBER].TBWRBTR = this.TBWRBTR; // จำนวนเงินที่ขอเบิก
-    this.SAVELIST[lbNUMBER].TBPRZNR = this.TBPRZNR; // รหัสกิจกรรมย่อย
-    this.SAVELIST[lbNUMBER].TBZZOBJ = this.TBZZOBJ; // รหัสบัญชีย่อย
-    this.SAVELIST[lbNUMBER].TBZZUNIT = this.TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
-    this.SAVELIST[lbNUMBER].TBZZLOAN = this.TBZZLOAN; // รหัสหมวดพัสดุ
-    this.SAVELIST[lbNUMBER].TBVBUND = this.TBVBUND; // รหัสหน่วยงานคู่ค้า
-    this.SAVELIST[lbNUMBER].IDFISTL = this.IDFISTL; // (ID) รหัสงบประมาณ
-    this.SAVELIST[lbNUMBER].IDKOSTL = this.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
-    this.SAVELIST[lbNUMBER].IDHKONT = this.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
-    this.SAVELIST[lbNUMBER].IDWRBTR = this.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
-    this.SAVELIST[lbNUMBER].IDSTERM = this.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
-    this.SAVELIST[lbNUMBER].IDBLART = this.IDBLART; // (ID) Doc. Type
-    this.SAVELIST[lbNUMBER].IDDATEA = this.IDDATEA; // (ID) Account Date
-    this.SAVELIST[lbNUMBER].IDDATEI = this.IDDATEI; // (ID) Date Invoic
-    this.SAVELIST[lbNUMBER].GJAHR = this.GJAHR; // ปีบัญชี
-    this.SAVELIST[lbNUMBER].SGTXT = this.SGTXT; // รายละเอียดบรรทัดรายการ
-    this.SAVELIST[lbNUMBER].LBHKONT = this.LBHKONT; // (N) ชื่อบัญชีแยกประเภททั่วไป
-    this.SAVELIST[lbNUMBER].LBKOSTL = this.LBKOSTL; // (N) ชื่อศูนย์ต้นทุน
-    this.SAVELIST[lbNUMBER].LBFISTL = this.LBFISTL; // (N) ชื่องบประมาณ
-    this.SAVELIST[lbNUMBER].LBFKBER = this.LBFKBER; // (N) ชื่อกิจกรรมหลัก
-    this.SAVELIST[lbNUMBER].LBPRZNR = this.LBPRZNR; // (N) ชื่อกิจกรรมย่อย
-    this.SAVELIST[lbNUMBER].LBZZOBJ = this.LBZZOBJ; // (N) รหัสบัญชีย่อย
-    this.SAVELIST[lbNUMBER].LBZZUNIT = this.LBZZUNIT; // (N) รหัสเจ้าของบัญชีย่อย
-    this.SAVELIST[lbNUMBER].LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
-    this.SAVELIST[lbNUMBER].LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
+    if (this.lbNUMBER <= this.SAVELIST.length) {
+      this.SAVELIST[lbNUMBER].TBBUKRS = this.TBBUKRS;
+      this.SAVELIST[lbNUMBER].LBBUKRS = this.LBBUKRS;
+      this.SAVELIST[lbNUMBER].TBBLDAT = this.TBBLDAT;
+      this.SAVELIST[lbNUMBER].TBBUDAT = this.TBBUDAT;
+      this.SAVELIST[lbNUMBER].TBZZPMT = this.TBZZPMT;
+      this.SAVELIST[lbNUMBER].LBZZPMT = this.LBZZPMT;
+      this.SAVELIST[lbNUMBER].TBXBLNR = this.TBXBLNR;
+      this.SAVELIST[lbNUMBER].TBGEBER = this.TBGEBER; // แหล่งของเงิน
+      this.SAVELIST[lbNUMBER].LBGEBER = this.LBGEBER;
+      this.SAVELIST[lbNUMBER].tbSearch_term = this.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+      this.SAVELIST[lbNUMBER].tbBankn = this.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
+      this.SAVELIST[lbNUMBER].TBHKONT = this.TBHKONT; // รหัสบัญชีแยกประเภททั่วไป
+      this.SAVELIST[lbNUMBER].TBKOSTL = this.TBKOSTL; // รหัสศูนย์ต้นทุน
+      this.SAVELIST[lbNUMBER].TBFISTL = this.TBFISTL; // รหัสงบประมาณ
+      this.SAVELIST[lbNUMBER].TBFKBER = this.TBFKBER; // รหัสกิจกรรมหลัก
+      this.SAVELIST[lbNUMBER].TBWRBTR = this.TBWRBTR; // จำนวนเงินที่ขอเบิก
+      this.SAVELIST[lbNUMBER].TBPRZNR = this.TBPRZNR; // รหัสกิจกรรมย่อย
+      this.SAVELIST[lbNUMBER].TBZZOBJ = this.TBZZOBJ; // รหัสบัญชีย่อย
+      this.SAVELIST[lbNUMBER].TBZZUNIT = this.TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
+      this.SAVELIST[lbNUMBER].TBZZLOAN = this.TBZZLOAN; // รหัสหมวดพัสดุ
+      this.SAVELIST[lbNUMBER].TBVBUND = this.TBVBUND; // รหัสหน่วยงานคู่ค้า
+      this.SAVELIST[lbNUMBER].IDFISTL = this.IDFISTL; // (ID) รหัสงบประมาณ
+      this.SAVELIST[lbNUMBER].IDKOSTL = this.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
+      this.SAVELIST[lbNUMBER].IDHKONT = this.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
+      this.SAVELIST[lbNUMBER].IDWRBTR = this.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+      this.SAVELIST[lbNUMBER].IDSTERM = this.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+      this.SAVELIST[lbNUMBER].IDBLART = this.IDBLART; // (ID) Doc. Type
+      this.SAVELIST[lbNUMBER].IDDATEA = this.IDDATEA; // (ID) Account Date
+      this.SAVELIST[lbNUMBER].IDDATEI = this.IDDATEI; // (ID) Date Invoic
+      this.SAVELIST[lbNUMBER].GJAHR = this.GJAHR; // ปีบัญชี
+      this.SAVELIST[lbNUMBER].SGTXT = this.SGTXT; // รายละเอียดบรรทัดรายการ
+      this.SAVELIST[lbNUMBER].LBHKONT = this.LBHKONT; // (N) ชื่อบัญชีแยกประเภททั่วไป
+      this.SAVELIST[lbNUMBER].LBKOSTL = this.LBKOSTL; // (N) ชื่อศูนย์ต้นทุน
+      this.SAVELIST[lbNUMBER].LBFISTL = this.LBFISTL; // (N) ชื่องบประมาณ
+      this.SAVELIST[lbNUMBER].LBFKBER = this.LBFKBER; // (N) ชื่อกิจกรรมหลัก
+      this.SAVELIST[lbNUMBER].LBPRZNR = this.LBPRZNR; // (N) ชื่อกิจกรรมย่อย
+      this.SAVELIST[lbNUMBER].LBZZOBJ = this.LBZZOBJ; // (N) รหัสบัญชีย่อย
+      this.SAVELIST[lbNUMBER].LBZZUNIT = this.LBZZUNIT; // (N) รหัสเจ้าของบัญชีย่อย
+      this.SAVELIST[lbNUMBER].LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+      this.SAVELIST[lbNUMBER].LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
+
+      this.lbNUMBER = this.SAVELIST.length + 1;
+      this.BTDEL = true;
+      this.BTNEW = true;
+    } else {
+      this.formSave();
+
+      this.BTDEL = true;
+      this.BTNEW = true;
+    }
 
   }
 
