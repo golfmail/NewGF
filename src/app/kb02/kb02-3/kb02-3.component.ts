@@ -17,9 +17,9 @@ import { Http, Headers, RequestOptions} from '@angular/http';
 export class Kb023Component implements OnInit {
 
   dateList  =  [
-    {id: '1', Name: 'วันที่บันทึกรายการ'},
-    {id: '2', Name: 'วันที่ผ่านรายการ'},
-    {id: '3', Name: 'วันที่เอกสาร'},
+    {id: 'CPUDT', Name: 'วันที่บันทึกรายการ'},
+    {id: 'BUDAT', Name: 'วันที่ผ่านรายการ'},
+    {id: 'BLDAT', Name: 'วันที่เอกสาร'},
   ];
 
   typeDocList = [
@@ -171,8 +171,9 @@ export class Kb023Component implements OnInit {
   // User ID
   USERID;
 
-  // XML
+  // XML / JSON
   xml_searchDoc = ''; // Gen XML for send to service
+  json_searchDoc = '';
 
   // Hide
   forAdmin: boolean;
@@ -211,8 +212,8 @@ export class Kb023Component implements OnInit {
     console.log(this.RADIO_TYPE);
     this.coverDateFT();
     this.genXMLSearch(tab);
-    // this.sendXMLSearch(); TEST
-    this.getArrayXML();
+    this.sendXMLSearch(); // TEST
+    // this.getArrayXML();
     // this.GridViewComponent.RLINK = this.route.url;
     this.forResult = false;
   }
@@ -242,7 +243,8 @@ export class Kb023Component implements OnInit {
                 </field>
 			        </dataRow>
 		      </modelCRUD>
-	      </operation>`;
+        </operation>`;
+        // Change to JSON
     } else if (tab === 1) {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
@@ -277,29 +279,58 @@ export class Kb023Component implements OnInit {
                 </field>
 			        </dataRow>
 		      </modelCRUD>
-	      </operation>`;
+        </operation>`;
+        // JSON
+        this.json_searchDoc = `{"DATETYPE":"${this.SELECTED_DATE}",
+        "F_DATE": "${this.F_DATEC}",
+        "T_DATE": "${this.T_DATEC}",
+        "TBXBLNR1": "${this.TBXBLNR1}",
+        "TBXBLNR2": "${this.TBXBLNR2}",
+        "TBSTERM": "${this.TBSTERM}",
+        "IDBLART1": "${this.IDBLART1}",
+        "IDBLART2": "${this.IDBLART2}"}`;
     }
-    console.log(this.xml_searchDoc);
+    console.log(this.json_searchDoc);
   }
 
   sendXMLSearch() {
     // รอ service log พร้อมใช้งาน
-    const headers = new Headers({ 'Content-Type': 'application/xml' });
+    this.json_searchDoc = `{"DATETYPE":"CPUDT","F_DATE": "2/9/2017",
+    "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
+    "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
+
+
+
+    const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    this.httpService.post('http://idp.yai.io:8082/rest/kb02', this.xml_searchDoc, options).subscribe(values => {
+    this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.json_searchDoc, options).subscribe(values => {
       console.log('return', values);
       if (values.ok) {
         const result: any = values.json();
-        let mes = result.response.message;
-        if (mes !== 'Fail') {
-          console.log('Suc');
-        } else {
-          console.log('Fail');
-        }
+        console.log(result.result);
+        this.RESLIST = result.result;
+        console.log(this.RESLIST);
+        // let mes = result.response.message;
+        // if (mes !== 'Fail') {
+        //   console.log('Suc');
+        // } else {
+        //   console.log('Fail');
+        // }
       } else {
         console.log('F');
         alert(values.toString());
       }
+    } , error => {
+      console.log(error);
+      // // const r_error: any = error.json();
+      // // console.log(error.statusText);
+      // this.H_LERROR = false;
+      // this.SAVEDLOG = true;
+      // this.LOG_ERR = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + error.statusText;
+      // // this.H_WAIT = true;
+      // // this.H_TABLE = false;
+      // // this.H_ERROR = false;
+      // // this.B_SAVE = false;
     });
     // TEST
 

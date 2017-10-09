@@ -217,7 +217,7 @@ export class DialogSearchComponent implements OnInit {
         this.displayItem(name_r);
         break;
       case 'TBFKBER': // รหัสกิจกรรมหลัก
-        // this.sentItem(this.xml_s, name_r);
+        // this.sentItem(this.xml_s, name_r); // TEST-SERVICE
         // this.getItem(this.result_s);
         this.gatherItem(this.xmlTBFKBER); // for TEST
         this.displayItem(name_r);
@@ -265,7 +265,7 @@ export class DialogSearchComponent implements OnInit {
   }
   sentItem(xml: string, name_r) {
     console.log('Sent data to Serivce');
-    const headers = new Headers({ 'Content-Type': 'application/xml' });
+    const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
     this.httpService.post('http://idp.yai.io:8082/rest/lookup', xml, options).subscribe(values => {

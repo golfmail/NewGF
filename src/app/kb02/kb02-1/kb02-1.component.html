@@ -38,9 +38,9 @@
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
        <md-input-container style="width: 144px;">
         <input mdInput [(ngModel)]="DATEA" [mdDatepicker]="aDatepicker"
-        (ngModelChange)="DATEACC = onSelectDate('a')">
+        (ngModelChange)="DATEACC = onSelectDate('a')" [disabled]="DSTBALL">
         <!-- <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button> -->
-        <md-datepicker-toggle mdSuffix [for]="aDatepicker"></md-datepicker-toggle>
+        <md-datepicker-toggle mdSuffix [for]="aDatepicker" [disabled]="DSTBALL"></md-datepicker-toggle>
       </md-input-container>
       <md-datepicker #aDatepicker></md-datepicker>
           <!-- <tr>
@@ -94,8 +94,8 @@
 
           <md-input-container style="width: 144px;">
             <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
-            (ngModelChange)="DATEINV = onSelectDate('i')">
-            <md-datepicker-toggle mdSuffix [for]="iDatepicker"></md-datepicker-toggle>
+            (ngModelChange)="DATEINV = onSelectDate('i')" [disabled]="DSTBALL">
+            <md-datepicker-toggle mdSuffix [for]="iDatepicker" [disabled]="DSTBALL"></md-datepicker-toggle>
             <!-- <button mdSuffix [mdDatepickerToggle]="iDatepicker"></button> -->
           </md-input-container>
           <md-datepicker #iDatepicker></md-datepicker>
@@ -360,13 +360,9 @@
         <asp:RequiredFieldValidator ControlToValidate="TBGEBER" ErrorMessage="กรุณากรอกรหัสแหล่งของเงิน" ForeColor="Tomato" ID="RequiredFieldValidator4" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
       </td>
       <td colspan="3" style="height: 17px">
-        <!--Update_Ton--><select [disabled]="DSTBALL" class="fontContentBlack" ID="ddGeberYear" runat="server" Width="50px">
-        <option value="2559">2560</option>
-        <option value="2559">2561</option>
-        <!--Update_Ton--></select>
-        <!-- <asp:DropDownList class="fontContentBlack" ID="ddGeberYear" runat="server" Width="50px">
-          <asp:ListItem value="2559">256</asp:ListItem>
-        </asp:DropDownList> -->
+        <select [(ngModel)]="YEAR" [disabled]="DSTBALL" style="width: 50px">
+          <option *ngFor="let c of yearList" [ngValue]="c.YESR">{{c.YESR}}</option>
+        </select>
         <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px">
         <!-- <asp:TextBox [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px"></asp:TextBox>&nbsp; -->
         <!--<asp:ImageButton CausesValidation="False" Height="20px" ID="BTGEBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" OnClick="BTGEBER_Click" runat="server" ToolTip="ค้นหา" Width="22px"/>-->
@@ -681,7 +677,7 @@
       </strong><asp:RequiredFieldValidator ControlToValidate="TBWRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
     </td>
     <td style="height: 18px; width: 299px;">
-     <!--Update_Ton2--><input type="text" [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px">&nbsp; <strong>บาท</strong>
+     <!--Update_Ton2--><input [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px">&nbsp; <strong>บาท</strong>
       <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBWRBTR"  class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px"></asp:TextBox> -->
     </td>
     <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
@@ -720,7 +716,7 @@
     <!-- <asp:Button  (click)="formNew();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="สร้างข้อมูลใหม่"/> -->
     <button [disabled]="BTSAVE" (click)="formEdit()">จัดเก็บรายการนี้ลงตาราง</button>
     <button [disabled]="BTDEL" (click)="formDelete()">ลบข้อมูลรายการนี้</button>
-    <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลใหม่</button>
+    <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลรายการใหม่</button>
   </td>
 </tr>
 </table>

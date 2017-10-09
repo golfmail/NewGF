@@ -60,6 +60,7 @@ export class DialogSaveComponent implements OnInit {
   B_SAVE: Boolean = false;
   ERR_TEXT: String; // Error Text
   LOG_ERR: String; // Log Error
+  SAVEDLOG: Boolean = true;
 
   constructor(public dialogRef: MdDialogRef<DialogSaveComponent>, private httpService: Http,
     private router: Router ) { }
@@ -127,14 +128,8 @@ export class DialogSaveComponent implements OnInit {
     this.getDateNow();
     this.createXMLlog(); // Gen XML LOG
     console.log('xml_log: \n' + this.xml_log); // TEST
-    const headers = new Headers({ 'Content-Type': 'text/xml' ,
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '',
-      'Access-Control-Allow-Methods' : 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
-      'Access-Control-Allow-Credentials': true
-    });
+    const headers = new Headers({ 'Content-Type': 'text/xml'}); // text/plain
     const options = new RequestOptions({ headers: headers });
-    console.log(options);
 
     // รอ service log พร้อมใช้งาน
     this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.xml_log, options).subscribe(values => {
@@ -144,8 +139,10 @@ export class DialogSaveComponent implements OnInit {
         const mes = result.a;
         if (mes !== 'false') {
           console.log('Suc');
+          this.SAVEDLOG = false;
         } else {
           this.H_LERROR = false;
+          this.SAVEDLOG = true;
           this.LOG_ERR = 'ERROR (LOG SERVICE): ' + mes + ' | บันทึก LOG ไม่สำเร็จ';
           console.log('Fail log save');
         }
@@ -156,8 +153,11 @@ export class DialogSaveComponent implements OnInit {
     }
     , error => {
       console.log(error);
+      // const r_error: any = error.json();
+      // console.log(error.statusText);
       this.H_LERROR = false;
-      this.LOG_ERR = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์';
+      this.SAVEDLOG = true;
+      this.LOG_ERR = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + error.statusText;
       // this.H_WAIT = true;
       // this.H_TABLE = false;
       // this.H_ERROR = false;

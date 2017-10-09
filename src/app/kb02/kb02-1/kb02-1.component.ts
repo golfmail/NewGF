@@ -260,6 +260,11 @@ export class Kb021Component implements OnInit  {
   BTNEW: Boolean = true;
   BTDEL: Boolean = true;
 
+  // ปีงบประมาณ
+  yearList: any[] = [];
+  // GJAHR = new Date();
+  YEAR;
+
   constructor(
     public dialog: MdDialog,
     private httpService: Http,
@@ -566,6 +571,13 @@ export class Kb021Component implements OnInit  {
     return baht + '.' + cents.slice(0, 2);
   }
 
+  numberWithDecimal(x) {
+    const number = x.toString();
+    let baht = number.split('.')[0];
+    const cents = (number.split('.')[1] || '') + '00';
+    return baht + '.' + cents.slice(0, 2);
+  }
+
   // Get Doc. type
   getDcotype() {
     console.log(this.selectedblart);
@@ -688,7 +700,7 @@ export class Kb021Component implements OnInit  {
           TBKOSTL: this.TBKOSTL, // รหัสศูนย์ต้นทุน
           TBFISTL: this.TBFISTL, // รหัสงบประมาณ
           TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
-          TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+          TBWRBTR: Number(this.TBWRBTR).toFixed(2), // จำนวนเงินที่ขอเบิก
           TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
           TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
           TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
@@ -735,7 +747,7 @@ export class Kb021Component implements OnInit  {
           TBKOSTL: this.TBKOSTL, // รหัสศูนย์ต้นทุน
           TBFISTL: this.TBFISTL, // รหัสงบประมาณ
           TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
-          TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+          TBWRBTR: Number(this.TBWRBTR).toFixed(2), // จำนวนเงินที่ขอเบิก
           TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
           TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
           TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
@@ -814,7 +826,7 @@ export class Kb021Component implements OnInit  {
       TBKOSTL: this.TBKOSTL, // รหัสศูนย์ต้นทุน
       TBFISTL: this.TBFISTL, // รหัสงบประมาณ
       TBFKBER: this.TBFKBER, // รหัสกิจกรรมหลัก
-      TBWRBTR: this.TBWRBTR, // จำนวนเงินที่ขอเบิก
+      TBWRBTR: Number(this.TBWRBTR).toFixed(2), // จำนวนเงินที่ขอเบิก
       TBPRZNR: this.TBPRZNR, // รหัสกิจกรรมย่อย
       TBZZOBJ: this.TBZZOBJ, // รหัสบัญชีย่อย
       TBZZUNIT: this.TBZZUNIT, // รหัสเจ้าของบัญชีย่อย
@@ -868,7 +880,7 @@ export class Kb021Component implements OnInit  {
       this.SAVELIST[lbNUMBER].TBKOSTL = this.TBKOSTL; // รหัสศูนย์ต้นทุน
       this.SAVELIST[lbNUMBER].TBFISTL = this.TBFISTL; // รหัสงบประมาณ
       this.SAVELIST[lbNUMBER].TBFKBER = this.TBFKBER; // รหัสกิจกรรมหลัก
-      this.SAVELIST[lbNUMBER].TBWRBTR = this.TBWRBTR; // จำนวนเงินที่ขอเบิก
+      this.SAVELIST[lbNUMBER].TBWRBTR = Number(this.TBWRBTR).toFixed(2); // จำนวนเงินที่ขอเบิก
       this.SAVELIST[lbNUMBER].TBPRZNR = this.TBPRZNR; // รหัสกิจกรรมย่อย
       this.SAVELIST[lbNUMBER].TBZZOBJ = this.TBZZOBJ; // รหัสบัญชีย่อย
       this.SAVELIST[lbNUMBER].TBZZUNIT = this.TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
@@ -1089,6 +1101,16 @@ export class Kb021Component implements OnInit  {
       this.ddMonat = this.DATEINV.month + 3;
     } else {
       this.ddMonat = this.DATEINV.month - 9;
+    }
+
+    this.YEAR = this.GJAHR + 543;
+    let iGJAHR = this.GJAHR + 543;
+    iGJAHR = iGJAHR - 8;
+    for (let index = -7; index < 7; index++) {
+      iGJAHR = iGJAHR + 1;
+      // console.log(iGJAHR); // TEST
+      this.yearList.push({YESR: iGJAHR});
+
     }
 
     // Rounter Doc ID
