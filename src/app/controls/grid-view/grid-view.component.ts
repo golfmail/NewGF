@@ -60,6 +60,64 @@ export class GridViewComponent implements OnInit {
     } else {}
   }
 
+  coverDate(num) {
+    let date: String;
+    let yearBH;
+    if (num !== undefined) {
+      const dateParts = num.split('-');
+      yearBH = Number(dateParts[0]) + 543; // Cover Year
+      dateParts[0] = yearBH.toString();
+      switch (dateParts[1]) {
+        case '01':
+          date = dateParts[2] + ' มกราคม ' + dateParts[0];
+          break;
+        case '02':
+          date = dateParts[2] + ' กุมภาพันธ์ ' + dateParts[0];
+          break;
+        case '03':
+          date = dateParts[2] + ' มีนาคม ' + dateParts[0];
+          break;
+        case '04':
+          date = dateParts[2] + ' เมษายน ' + dateParts[0];
+          break;
+        case '05':
+          date = dateParts[2] + ' พฤษภาคม ' + dateParts[0];
+          break;
+        case '06':
+          date = dateParts[2] + ' มิถุนายน ' + dateParts[0];
+          break;
+        case '07':
+          date = dateParts[2] + ' กรกฎาคม ' + dateParts[0];
+          break;
+        case '08':
+          date = dateParts[2] + ' สิงหาคม ' + dateParts[0];
+          break;
+        case '09':
+          date = dateParts[2] + ' กันยายน ' + dateParts[0];
+          break;
+        case '10':
+          date = dateParts[2] + ' ตุลาคม ' + dateParts[0];
+          break;
+        case '11':
+          date = dateParts[2] + ' พฤศจิกายน ' + dateParts[0];
+          break;
+        case '12':
+          date = dateParts[2] + ' ธันวาคม ' + dateParts[0];
+          break;
+        default: date = '';
+          break;
+      }
+      return date;
+    } else {
+      return '';
+    }
+  }
+
+  coverYear(year) {
+    year = Number(year) + 543;
+    return year;
+  }
+
   ngOnInit() {}
 
 }

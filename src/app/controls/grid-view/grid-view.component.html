@@ -31,13 +31,13 @@
            (click)="selectedDoc(doc.BELNR,i)">
       </td>
       <td style="width: 50px">{{doc.BELNR}}</td>
-      <td style="width: 5px">{{doc.GJAHR}}</td>
-      <td align="left">{{doc.BLDAT}}</td>
-      <td style="width: 100px" align="left">{{doc.BUDAT}}</td>
+      <td style="width: 5px">{{coverYear(doc.GJAHR)}}</td>
+      <td align="left">{{coverDate(doc.BLDAT)}}</td>
+      <td style="width: 100px" align="left">{{coverDate(doc.BUDAT)}}</td>
       <td style="width: 10px">{{doc.BLART}}</td>
       <td style="width: 5px">{{doc.HOWPAY}}</td>
       <td style="width: 150px" align="left">{{doc.NAME1}}</td>
-      <td style="width: 100px" align="left">{{doc.CPUDT}}</td>
+      <td style="width: 100px" align="left">{{coverDate(doc.CPUDT)}}</td>
       <td style="width: 100px" align="right">{{doc.SUMCOST}}</td>
       <td>{{doc.STATUS}}</td>
       <td style="width: 50px">{{doc.NUMDOCI}}</td>

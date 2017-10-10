@@ -295,9 +295,9 @@ export class Kb023Component implements OnInit {
 
   sendXMLSearch() {
     // รอ service log พร้อมใช้งาน
-    this.json_searchDoc = `{"DATETYPE":"CPUDT","F_DATE": "2/9/2017",
-    "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
-    "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
+    // this.json_searchDoc = `{"DATETYPE":"CPUDT","F_DATE": "2/9/2017",
+    // "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
+    // "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
 
 
 
