@@ -677,7 +677,7 @@
       </strong><asp:RequiredFieldValidator ControlToValidate="TBWRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
     </td>
     <td style="height: 18px; width: 299px;">
-     <!--Update_Ton2--><input [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px">&nbsp; <strong>บาท</strong>
+      <input type="number" [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
       <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBWRBTR"  class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px"></asp:TextBox> -->
     </td>
     <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >

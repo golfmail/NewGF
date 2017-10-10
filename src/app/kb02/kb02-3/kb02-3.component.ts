@@ -178,6 +178,11 @@ export class Kb023Component implements OnInit {
   // Hide
   forAdmin: boolean;
   forResult: boolean;
+  notFound: Boolean = true;
+  H_WAIT: Boolean = true;
+
+  // Process
+  DATAWRONG = 'ไม่พบผลการค้นหา';
 
   // TEST ONLY
   sampleData: String = 'some parent Data';
@@ -208,6 +213,9 @@ export class Kb023Component implements OnInit {
 
   // TEST
   onSearch(tab) {
+    this.RESLIST = [];
+    this.notFound = true;
+    this.forResult = true;
     console.log(tab);
     console.log(this.RADIO_TYPE);
     this.coverDateFT();
@@ -215,7 +223,7 @@ export class Kb023Component implements OnInit {
     this.sendXMLSearch(); // TEST
     // this.getArrayXML();
     // this.GridViewComponent.RLINK = this.route.url;
-    this.forResult = false;
+    // this.forResult = false;
   }
 
   coverDateFT() {
@@ -224,6 +232,7 @@ export class Kb023Component implements OnInit {
   }
 
   genXMLSearch(tab) {
+    this.json_searchDoc = '';
     if (tab === 0) {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
@@ -298,30 +307,41 @@ export class Kb023Component implements OnInit {
     // this.json_searchDoc = `{"DATETYPE":"CPUDT","F_DATE": "2/9/2017",
     // "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
     // "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
-
-
+    this.H_WAIT = false;
 
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.json_searchDoc, options).subscribe(values => {
-      console.log('return', values);
+      // console.log('return', values);
       if (values.ok) {
         const result: any = values.json();
-        console.log(result.result);
-        this.RESLIST = result.result;
-        console.log(this.RESLIST);
-        // let mes = result.response.message;
-        // if (mes !== 'Fail') {
-        //   console.log('Suc');
-        // } else {
-        //   console.log('Fail');
-        // }
+        // this.RESLIST = result.result;
+        if (result.result.length > 0 && result.result.length <= 300) {
+          this.RESLIST = result.result;
+          this.forResult = false;
+          this.H_WAIT = true;
+        } else if (result.result.length > 300) {
+          this.H_WAIT = true;
+          this.DATAWRONG = 'ไม่สามารถแสดงผลการค้นหาเกิน 300 รายการได้ กรุณาเปลี่ยนเงื่อนไขการค้นหาใหม่';
+          this.forResult = true;
+          this.notFound = false;
+        } else {
+          this.H_WAIT = true;
+          this.DATAWRONG = 'ไม่พบเอกสาร';
+          this.forResult = true;
+          this.notFound = false;
+        }
+
       } else {
+        this.H_WAIT = true;
         console.log('F');
         alert(values.toString());
       }
     } , error => {
+      this.H_WAIT = true;
       console.log(error);
+      this.DATAWRONG = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + '(' + error.status + ') ' + error.statusText;
+      this.notFound = false;
       // // const r_error: any = error.json();
       // // console.log(error.statusText);
       // this.H_LERROR = false;

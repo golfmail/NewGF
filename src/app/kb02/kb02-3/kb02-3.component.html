@@ -206,6 +206,16 @@
   <div [hidden]="forResult">
     <app-grid-view [RLINK]="RLINK" [RESLIST]="RESLIST"></app-grid-view>
   </div>
+  <div [hidden]="H_WAIT">
+    <br>
+      <md-progress-bar id="progress-bar" mode="query"></md-progress-bar>
+  </div>
+  <div [hidden]="notFound" align="center">
+    <br>
+    <span class="fontErrorRed" >
+      {{DATAWRONG}}
+    </span>
+  </div>
 </fieldset>
 
 <!-- <fieldset id="fldstBody" style="z-index:1;width: 850px;display: block" >

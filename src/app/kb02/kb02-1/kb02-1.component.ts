@@ -1024,8 +1024,8 @@ export class Kb021Component implements OnInit  {
 
   onGetDocSearch(BELNR, GJAHR) {
     this.EXPAND = false;
-    const xmlHead = this.getHeadDoc(BELNR, GJAHR); // get XML Head Doc
-    this.getXMLServiceDoc(xmlHead); // send XML Doc to Service and Get Result
+    const jsonHead = this.getHeadDoc(BELNR, GJAHR); // get XML Head Doc
+    this.getXMLServiceDoc(jsonHead); // send XML Doc to Service and Get Result
 
     // After Get Doc Detail
     this.TBBELNR = BELNR;
@@ -1035,36 +1035,38 @@ export class Kb021Component implements OnInit  {
 
   }
 
-  getHeadDoc(id, GJAHR) {
-    let xmlHeader = '';
-    xmlHeader =
-    `<operation>
-      <modelCRUD>
-      <tableName>DocHeader</tableName>
-      <recordID>0</recordID>
-      <action>CreateUpdate</action>
-        <dataRow>
-          <field column="BELNR">
-            <val>${id}</val>
-          </field>
-          <field column="GJAHR">
-            <val>${GJAHR}</val>
-          </field>
-        </dataRow>
-        </modelCRUD>
-      </operation>`;
+  getHeadDoc(BELNR, GJAHR) {
+    let jsonHeader = '';
+    // let xmlHeader = '';
+    jsonHeader = `{"BELNR":"${BELNR}","GJAHR":"${GJAHR}"}`;
+    // xmlHeader =
+    // `<operation>
+    //   <modelCRUD>
+    //   <tableName>DocHeader</tableName>
+    //   <recordID>0</recordID>
+    //   <action>CreateUpdate</action>
+    //     <dataRow>
+    //       <field column="BELNR">
+    //         <val>${id}</val>
+    //       </field>
+    //       <field column="GJAHR">
+    //         <val>${GJAHR}</val>
+    //       </field>
+    //     </dataRow>
+    //     </modelCRUD>
+    //   </operation>`;
     // let headerDoc: any[];
     // this._Kb023Component.onGetDoc(id);
-    return xmlHeader;
+    return jsonHeader;
   }
 
-  getXMLServiceDoc(xmlDocHeader) {
+  getXMLServiceDoc(jsonDocHeader) {
     // รอ service get Doc พร้อมใช้งาน
     // มี XML กลับมา
-    console.log(xmlDocHeader); // TEST-ONLY
-    const headers = new Headers({ 'Content-Type': 'application/xml' });
+    console.log(jsonDocHeader); // TEST-ONLY
+    const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', xmlDocHeader, options).subscribe(values => {
+    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', jsonDocHeader, options).subscribe(values => {
     //   console.log('return', values);
     //   if (values.ok) {
     //     const result: any = values.json();

@@ -1068,6 +1068,13 @@ fieldset {
     width: 100%;
 }
 
+.fontErrorRed {
+  color: #e31e1e;
+  font-family: tahoma, "ms Sans Serif";
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .myapp-no-padding-dialog .mat-dialog-container {
     padding: 24px;
     padding-top: 0px;
