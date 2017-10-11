@@ -291,13 +291,13 @@ export class Kb023Component implements OnInit {
         </operation>`;
         // JSON
         this.json_searchDoc = `{"DATETYPE":"${this.SELECTED_DATE}",
-        "F_DATE": "${this.F_DATEC}",
-        "T_DATE": "${this.T_DATEC}",
-        "TBXBLNR1": "${this.TBXBLNR1}",
-        "TBXBLNR2": "${this.TBXBLNR2}",
-        "TBSTERM": "${this.TBSTERM}",
-        "IDBLART1": "${this.IDBLART1}",
-        "IDBLART2": "${this.IDBLART2}"}`;
+                                  "F_DATE": "${this.F_DATEC}",
+                                  "T_DATE": "${this.T_DATEC}",
+                                  "TBXBLNR1": "${this.TBXBLNR1}",
+                                  "TBXBLNR2": "${this.TBXBLNR2}",
+                                  "TBSTERM": "${this.TBSTERM}",
+                                  "IDBLART1": "${this.IDBLART1}",
+                                  "IDBLART2": "${this.IDBLART2}"}`;
     }
     console.log(this.json_searchDoc);
   }
@@ -342,15 +342,6 @@ export class Kb023Component implements OnInit {
       console.log(error);
       this.DATAWRONG = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + '(' + error.status + ') ' + error.statusText;
       this.notFound = false;
-      // // const r_error: any = error.json();
-      // // console.log(error.statusText);
-      // this.H_LERROR = false;
-      // this.SAVEDLOG = true;
-      // this.LOG_ERR = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + error.statusText;
-      // // this.H_WAIT = true;
-      // // this.H_TABLE = false;
-      // // this.H_ERROR = false;
-      // // this.B_SAVE = false;
     });
     // TEST
 
@@ -404,6 +395,7 @@ export class Kb023Component implements OnInit {
     return baht + '.' + cents.slice(0, 2);
   }
 
+  // Don't use function
   coverDate(num) {
     let date: String;
     let yearBH;
