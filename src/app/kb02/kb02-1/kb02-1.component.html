@@ -365,7 +365,7 @@
         </select>
         <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px">
         <!-- <asp:TextBox [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px"></asp:TextBox>&nbsp; -->
-        <!--<asp:ImageButton CausesValidation="False" Height="20px" ID="BTGEBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" OnClick="BTGEBER_Click" runat="server" ToolTip="ค้นหา" Width="22px"/>-->
+        <ImageButton [hidden]="SHOWBT" (click)="openDialog('TBGEBER','cssGEBER')"  CausesValidation="False" Height="20px" ID="BTGEBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" ToolTip="ค้นหา" Width="22px"></ImageButton>
       </td>
     </tr>
     <tr>
@@ -740,14 +740,14 @@
     <TH style="WHITE-SPACE: nowrap" scope=col>รหัสกิจกรรมหลัก</TH>
     <TH style="WHITE-SPACE: nowrap" scope=col>จำนวนเงิน</TH>
   </TR>
-  <tr *ngFor="let save of SAVELIST; let i='index';"
+  <tr *ngFor="let save of SAVELIST | paginate: config; let i='index';"
         [class.selected]="save === selectedList"
-        (click)="onSelect(save,i)">
+        (click)="onSelect(save,(config.currentPage - 1) * config.itemsPerPage + i)">
     <td align="center">
       <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
         alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image>
     </td>
-    <td align="center">{{i+1}}</td>
+    <td align="center">{{(config.currentPage - 1) * config.itemsPerPage + i +1 }}</td>
     <td>{{save.LBHKONT}}</td>
     <td>{{save.TBHKONT}}</td>
     <td>{{save.TBKOSTL}}</td>
@@ -763,8 +763,8 @@
     <td></td>
     <td></td>
     <td></td>
-    <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอเบิก</td>
-    <td style="background-color: #FEF6E0;font-size:11px;text-align:right">{{ numberWithCommas(getTotal()) }} </td>
+    <td class="fontTotalwhite">จำนวนเงินขอเบิก</td>
+    <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
   </tr>
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -774,8 +774,8 @@
     <td></td>
     <td></td>
     <td></td>
-    <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินภาษีหัก ณ ที่จ่าย</td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{numberWithCommas(0)}}</td>
+    <td class="fontTotalwhite">จำนวนเงินภาษีหัก ณ ที่จ่าย</td>
+    <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
   </tr>
     <tr style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -785,8 +785,8 @@
     <td></td>
     <td></td>
     <td></td>
-    <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินค่าปรับ </td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{numberWithCommas(0)}}</td>
+    <td class="fontTotalwhite">จำนวนเงินค่าปรับ </td>
+    <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
   </tr>
     <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
     <td align="center">
@@ -796,10 +796,38 @@
     <td></td>
     <td></td>
     <td></td>
-    <td  style="background-color: #4b6d96;color:white;font-size:12px;text-align:left">จำนวนเงินขอรับ</td>
-    <td style="background-color: #FEF6E0;font-size:12px;text-align:right">{{ numberWithCommas(getTotal()) }} </td>
+    <td class="fontTotalwhite">จำนวนเงินขอรับ</td>
+    <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
   </tr>
   </table>
+  <div class="defaultTableBody">
+    <div>
+    </div>
+      <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+        <ul role="navigation" aria-label="Pagination">
+          <span [class.disabled]="p.isFirstPage()">
+            <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> < ย้อนกลับ </a>
+          </span>
+          <span *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+            <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+              <span>{{ page.label }}</span>
+            </a>
+            <a *ngIf="p.getCurrent() === page.value">
+              <span>{{ page.label }}</span>
+            </a>
+          </span>
+        <span [class.disabled]="p.isLastPage()">
+          <a *ngIf="!p.isLastPage()" (click)="p.next()"> ถัดไป > </a>
+        </span>
+      </ul>
+    </pagination-template>
+    <!-- <pagination-controls
+      (pageChange)="page = $event"
+      previousLabel="ย้อนกลับ"
+      nextLabel="ถัดไป">
+    </pagination-controls> -->
+
+  </div>
   </td>
 </tr>
 <tr id="TRAnotation1" runat="server" style="height: 21px" visible="false">

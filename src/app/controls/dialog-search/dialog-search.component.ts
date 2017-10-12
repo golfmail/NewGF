@@ -15,6 +15,7 @@ export class DialogSearchComponent implements OnInit {
   name_t: string;
   size_t: string;
   code_t: string;
+  year_t: String;
   label_select  = 'เลือก';
   label_name    = 'ชื่อ';
   label_detail  = 'คำอธิบาย';
@@ -24,127 +25,145 @@ export class DialogSearchComponent implements OnInit {
   reslist = RESLIST;
   SearchList: TableList;
   xmlTBZZPMT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <row>
-                  <id>1000000</id>
-                  <Value>300200005</Value>
-                  <Name>สำนักบริหารกลาง</Name>
-                  <description>สบก.</description>
-                </row>
-                <row>
-                  <id>11</id>
-                  <Value>HQ</Value>
-                  <Name>HQ</Name>
-                  <description>GardenWorld HQ!</description>
-                </row>
-                <row>
-                  <id>0</id>
-                  <Value>0</Value>
-                  <Name>*</Name>
-                  <description>All Organizations</description>
-                </row>
-                <row>
-                  <id>1000001</id>
-                  <Value>300200006</Value>
-                  <Name>สำนักปลัดกระทรวงการคลัง</Name>
-                  <description>สปกค</description>
-                </row>
+                  <row>
+                    <id>1000000</id>
+                    <Value>000000300200005</Value>
+                    <Name>สำนักบริหารกลาง</Name>
+                    <description>สบก.</description>
+                  </row>
                 </table>`;
   xmlTBFISTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>100</id>
-                  <Value>0300213001120001</Value>
-                  <Name>โครงการจัดตั้งศูนย์ค</Name>
-                  <description>โครงการจัดตั้งศูนย์ค..</description>
+                  <Value>0300210101110000</Value>
+                  <Name>ครุภัณฑ์ต่ำกว่า 1 ล</Name>
+                  <description>ครุภัณฑ์ต่ำกว่า 1 ล</description>
                 </row>
                 <row>
                   <id>101</id>
-                  <Value>0300213001120002</Value>
-                  <Name>เงินอุดหนุนทั่วไป</Name>
-                  <description>เงินอุดหนุนทั่วไป : เงินอุดหนุนการสร้าง</description>
+                  <Value>0300210101000000</Value>
+                  <Name>รายการงบประจำ</Name>
+                  <description>รายการงบประจำ</description>
+                </row>
+                <row>
+                  <id>101</id>
+                  <Value>0300210101110001</Value>
+                  <Name>โต๊ะทำงานระดับ 3-6</Name>
+                  <description>โต๊ะทำงานระดับ 3-6</description>
+                </row>
+                <row>
+                  <id>101</id>
+                  <Value>0300210101110002</Value>
+                  <Name>เครื่องโทรศัพท์</Name>
+                  <description>เครื่องโทรศัพท์</description>
+                </row>
+                <row>
+                  <id>101</id>
+                  <Value>0300210101110003</Value>
+                  <Name>เครื่องถ่ายเอกสารระบงบประจำ</Name>
+                  <description>เครื่องถ่ายเอกสารระบ</description>
+                </row>
+                <row>
+                  <id>101</id>
+                  <Value>0300210101110007</Value>
+                  <Name>เครื่องกรองน้ำ</Name>
+                  <description>เครื่องกรองน้ำ</description>
+                </row>
+                <row>
+                  <id>101</id>
+                  <Value>0300210101110022</Value>
+                  <Name>รถนั่งส่วนกลาง</Name>
+                  <description>รถนั่งส่วนกลาง</description>
                 </row>
                 </table>`;
   xmlTBPRZNR = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000343</id>
-                  <Value>1000K1901000</Value>
-                  <Name>ส่งเสริม เผยแพร่แ...	</Name>
-                  <description>ส่งเสริม เผยแพร่แ...	</description>
+                  <Value>1000L0633000</Value>
+                  <Name>การติดตาม เร่งรัด การดำเนินงาน</Name>
+                  <description>การติดตาม เร่งรัด การดำเนินงาน</description>
                 </row>
                 <row>
                   <id>1000344</id>
-                  <Value>1000K1904000</Value>
-                  <Name>ฝึกอบรม เผยแพร่แล...	</Name>
-                  <description>-</description>
+                  <Value>1000L0634000</Value>
+                  <Name>การบริหารจัดการและพัฒนาเทคโนโล</Name>
+                  <description>การบริหารจัดการและพัฒนาเทคโนโล</description>
                 </row>
 		            <row>
                   <id>1000345</id>
-                  <Value>1000K3048000</Value>
-                  <Name>การก่อสร้าง ปรับป...	</Name>
-                  <description>-</description>
+                  <Value>1000K1904000</Value>
+                  <Name>ฝึกอบรม เผยแพร่แล...</Name>
+                  <description>ฝึกอบรม เผยแพร่แล...</description>
                 </row>
 		            <row>
                   <id>1000346</id>
-                  <Value>1000L6206000</Value>
-                  <Name>การบริหารจัดการ</Name>
-                  <description>-</description>
+                  <Value>1000K1901000</Value>
+                  <Name>ส่งเสริม เผยแพร่แ...</Name>
+                  <description>ส่งเสริม เผยแพร่แ...</description>
                 </row>
                 </table>`;
    xmlTBKOSTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                <row>
-                  <id>101</id>
-                  <Value>0300200000</Value>
-                  <Name>สป.กค</Name>
-                  <description>สป.กค.</description>
-                </row>
-                <row>
-                  <id>50001</id>
-                  <Value>0300200001</Value>
-                  <Name>กกม.</Name>
-                  <description>สำนักงานกฏหมาย</description>
-                </row>
+                  <row>
+                    <id>101</id>
+                    <Value>0300200001</Value>
+                    <Name>กกม.</Name>
+                    <description>กลุ่มงานกฎหมาย</description>
+                  </row>
+                  <row>
+                    <id>103</id>
+                    <Value>0300200003</Value>
+                    <Name>กปป.</Name>
+                    <description>กลุ่มงานป้องปรามการเงินนอกระบบ</description>
+                  </row>
+                  <row>
+                    <id>104</id>
+                    <Value>0300200004</Value>
+                    <Name>กตน.</Name>
+                    <description>กลุ่มตรวจสอบภายใน</description>
+                  </row>
+                  <row>
+                    <id>105</id>
+                    <Value>0300200005</Value>
+                    <Name>สบก.</Name>
+                    <description>สำนักบริหารกลาง</description>
+                  </row>
+                  <row>
+                    <id>107</id>
+                    <Value>0300200007</Value>
+                    <Name>สตป.</Name>
+                    <description>สำนักตรวจสอบและประเมินผล</description>
+                  </row>
+                  <row>
+                    <id>100</id>
+                    <Value>0300200000</Value>
+                    <Name>สปกค.</Name>
+                    <description>สำหรับทดสอบสินทรัพย์</description>
+                  </row>
                 </table>`;
   xmlTBFKBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000084</id>
-                  <Value>P3600</Value>
-                  <Name>ชัยภูมิ</Name>
-                  <description>ชัยภูมิ</description>
+                  <Value>030021000L0633</Value>
+                  <Name>การติดตาม เร่งรัด การดำเน</Name>
+                  <description>การติดตาม เร่งรัด การดำเน</description>
                 </row>
                 <row>
-                  <id>1000085</id>
-                  <Value>P3700</Value>
-                  <Name>อำนาจเจริญ</Name>
-                  <description>อำนาจเจริญ</description>
+                  <id>030021000L0634</id>
+                  <Value>030021000L0634</Value>
+                  <Name>การบริหารจัดการและพัฒนา</Name>
+                  <description>การบริหารจัดการและพัฒนา</description>
                 </row>
 		            <row>
-                  <id>1000086</id>
-                  <Value>P3800</Value>
-                  <Name>บึงกาฬ</Name>
-                  <description>บึงกาฬ</description>
+                  <id>P1000</id>
+                  <Value>P1000</Value>
+                  <Name>ส่วนกลาง</Name>
+                  <description>ส่วนกลาง</description>
                 </row>
 	            	<row>
-                  <id>1000087</id>
-                  <Value>P3900</Value>
-                  <Name>หนองบัวลำภู</Name>
-                  <description>หนองบัวลำภู</description>
-                </row>
-	            	<row>
-                  <id>1000087</id>
-                  <Value>P3900</Value>
-                  <Name>หนองบัวลำภู</Name>
-                  <description>หนองบัวลำภู</description>
-                </row>
-            		<row>
-                  <id>1000088</id>
-                  <Value>P4000</Value>
-                  <Name>ขอนแก่น</Name>
-                  <description>ขอนแก่น</description>
-                </row>
-		            <row>
-                  <id>1000089</id>
-                  <Value>P4100</Value>
-                  <Name>อุดรธาณี</Name>
-                  <description>อุดรธาณี</description>
+                  <id>03002100000000</id>
+                  <Value>03002100000000</Value>
+                  <Name>กิจกรรม สำหรับการ...</Name>
+                  <description>กิจกรรม สำหรับการ...</description>
                 </row>
                 </table>`;
 
@@ -152,24 +171,87 @@ export class DialogSearchComponent implements OnInit {
   xmlTBHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000002</id>
-                  <Value>5104010107</Value>
-                  <Name>ค่าซ่อมแซมและค่าบำรุงรักษา</Name>
-                  <description>xxx</description>
+                  <Value>53000</Value>
+                  <Name>ค่าใช้จ่ายค่าที่ปรึกษา</Name>
+                  <description>ค่าใช้จ่ายค่าที่ปรึกษา</description>
                 </row>
                 <row>
-                  <id>1000001</id>
-                  <Value>5202020201</Value>
-                  <Name>ค่าอื่นๆ</Name>
-                  <description>yyy</description>
+                  <id>51800</id>
+                  <Value>51800</Value>
+                  <Name>ค่าวัสดุ</Name>
+                  <description>ค่าวัสดุ</description>
+                </row>
+                <row>
+                  <id>52000</id>
+                  <Value>52000</Value>
+                  <Name>ค่าซ่อมแซมและค่าบำรุงรักษา</Name>
+                  <description>ค่าซ่อมแซมและค่าบำรุงรักษา</description>
+                </row>
+                <row>
+                  <id>51200</id>
+                  <Value>51200</Value>
+                  <Name>ค/จเหมาบริการ-ภายนอก</Name>
+                  <description>ค/จเหมาบริการ-ภายนอก</description>
+                </row>
+                <row>
+                  <id>57000</id>
+                  <Value>57000</Value>
+                  <Name>ค่าใช้จ่ายบุคลากรอื่น</Name>
+                  <description>ค่าใช้จ่ายบุคลากรอื่น</description>
+                </row>
+                <row>
+                  <id>54000</id>
+                  <Value>54000</Value>
+                  <Name>ขนส่งสินค้า</Name>
+                  <description>ขนส่งสินค้า</description>
                 </row>
                 </table>`;
+  xmlTBGEBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                  <row>
+                    <id>6011220</id>
+                    <Value>6011220</Value>
+                    <Name>ค่าใช้สอย /งบสรก.</Name>
+                    <description>ค่าใช้สอย /งบสรก.</description>
+                  </row>
+                  <row>
+                    <id>6011230</id>
+                    <Value>6011230</Value>
+                    <Name>ค่าวัสดุ /งบสรก.</Name>
+                    <description>ค่าวัสดุ /งบสรก.</description>
+                  </row>
+                  <row>
+                    <id>6011240</id>
+                    <Value>6011240</Value>
+                    <Name>ค่าสาธารณูปโภค /งบสร</Name>
+                    <description>ค่าสาธารณูปโภค /งบสร</description>
+                  </row>
+                  <row>
+                    <id>6011500</id>
+                    <Value>6011500</Value>
+                    <Name>งบรายจ่ายอื่น/งบสรก.</Name>
+                    <description>งบรายจ่ายอื่น/งบสรก.</description>
+                  </row>
+                  <row>
+                    <id>6010110</id>
+                    <Value>6010110</Value>
+                    <Name>เงินเดือน /งบกลาง/งบสรก.</Name>
+                    <description>เงินเดือน /งบกลาง/งบสรก.</description>
+                  </row>
+                  <row>
+                    <id>6010230</id>
+                    <Value>6010230</Value>
+                    <Name>ค่าวัสดุ /งบกลาง</Name>
+                    <description>ค่าวัสดุ /งบกลาง</description>
+                  </row>
+                </table>`;
 
-  constructor( public dialogRef: MdDialogRef<DialogSearchComponent>, private httpService: Http) {};
+  constructor( public dialogRef: MdDialogRef<DialogSearchComponent>, private httpService: Http) {}
 
   searchitem() {
     document.getElementById('progress-bar').style.display = 'block';
     console.log('S: ' + this.code_t);
     console.log('N: ' + this.name_t);
+    console.log('Y: ' + this.year_t);
     switch (this.code_t) {
       case 'TBKOSTL':
         this.resourcesList(this.name_t);
@@ -205,6 +287,9 @@ export class DialogSearchComponent implements OnInit {
       case 'TBHKONT':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
+        break;
+      case 'TBGEBER':
+        this.resourcesList(this.name_t);
         break;
     }
   }
@@ -250,6 +335,21 @@ export class DialogSearchComponent implements OnInit {
         this.gatherItem(this.xmlTBHKONT); // for TEST
         this.displayItem(name_r);
         break;
+      case 'TBGEBER': // แหล่งของเงิน พิเศษ
+        this.checkYearGEBER();
+        this.displayItem(name_r);
+        break;
+    }
+  }
+
+  // แหล่งของเงิน only 2560
+  checkYearGEBER () {
+    console.log(this.year_t);
+    if (this.year_t == '2560') {
+      console.log('T-Y');
+      this.gatherItem(this.xmlTBGEBER);
+    } else {
+      this.gatherItem('');
     }
   }
 
@@ -261,7 +361,7 @@ export class DialogSearchComponent implements OnInit {
     "valueField": "value",
     "adClientId": 1000000,
     "adOrgId": 0
-    }`
+    }`;
   }
   sentItem(xml: string, name_r) {
     console.log('Sent data to Serivce');

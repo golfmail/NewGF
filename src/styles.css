@@ -1075,6 +1075,28 @@ fieldset {
   font-weight: bold;
 }
 
+.fontTotalwhite {
+  background-color: #4b6d96;
+  text-align:left;
+  color: white;
+  font-family: tahoma, "ms Sans Serif";
+  font-size: 11px;
+  font-weight: bold;
+  border-top-style: none;
+  border-bottom-style: dotted;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.fontTotalBlack {
+  background-color: #ffff99;
+  text-align: right;
+  color: black;
+  font-family: tahoma, "ms Sans Serif";
+  font-size: 11px;
+  font-weight: bold;
+}
+
 .myapp-no-padding-dialog .mat-dialog-container {
     padding: 24px;
     padding-top: 0px;

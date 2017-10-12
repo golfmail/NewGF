@@ -18,6 +18,7 @@ import { DialogSaveComponent } from 'app/controls/dialog-save/dialog-save.compon
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { MdDatepickerModule } from '@angular/material';
 import { MdNativeDateModule } from '@angular/material';
+import { PaginationInstance } from 'ngx-pagination';
 
 // import { Subscription } from 'rxjs/Subscription';
 
@@ -83,6 +84,12 @@ import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
 
 // @Injectable()
 export class Kb021Component implements OnInit  {
+
+  public config: PaginationInstance = {
+    id: 'custom',
+    itemsPerPage: 5,
+    currentPage: 1
+  };
   // model: NgbDateStruct;
   date: {year: number, month: number};
   now = new Date();
@@ -132,7 +139,7 @@ export class Kb021Component implements OnInit  {
   TBBUDAT = '25 กรกฎาคม 2559';
   TBZZPMT = '0300200005'; // หน่วยเบิกจ่าย
   LBZZPMT = 'สำนักบริการกลาง';
-  TBXBLNR = 'P60_KIJE019';
+  TBXBLNR = 'P6000001';
   TBGEBER = '6011220'; // แหล่งของเงิน
   LBGEBER = 'งบรายจ่ายอื่น/งบสรก.';
   tbSearch_term = '3011005842123'; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี      [Send to API]
@@ -290,6 +297,7 @@ export class Kb021Component implements OnInit  {
     const dialogRef: MdDialogRef<DialogSearchComponent> = this.dialog.open(DialogSearchComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.componentInstance.code_t = this.codetx;
     dialogRef.componentInstance.name_t = this.nametx;
+    dialogRef.componentInstance.year_t = this.YEAR;
     // cssKOSTL
     // dialogRef.componentInstance.sizet = 'Large';
 
@@ -337,6 +345,11 @@ export class Kb021Component implements OnInit  {
                 this.TBHKONT = this.resultTB; // Set Value
                 this.LBHKONT = this.resultLB;
                 this.IDHKONT = this.resultID;
+                break;
+              case 'TBGEBER': // รหัสบัญชีแยกประเภททั่วไป
+                this.TBGEBER = this.resultTB; // Set Value
+                this.LBGEBER = this.resultLB;
+                // this.IDHKONT = this.resultID;
                 break;
               }
         } else {
@@ -1086,6 +1099,7 @@ export class Kb021Component implements OnInit  {
   callFunction() {
     console.log('Call Function! - Work');
   }
+
 
   ngOnInit() {
 
