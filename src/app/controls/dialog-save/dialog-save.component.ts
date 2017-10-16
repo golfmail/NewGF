@@ -80,6 +80,7 @@ export class DialogSaveComponent implements OnInit {
       if (values.ok) {
         const result: any = values.json();
         const mes = result.response.message;
+        const details = result.response.details;
         const codeX = result.response.code;
         this.TBNUMTR = '';
         // mes = 'Doc No: 10000195';
@@ -101,7 +102,7 @@ export class DialogSaveComponent implements OnInit {
           console.log('Fail');
           // this.showSuccess('ไม่สำเร็จ');
           this.code = codeX;
-          this.detail = mes;
+          this.detail = details; // mes
           this.showError('ไม่สำเร็จ');
           this.BTSHOW = true;
           this.BTEDIT = false;

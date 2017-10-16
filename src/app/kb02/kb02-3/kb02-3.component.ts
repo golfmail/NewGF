@@ -308,10 +308,23 @@ export class Kb023Component implements OnInit {
     // "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
     // "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
     this.H_WAIT = false;
+    const headers = new Headers();
+  //   const headers = new Headers({ 'Content-Type': 'application/json',
+  //   'Access-Control-Allow-Methods': 'POST',
+  //   'Access-Control-Allow-Origin': 'http://localhost:4200'
+  //  });
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    // headers.append('Access-Control-Allow-Credentials', 'true');
+    // headers.append('Access-Control-Allow-Origin', '*');
+    // headers.append('Access-Control-Allow-Methods', 'POST, OPTIONS, PUT');
+    // headers.append('Access-Control-Max-Age', '1209600');
+    // headers.append('Access-Control-Allow-Methods', ' Content-Type');
 
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
-    this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.json_searchDoc, options).subscribe(values => {
+    // const options = new RequestOptions({ headers: headers });
+    const options = new RequestOptions();
+    options.headers = headers;
+    const url = 'http://52.220.14.56:28080/NewGFws/webresources/wsLog';
+    this.httpService.post(url, this.json_searchDoc, {headers: headers}).subscribe(values => {
       // console.log('return', values);
       if (values.ok) {
         const result: any = values.json();

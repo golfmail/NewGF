@@ -104,37 +104,37 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
    xmlTBKOSTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
-                    <id>101</id>
+                    <id>50001</id>
                     <Value>0300200001</Value>
                     <Name>กกม.</Name>
                     <description>กลุ่มงานกฎหมาย</description>
                   </row>
                   <row>
-                    <id>103</id>
+                    <id>50006</id>
                     <Value>0300200003</Value>
                     <Name>กปป.</Name>
                     <description>กลุ่มงานป้องปรามการเงินนอกระบบ</description>
                   </row>
                   <row>
-                    <id>104</id>
+                    <id>50005</id>
                     <Value>0300200004</Value>
                     <Name>กตน.</Name>
                     <description>กลุ่มตรวจสอบภายใน</description>
                   </row>
                   <row>
-                    <id>105</id>
+                    <id>50004</id>
                     <Value>0300200005</Value>
                     <Name>สบก.</Name>
                     <description>สำนักบริหารกลาง</description>
                   </row>
                   <row>
-                    <id>107</id>
+                    <id>50002</id>
                     <Value>0300200007</Value>
                     <Name>สตป.</Name>
                     <description>สำนักตรวจสอบและประเมินผล</description>
                   </row>
                   <row>
-                    <id>100</id>
+                    <id>50000</id>
                     <Value>0300200000</Value>
                     <Name>สปกค.</Name>
                     <description>สำหรับทดสอบสินทรัพย์</description>
@@ -142,25 +142,25 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
   xmlTBFKBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
-                  <id>1000084</id>
+                  <id>1000091</id>
                   <Value>030021000L0633</Value>
                   <Name>การติดตาม เร่งรัด การดำเน</Name>
                   <description>การติดตาม เร่งรัด การดำเน</description>
                 </row>
                 <row>
-                  <id>030021000L0634</id>
+                  <id>1000092</id>
                   <Value>030021000L0634</Value>
                   <Name>การบริหารจัดการและพัฒนา</Name>
                   <description>การบริหารจัดการและพัฒนา</description>
                 </row>
 		            <row>
-                  <id>P1000</id>
+                  <id>1000093</id>
                   <Value>P1000</Value>
                   <Name>ส่วนกลาง</Name>
                   <description>ส่วนกลาง</description>
                 </row>
 	            	<row>
-                  <id>03002100000000</id>
+                  <id>1000090</id>
                   <Value>03002100000000</Value>
                   <Name>กิจกรรม สำหรับการ...</Name>
                   <description>กิจกรรม สำหรับการ...</description>
@@ -208,37 +208,37 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
   xmlTBGEBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
-                    <id>6011220</id>
+                    <id>1000150</id>
                     <Value>6011220</Value>
                     <Name>ค่าใช้สอย /งบสรก.</Name>
                     <description>ค่าใช้สอย /งบสรก.</description>
                   </row>
                   <row>
-                    <id>6011230</id>
+                    <id>1000151</id>
                     <Value>6011230</Value>
                     <Name>ค่าวัสดุ /งบสรก.</Name>
                     <description>ค่าวัสดุ /งบสรก.</description>
                   </row>
                   <row>
-                    <id>6011240</id>
+                    <id>1000152</id>
                     <Value>6011240</Value>
                     <Name>ค่าสาธารณูปโภค /งบสร</Name>
                     <description>ค่าสาธารณูปโภค /งบสร</description>
                   </row>
                   <row>
-                    <id>6011500</id>
+                    <id>1000154</id>
                     <Value>6011500</Value>
                     <Name>งบรายจ่ายอื่น/งบสรก.</Name>
                     <description>งบรายจ่ายอื่น/งบสรก.</description>
                   </row>
                   <row>
-                    <id>6010110</id>
+                    <id>1000003</id>
                     <Value>6010110</Value>
                     <Name>เงินเดือน /งบกลาง/งบสรก.</Name>
                     <description>เงินเดือน /งบกลาง/งบสรก.</description>
                   </row>
                   <row>
-                    <id>6010230</id>
+                    <id>1000149</id>
                     <Value>6010230</Value>
                     <Name>ค่าวัสดุ /งบกลาง</Name>
                     <description>ค่าวัสดุ /งบกลาง</description>
