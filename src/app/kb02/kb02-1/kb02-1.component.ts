@@ -988,6 +988,8 @@ export class Kb021Component implements OnInit  {
       // ^ รอ Service Adempire พร้อม
     }
     this.xml = this.xml + `\n\</operations>`;
+    console.log(this.SAVELIST.length);
+    // this._DialogSaveComponent.savelist = this.SAVELIST;
     const config = new MdDialogConfig();
     const dialogRef: MdDialogRef<DialogSaveComponent> = this.dialog.open(DialogSaveComponent, config);
     dialogRef.componentInstance.xml_s = this.xml;
@@ -1010,6 +1012,7 @@ export class Kb021Component implements OnInit  {
     dialogRef.componentInstance.TBKBLNR =  this.TBKBLNR;
     dialogRef.componentInstance.LBKBLNR = this.LBKBLNR;
     dialogRef.componentInstance.SUMCOST = this.SUMCOST;
+    dialogRef.componentInstance.SAVELIST = this.SAVELIST;
       dialogRef.afterClosed()
       .subscribe(selection => {
         if (selection) {

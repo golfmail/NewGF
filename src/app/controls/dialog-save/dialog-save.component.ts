@@ -13,6 +13,7 @@ export class DialogSaveComponent implements OnInit {
   xml_s: string;
   xml_l: string;
   xml_log: string;
+  save_log: String;
   TBNUMTR = '-'; // 3100000041
   name_tr = 'Something'; // Something
   TBBUKRS: string;
@@ -73,7 +74,7 @@ export class DialogSaveComponent implements OnInit {
     console.log('xml_s: ' + this.xml_s);
     const headers = new Headers({ 'Content-Type': 'application/xml' });
     const options = new RequestOptions({ headers: headers });
-    console.log(this.savelist);
+    console.log(this.SAVELIST);
 
     this.httpService.post('http://idp.yai.io:8082/rest/kb02', this.xml_s, options).subscribe(values => {
       console.log('return', values);
@@ -128,12 +129,12 @@ export class DialogSaveComponent implements OnInit {
   saveLog() {
     this.getDateNow();
     this.createXMLlog(); // Gen XML LOG
-    console.log('xml_log: \n' + this.xml_log); // TEST
+    console.log('save_log: \n' + this.save_log); // TEST
     const headers = new Headers({ 'Content-Type': 'text/xml'}); // text/plain
     const options = new RequestOptions({ headers: headers });
 
     // รอ service log พร้อมใช้งาน
-    this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.xml_log, options).subscribe(values => {
+    this.httpService.post('http://52.220.14.56:28080/NewGFws/webresources/wsLog', this.save_log, options).subscribe(values => {
       console.log('return', values);
       if (values.ok) {
         const result: any = values.json();
@@ -241,8 +242,32 @@ export class DialogSaveComponent implements OnInit {
              </dataRow>\n\
          </modelCRUD>\n\
        </operation>`;
-    for (let index = 0; index < this.savelist.length; index++) {
-    const element = this.savelist[index];
+
+      // save_log (Header)
+      this.save_log = ''; // Clear TEST-ONLY
+      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.TBBUKRS},
+      ${this.LBBUKRS},${this.TBZZPMT},${this.LBZZPMT},${this.LUSERID},${this.DDGSBER},
+      ${this.IDBLART},${this.IDDATEA},${this.IDDATEI},${this.TBXBLNR},${this.tbSearch_term},,
+      ${this.LBTERM},,${this.CPUDT},${this.CPUTIME},
+      ${this.TBKBLNR},${this.LBKBLNR},${this.SUMCOST}`;
+
+      console.log(this.SAVELIST.length);
+
+    for (let index = 0; index < this.SAVELIST.length; index++) {
+    const element = this.SAVELIST[index];
+
+    console.log('hi, detail');
+
+    // save log (Details)
+    this.save_log = this.save_log + `,${this.LOGYEAR},${this.LOGNO},${index + 1}
+    ,${element.TBBUKRS},${this.TBNUMTR},${element.GJAHR},${element.TBWRBTR}
+    ,${element.TBHKONT},${element.LBHKONT},${element.TBKOSTL},${element.LBKOSTL}
+    ,${element.TBFISTL},${element.LBFISTL},${element.TBFKBER},${element.LBFKBER}
+    ,${element.TBPRZNR},${element.LBPRZNR},${element.TBZZOBJ},${element.LBZZOBJ}
+    ,${element.TBZZUNIT},${element.LBZZUNIT},${element.TBZZLOAN},${element.LBZZLOAN}
+    ,${element.TBVBUND},${element.LBVBUND},${element.SGTXT},${element.TBGEBER},${element.LBGEBER}`;
+
+
     this.xml_log = this.xml_log + `\n\<operation>
     <modelCRUD>\n\
       <tableName>logDetail</tableName>\n\
@@ -337,13 +362,8 @@ export class DialogSaveComponent implements OnInit {
         </modelCRUD>\n\
       </operation>`;
     }
-      //  console.log(this.xml_log); // TEST OUTPUT
-      this.xml_log = ''; // Clear TEST-ONLY
-      this.xml_log = `${this.LOGYEAR},${this.LOGNO},${this.TBBUKRS},
-      ${this.LBBUKRS},${this.TBZZPMT},${this.LBZZPMT},${this.LUSERID},${this.DDGSBER},
-      ${this.IDBLART},${this.IDDATEA},${this.IDDATEI},${this.TBXBLNR},${this.tbSearch_term},,
-      ${this.LBTERM},,${this.CPUDT},${this.CPUTIME},
-      ${this.TBKBLNR},${this.LBKBLNR},${this.SUMCOST}`;
+
+      console.log(this.save_log);
       console.log(this.xml_log);
 
   }

@@ -115,5 +115,39 @@ md-spinner {
   margin: 5px 10px 0px 0px;
 }
 
+.pagination-next {
+  cursor: pointer;
+}
+
+.pagination-previous {
+  cursor: pointer;
+}
+
+.custom-pagination {
+
+}
+
+ul li{
+  display: inline;
+}
+
+.text-a {
+  color: black;
+  padding: 5px;
+}
+
+.text-a :hover {
+  background-color: rgb(214, 213, 213);
+  cursor: pointer;
+}
+.current {
+  /* display:block; */
+  background-color: #2199e8;
+  padding: 5px;
+  color: white;
+}
+
+
+
 
 
