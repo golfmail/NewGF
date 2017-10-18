@@ -113,6 +113,16 @@ export class GridViewComponent implements OnInit {
     }
   }
 
+  numberWithCommas(x) {
+    const number = x.toString();
+    let baht = number.split('.')[0];
+    const cents = (number.split('.')[1] || '') + '00';
+    baht = baht.split('').reverse().join('')
+        .replace(/(\d{3}(?!$))/g, '$1,')
+        .split('').reverse().join('');
+    return baht + '.' + cents.slice(0, 2);
+  }
+
   coverYear(year) {
     year = Number(year) + 543;
     return year;
