@@ -16,8 +16,8 @@ export class DialogSaveComponent implements OnInit {
   save_log: String;
   TBNUMTR = '-'; // 3100000041
   name_tr = 'Something'; // Something
-  TBBUKRS: string;
-  GJAHR: number;
+  // TBBUKRS: string;
+  // GJAHR: number;
   res: String = 'สำเร็จ';
   code: String;
   detail: String = 'ตรวจสอบเอกสาร - ไม่มีข้อผิดพลาด';
@@ -27,30 +27,34 @@ export class DialogSaveComponent implements OnInit {
   BTSEARCH: Boolean = false;
   BTLOG: Boolean = false;
 
-  // FOR XML_LOG
-  SAVELIST: any[] = [];
-  savelist = this.SAVELIST;
+  // New Value by LOG
   CPUDT = ''; // DATE ex: 11.12.2017
   CPUTIME = ''; // TIME ex: 22:40:59
   LOGYEAR: Number; // YEAR NOW ex: 2017
   LOGNO: Number = 0; // Log No. // eTEST
   // XML_LOG HEADER
-  LBBUKRS = '';
-  TBZZPMT = '';
-  LBZZPMT = '';
-  LUSERID = '';
-  DDGSBER = '';
-  IDBLART = '';
-  IDDATEA = '';
-  IDDATEI = '';
-  TBXBLNR = '';
-  tbSearch_term = '';
-  LIFNR = '';
-  LBTERM = '';
-  ZLSCH = '';
-  TBKBLNR = '';
-  LBKBLNR = '';
-  SUMCOST: Number = 0;
+  // LBBUKRS = '';
+  // TBZZPMT = '';
+  // LBZZPMT = '';
+  // LUSERID = '';
+  // DDGSBER = '';
+  // IDBLART = '';
+  // IDDATEA = '';
+  // IDDATEI = '';
+  // TBXBLNR = '';
+  // tbSearch_term = '';
+  // LIFNR = '';
+  // LBTERM = '';
+  // ZLSCH = '';
+  // TBKBLNR = '';
+  // LBKBLNR = '';
+  // SUMCOST: Number = 0;
+
+  // Document: Header (Object)
+  SAVEHEAD;
+
+  // Ducument: Details (Array)
+  SAVELIST: any[] = [];
 
   // Progress
   H_WAIT: Boolean = true;
@@ -95,7 +99,7 @@ export class DialogSaveComponent implements OnInit {
           this.TBNUMTR =  mes.substring(8); // Doc NO. (String)
           this.BTSHOW = false;
           this.BTEDIT = true;
-          this.LOGNO = Number(this.GJAHR + this.TBNUMTR);
+          this.LOGNO = Number(this.SAVEHEAD.GJAHR + this.TBNUMTR);
           this.saveLog(); // TEST Save Log
           this.H_WAIT = true;
           this.H_TABLE = false;
@@ -183,46 +187,46 @@ export class DialogSaveComponent implements OnInit {
                 <val>${this.LOGNO}</val>\n\
               </field>\n\
               <field column="BUKRS">\n\
-                <val>${this.TBBUKRS}</val>\n\
+                <val>${this.SAVEHEAD.TBBUKRS}</val>\n\
               </field>\n\
               <field column="BUKRS_NAME">\n\
-                <val>${this.LBBUKRS}</val>\n\
+                <val>${this.SAVEHEAD.LBBUKRS}</val>\n\
               </field>\n\
               <field column="ZZPMT">\n\
-                <val>${this.TBZZPMT}</val>\n\
+                <val>${this.SAVEHEAD.TBZZPMT}</val>\n\
               </field>\n\
               <field column="ZZPMT_NAME">\n\
-                <val>${this.LBZZPMT}</val>\n\
+                <val>${this.SAVEHEAD.LBZZPMT}</val>\n\
               </field>\n\
               <field column="LUSERID">\n\
-                <val>${this.LUSERID}</val>\n\
+                <val>${this.SAVEHEAD.LUSERID}</val>\n\
               </field>\n\
               <field column="GSBER">\n\
-                <val>${this.DDGSBER}</val>\n\
+                <val>${this.SAVEHEAD.DDGSBER}</val>\n\
               </field>\n\
               <field column="BLART">\n\
-                <val>${this.IDBLART}</val>\n\
+                <val>${this.SAVEHEAD.IDBLART}</val>\n\
               </field>\n\
               <field column="BLDAT">\n\
-                <val>${this.IDDATEA}</val>\n\
+                <val>${this.SAVEHEAD.IDDATEA}</val>\n\
               </field>\n\
               <field column="BUDAT">\n\
-                <val>${this.IDDATEI}</val>\n\
+                <val>${this.SAVEHEAD.IDDATEI}</val>\n\
               </field>\n\
               <field column="XBLNR">\n\
-                <val>${this.TBXBLNR}</val>\n\
+                <val>${this.SAVEHEAD.TBXBLNR}</val>\n\
               </field>\n\
               <field column="SEARCH_TERM">\n\
-                <val>${this.tbSearch_term}</val>\n\
+                <val>${this.SAVEHEAD.tbSearch_term}</val>\n\
               </field>\n\
               <field column="LIFNR">\n\
-                <val></val>\n\
+                <val>${this.SAVEHEAD.LIFNR}</val>\n\
               </field>\n\
               <field column="NAME1">\n\
-                <val>${this.LBTERM}</val>\n\
+                <val>${this.SAVEHEAD.LBTERM}</val>\n\
               </field>\n\
               <field column="ZLSCH">\n\
-                <val></val>\n\
+                <val>${this.SAVEHEAD.ZLSCH}</val>\n\
               </field>\n\
               <field column="CPUDT">\n\
                 <val>${this.CPUDT}</val>\n\
@@ -231,13 +235,13 @@ export class DialogSaveComponent implements OnInit {
                 <val>${this.CPUTIME}</val>\n\
               </field>\n\
               <field column="KBLNR">\n\
-                <val>${this.TBKBLNR}</val>\n\
+                <val>${this.SAVEHEAD.TBKBLNR}</val>\n\
               </field>\n\
               <field column="KBLNR_name">\n\
-                <val>${this.LBKBLNR}</val>\n\
+                <val>${this.SAVEHEAD.LBKBLNR}</val>\n\
               </field>\n\
               <field column="SUMCOST">\n\
-                <val>${this.SUMCOST}</val>\n\
+                <val>${this.SAVEHEAD.SUMCOST}</val>\n\
               </field>\n\
              </dataRow>\n\
          </modelCRUD>\n\
@@ -245,11 +249,11 @@ export class DialogSaveComponent implements OnInit {
 
       // save_log (Header)
       this.save_log = ''; // Clear TEST-ONLY
-      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.TBBUKRS},
-      ${this.LBBUKRS},${this.TBZZPMT},${this.LBZZPMT},${this.LUSERID},${this.DDGSBER},
-      ${this.IDBLART},${this.IDDATEA},${this.IDDATEI},${this.TBXBLNR},${this.tbSearch_term},,
-      ${this.LBTERM},,${this.CPUDT},${this.CPUTIME},
-      ${this.TBKBLNR},${this.LBKBLNR},${this.SUMCOST}`;
+      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.TBBUKRS},
+      ${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},
+      ${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},${this.SAVEHEAD.tbSearch_term},,
+      ${this.SAVEHEAD.LBTERM},,${this.CPUDT},${this.CPUTIME},
+      ${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
 
       console.log(this.SAVELIST.length);
 
@@ -364,7 +368,7 @@ export class DialogSaveComponent implements OnInit {
     }
 
       console.log(this.save_log);
-      console.log(this.xml_log);
+      // console.log(this.xml_log);
 
   }
 

@@ -2,14 +2,14 @@ select{
     text-align-last:left;
 }
 
-:not(input):not(textarea),
+/* :not(input):not(textarea),
 :not(input):not(textarea):after,
 :not(input):not(textarea):before {
     -webkit-user-select: none;
     -ms-user-select: none;
     -moz-user-select: -moz-none;
     user-select: none;
-}
+} */
 
 :host /deep/ .mat-tab-label {
     /* min-width: 0!important;

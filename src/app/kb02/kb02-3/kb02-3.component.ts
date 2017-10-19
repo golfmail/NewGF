@@ -165,8 +165,8 @@ export class Kb023Component implements OnInit {
   YEAR = Number(this.GJAHR.getFullYear());
 
   // เลขที่ใบขอเบิก
-  BELNR1 = '3100000004';
-  BELNR2 = '3100000009';
+  BELNR1 = '10000745';
+  BELNR2 = '10000747';
 
   // User ID
   USERID;
@@ -220,7 +220,7 @@ export class Kb023Component implements OnInit {
     console.log(this.RADIO_TYPE);
     this.coverDateFT();
     this.genXMLSearch(tab);
-    this.sendXMLSearch(); // TEST
+    this.sendXMLSearch(tab); // TEST
     // this.getArrayXML();
     // this.GridViewComponent.RLINK = this.route.url;
     // this.forResult = false;
@@ -254,6 +254,9 @@ export class Kb023Component implements OnInit {
 		      </modelCRUD>
         </operation>`;
         // Change to JSON
+      this.json_searchDoc = `{"BELNR1": "${this.BELNR1}",
+                              "BELNR2": "${this.BELNR2}",
+                              "GJAHR": "${this.YEAR - 543}"}`;
     } else if (tab === 1) {
       this.xml_searchDoc = '';
       this.xml_searchDoc = `<operation>
@@ -291,44 +294,41 @@ export class Kb023Component implements OnInit {
         </operation>`;
         // JSON
         this.json_searchDoc = `{"DATETYPE":"${this.SELECTED_DATE}",
-                                  "F_DATE": "${this.F_DATEC}",
-                                  "T_DATE": "${this.T_DATEC}",
-                                  "TBXBLNR1": "${this.TBXBLNR1}",
-                                  "TBXBLNR2": "${this.TBXBLNR2}",
-                                  "TBSTERM": "${this.TBSTERM}",
-                                  "IDBLART1": "${this.IDBLART1}",
-                                  "IDBLART2": "${this.IDBLART2}"}`;
+                                "F_DATE": "${this.F_DATEC}",
+                                "T_DATE": "${this.T_DATEC}",
+                                "TBXBLNR1": "${this.TBXBLNR1}",
+                                "TBXBLNR2": "${this.TBXBLNR2}",
+                                "TBSTERM": "${this.TBSTERM}",
+                                "IDBLART1": "${this.IDBLART1}",
+                                "IDBLART2": "${this.IDBLART2}"}`;
     }
     console.log(this.json_searchDoc);
   }
 
-  sendXMLSearch() {
+  sendXMLSearch(tab) {
     // รอ service log พร้อมใช้งาน
-    // this.json_searchDoc = `{"DATETYPE":"CPUDT","F_DATE": "2/9/2017",
-    // "T_DATE": "22/10/2017","TBXBLNR1":"P60_011111","TBXBLNR2": "P60_099999",
-    // "TBSTERM": "2032400000","IDBLART1": "K0","IDBLART2": "KM"}`;
     this.H_WAIT = false;
     const headers = new Headers();
-  //   const headers = new Headers({ 'Content-Type': 'application/json',
-  //   'Access-Control-Allow-Methods': 'POST',
-  //   'Access-Control-Allow-Origin': 'http://localhost:4200'
-  //  });
     headers.append('Content-Type', 'application/json;charset=UTF-8');
-    // headers.append('Access-Control-Allow-Credentials', 'true');
-    // headers.append('Access-Control-Allow-Origin', '*');
-    // headers.append('Access-Control-Allow-Methods', 'POST, OPTIONS, PUT');
-    // headers.append('Access-Control-Max-Age', '1209600');
-    // headers.append('Access-Control-Allow-Methods', ' Content-Type');
-
-    // const options = new RequestOptions({ headers: headers });
     const options = new RequestOptions();
     options.headers = headers;
-    const url = 'http://52.220.14.56:28080/NewGFws/webresources/wsLog';
+    let url = '';
+    if (tab === 0) {
+      url = 'http://52.220.14.56:28080/NewGFws/webresources/wsLog/T1';
+    } else if (tab === 1 ) {
+      url = 'http://52.220.14.56:28080/NewGFws/webresources/wsLog';
+    }
+    // const url = 'http://52.220.14.56:28080/NewGFws/webresources/wsLog';
     this.httpService.post(url, this.json_searchDoc, {headers: headers}).subscribe(values => {
-      // console.log('return', values);
+      console.log('return', values);
       if (values.ok) {
         const result: any = values.json();
         // this.RESLIST = result.result;
+        if (result.result) {
+            console.log(result.result);
+        } else if (result.a) {
+            console.log(result.a);
+        }
         if (result.result.length > 0 && result.result.length <= 300) {
           this.RESLIST = result.result;
           this.forResult = false;

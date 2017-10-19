@@ -1,5 +1,4 @@
-﻿// import { DocSearch } from './../table-list-view';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+﻿import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';
 import { Component, OnInit, Injectable, Output, EventEmitter, Inject} from '@angular/core';
@@ -586,7 +585,7 @@ export class Kb021Component implements OnInit  {
 
   numberWithDecimal(x) {
     const number = x.toString();
-    let baht = number.split('.')[0];
+    const baht = number.split('.')[0];
     const cents = (number.split('.')[1] || '') + '00';
     return baht + '.' + cents.slice(0, 2);
   }
@@ -989,30 +988,30 @@ export class Kb021Component implements OnInit  {
     }
     this.xml = this.xml + `\n\</operations>`;
     console.log(this.SAVELIST.length);
-    // this._DialogSaveComponent.savelist = this.SAVELIST;
+
     const config = new MdDialogConfig();
     const dialogRef: MdDialogRef<DialogSaveComponent> = this.dialog.open(DialogSaveComponent, config);
     dialogRef.componentInstance.xml_s = this.xml;
-    dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
-    dialogRef.componentInstance.GJAHR = this.GJAHR;
-    dialogRef.componentInstance.SAVELIST = this.SAVELIST;
-    dialogRef.componentInstance.LBBUKRS =  this.LBBUKRS;
-    dialogRef.componentInstance.TBZZPMT =  this.TBZZPMT;
-    dialogRef.componentInstance.LBZZPMT =  this.LBZZPMT;
-    dialogRef.componentInstance.LUSERID =  this.LUSERID;
-    dialogRef.componentInstance.DDGSBER =  this.DDGSBER;
-    dialogRef.componentInstance.IDBLART =  this.IDBLART;
-    dialogRef.componentInstance.IDDATEA =  this.IDDATEA;
-    dialogRef.componentInstance.IDDATEI =  this.IDDATEI;
-    dialogRef.componentInstance.TBXBLNR =  this.TBXBLNR;
-    dialogRef.componentInstance.tbSearch_term =  this.tbSearch_term;
-    dialogRef.componentInstance.LIFNR =  this.LIFNR;
-    dialogRef.componentInstance.LBTERM =  this.LBTERM;
-    dialogRef.componentInstance.ZLSCH =  this.ZLSCH;
-    dialogRef.componentInstance.TBKBLNR =  this.TBKBLNR;
-    dialogRef.componentInstance.LBKBLNR = this.LBKBLNR;
-    dialogRef.componentInstance.SUMCOST = this.SUMCOST;
-    dialogRef.componentInstance.SAVELIST = this.SAVELIST;
+    // dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
+    // dialogRef.componentInstance.GJAHR = this.GJAHR;
+    // dialogRef.componentInstance.LBBUKRS =  this.LBBUKRS;
+    // dialogRef.componentInstance.TBZZPMT =  this.TBZZPMT;
+    // dialogRef.componentInstance.LBZZPMT =  this.LBZZPMT;
+    // dialogRef.componentInstance.LUSERID =  this.LUSERID;
+    // dialogRef.componentInstance.DDGSBER =  this.DDGSBER;
+    // dialogRef.componentInstance.IDBLART =  this.IDBLART;
+    // dialogRef.componentInstance.IDDATEA =  this.IDDATEA;
+    // dialogRef.componentInstance.IDDATEI =  this.IDDATEI;
+    // dialogRef.componentInstance.TBXBLNR =  this.TBXBLNR;
+    // dialogRef.componentInstance.tbSearch_term =  this.tbSearch_term;
+    // dialogRef.componentInstance.LIFNR =  this.LIFNR;
+    // dialogRef.componentInstance.LBTERM =  this.LBTERM;
+    // dialogRef.componentInstance.ZLSCH =  this.ZLSCH;
+    // dialogRef.componentInstance.TBKBLNR =  this.TBKBLNR;
+    // dialogRef.componentInstance.LBKBLNR = this.LBKBLNR;
+    // dialogRef.componentInstance.SUMCOST = this.SUMCOST;
+    dialogRef.componentInstance.SAVEHEAD = this.madeHeadDoc();
+    dialogRef.componentInstance.SAVELIST = this.SAVELIST; // Document: Detail
       dialogRef.afterClosed()
       .subscribe(selection => {
         if (selection) {
@@ -1031,17 +1030,40 @@ export class Kb021Component implements OnInit  {
           // this.createXMLlog(); // (OK) Create XML for Log
         } else {
           // User clicked 'Cancel' or clicked outside the dialog
-          console.log('Cccc');
         }
       });
 
 
   }
 
+  madeHeadDoc() {
+    const h = {
+      'TBBUKRS' : this.TBBUKRS,
+      'GJAHR'   : this.GJAHR,
+      'LBBUKRS' : this.LBBUKRS,
+      'TBZZPMT' : this.TBZZPMT,
+      'LBZZPMT' : this.LBZZPMT,
+      'LUSERID' : this.LUSERID,
+      'DDGSBER' : this.DDGSBER,
+      'IDBLART' : this.IDBLART,
+      'IDDATEA' : this.IDDATEA,
+      'IDDATEI' : this.IDDATEI,
+      'TBXBLNR' : this.TBXBLNR,
+      'tbSearch_term' : this.tbSearch_term,
+      'LIFNR'   : this.LIFNR,
+      'LBTERM'  : this.LBTERM,
+      'ZLSCH'   : this.ZLSCH,
+      'TBKBLNR' : this.TBKBLNR,
+      'LBKBLNR' : this.LBKBLNR,
+      'SUMCOST' : this.SUMCOST
+    };
+    return h;
+  }
+
   onGetDocSearch(BELNR, GJAHR) {
     this.EXPAND = false;
-    const jsonHead = this.getHeadDoc(BELNR, GJAHR); // get XML Head Doc
-    this.getXMLServiceDoc(jsonHead); // send XML Doc to Service and Get Result
+    const jsonHead = this.madejson(BELNR, GJAHR); // get XML Head Doc
+    this.getServiceDoc(jsonHead); // send XML Doc to Service and Get Result
 
     // After Get Doc Detail
     this.TBBELNR = BELNR;
@@ -1051,34 +1073,15 @@ export class Kb021Component implements OnInit  {
 
   }
 
-  getHeadDoc(BELNR, GJAHR) {
+  madejson(BELNR, GJAHR) {
     let jsonHeader = '';
-    // let xmlHeader = '';
-    jsonHeader = `{"BELNR":"${BELNR}","GJAHR":"${GJAHR}"}`;
-    // xmlHeader =
-    // `<operation>
-    //   <modelCRUD>
-    //   <tableName>DocHeader</tableName>
-    //   <recordID>0</recordID>
-    //   <action>CreateUpdate</action>
-    //     <dataRow>
-    //       <field column="BELNR">
-    //         <val>${id}</val>
-    //       </field>
-    //       <field column="GJAHR">
-    //         <val>${GJAHR}</val>
-    //       </field>
-    //     </dataRow>
-    //     </modelCRUD>
-    //   </operation>`;
-    // let headerDoc: any[];
-    // this._Kb023Component.onGetDoc(id);
+    jsonHeader = `{"BELNR":"${BELNR}", "GJAHR":"${GJAHR}"}`;
     return jsonHeader;
   }
 
-  getXMLServiceDoc(jsonDocHeader) {
+  getServiceDoc(jsonDocHeader) {
     // รอ service get Doc พร้อมใช้งาน
-    // มี XML กลับมา
+    // มี json กลับมา
     console.log(jsonDocHeader); // TEST-ONLY
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
