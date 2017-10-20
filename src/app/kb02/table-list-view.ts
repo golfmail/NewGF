@@ -35,6 +35,7 @@ export class TableList {
     LBZZUNIT: string; // (N) รหัสเจ้าของบัญชีย่อย
     LBZZLOAN: string; // (N) รหัสหมวดพัสดุ
     LBVBUND: string; // (N) รหัสหน่วยงานคู่ค้า
+    LBKBLNR: String;
 
     // ALL ID
     IDFISTL: string; // (ID) รหัสงบประมาณ

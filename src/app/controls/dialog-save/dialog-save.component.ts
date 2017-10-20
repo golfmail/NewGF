@@ -249,11 +249,11 @@ export class DialogSaveComponent implements OnInit {
 
       // save_log (Header)
       this.save_log = ''; // Clear TEST-ONLY
-      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.TBBUKRS},
-      ${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},
-      ${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},${this.SAVEHEAD.tbSearch_term},,
-      ${this.SAVEHEAD.LBTERM},,${this.CPUDT},${this.CPUTIME},
-      ${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
+      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.TBBUKRS},`
+      + `${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},`
+      + `${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},`
+      + `${this.SAVEHEAD.tbSearch_term},,${this.SAVEHEAD.LBTERM},,${this.CPUDT},${this.CPUTIME},`
+      + `${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
 
       console.log(this.SAVELIST.length);
 
@@ -263,13 +263,13 @@ export class DialogSaveComponent implements OnInit {
     console.log('hi, detail');
 
     // save log (Details)
-    this.save_log = this.save_log + `,${this.LOGYEAR},${this.LOGNO},${index + 1}
-    ,${element.TBBUKRS},${this.TBNUMTR},${element.GJAHR},${element.TBWRBTR}
-    ,${element.TBHKONT},${element.LBHKONT},${element.TBKOSTL},${element.LBKOSTL}
-    ,${element.TBFISTL},${element.LBFISTL},${element.TBFKBER},${element.LBFKBER}
-    ,${element.TBPRZNR},${element.LBPRZNR},${element.TBZZOBJ},${element.LBZZOBJ}
-    ,${element.TBZZUNIT},${element.LBZZUNIT},${element.TBZZLOAN},${element.LBZZLOAN}
-    ,${element.TBVBUND},${element.LBVBUND},${element.SGTXT},${element.TBGEBER},${element.LBGEBER}`;
+    this.save_log = this.save_log + `,${this.LOGYEAR},${this.LOGNO},${index + 1}`
+    + `,${element.TBBUKRS},${this.TBNUMTR},${element.GJAHR},${element.TBWRBTR}`
+    + `,${element.TBHKONT},${element.LBHKONT},${element.TBKOSTL},${element.LBKOSTL}`
+    + `,${element.TBFISTL},${element.LBFISTL},${element.TBFKBER},${element.LBFKBER}`
+    + `,${element.TBPRZNR},${element.LBPRZNR},${element.TBZZOBJ},${element.LBZZOBJ}`
+    + `,${element.TBZZUNIT},${element.LBZZUNIT},${element.TBZZLOAN},${element.LBZZLOAN}`
+    + `,${element.TBVBUND},${element.LBVBUND},${element.SGTXT},${element.TBGEBER},${element.LBGEBER}`;
 
 
     this.xml_log = this.xml_log + `\n\<operation>

@@ -7,6 +7,8 @@
 })
 export class MenuLeftComponent implements OnInit {
 
+  LINK_HOME = '/';
+
   constructor() {}
 
   ngOnInit() {

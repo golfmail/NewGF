@@ -1,0 +1,24 @@
+.headerSub {
+  color: white;
+  background-color: #4b4b71;
+  border: 0px;
+}
+
+.menu-footer td {
+  border: 0px;
+  FONT-FAMILY: Tahoma;
+  FONT-SIZE: 11px;
+  text-align: right;
+}
+
+.menu-footer-nav td {
+  border: 0px;
+  FONT-FAMILY: Tahoma;
+  FONT-SIZE: 11px;
+  text-align: right;
+  color: rgb(230, 230, 230);
+}
+
+.menu-footer-nav span {
+  cursor: pointer;
+}

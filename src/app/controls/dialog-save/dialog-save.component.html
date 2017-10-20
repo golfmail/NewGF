@@ -23,11 +23,11 @@
     <br>
     {{ERR_TEXT}}
   </div>
-  <div md-dialog-actions align='center' class="button-row">
-    <!-- <button  md-raised-button (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
-    <button  md-raised-button (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button> -->
-    <button [disabled]="B_SAVE" (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
-    <button [disabled]="B_EDIT" (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+  <div md-dialog-actions  class="button-row" align='center'>
+    <span align="middle">
+        <button [disabled]="B_SAVE" (click)="confirmSave()" color="primary">บันทึกข้อมูล</button>
+        <button [disabled]="B_EDIT" (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
+    </span>
   </div>
 </div>
 <div id='showSuccess' style="display:none">
@@ -58,7 +58,8 @@
     </span>
     <span >
         <button [disabled]="BTSEARCH" (click)="toSearch()" >ค้นหาเอกสาร</button>
-        <button [disabled]="BTLOG" (click)="dialogRef.close()">Log</button><img [hidden]="SAVEDLOG" src="./../../../assets/Images/checked_64.png" align='center' alt="saved to log" height="20" width="20">
+        <button [disabled]="BTLOG" (click)="dialogRef.close()">Log</button>
+        <img [hidden]="SAVEDLOG" src="./../../../assets/Images/checked_64.png" align="middle" alt="saved to log" height="20" width="20">
       </span>
   </div>
 </div>

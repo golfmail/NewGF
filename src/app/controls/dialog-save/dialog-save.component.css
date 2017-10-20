@@ -65,3 +65,8 @@ body {
   font-weight: bold;
   color: red;
 }
+
+.button-row {
+  text-align: center;
+  vertical-align: center;
+}

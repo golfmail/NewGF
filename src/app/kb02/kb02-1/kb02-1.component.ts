@@ -18,60 +18,8 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { MdDatepickerModule } from '@angular/material';
 import { MdNativeDateModule } from '@angular/material';
 import { PaginationInstance } from 'ngx-pagination';
-
-// import { Subscription } from 'rxjs/Subscription';
-
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
-
-
 import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
-// import { Popup } from 'ng2-opd-popup';
-// import {NgbModule, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-// import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
-// import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-// export class NgbdDatepickerPopup {
-//   model;
-// }
-
-// const I18N_VALUES = {
-//   'th': {
-//     weekdays: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-//     days: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัส', 'ศุกร์', 'เสาร์', 'อาทิตย์'],
-//     daysShort: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-//     daysMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส', 'อา'],
-//     months: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-//              'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-//     monthsShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
-//     today: 'วันนี้'
-//   }
-  // other languages you would support
-// };
-
-// Define a service holding the language. You probably already have one if your app is i18ned. Or you could also
-// use the Angular LOCALE_ID value
-// @Injectable()
-// export class I18n {
-//   language = 'th';
-// }
-
-// Define custom service providing the months and weekdays translations
-// @Injectable()
-// export class CustomDatepickerI18n extends NgbDatepickerI18n {
-
-//   constructor(private _i18n: I18n) {
-//     super();
-//   }
-
-//   getWeekdayShortName(weekday: number): string {
-//     return I18N_VALUES[this._i18n.language].weekdays[weekday ];
-//   }
-//   getMonthShortName(month: number): string {
-//     return I18N_VALUES[this._i18n.language].months[month - 1];
-//   }
-//   getMonthFullName(month: number): string {
-//     return this.getMonthShortName(month);
-//   }
-// }
 
 @Component({
   selector: 'kb02-1',
@@ -176,18 +124,18 @@ export class Kb021Component implements OnInit  {
   // TEXT
   SGTXT = '';
 
-  // Hard coding for Label
-  LBTERM = 'มหาวิทยาลัยธรรมศาสตร์';
-  LBKBLNR = ''; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
-  LBKOSTL = 'สำนักบริหารกลาง';
-  LBFKBER = 'การติดตาม เร่งรัด การดำเน';
-  LBFISTL = 'โครงการจัดตั้งศูนย์ค';
-  LBPRZNR = '';
-  LBZZOBJ = '';
-  LBZZLOAN = '';
-  LBHKONT = 'ค่าซ่อมแซมและค่าบำรุงรักษา';
-  LBZZUNIT = ''; // (N) รหัสเจ้าของบัญชีย่อย
-  LBVBUND = ''; // (N) รหัสหน่วยงานคู่ค้า
+  // Hard coding for #Label
+  LBTERM: String;
+  LBKBLNR: String; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
+  LBKOSTL: String;
+  LBFKBER: String;
+  LBFISTL: String;
+  LBPRZNR: String;
+  LBZZOBJ: String;
+  LBZZLOAN: String;
+  LBHKONT: String;
+  LBZZUNIT: String; // (N) รหัสเจ้าของบัญชีย่อย
+  LBVBUND: String; // (N) รหัสหน่วยงานคู่ค้า
 
   // Disable & Show
   DSTBALL;
@@ -239,6 +187,7 @@ export class Kb021Component implements OnInit  {
   evilTitle2 ;
   logs: string[] = [];
   SAVELIST: any[] = [];
+  HEADLIST; // Document Header
   // savelist = this.SAVELIST;
   selectedList: TableList;
   valuelist = 0;
@@ -278,12 +227,7 @@ export class Kb021Component implements OnInit  {
     private router: Router,
     private _Kb023Component: Kb023Component) {
   }
-  // constructor(private ListViewComponent: ListViewComponent) {
-  // }
 
-  // selectToday() {
-  //   this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
-  // }
   detailSave() {
     console.log('detailSave');
   }
@@ -992,24 +936,6 @@ export class Kb021Component implements OnInit  {
     const config = new MdDialogConfig();
     const dialogRef: MdDialogRef<DialogSaveComponent> = this.dialog.open(DialogSaveComponent, config);
     dialogRef.componentInstance.xml_s = this.xml;
-    // dialogRef.componentInstance.TBBUKRS = this.TBBUKRS;
-    // dialogRef.componentInstance.GJAHR = this.GJAHR;
-    // dialogRef.componentInstance.LBBUKRS =  this.LBBUKRS;
-    // dialogRef.componentInstance.TBZZPMT =  this.TBZZPMT;
-    // dialogRef.componentInstance.LBZZPMT =  this.LBZZPMT;
-    // dialogRef.componentInstance.LUSERID =  this.LUSERID;
-    // dialogRef.componentInstance.DDGSBER =  this.DDGSBER;
-    // dialogRef.componentInstance.IDBLART =  this.IDBLART;
-    // dialogRef.componentInstance.IDDATEA =  this.IDDATEA;
-    // dialogRef.componentInstance.IDDATEI =  this.IDDATEI;
-    // dialogRef.componentInstance.TBXBLNR =  this.TBXBLNR;
-    // dialogRef.componentInstance.tbSearch_term =  this.tbSearch_term;
-    // dialogRef.componentInstance.LIFNR =  this.LIFNR;
-    // dialogRef.componentInstance.LBTERM =  this.LBTERM;
-    // dialogRef.componentInstance.ZLSCH =  this.ZLSCH;
-    // dialogRef.componentInstance.TBKBLNR =  this.TBKBLNR;
-    // dialogRef.componentInstance.LBKBLNR = this.LBKBLNR;
-    // dialogRef.componentInstance.SUMCOST = this.SUMCOST;
     dialogRef.componentInstance.SAVEHEAD = this.madeHeadDoc();
     dialogRef.componentInstance.SAVELIST = this.SAVELIST; // Document: Detail
       dialogRef.afterClosed()
@@ -1022,12 +948,7 @@ export class Kb021Component implements OnInit  {
           this.onColor('N'); // 'N' = Change Color Content Black on Page after Success!
           this.onShowDocID(); // Show Doc ID after Success!
           console.log('R: ' + this.resultTB + ' | ' + this.resultLB);
-          // this.TBNUMTR = this.resultTB;
           this.TBBELNR = this.resultTB; // Doc No.
-          // this.LOGNO = Number(this.GJAHR + this.resultTB);
-          // console.log(this.GJAHR + this.resultTB); // TEST
-          // console.log(this.LOGNO); // TEST
-          // this.createXMLlog(); // (OK) Create XML for Log
         } else {
           // User clicked 'Cancel' or clicked outside the dialog
         }
@@ -1062,8 +983,8 @@ export class Kb021Component implements OnInit  {
 
   onGetDocSearch(BELNR, GJAHR) {
     this.EXPAND = false;
-    const jsonHead = this.madejson(BELNR, GJAHR); // get XML Head Doc
-    this.getServiceDoc(jsonHead); // send XML Doc to Service and Get Result
+    const jsonHead = this.madejson(BELNR, GJAHR);
+    // this.getServiceDoc(jsonHead); // send json to Service and Get Result
 
     // After Get Doc Detail
     this.TBBELNR = BELNR;
@@ -1085,37 +1006,80 @@ export class Kb021Component implements OnInit  {
     console.log(jsonDocHeader); // TEST-ONLY
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-    // this.httpService.post('http://idp.yai.io:8082/rest/kb02', jsonDocHeader, options).subscribe(values => {
-    //   console.log('return', values);
-    //   if (values.ok) {
-    //     const result: any = values.json();
-    //     let mes = result.response.message;
-    //     if (mes !== 'Fail') {
-    //       console.log('Suc');
-    //     } else {
-    //       console.log('Fail');
-    //     }
-    //   } else {
-    //     console.log('F');
-    //     alert(values.toString());
-    //   }
-    // });
+    this.httpService.post('http://idp.yai.io:8082/rest/kb02', jsonDocHeader, options).subscribe(values => {
+      console.log('return', values);
+      if (values.ok) {
+        const result: any = values.json();
+        let mes = result.response.message;
+        if (mes !== 'Fail') {
+          console.log('Suc');
+          this.HEADLIST = result.header;
+          this.SAVELIST = result.details;
+          this.setDocData();
+        } else {
+          console.log('Fail');
+        }
+      } else {
+        console.log('F');
+        alert(values.toString());
+      }
+    });
   }
 
-  callFunction() {
-    console.log('Call Function! - Work');
+  setDocData () {
+    // this.SAVELIST;
+    const n = 0;
+    this.TBBUKRS = this.SAVELIST[n].TBBUKRS;
+    this.LBBUKRS = this.SAVELIST[n].LBBUKRS;
+    this.TBBLDAT = this.SAVELIST[n].TBBLDAT;
+    this.TBBUDAT = this.SAVELIST[n].TBBUDAT;
+    this.TBZZPMT = this.SAVELIST[n].TBZZPMT;
+    this.LBZZPMT = this.SAVELIST[n].LBZZPMT;
+    this.TBXBLNR = this.SAVELIST[n].TBXBLNR;
+    this.TBGEBER = this.SAVELIST[n].TBGEBER; // แหล่งของเงิน
+    this.LBGEBER = this.SAVELIST[n].LBGEBER;
+    this.tbSearch_term = this.SAVELIST[n].tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+    this.tbBankn = this.SAVELIST[n].tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
+    this.TBHKONT = this.SAVELIST[n].TBHKONT; // รหัสบัญชีแยกประเภททั่วไป
+    this.TBKOSTL = this.SAVELIST[n].TBKOSTL; // รหัสศูนย์ต้นทุน
+    this.TBFISTL = this.SAVELIST[n].TBFISTL; // รหัสงบประมาณ
+    this.TBFKBER = this.SAVELIST[n].TBFKBER; // รหัสกิจกรรมหลัก
+    this.TBWRBTR = this.SAVELIST[n].TBWRBTR; // จำนวนเงินที่ขอเบิก
+    this.TBPRZNR = this.SAVELIST[n].TBPRZNR; // รหัสกิจกรรมย่อย
+    this.TBZZOBJ = this.SAVELIST[n].TBZZOBJ; // รหัสบัญชีย่อย
+    this.TBZZUNIT = this.SAVELIST[n].TBZZUNIT; // รหัสเจ้าของบัญชีย่อย
+    this.TBZZLOAN = this.SAVELIST[n].TBZZLOAN; // รหัสหมวดพัสดุ
+    this.TBVBUND = this.SAVELIST[n].TBVBUND; // รหัสหน่วยงานคู่ค้า
+
+    this.GJAHR = this.SAVELIST[n].GJAHR; // ปีบัญชี
+    this.SGTXT = this.SAVELIST[n].SGTXT; // รายละเอียดบรรทัดรายการ
+
+    this.LBHKONT = this.SAVELIST[n].LBHKONT; // (ช) ชื่อบัญชีแยกประเภททั่วไป
+    this.LBKOSTL = this.SAVELIST[n].LBKOSTL; // (N) ชื่อศูนย์ต้นทุน
+    this.LBFISTL = this.SAVELIST[n].LBFISTL; // (N) ชื่องบประมาณ
+    this.LBFKBER = this.SAVELIST[n].LBFKBER; // (N) ชื่อกิจกรรมหลัก
+    this.LBPRZNR = this.SAVELIST[n].LBPRZNR; // (N) ชื่อกิจกรรมย่อย
+    this.LBZZOBJ = this.SAVELIST[n].LBZZOBJ; // (N) รหัสบัญชีย่อย
+    this.LBZZUNIT = this.LBZZUNIT; // (N) รหัสเจ้าของบัญชีย่อย
+    this.LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+    this.LBVBUND = this.LBVBUND; // (N) รหัสหน่วยงานคู่ค้า
+
+    this.IDFISTL = this.SAVELIST[n].IDFISTL; // (ID) รหัสงบประมาณ
+    this.IDKOSTL = this.SAVELIST[n].IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
+    this.IDHKONT = this.SAVELIST[n].IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
+    this.IDWRBTR = this.SAVELIST[n].IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+    this.IDSTERM = this.SAVELIST[n].IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+    this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
+    this.IDDATEA = this.SAVELIST[n].IDDATEA; // (ID) Account Date
+    this.IDDATEI = this.SAVELIST[n].IDDATEI; // (ID) Date Invoic
   }
 
-
-  ngOnInit() {
-
-    // ปีบัญชีเริ่มต้น
+  setYear() {
+    // ปีบัญชี
     if (this.DATEINV.month >= 10 ) {
       this.GJAHR = Number(this.DATEINV.year) + 1;
-      console.log('f' + this.GJAHR);
     } else {
       this.GJAHR = this.DATEINV.year;
-      console.log('f' + this.GJAHR);
     }
 
     // งวดเริ่มต้น
@@ -1130,30 +1094,42 @@ export class Kb021Component implements OnInit  {
     iGJAHR = iGJAHR - 8;
     for (let index = -7; index < 7; index++) {
       iGJAHR = iGJAHR + 1;
-      // console.log(iGJAHR); // TEST
       this.yearList.push({YESR: iGJAHR});
-
     }
+  }
 
-    // Rounter Doc ID
-    // const id = this.route.snapshot.paramMap.get('BELNR');
-    // if (id !== null) {
-    //   this.TBBELNR = id;
-    //   this.onEnableInput('N'); // N = Diable All Input
-    //   this.onColor('N'); // N = No Color
-    //   this.onShowDocID();
-    //   this.onGetDocSearch(id); // Get Doc by Doc ID
-    // } else {
-    // }
+  setTest() {
+    this.LBTERM = 'มหาวิทยาลัยธรรมศาสตร์';
+    this.LBKBLNR = ''; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
+    this.LBKOSTL = 'สำนักบริหารกลาง';
+    this.LBFKBER = 'การติดตาม เร่งรัด การดำเน';
+    this.LBFISTL = 'โครงการจัดตั้งศูนย์ค';
+    this.LBPRZNR = '';
+    this.LBZZOBJ = '';
+    this.LBZZLOAN = '';
+    this.LBHKONT = 'ค่าซ่อมแซมและค่าบำรุงรักษา';
+    this.LBZZUNIT = ''; // (N) รหัสเจ้าของบัญชีย่อย
+    this.LBVBUND = ''; // (N) รหัสหน่วยงานคู่ค้า
+  }
 
-    // get Parameter for Header Doc
+  callFunction() {
+    console.log('Call Function! - Work');
+  }
+
+
+  ngOnInit() {
+    // ปีบัญชีและงวด เริ่มต้น
+    this.setYear();
+
+    // เมื่อมีการส่งค่ามาจาก Search หรืออื่นๆ
     this.route.queryParams
     .filter(params => params.BELNR)
     .subscribe(params => {
-      this.onGetDocSearch(params.BELNR, params.GJAHR); // Get Doc by Doc ID
+      this.onGetDocSearch(params.BELNR, params.GJAHR);
     });
 
-    console.log('this.TBBELNR:' + this.TBBELNR);
+    // ใส่ค่าต่างๆ ไว้เพื่อเทส
+    this.setTest();
   }
 
 }

@@ -12,21 +12,19 @@ export class MenuTopComponent implements OnInit {
   topMenu_s = 'Subcategory';
   currentUrl: string;
   constructor(private route: Router) {
-    console.log('Route:' + route.url);
-    console.log(this.topMenu_s);
   }
 
   onClick(index) {
     if (index === '/kb021') {
       this.topMenu_c = 'fontMenuTop';
       this.topMenu_s = 'Subcategory';
-      console.log(index);
+      // console.log(index);
     } else if (index === '/Kb023') {
       this.topMenu_c = 'Subcategory';
       this.topMenu_s = 'fontMenuTop';
-      console.log(index);
+      // console.log(index);
     }
-    console.log(this.route.url);
+    // console.log(this.route.url);
   }
 
   ngOnInit() {
