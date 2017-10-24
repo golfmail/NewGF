@@ -9,13 +9,13 @@
       <tr>
         <td style="height: 18px; width: 164px;"><strong>
           <!--Update_Ton3-->&nbsp;<Label [ngClass]="contentBlue" ID="cssBukrs" runat="server">รหัสหน่วยงาน</Label></strong>
-          <asp:RequiredFieldValidator ControlToValidate="TBBUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" ID="RequiredFieldValidator7" runat="server">*</asp:RequiredFieldValidator>
-          <asp:RequiredFieldValidator ControlToValidate="TBBUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" ID="rvBukrs" runat="server" ValidationGroup="zzpmt">*</asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ControlToValidate="BUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" ID="RequiredFieldValidator7" runat="server">*</asp:RequiredFieldValidator>
+          <asp:RequiredFieldValidator ControlToValidate="BUKRS" ErrorMessage="กรุณากรอกรหัสหน่วยงาน" ForeColor="Tomato" ID="rvBukrs" runat="server" ValidationGroup="zzpmt">*</asp:RequiredFieldValidator>
         </td>
         <td style="height: 18px; width: 338px;">
-          <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBUKRS"  class="fontContentBlack" ID="TBBUKRS" MaxLength="4" runat="server" TabIndex="11" Width="112px">
-          <!--Update_Ton--><!-- <TextBox [(ngModel)]="TBBUKRS"  class="fontContentBlack" ID="TBBUKRS" MaxLength="4" runat="server" TabIndex="11" Width="112px"></TextBox> -->
-          <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBBUKRS','cssBukrs')" CausesValidation="False" Height="20px" ID="btBukrs" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+          <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="BUKRS"  class="fontContentBlack" ID="BUKRS" MaxLength="4" runat="server" TabIndex="11" Width="112px">
+          <!--Update_Ton--><!-- <TextBox [(ngModel)]="BUKRS"  class="fontContentBlack" ID="BUKRS" MaxLength="4" runat="server" TabIndex="11" Width="112px"></TextBox> -->
+          <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('BUKRS','cssBukrs')" CausesValidation="False" Height="20px" ID="btBukrs" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
         </td>
         <td style="height: 18px; width: 144px;">
           <strong>
@@ -175,16 +175,14 @@
         </td>
         <td style="height: 18px; width: 338px;">
           <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBXBLNR" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6">
-          <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBXBLNR" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox> -->
         </td>
-        <td style="height: 18px; width: 144px;">
+        <td [hidden]="SHOWTR" style="height: 18px; width: 144px;">
           <strong>
-            <Label class="fontContentBlack" Font-Bold="True" ID="lbBlartTitle" runat="server" Text="ประเภทเอกสาร" Visible="false"></Label>
+            <Label class="fontContentBlack" Font-Bold="True" ID="lbBlartTitle" runat="server" Text="ประเภทเอกสาร"></Label>
           </strong>&nbsp;
         </td>
-        <td style="height: 18px">
-          &nbsp;
-          <Label ID="lbBlart" runat="server" Visible="false">KB - ขอเบิก(1.ข)</Label>
+        <td [hidden]="SHOWTR" style="height: 18px">
+          <Label ID="lbBlart" runat="server" >{{IDBLART}}</Label>
         </td>
       </tr>
       <tr>
@@ -197,7 +195,7 @@
           </strong>
         </td>
         <td style="height: 18px; width: 338px;">
-          <asp:TextBox [(ngModel)]="TBBELNR" TextMode="ReadOnly" class="fontContentBlack" ID="TBBELNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
+          <asp:TextBox [(ngModel)]="BELNR" TextMode="ReadOnly" class="fontContentBlack" ID="BELNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
         </td>
         <td style="height: 18px; width: 144px;">
           <strong>
@@ -219,16 +217,16 @@
             <Label class="fontContentBlack strong" ID="cssXBLNR" runat="server">ผู้บันทึกรายการ</Label>
           </strong><asp:RequiredFieldValidator ControlToValidate="TBXBLNR" ErrorMessage="กรุณากรอกการอ้างอิง" ForeColor="Tomato" ID="rvXBLNR" runat="server">*</asp:RequiredFieldValidator>
         </td>
-        <td style="height: 18px; width: 338px;">
-            <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
-          <!-- <asp:TextBox [(ngModel)]="TBXBLNR" TextMode="ReadOnly" class="fontContentBlack" ID="TBXBLNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox> -->
-        </td>
         <td style="height: 18px; width: 144px;">
-          &nbsp;
+            <asp:TextBox [(ngModel)]="LUSERID" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBZZLOAN" runat="server" Width="250px"></asp:TextBox>
         </td>
+
         <td style="height: 18px">
           &nbsp;
         </td>
+        <td style="height: 18px">
+            &nbsp;
+         </td>
       </tr>
       <tr [hidden]="SHOWTR" id="afterSuccess4" bgcolor="#FFFFE1" >
         <td colspan="4" style="height: 21px">&nbsp;</td>
@@ -282,568 +280,518 @@
 <tr>
 <td align="center">
 <table style="width: 100%;">
-<tr>
-  <td align="left" style="background-color: #4b6d96; width: 850px">
-    <table border="0" cellpadding="0" cellspacing="0" class="defaultTableBody" id="tbMenu" style="display: block;" width="311">
-      <tr>
-        <td (click)="selectForm=1" *ngIf="selectForm==1" align="center" style="background-color: #ffffff; cursor: pointer; height: 18px;" width="143">
-          ข้อมูลทั่วไป
-        </td>
-        <td (click)="selectForm=2" *ngIf="selectForm==1"  align="center" style="background-color: #c0c1d6; cursor: pointer; height: 18px;" width="168">
-          <Label ID="lbTabName" runat="server">รายการขอเบิก</Label>
-        </td>
-        <td (click)="selectForm=1" *ngIf="selectForm==2||!selectForm" align="center" style="background-color: #c0c1d6; cursor: pointer; height: 18px;" width="143">
-          ข้อมูลทั่วไป
-        </td>
-        <td (click)="selectForm=2"  *ngIf="selectForm==2||!selectForm" align="center" style="background-color: #ffffff; cursor: pointer; height: 18px;" width="168">
-          <Label ID="lbTabName" runat="server">รายการขอเบิก</Label>
-        </td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-<td align="left" style="width: 850px">
-<div *ngIf="selectForm==1||!selectForm" id="gfForm1">
-  <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" id="section1" style="width: 100%;">
-    <tr>
-      <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
-        <span style="color: black">
-          &nbsp;<strong style="color: #595467; font-size: 12px">ประเภทรายการขอเบิก</strong> <strong style="color: #595467; font-size: 12px">/ การชำระเงิน</strong>
-        </span>
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 18px; width: 162px;">
-        &nbsp;<strong>
-          <!--Update_Ton3--><Label [ngClass]="contentBlue" ID="cssBLART" runat="server">ประเภทรายการขอเบิก</Label>
-        </strong>
-        <asp:CustomValidator ControlToValidate="DDBLART" ErrorMessage="วิธีการชำระเงินไม่ตรงกับประเภทรายการขอเบิก" ForeColor="Tomato" ID="cvBlart" OnServerValidate="cvBlart_ServerValidate" runat="server">*</asp:CustomValidator>
-      </td>
-      <td colspan="3" style="height: 18px">
-        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedblart" style="width:260px">
-        <!--Update_Ton-->  <option *ngFor="let c of soblartList" [ngValue]="c.id">{{c.Name}}</option>
-        <!--Update_Ton--></select>
-        <!-- <asp:DropDownList [values]="ddblartList" class="fontContentBlack" ID="DDBLART" runat="server" TabIndex="7" Width="270px">
-        </asp:DropDownList> -->
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 18px; width: 162px;">
-        &nbsp;<strong>
-          <!--Update_Ton3--><Label [ngClass]="contentBlue" ID="cssZlsch" runat="server">วิธีการชำระเงิน</Label>
-        </strong>
-      </td>
-      <td colspan="3" style="height: 18px">
-        <!-- <asp:DropDownList [values]="ddZlschList" class="fontContentBlack" ID="ddZlsch" runat="server" Width="270px">
-        </asp:DropDownList> -->
-        <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedZlsch" style="width:260px">
-        <!--Update_Ton-->  <option *ngFor="let c of soZlschList" [ngValue]="c.id">{{c.Name}}</option>
-        <!--Update_Ton--></select>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" style="height: 18px">
-        &nbsp;&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
-        &nbsp;<strong style="color: #595467; font-size: 12px">รายละเอียดงบประมาณ</strong>
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 17px; width: 162px;">
-        &nbsp;<strong>
-          <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssGEBER" runat="server">แหล่งของเงิน</Label>
-        </strong>
-        <asp:RequiredFieldValidator ControlToValidate="TBGEBER" ErrorMessage="กรุณากรอกรหัสแหล่งของเงิน" ForeColor="Tomato" ID="RequiredFieldValidator4" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
-      </td>
-      <td colspan="3" style="height: 17px">
-        <select [(ngModel)]="YEAR" [disabled]="DSTBALL" style="width: 50px">
-          <option *ngFor="let c of yearList" [ngValue]="c.YESR">{{c.YESR}}</option>
-        </select>
-        <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px">
-        <!-- <asp:TextBox [(ngModel)]="TBGEBER"   class="fontContentBlack" ID="TBGEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px"></asp:TextBox>&nbsp; -->
-        <ImageButton [hidden]="SHOWBT" (click)="openDialog('TBGEBER','cssGEBER')"  CausesValidation="False" Height="20px" ID="BTGEBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" ToolTip="ค้นหา" Width="22px"></ImageButton>
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 17px; width: 162px;">&nbsp;</td>
-      <td colspan="3" style="height: 17px">
-        <asp:TextBox [(ngModel)]="LBGEBER" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBGEBER" runat="server" Width="379px"></asp:TextBox>&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 17px; width: 162px;">
-        &nbsp;<strong>
-          <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssKBLNR" runat="server">เลขที่เอกสารสำรองเงิน</Label>
-        </strong>
-      </td>
-      <td colspan="3" style="height: 17px">
-        <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBKBLNR" class="fontContentBlack" ID="TBKBLNR" MaxLength="10" runat="server" Width="112px">
-        <!--Update_Ton--><!-- <asp:TextBox class="fontContentBlack" ID="TBKBLNR" MaxLength="10" runat="server" Width="112px"></asp:TextBox> -->
-        <!--Update_Ton--><ImageButton [hidden]="SHOWBT" CausesValidation="False" Height="20px" ID="BTKBLNR" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" OnClick="btEventClick" runat="server" ToolTip="ค้นหา" Width="22px" Visible="false"></ImageButton>
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 17px; width: 162px;">&nbsp;</td>
-      <td colspan="3" style="height: 17px">
-        <asp:TextBox [(ngModel)]="LBKBLNR" BackColor="White" TextMode="ReadOnly"  BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBKBLNR" runat="server" Width="379px" ></asp:TextBox>&nbsp;
-      </td>
-    </tr>
-    <tr>
-      <td align="left" colspan="4" style="background-color: #f0eef8; height: 18px;">
-        &nbsp;<strong style="color: #595467; font-size: 12px;">
-          ข้อมูลผู้รับเงิน
-        </strong>
-      </td>
-    </tr>
-    <tr>
-      <td align="left" style="height: 18px; width: 162px;">
-        &nbsp;<strong>
-          <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssSearch_term" runat="server">
-            เลขประจำตัวบัตรประชาชน/<br/>
-            &nbsp;เลขประจำตัวผู้เสียภาษี
-          </Label>
-        </strong><asp:RequiredFieldValidator ControlToValidate="tbSearch_term" ErrorMessage="กรุณากรอกเลขประจำตัวบัตรประชาชน/" ForeColor="Tomato" ID="rvSearch_term" runat="server">*</asp:RequiredFieldValidator>
-      </td>
-      <td style="height: 18px; width: 244px;">
-        <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="tbSearch_term"  class="fontContentBlack" ID="tbSearch_term" MaxLength="13" runat="server" Width="120px">
-        <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="tbSearch_term"  class="fontContentBlack" ID="tbSearch_term" MaxLength="13" runat="server" Width="120px"></asp:TextBox> -->
-      </td>
-      <td style="height: 18px; width: 211px;">
-        <strong>
-          <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssBankn" runat="server">เลขที่บัญชีเงินฝากธนาคาร</Label>
-        </strong><asp:RequiredFieldValidator ControlToValidate="tbBankn" ErrorMessage="กรุณากรอกเลขที่บัญชีเงินฝากธนาคาร" ForeColor="Tomato" ID="rvBankn" runat="server">*</asp:RequiredFieldValidator>
-      </td>
-      <td style="height: 18px;">
-        <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="tbBankn"  class="fontContentBlack" ID="tbBankn" MaxLength="18" runat="server" Width="120px">
-        <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="tbBankn"  class="fontContentBlack" ID="tbBankn" MaxLength="18" runat="server" Width="120px"></asp:TextBox> -->
-      </td>
-    </tr>
-    <tr>
-      <td style="height: 18px; width: 162px;"><Label class="fontContentBlack" ID="cssBankn" runat="server"></Label></td>
-      <td style="height: 18px; width: 244px;">
-        <TextBox [(ngModel)]="LBTERM" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBTERM" runat="server" Width="230px"></TextBox>
-      </td>
-      <td style="height: 18px;">
-        <!--<table border="0" cellpadding="0" cellspacing="0" id="ucKb02_1_TBPermisTrns">
-          <tbody>
-          <tr>
-            <td>
-              <input id="ucKb02_1_btPermisTrns" name="ucKb02_1$btPermisTrns" onclick="ShowObjectPosition('ucKb02_1_btPermisTrns', 'TBPermsTransPop');return false;" style="FONT-FAMILY: Tahoma; FONT-SIZE: 11px; HEIGHT: 21px;" type="submit" value="โอนสิทธิการชำระเงิน">
-            </td>
-            <td>
-              <img id="imgPrmsTrnsStatus" src="assets/Images/Icon/apply2_disable.gif" style="DISPLAY: block">
-            </td>
-          </tr>
-          </tbody>
-        </table>-->
-      </td>
-    </tr>
-    <tr>
-      <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
-        <strong style="color: #595467; font-size: 12px">คำอธิบายเอกสาร</strong>
-      </td>
-    </tr>
-    <tr style="font-weight: bold">
-      <td align="center" colspan="4" rowspan="2">
-        <strong></strong>
-        <!--Update_Ton--><textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" style="Width: 653px"></textarea>
-        <!--Update_Ton--><!-- <asp:TextBox Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" Width="653px"></asp:TextBox> -->
-      </td>
-    </tr>
-    <tr></tr>
-    <tr>
-      <td align="center" colspan="4" rowspan="1"></td>
-    </tr>
-  </table>
-</div>
-<div *ngIf="selectForm==2" id="gfForm2">
-<table border="0" cellpadding="0" cellspacing="0" id="section2" width="100%">
-<tr>
-<td>
-<!-- <table border="0" cellpadding="0" cellspacing="0" id="TBHeaderDetailTable" style="width: 100%">
   <tr>
-    <td align="left" style="background-color: #eeeef7;">
-      <strong>
-        <span style="color: #595467; font-size: 9pt;">
-          <table border="0" cellpadding="0" cellspacing="0">
-            <tr>
-              <td nowrap style="background-color: #eeeef7">
-                &nbsp;&nbsp;<strong>
-                  <span style="color: #595467; font-size: 12px;">รายละเอียดเอกสาร&nbsp;</span>
-                </strong>
+    <md-tab-group selectedIndex="0" #tabGroup class="selected-tab-{{tabGroup.selectedIndex}}">
+      <md-tab label="ข้อมูลทั่วไป" class="disable-select" mat-ripple="disableRipple">
+          <div id="gfForm1">
+            <br>
+              <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" id="section1" style="width: 100%;">
+                <tr>
+                  <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
+                    <span style="color: black">
+                      &nbsp;<strong style="color: #595467; font-size: 12px">ประเภทรายการขอเบิก</strong> <strong style="color: #595467; font-size: 12px">/ การชำระเงิน</strong>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 18px; width: 162px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentBlue" ID="cssBLART" runat="server">ประเภทรายการขอเบิก</Label>
+                    </strong>
+                    <asp:CustomValidator ControlToValidate="DDBLART" ErrorMessage="วิธีการชำระเงินไม่ตรงกับประเภทรายการขอเบิก" ForeColor="Tomato" ID="cvBlart" OnServerValidate="cvBlart_ServerValidate" runat="server">*</asp:CustomValidator>
+                  </td>
+                  <td colspan="3" style="height: 18px">
+                    <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedblart" style="width:260px">
+                    <!--Update_Ton-->  <option *ngFor="let c of soblartList" [ngValue]="c.id">{{c.Name}}</option>
+                    <!--Update_Ton--></select>
+                    <!-- <asp:DropDownList [values]="ddblartList" class="fontContentBlack" ID="DDBLART" runat="server" TabIndex="7" Width="270px">
+                    </asp:DropDownList> -->
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 18px; width: 162px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentBlue" ID="cssZlsch" runat="server">วิธีการชำระเงิน</Label>
+                    </strong>
+                  </td>
+                  <td colspan="3" style="height: 18px">
+                    <!-- <asp:DropDownList [values]="ddZlschList" class="fontContentBlack" ID="ddZlsch" runat="server" Width="270px">
+                    </asp:DropDownList> -->
+                    <!--Update_Ton--><select [disabled]="DSTBALL" [(ngModel)]="selectedZlsch" style="width:260px">
+                    <!--Update_Ton-->  <option *ngFor="let c of soZlschList" [ngValue]="c.id">{{c.Name}}</option>
+                    <!--Update_Ton--></select>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="4" style="height: 18px">
+                    &nbsp;&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
+                    &nbsp;<strong style="color: #595467; font-size: 12px">รายละเอียดงบประมาณ</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 17px; width: 162px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssGEBER" runat="server">แหล่งของเงิน</Label>
+                    </strong>
+                    <asp:RequiredFieldValidator ControlToValidate="GEBER" ErrorMessage="กรุณากรอกรหัสแหล่งของเงิน" ForeColor="Tomato" ID="RequiredFieldValidator4" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td colspan="3" style="height: 17px">
+                    <select [(ngModel)]="YEAR" [disabled]="DSTBALL" style="width: 50px">
+                      <option *ngFor="let c of yearList" [ngValue]="c.YESR">{{c.YESR}}</option>
+                    </select>
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="GEBER"   class="fontContentBlack" ID="GEBER" MaxLength="7" runat="server" TabIndex="13" Width="60px">
+                    <ImageButton [hidden]="SHOWBT" (click)="openDialog('GEBER','cssGEBER')"  CausesValidation="False" Height="20px" ID="BTGEBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 17px; width: 162px;">&nbsp;</td>
+                  <td colspan="3" style="height: 17px">
+                    <asp:TextBox [(ngModel)]="GEBER_NAME" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="GEBER_NAME" runat="server" Width="379px"></asp:TextBox>&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 17px; width: 162px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssKBLNR" runat="server">เลขที่เอกสารสำรองเงิน</Label>
+                    </strong>
+                  </td>
+                  <td colspan="3" style="height: 17px">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBKBLNR" class="fontContentBlack" ID="TBKBLNR" MaxLength="10" runat="server" Width="112px">
+                    <!--Update_Ton--><!-- <asp:TextBox class="fontContentBlack" ID="TBKBLNR" MaxLength="10" runat="server" Width="112px"></asp:TextBox> -->
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" CausesValidation="False" Height="20px" ID="BTKBLNR" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" OnClick="btEventClick" runat="server" ToolTip="ค้นหา" Width="22px" Visible="false"></ImageButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 17px; width: 162px;">&nbsp;</td>
+                  <td colspan="3" style="height: 17px">
+                    <asp:TextBox [(ngModel)]="LBKBLNR" BackColor="White" TextMode="ReadOnly"  BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBKBLNR" runat="server" Width="379px" ></asp:TextBox>&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" colspan="4" style="background-color: #f0eef8; height: 18px;">
+                    &nbsp;<strong style="color: #595467; font-size: 12px;">
+                      ข้อมูลผู้รับเงิน
+                    </strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="height: 18px; width: 162px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssSearch_term" runat="server">
+                        เลขประจำตัวบัตรประชาชน/<br/>
+                        &nbsp;เลขประจำตัวผู้เสียภาษี
+                      </Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="tbSearch_term" ErrorMessage="กรุณากรอกเลขประจำตัวบัตรประชาชน/" ForeColor="Tomato" ID="rvSearch_term" runat="server">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td style="height: 18px; width: 244px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="tbSearch_term"  class="fontContentBlack" ID="tbSearch_term" MaxLength="13" runat="server" Width="120px">
+                    <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="tbSearch_term"  class="fontContentBlack" ID="tbSearch_term" MaxLength="13" runat="server" Width="120px"></asp:TextBox> -->
+                  </td>
+                  <td style="height: 18px; width: 211px;">
+                    <strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssBankn" runat="server">เลขที่บัญชีเงินฝากธนาคาร</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="tbBankn" ErrorMessage="กรุณากรอกเลขที่บัญชีเงินฝากธนาคาร" ForeColor="Tomato" ID="rvBankn" runat="server">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td style="height: 18px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="tbBankn"  class="fontContentBlack" ID="tbBankn" MaxLength="18" runat="server" Width="120px">
+                    <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="tbBankn"  class="fontContentBlack" ID="tbBankn" MaxLength="18" runat="server" Width="120px"></asp:TextBox> -->
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 162px;"><Label class="fontContentBlack" ID="cssBankn" runat="server"></Label></td>
+                  <td style="height: 18px; width: 244px;">
+                    <TextBox [(ngModel)]="LBTERM" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBTERM" runat="server" Width="230px"></TextBox>
+                  </td>
+                  <td style="height: 18px;">
+                    <!--<table border="0" cellpadding="0" cellspacing="0" id="ucKb02_1_TBPermisTrns">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <input id="ucKb02_1_btPermisTrns" name="ucKb02_1$btPermisTrns" onclick="ShowObjectPosition('ucKb02_1_btPermisTrns', 'TBPermsTransPop');return false;" style="FONT-FAMILY: Tahoma; FONT-SIZE: 11px; HEIGHT: 21px;" type="submit" value="โอนสิทธิการชำระเงิน">
+                        </td>
+                        <td>
+                          <img id="imgPrmsTrnsStatus" src="assets/Images/Icon/apply2_disable.gif" style="DISPLAY: block">
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>-->
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
+                    <strong style="color: #595467; font-size: 12px">คำอธิบายเอกสาร</strong>
+                  </td>
+                </tr>
+                <tr style="font-weight: bold">
+                  <td align="center" colspan="4" rowspan="2">
+                    <strong></strong>
+                    <!--Update_Ton--><textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" style="Width: 653px"></textarea>
+                    <!--Update_Ton--><!-- <asp:TextBox Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" Width="653px"></asp:TextBox> -->
+                  </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td align="center" colspan="4" rowspan="1"></td>
+                </tr>
+              </table>
+            </div>
+      </md-tab>
+      <md-tab label="รายการขอเบิก">
+          <div id="gfForm2">
+            <br>
+              <table border="0" cellpadding="0" cellspacing="0" id="section2" width="100%">
+              <tr>
+              <td>
+              <md-expansion-panel [expanded]='EXPAND'>
+                <md-expansion-panel-header>
+                  <md-panel-title>
+                    รายละเอียดเอกสาร
+                  </md-panel-title>
+                  <md-panel-description>
+                  </md-panel-description>
+                </md-expansion-panel-header>
+                <br>
+
+
+
+              <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
+                <tr>
+                  <td style="height: 22px; width: 140px;">
+                    &nbsp;<strong class="fontContentBlack">ลำดับ</strong> &nbsp; &nbsp;
+                    <Label Font-Bold="False" ForeColor="#666666" ID="lbNUMBER" runat="server" Text="">{{lbNUMBER}}</Label>
+                  </td>
+                  <td style="color: #666666; font-weight: bold; height: 22px; width: 299px;">
+                    <Label Font-Bold="True" ForeColor="#666666" ID="lbPk" runat="server" TabIndex="-1" Visible="False">PK</Label>
+                    <Label Font-Bold="False" ForeColor="#666666" ID="lbBschl" runat="server" TabIndex="-1" Visible="False"></Label>&nbsp;
+                  </td>
+                  <td style="color: #000000; font-weight: bold; height: 22px; width: 154px;" valign="middle">
+                    <strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssHKONT" runat="server">
+                        รหัสบัญชีแยกประเภท
+                      </Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="HKONT" ErrorMessage="กรุณากรอกรหัสบัญชีแยกประเภท" ID="RequiredFieldValidator3" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td colspan="2" style="color: #000000; height: 22px; width: 159px;" valign="middle">
+                    <strong>
+                      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="HKONT"  class="fontContentBlack" ID="HKONT" MaxLength="10" runat="server" TabIndex="11" Width="112px"/>
+                      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="HKONT"  class="fontContentBlack" ID="HKONT" MaxLength="10" runat="server" TabIndex="11" Width="112px"/> -->
+                      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('HKONT','cssHKONT')" CausesValidation="False" Height="20px" ID="BTHKONT" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                    </strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                    &nbsp;
+                  </td>
+                  <td style="height: 18px; width: 154px;">
+                    &nbsp;
+                  </td>
+                  <td colspan="2" style=" height: 18px; width: 159px;" valign="middle">
+                    <asp:TextBox [(ngModel)]="HKONT_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="HKONT_NAME" runat="server" Width="250px"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr style="font-weight: bold">
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssKOSTL" runat="server">รหัสศูนย์ต้นทุน</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="KOSTL" ErrorMessage="กรุณากรอกรหัสศูนย์ต้นทุน" ID="RequiredFieldValidator1" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td style="color: #000000; height: 18px; width: 299px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="KOSTL"  class="fontContentBlack" ID="KOSTL" MaxLength="10" runat="server" TabIndex="12" Width="112px"/>
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('KOSTL','cssKOSTL')" CausesValidation="False" Height="20px" ID="BTKOSTL" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                  <td style="height: 18px; width: 154px;" valign="middle">
+                    <strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssFISTL" runat="server">รหัสงบประมาณ</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="FISTL" ErrorMessage="กรุณากรอกรหัสงบประมาณ" ForeColor="Tomato" ID="RequiredFieldValidator2" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator><asp:CustomValidator ControlToValidate="FISTL" ErrorMessage="รหัสงบประมาณไม่ถูกต้อง" ForeColor="Tomato" ID="cvFistl" OnServerValidate="cvFistl_ServerValidate" runat="server" ValidationGroup="kb02">*</asp:CustomValidator>
+                  </td>
+                  <td colspan="2" style="color: #000000; height: 18px; width: 159px;" valign="middle">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="FISTL" class="fontContentBlack" ID="FISTL" MaxLength="16" runat="server" TabIndex="14" Width="112px">
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('FISTL','cssFISTL')" CausesValidation="False" Height="20px" ID="BTFISTL" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                    <asp:TextBox [(ngModel)]="KOSTL_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="KOSTL_NAME" runat="server" Width="288px"></asp:TextBox>
+                  </td>
+                  <td style="height: 18px; width: 154px;">
+                    &nbsp;
+                  </td>
+                  <td colspan="2" style=" height: 18px; width: 159px;" valign="middle">
+                    <asp:TextBox [(ngModel)]="FISTL_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="FISTL_NAME" runat="server" Width="250px"></asp:TextBox>&nbsp;
+                  </td>
+                </tr>
+                <tr style="font-weight: bold">
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssFKBER" runat="server">รหัสกิจกรรมหลัก</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="FKBER" ErrorMessage="กรุณากรอกรหัสกิจกรรมหลัก" ForeColor="Tomato" ID="RequiredFieldValidator5" runat="server" ValidationGroup="kb02" Width="7px">*</asp:RequiredFieldValidator><asp:CustomValidator ControlToValidate="FKBER" ErrorMessage="รหัสกิจกรรมหลักไม่ถูกต้อง" ForeColor="Tomato" ID="cvFkber" OnServerValidate="cvFkber_ServerValidate" runat="server" ValidationGroup="kb02" Width="7px">*</asp:CustomValidator>
+                  </td>
+                  <td style="color: #000000; height: 18px; width: 299px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="FKBER" class="fontContentBlack" ID="FKBER" MaxLength="16" runat="server" TabIndex="15" Width="112px">
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('FKBER','cssFKBER')" CausesValidation="False" Height="20px" ID="BTFKBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                  <td style="height: 18px; width: 154px;" valign="middle">
+                    <strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="lbPrznrTitle" runat="server" Text="รหัสกิจกรรมย่อย"></Label>
+                    </strong>&nbsp;
+                  </td>
+                  <td colspan="2" style="color: #000000; height: 18px; width: 159px;" valign="middle">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="PRZNR" class="fontContentBlack" ID="PRZNR" MaxLength="12" runat="server" Width="112px">
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('PRZNR','lbPrznrTitle')" CausesValidation="False" Height="20px" ID="btPrznr" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                      <asp:TextBox [(ngModel)]="FKBER_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="FKBER_NAME" runat="server" Width="250px"></asp:TextBox>
+                  </td>
+                  <td style="height: 18px; width: 154px;">
+                    &nbsp;
+                  </td>
+                  <td colspan="2" style=" height: 18px; width: 159px;">
+                    <asp:TextBox [(ngModel)]="PRZNR_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="PRZNR_NAME" runat="server" Width="250px"></asp:TextBox>&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssZZOBJ" runat="server">รหัสบัญชีย่อย</Label>
+                    </strong>
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="ZZOBJ" class="fontContentBlack" ID="ZZOBJ" MaxLength="7" runat="server" TabIndex="20" Width="112px">
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('ZZOBJ','cssZZOBJ')" CausesValidation="False" Height="20px" ID="BTZZOBJ" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                  <td style="font-weight: bold; height: 18px; width: 154px;" valign="middle">
+                    <!--Update_Ton3--><strong [ngClass]="contentGreen">รหัสเจ้าของบัญชีย่อย</strong>
+                    <asp:CustomValidator ControlToValidate="ZZUNIT" ErrorMessage="รหัสเจ้าของบัญชีย่อยไม่ถูกต้อง" ForeColor="Tomato" ID="cvZzunit" OnServerValidate="cvZzunit_ServerValidate" runat="server" ValidationGroup="kb02">*</asp:CustomValidator>
+                  </td>
+                  <td colspan="2" style="color: #000000; font-weight: bold; height: 18px; width: 159px;" valign="middle">
+                      <input type="text" [disabled]="DSTBALL" [(ngModel)]="ZZUNIT" class="fontContentBlack" ID="ZZUNIT" MaxLength="12" runat="server" Width="112px">
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">&nbsp;</td>
+                  <td colspan="4" style="height: 18px;" valign="middle">
+                    <asp:TextBox [(ngModel)]="ZZOBJ_NAME" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" id="ZZOBJ_NAME" runat="server" Width="250px"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssZZLOAN" runat="server">รหัสหมวดพัสดุ</Label>
+                    </strong>
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px">
+                    <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px"></asp:TextBox> -->
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBZZLOAN','cssZZLOAN')" CausesValidation="False" Height="20px" ID="BTZZLOAN" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                  </td>
+                  <td style="height: 18px; width: 154px;" valign="middle">
+                    <strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssVBUND" runat="server">
+                        รหัสหน่วยงานคู่ค้า<br/>
+                        (Trading Partner)
+                      </Label>
+                    </strong>
+                  </td>
+                  <td colspan="2" style="height: 18px; width: 159px;">
+                      <input type="text" [disabled]="DSTBALL" [(ngModel)]="VBUND" class="fontContentBlack" ID="VBUND" MaxLength="12" runat="server" Width="112px">
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">&nbsp;</td>
+                  <td colspan="4" style="height: 18px">
+                    <asp:TextBox [(ngModel)]="LBZZLOAN" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBZZLOAN" runat="server" Width="250px"></asp:TextBox>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssWRBTR" runat="server">จำนวนเงิน</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="WRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
+                  </td>
+                  <td style="height: 18px; width: 299px;">
+                    <input type="number" [disabled]="DSTBALL" required [(ngModel)]="WRBTR" class="fontContentBlack" ID="WRBTR" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
+                  </td>
+                  <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
+                    <Label Font-Bold="True" id="lblAugdtTitle" runat="server" Text="วันที่หักล้าง / เลขที่เอกสารหักล้าง " Visible="False"></Label>&nbsp;
+                  </td>
+                  <td colspan="2" style="height: 18px; width: 159px;">
+                    <Label class="fontContentBlack" ID="lblAugdt" runat="server"></Label>
+                    <asp:LinkButton CausesValidation="False" Font-Underline="False" ID="lnkAugbl" runat="server"></asp:LinkButton>&nbsp;<asp:Button CausesValidation="False" Font-Names="Tahoma" Font-Size="11px" Height="23px" ID="btnDisplayFi" runat="server" Text="แสดงเอกสาร" Visible="False" Width="75px"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">&nbsp;</td>
+                  <td colspan="4" style="height: 18px">
+
+                  </td>
+                </tr>
+                <tr>
+                  <td style="height: 18px; width: 140px;">
+                    &nbsp;<strong>
+                      <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssSgtxt" runat="server">รายละเอียดบรรทัดรายการ</Label>
+                    </strong><asp:RequiredFieldValidator ControlToValidate="tbSgtxt" ErrorMessage="กรุณากรอกรายละเอียดบรรทัดรายการ" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
+                  </td>
+                   <td colspan="4" style="height: 18px">
+                     <input name="tbSgtxt" [disabled]="DSTBALL" [(ngModel)]="SGTXT" type="text" maxlength="50" id="tbSgtxt" class="fontContentBlack" style="width:470px;" />
+                   </td>
+                </tr>
+                <tr>
+                  <td align="left" colspan="5" style="height: 18px">
+                    &nbsp;<asp:ValidationSummary ForeColor="Tomato" ID="ValidationSummary1" runat="server" ValidationGroup="kb02"/>
+                  </td>
+                </tr>
+                <tr>
+                <td align="center" colspan="5" style="height: 18px" [hidden]="HIDEBT">
+                  <!-- <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/> -->
+                  <!-- <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/> -->
+                  <!-- <asp:Button  (click)="formNew();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="สร้างข้อมูลใหม่"/> -->
+                  <button [disabled]="BTSAVE" (click)="formEdit()">จัดเก็บรายการนี้ลงตาราง</button>
+                  <button [disabled]="BTDEL" (click)="formDelete()">ลบข้อมูลรายการนี้</button>
+                  <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลรายการใหม่</button>
+                </td>
+              </tr>
+              </table>
+              <!-- <br> -->
+              </md-expansion-panel>
+
               </td>
-              <td align="left" style="background-color: #eeeef7" valign="middle">
-                <img alt="กดเพื่อ แสดง/ซ่อน รายละเอียดเอกสาร" id="switchTag" onclick="SwitchVisibleDetailTable('ucKb02_1_lbBELNR', 'TBDetailTable', 'switchTag');" src="assets/Images/Icon/collapse.gif" style="cursor: pointer"/>
-              </td>
-            </tr>
-          </table>
-        </span>
-      </strong>
-    </td>
-    <td align="right" style="background-color: #eeeef7">
-      <asp:LinkButton class="customGridPaging" ID="lbCustGridPrev" OnClick="lbCustGridPrev_Click" runat="server">« ก่อนหน้า</asp:LinkButton>
-      <Label class="customGridPaging" ID="lbCustGridStatus" runat="server" Text="0/0"></Label>
-      <asp:LinkButton class="customGridPaging" ID="lbCustGridNext" OnClick="lbCustGridNext_Click" runat="server">ถัดไป »</asp:LinkButton>
-    </td>
-  </tr>
-</table> -->
-<md-expansion-panel [expanded]='EXPAND'>
-  <md-expansion-panel-header>
-    <md-panel-title>
-      รายละเอียดเอกสาร
-    </md-panel-title>
-    <md-panel-description>
-    </md-panel-description>
-  </md-expansion-panel-header>
-  <br>
+              </tr>
 
+              <tr>
+                <td>
+                  <br>
+                <table [hidden]="SAVELIST.length <= 0"  border="1"bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" style="width: 850px">
+                 <TR style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #b4c3f6" align=center>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>เลือก</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>ลำดับที่</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>ชื่อบัญชี</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>รหัสบัญชีแยกประเภท</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>รหัสศูนย์ต้นทุน</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>รหัสงบประมาณ</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>รหัสกิจกรรมหลัก</TH>
+                  <TH style="WHITE-SPACE: nowrap" scope=col>จำนวนเงิน</TH>
+                </TR>
+                <tr *ngFor="let save of SAVELIST | paginate: config; let i='index';"
+                      [class.selected]="save === selectedList"
+                      (click)="onSelect(save,(config.currentPage - 1) * config.itemsPerPage + i)">
+                  <td align="center">
+                    <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
+                      alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image>
+                  </td>
+                  <td align="center">{{(config.currentPage - 1) * config.itemsPerPage + i +1 }}</td>
+                  <td>{{save.HKONT_NAME}}</td>
+                  <td>{{save.HKONT}}</td>
+                  <td>{{save.KOSTL}}</td>
+                  <td>{{save.FISTL}}</td>
+                  <td>{{save.FKBER}}</td>
+                  <td  style="text-align:right">{{numberWithCommas(save.WRBTR)}}</td>
+                </tr>
 
+                  <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
+                  <td align="center"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="fontTotalwhite">จำนวนเงินขอเบิก</td>
+                  <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
+                </tr>
+                  <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
+                  <td align="center">
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="fontTotalwhite">จำนวนเงินภาษีหัก ณ ที่จ่าย</td>
+                  <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
+                </tr>
+                  <tr style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
+                  <td align="center">
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="fontTotalwhite">จำนวนเงินค่าปรับ </td>
+                  <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
+                </tr>
+                  <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
+                  <td align="center">
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="fontTotalwhite">จำนวนเงินขอรับ</td>
+                  <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
+                </tr>
+                </table>
+                <div class="defaultTableBody">
+                  <div>
+                  </div>
+                    <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+                      <div class="custom-pagination">
+                      <ul role="navigation" aria-label="Pagination">
+                        <li class="pagination-previous" [class.disabled]="p.isFirstPage()">
+                          <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> &laquo; ย้อนกลับ </a>
+                        </li>
+                        <li class="text-a" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+                          <a class="text-a" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                            <span>{{ page.label }}</span>
+                          </a>
+                          <a *ngIf="p.getCurrent() === page.value">
+                            <span>{{ page.label }}</span>
+                          </a>
+                        </li>
+                      <span class="pagination-next" [class.disabled]="p.isLastPage()">
+                        <a *ngIf="!p.isLastPage()" (click)="p.next()"> ถัดไป &raquo; </a>
+                      </span>
+                    </ul>
+                    </div>
+                  </pagination-template>
+                  <!-- <pagination-controls
+                    (pageChange)="page = $event"
+                    previousLabel="ย้อนกลับ"
+                    nextLabel="ถัดไป">
+                  </pagination-controls> -->
 
-<table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
-  <tr>
-    <td style="height: 22px; width: 140px;">
-      &nbsp;<strong class="fontContentBlack">ลำดับ</strong> &nbsp; &nbsp;
-      <Label Font-Bold="False" ForeColor="#666666" ID="lbNUMBER" runat="server" Text="">{{lbNUMBER}}</Label>
-    </td>
-    <td style="color: #666666; font-weight: bold; height: 22px; width: 299px;">
-      <Label Font-Bold="True" ForeColor="#666666" ID="lbPk" runat="server" TabIndex="-1" Visible="False">PK</Label>
-      <Label Font-Bold="False" ForeColor="#666666" ID="lbBschl" runat="server" TabIndex="-1" Visible="False"></Label>&nbsp;
-    </td>
-    <td style="color: #000000; font-weight: bold; height: 22px; width: 154px;" valign="middle">
-      <strong>
-        <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssHKONT" runat="server">
-          รหัสบัญชีแยกประเภท
-        </Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="TBHKONT" ErrorMessage="กรุณากรอกรหัสบัญชีแยกประเภท" ID="RequiredFieldValidator3" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
-    </td>
-    <td colspan="2" style="color: #000000; height: 22px; width: 159px;" valign="middle">
-      <strong>
-        <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBHKONT"  class="fontContentBlack" ID="TBHKONT" MaxLength="10" runat="server" TabIndex="11" Width="112px"/>
-        <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBHKONT"  class="fontContentBlack" ID="TBHKONT" MaxLength="10" runat="server" TabIndex="11" Width="112px"/> -->
-        <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBHKONT','cssHKONT')" CausesValidation="False" Height="20px" ID="BTHKONT" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-      </strong>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;
-    </td>
-    <td style="height: 18px; width: 299px;">
-      &nbsp;
-    </td>
-    <td style="height: 18px; width: 154px;">
-      &nbsp;
-    </td>
-    <td colspan="2" style=" height: 18px; width: 159px;" valign="middle">
-      <asp:TextBox [(ngModel)]="LBHKONT" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBHKONT" runat="server" Width="250px"></asp:TextBox>
-    </td>
-  </tr>
-  <tr style="font-weight: bold">
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssKOSTL" runat="server">รหัสศูนย์ต้นทุน</Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="TBKOSTL" ErrorMessage="กรุณากรอกรหัสศูนย์ต้นทุน" ID="RequiredFieldValidator1" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
-    </td>
-    <td style="color: #000000; height: 18px; width: 299px;">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBKOSTL"  class="fontContentBlack" ID="TBKOSTL" MaxLength="10" runat="server" TabIndex="12" Width="112px"/>
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBKOSTL"  class="fontContentBlack" ID="TBKOSTL" MaxLength="10" runat="server" TabIndex="12" Width="112px"/> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBKOSTL','cssKOSTL')" CausesValidation="False" Height="20px" ID="BTKOSTL" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-    <td style="height: 18px; width: 154px;" valign="middle">
-      <strong>
-        <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssFISTL" runat="server">รหัสงบประมาณ</Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="TBFISTL" ErrorMessage="กรุณากรอกรหัสงบประมาณ" ForeColor="Tomato" ID="RequiredFieldValidator2" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator><asp:CustomValidator ControlToValidate="TBFISTL" ErrorMessage="รหัสงบประมาณไม่ถูกต้อง" ForeColor="Tomato" ID="cvFistl" OnServerValidate="cvFistl_ServerValidate" runat="server" ValidationGroup="kb02">*</asp:CustomValidator>
-    </td>
-    <td colspan="2" style="color: #000000; height: 18px; width: 159px;" valign="middle">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBFISTL" class="fontContentBlack" ID="TBFISTL" MaxLength="16" runat="server" TabIndex="14" Width="112px">
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBFISTL" class="fontContentBlack" ID="TBFISTL" MaxLength="16" runat="server" TabIndex="14" Width="112px"></asp:TextBox> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBFISTL','cssFISTL')" CausesValidation="False" Height="20px" ID="BTFISTL" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;
-    </td>
-    <td style="height: 18px; width: 299px;">
-      <asp:TextBox [(ngModel)]="LBKOSTL" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBKOSTL" runat="server" Width="288px"></asp:TextBox>
-    </td>
-    <td style="height: 18px; width: 154px;">
-      &nbsp;
-    </td>
-    <td colspan="2" style=" height: 18px; width: 159px;" valign="middle">
-      <asp:TextBox [(ngModel)]="LBFISTL" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBFISTL" runat="server" Width="250px"></asp:TextBox>&nbsp;
-    </td>
-  </tr>
-  <tr style="font-weight: bold">
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssFKBER" runat="server">รหัสกิจกรรมหลัก</Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="TBFKBER" ErrorMessage="กรุณากรอกรหัสกิจกรรมหลัก" ForeColor="Tomato" ID="RequiredFieldValidator5" runat="server" ValidationGroup="kb02" Width="7px">*</asp:RequiredFieldValidator><asp:CustomValidator ControlToValidate="TBFKBER" ErrorMessage="รหัสกิจกรรมหลักไม่ถูกต้อง" ForeColor="Tomato" ID="cvFkber" OnServerValidate="cvFkber_ServerValidate" runat="server" ValidationGroup="kb02" Width="7px">*</asp:CustomValidator>
-    </td>
-    <td style="color: #000000; height: 18px; width: 299px;">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBFKBER" class="fontContentBlack" ID="TBFKBER" MaxLength="16" runat="server" TabIndex="15" Width="112px">
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBFKBER" class="fontContentBlack" ID="TBFKBER" MaxLength="16" runat="server" TabIndex="15" Width="112px"></asp:TextBox> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBFKBER','cssFKBER')" CausesValidation="False" Height="20px" ID="BTFKBER" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-    <td style="height: 18px; width: 154px;" valign="middle">
-      <strong>
-        <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="lbPrznrTitle" runat="server" Text="รหัสกิจกรรมย่อย"></Label>
-      </strong>&nbsp;
-    </td>
-    <td colspan="2" style="color: #000000; height: 18px; width: 159px;" valign="middle">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBPRZNR" class="fontContentBlack" ID="TBPRZNR" MaxLength="12" runat="server" Width="112px">
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBPRZNR" class="fontContentBlack" ID="TBPRZNR" MaxLength="12" runat="server" Width="112px"></asp:TextBox> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBPRZNR','lbPrznrTitle')" CausesValidation="False" Height="20px" ID="btPrznr" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;
-    </td>
-    <td style="height: 18px; width: 299px;">
-        <asp:TextBox [(ngModel)]="LBFKBER" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBFKBER" runat="server" Width="250px"></asp:TextBox>
-    </td>
-    <td style="height: 18px; width: 154px;">
-      &nbsp;
-    </td>
-    <td colspan="2" style=" height: 18px; width: 159px;">
-      <asp:TextBox [(ngModel)]="LBPRZNR" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="lbPrznr" runat="server" Width="250px"></asp:TextBox>&nbsp;
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssZZOBJ" runat="server">รหัสบัญชีย่อย</Label>
-      </strong>
-    </td>
-    <td style="height: 18px; width: 299px;">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZOBJ" class="fontContentBlack" ID="TBZZOBJ" MaxLength="7" runat="server" TabIndex="20" Width="112px">
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBZZOBJ" class="fontContentBlack" ID="TBZZOBJ" MaxLength="7" runat="server" TabIndex="20" Width="112px"></asp:TextBox> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBZZOBJ','cssZZOBJ')" CausesValidation="False" Height="20px" ID="BTZZOBJ" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg"  runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-    <td style="font-weight: bold; height: 18px; width: 154px;" valign="middle">
-      <!--Update_Ton3--><strong [ngClass]="contentGreen">รหัสเจ้าของบัญชีย่อย</strong>
-      <asp:CustomValidator ControlToValidate="TBZZUNIT" ErrorMessage="รหัสเจ้าของบัญชีย่อยไม่ถูกต้อง" ForeColor="Tomato" ID="cvZzunit" OnServerValidate="cvZzunit_ServerValidate" runat="server" ValidationGroup="kb02">*</asp:CustomValidator>
-    </td>
-    <td colspan="2" style="color: #000000; font-weight: bold; height: 18px; width: 159px;" valign="middle">
-        <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZUNIT" class="fontContentBlack" ID="TBZZUNIT" MaxLength="12" runat="server" Width="112px">
-      <!-- <asp:TextBox  BorderColor="White" BorderStyle="None" class="fontContentGray" ID="TBZZUNIT" MaxLength="10" ReadOnly="True" runat="server" TabIndex="21" Width="112px"></asp:TextBox>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; -->
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">&nbsp;</td>
-    <td colspan="4" style="height: 18px;" valign="middle">
-      <asp:TextBox [(ngModel)]="LBZZOBJ" TextMode="ReadOnly" BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" id="LBZZOBJ" runat="server" Width="250px"></asp:TextBox>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssZZLOAN" runat="server">รหัสหมวดพัสดุ</Label>
-      </strong>
-    </td>
-    <td style="height: 18px; width: 299px;">
-      <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px">
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px"></asp:TextBox> -->
-      <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBZZLOAN','cssZZLOAN')" CausesValidation="False" Height="20px" ID="BTZZLOAN" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
-    </td>
-    <td style="height: 18px; width: 154px;" valign="middle">
-      <strong>
-        <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssVBUND" runat="server">
-          รหัสหน่วยงานคู่ค้า<br/>
-          (Trading Partner)
-        </Label>
-      </strong>
-    </td>
-    <td colspan="2" style="height: 18px; width: 159px;">
-        <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBVBUND" class="fontContentBlack" ID="TBVBUND" MaxLength="12" runat="server" Width="112px">
-      <!-- <asp:TextBox TextMode="ReadOnly" class="fontContentBlack" ID="TBVBUND" MaxLength="5" runat="server" TabIndex="21" Width="112px"></asp:TextBox> -->
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">&nbsp;</td>
-    <td colspan="4" style="height: 18px">
-      <asp:TextBox [(ngModel)]="LBZZLOAN" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBZZLOAN" runat="server" Width="250px"></asp:TextBox>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssWRBTR" runat="server">จำนวนเงิน</Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="TBWRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
-    </td>
-    <td style="height: 18px; width: 299px;">
-      <input type="number" [disabled]="DSTBALL" required [(ngModel)]="TBWRBTR" class="fontContentBlack" ID="TBWRBTR" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
-      <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBWRBTR"  class="fontContentBlack" ID="TBWRBTR" MaxLength="15" runat="server" style="text-align: right" TabIndex="24" Width="112px"></asp:TextBox> -->
-    </td>
-    <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
-      <Label Font-Bold="True" id="lblAugdtTitle" runat="server" Text="วันที่หักล้าง / เลขที่เอกสารหักล้าง " Visible="False"></Label>&nbsp;
-    </td>
-    <td colspan="2" style="height: 18px; width: 159px;">
-      <Label class="fontContentBlack" ID="lblAugdt" runat="server"></Label>
-      <asp:LinkButton CausesValidation="False" Font-Underline="False" ID="lnkAugbl" runat="server"></asp:LinkButton>&nbsp;<asp:Button CausesValidation="False" Font-Names="Tahoma" Font-Size="11px" Height="23px" ID="btnDisplayFi" runat="server" Text="แสดงเอกสาร" Visible="False" Width="75px"/>
-    </td>
-  </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">&nbsp;</td>
-    <td colspan="4" style="height: 18px">
+                </div>
+                </td>
+              </tr>
+              <tr id="TRAnotation1" runat="server" style="height: 21px" visible="false">
+                <td style="width: 747px">
+                  <Label ID="lbAnotationTitle" runat="server" Text="คำอธิบาย:"></Label>
+                  <asp:Image ID="imAnotation" ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" runat="server"/>
+                  <Label ID="lbAnotation3" runat="server" Text="คลิกเพื่อแสดงรายการขอเบิก"></Label>
+                </td>
+              </tr>
 
-    </td>
+              </table>
+              </div>
+      </md-tab>
+    </md-tab-group>
   </tr>
-  <tr>
-    <td style="height: 18px; width: 140px;">
-      &nbsp;<strong>
-        <!--Update_Ton3--><Label [ngClass]="contentGreen" ID="cssSgtxt" runat="server">รายละเอียดบรรทัดรายการ</Label>
-      </strong><asp:RequiredFieldValidator ControlToValidate="tbSgtxt" ErrorMessage="กรุณากรอกรายละเอียดบรรทัดรายการ" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
-    </td>
-     <td colspan="4" style="height: 18px">
-       <input name="tbSgtxt" [disabled]="DSTBALL" type="text" maxlength="50" id="tbSgtxt" class="fontContentBlack" style="width:470px;" />
-     </td>
-  </tr>
-  <tr>
-    <td align="left" colspan="5" style="height: 18px">
-      &nbsp;<asp:ValidationSummary ForeColor="Tomato" ID="ValidationSummary1" runat="server" ValidationGroup="kb02"/>
-    </td>
-  </tr>
-  <tr>
-  <td align="center" colspan="5" style="height: 18px" [hidden]="HIDEBT">
-    <!-- <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/> -->
-    <!-- <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/> -->
-    <!-- <asp:Button  (click)="formNew();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="สร้างข้อมูลใหม่"/> -->
-    <button [disabled]="BTSAVE" (click)="formEdit()">จัดเก็บรายการนี้ลงตาราง</button>
-    <button [disabled]="BTDEL" (click)="formDelete()">ลบข้อมูลรายการนี้</button>
-    <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลรายการใหม่</button>
-  </td>
-</tr>
-</table>
-<!-- <br> -->
-</md-expansion-panel>
-
-</td>
-</tr>
-
-<tr>
-  <td>
-    <br>
-  <table [hidden]="SAVELIST.length <= 0"  border="1"bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" style="width: 850px">
-   <TR style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #b4c3f6" align=center>
-    <TH style="WHITE-SPACE: nowrap" scope=col>เลือก</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>ลำดับที่</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>ชื่อบัญชี</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>รหัสบัญชีแยกประเภท</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>รหัสศูนย์ต้นทุน</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>รหัสงบประมาณ</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>รหัสกิจกรรมหลัก</TH>
-    <TH style="WHITE-SPACE: nowrap" scope=col>จำนวนเงิน</TH>
-  </TR>
-  <tr *ngFor="let save of SAVELIST | paginate: config; let i='index';"
-        [class.selected]="save === selectedList"
-        (click)="onSelect(save,(config.currentPage - 1) * config.itemsPerPage + i)">
-    <td align="center">
-      <INPUT style="BORDER-LEFT-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-TOP-WIDTH: 0px"
-        alt=เลือก src="assets/Images/Icon/record_(show)_16x16.gif" type=image>
-    </td>
-    <td align="center">{{(config.currentPage - 1) * config.itemsPerPage + i +1 }}</td>
-    <td>{{save.LBHKONT}}</td>
-    <td>{{save.TBHKONT}}</td>
-    <td>{{save.TBKOSTL}}</td>
-    <td>{{save.TBFISTL}}</td>
-    <td>{{save.TBFKBER}}</td>
-    <td  style="text-align:right">{{numberWithCommas(save.TBWRBTR)}}</td>
-  </tr>
-
-    <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
-    <td align="center"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="fontTotalwhite">จำนวนเงินขอเบิก</td>
-    <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
-  </tr>
-    <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
-    <td align="center">
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="fontTotalwhite">จำนวนเงินภาษีหัก ณ ที่จ่าย</td>
-    <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
-  </tr>
-    <tr style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
-    <td align="center">
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="fontTotalwhite">จำนวนเงินค่าปรับ </td>
-    <td class="fontTotalBlack">{{numberWithCommas(0)}}</td>
-  </tr>
-    <tr  style="FONT-SIZE: 13px; FONT-FAMILY: Tahoma; WHITE-SPACE: nowrap; COLOR: #051615; BACKGROUND-COLOR: #EBEBEB;border: none; " align=center>
-    <td align="center">
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="fontTotalwhite">จำนวนเงินขอรับ</td>
-    <td class="fontTotalBlack">{{ numberWithCommas(getTotal()) }} </td>
-  </tr>
-  </table>
-  <div class="defaultTableBody">
-    <div>
-    </div>
-      <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
-        <div class="custom-pagination">
-        <ul role="navigation" aria-label="Pagination">
-          <li class="pagination-previous" [class.disabled]="p.isFirstPage()">
-            <a *ngIf="!p.isFirstPage()" (click)="p.previous()"> &laquo; ย้อนกลับ </a>
-          </li>
-          <li class="text-a" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
-            <a class="text-a" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
-              <span>{{ page.label }}</span>
-            </a>
-            <a *ngIf="p.getCurrent() === page.value">
-              <span>{{ page.label }}</span>
-            </a>
-          </li>
-        <span class="pagination-next" [class.disabled]="p.isLastPage()">
-          <a *ngIf="!p.isLastPage()" (click)="p.next()"> ถัดไป &raquo; </a>
-        </span>
-      </ul>
-      </div>
-    </pagination-template>
-    <!-- <pagination-controls
-      (pageChange)="page = $event"
-      previousLabel="ย้อนกลับ"
-      nextLabel="ถัดไป">
-    </pagination-controls> -->
-
-  </div>
-  </td>
-</tr>
-<tr id="TRAnotation1" runat="server" style="height: 21px" visible="false">
-  <td style="width: 747px">
-    <Label ID="lbAnotationTitle" runat="server" Text="คำอธิบาย:"></Label>
-    <asp:Image ID="imAnotation" ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" runat="server"/>
-    <Label ID="lbAnotation3" runat="server" Text="คลิกเพื่อแสดงรายการขอเบิก"></Label>
-  </td>
-</tr>
-
-</table>
-</div>
-</td>
-</tr>
 <tr>
     <td>
       <div>

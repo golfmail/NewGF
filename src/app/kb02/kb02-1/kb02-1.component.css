@@ -147,7 +147,30 @@ ul li{
   color: white;
 }
 
+:host /deep/ .mat-tab-label {
+  /* min-width: 0!important;
+  padding: 3px!important;
+  margin: 3px!important; */
+  background-color: #F0F0D0;
+  font-size: 12px !important;
+  font-weight: bold;
+  color: black !important;
+  height: 25px !important;
+}
 
+:host >>> .mat-tab-header {
+  background-color: #8399CB;
+}
+:host >>> .mat-tab-label-active {
+  background-color: rgb(255, 255, 158);
+  color: black !important;
+}
+:host >>> .selected-tab-0 md-ink-bar {
+  background-color: #8296C8;
+}
+:host >>> .selected-tab-1 md-ink-bar {
+  background-color: #8296C8;
+}
 
 
 

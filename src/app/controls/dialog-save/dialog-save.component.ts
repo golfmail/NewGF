@@ -16,7 +16,7 @@ export class DialogSaveComponent implements OnInit {
   save_log: String;
   TBNUMTR = '-'; // 3100000041
   name_tr = 'Something'; // Something
-  // TBBUKRS: string;
+  // BUKRS: string;
   // GJAHR: number;
   res: String = 'สำเร็จ';
   code: String;
@@ -173,89 +173,16 @@ export class DialogSaveComponent implements OnInit {
 
   createXMLlog() {
     this.xml_log = '';
-    this.xml_log = `<operations>\n\
-    <operation>\n\
-     <modelCRUD>\n\
-       <tableName>log_Header</tableName>\n\
-         <recordID>0</recordID>\n\
-           <action>CreateUpdate</action>\n\
-             <dataRow>\n\
-              <field column="LOGYEAR">\n\
-                <val>${this.LOGYEAR}</val>\n\
-              </field>\n\
-              <field column="LOGNO">\n\
-                <val>${this.LOGNO}</val>\n\
-              </field>\n\
-              <field column="BUKRS">\n\
-                <val>${this.SAVEHEAD.TBBUKRS}</val>\n\
-              </field>\n\
-              <field column="BUKRS_NAME">\n\
-                <val>${this.SAVEHEAD.LBBUKRS}</val>\n\
-              </field>\n\
-              <field column="ZZPMT">\n\
-                <val>${this.SAVEHEAD.TBZZPMT}</val>\n\
-              </field>\n\
-              <field column="ZZPMT_NAME">\n\
-                <val>${this.SAVEHEAD.LBZZPMT}</val>\n\
-              </field>\n\
-              <field column="LUSERID">\n\
-                <val>${this.SAVEHEAD.LUSERID}</val>\n\
-              </field>\n\
-              <field column="GSBER">\n\
-                <val>${this.SAVEHEAD.DDGSBER}</val>\n\
-              </field>\n\
-              <field column="BLART">\n\
-                <val>${this.SAVEHEAD.IDBLART}</val>\n\
-              </field>\n\
-              <field column="BLDAT">\n\
-                <val>${this.SAVEHEAD.IDDATEA}</val>\n\
-              </field>\n\
-              <field column="BUDAT">\n\
-                <val>${this.SAVEHEAD.IDDATEI}</val>\n\
-              </field>\n\
-              <field column="XBLNR">\n\
-                <val>${this.SAVEHEAD.TBXBLNR}</val>\n\
-              </field>\n\
-              <field column="SEARCH_TERM">\n\
-                <val>${this.SAVEHEAD.tbSearch_term}</val>\n\
-              </field>\n\
-              <field column="LIFNR">\n\
-                <val>${this.SAVEHEAD.LIFNR}</val>\n\
-              </field>\n\
-              <field column="NAME1">\n\
-                <val>${this.SAVEHEAD.LBTERM}</val>\n\
-              </field>\n\
-              <field column="ZLSCH">\n\
-                <val>${this.SAVEHEAD.ZLSCH}</val>\n\
-              </field>\n\
-              <field column="CPUDT">\n\
-                <val>${this.CPUDT}</val>\n\
-              </field>\n\
-              <field column="CPUTIME">\n\
-                <val>${this.CPUTIME}</val>\n\
-              </field>\n\
-              <field column="KBLNR">\n\
-                <val>${this.SAVEHEAD.TBKBLNR}</val>\n\
-              </field>\n\
-              <field column="KBLNR_name">\n\
-                <val>${this.SAVEHEAD.LBKBLNR}</val>\n\
-              </field>\n\
-              <field column="SUMCOST">\n\
-                <val>${this.SAVEHEAD.SUMCOST}</val>\n\
-              </field>\n\
-             </dataRow>\n\
-         </modelCRUD>\n\
-       </operation>`;
 
-      // save_log (Header)
-      this.save_log = ''; // Clear TEST-ONLY
-      this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.TBBUKRS},`
-      + `${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},`
-      + `${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},`
-      + `${this.SAVEHEAD.tbSearch_term},,${this.SAVEHEAD.LBTERM},,${this.CPUDT},${this.CPUTIME},`
-      + `${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
+    // save_log (Header)
+    this.save_log = ''; // Clear TEST-ONLY
+    this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.BUKRS},`
+    + `${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},`
+    + `${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},`
+    + `${this.SAVEHEAD.tbSearch_term},${this.SAVEHEAD.LIFNR},${this.SAVEHEAD.LBTERM},${this.SAVEHEAD.ZLSCH},${this.CPUDT},${this.CPUTIME},`
+    + `${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
 
-      console.log(this.SAVELIST.length);
+    console.log(this.SAVELIST.length);
 
     for (let index = 0; index < this.SAVELIST.length; index++) {
     const element = this.SAVELIST[index];
@@ -264,107 +191,12 @@ export class DialogSaveComponent implements OnInit {
 
     // save log (Details)
     this.save_log = this.save_log + `,${this.LOGYEAR},${this.LOGNO},${index + 1}`
-    + `,${element.TBBUKRS},${this.TBNUMTR},${element.GJAHR},${element.TBWRBTR}`
-    + `,${element.TBHKONT},${element.LBHKONT},${element.TBKOSTL},${element.LBKOSTL}`
-    + `,${element.TBFISTL},${element.LBFISTL},${element.TBFKBER},${element.LBFKBER}`
-    + `,${element.TBPRZNR},${element.LBPRZNR},${element.TBZZOBJ},${element.LBZZOBJ}`
-    + `,${element.TBZZUNIT},${element.LBZZUNIT},${element.TBZZLOAN},${element.LBZZLOAN}`
-    + `,${element.TBVBUND},${element.LBVBUND},${element.SGTXT},${element.TBGEBER},${element.LBGEBER}`;
-
-
-    this.xml_log = this.xml_log + `\n\<operation>
-    <modelCRUD>\n\
-      <tableName>logDetail</tableName>\n\
-        <recordID>0</recordID>\n\
-          <action>CreateUpdate</action>\n\
-          <dataRow>\n\
-            <field column="LOGYEAR">\n\
-              <val>${this.LOGYEAR}</val>\n\
-            </field>\n\
-            <field column="LOGNO">\n\
-              <val>${this.LOGNO}</val>\n\
-            </field>\n\
-            <field column="ITEMNO">\n\
-              <val>${index + 1}</val>\n\
-            </field>\n\
-            <field column="BUKRS">\n\
-              <val>${element.TBBUKRS}</val>\n\
-            </field>\n\
-            <field column="BELNR">\n\
-              <val>${this.TBNUMTR}</val>\n\
-            </field>\n\
-            <field column="GJAHR">\n\
-              <val>${element.GJAHR}</val>\n\
-            </field>\n\
-            <field column="WRBTR">\n\
-              <val>${element.TBWRBTR}</val>\n\
-            </field>\n\
-            <field column="HKONT">\n\
-              <val>${element.TBHKONT}</val>\n\
-            </field>\n\
-            <field column="HKONT_name">\n\
-              <val>${element.LBHKONT}</val>\n\
-            </field>\n\
-            <field column="KOSTL">\n\
-              <val>${element.TBKOSTL}</val>\n\
-            </field>\n\
-            <field column="KOSTL_name">\n\
-              <val>${element.LBKOSTL}</val>\n\
-            </field>\n\
-            <field column="FISTL">\n\
-              <val>${element.TBFISTL}</val>\n\
-            </field>\n\
-            <field column="FISTL_name">\n\
-              <val>${element.LBFISTL}</val>\n\
-            </field>\n\
-            <field column="FKBER">\n\
-              <val>${element.TBFKBER}</val>\n\
-            </field>\n\
-            <field column="FKBER_name">\n\
-              <val>${element.LBFKBER}</val>\n\
-            </field>\n\
-            <field column="PRZNR">\n\
-              <val>${element.TBPRZNR}</val>\n\
-            </field>\n\
-            <field column="PRZNR_name">\n\
-              <val>${element.LBPRZNR}</val>\n\
-            </field>\n\
-            <field column="ZZOBJ">\n\
-              <val>${element.TBZZOBJ}</val>\n\
-            </field>\n\
-            <field column="ZZOBJ_name">\n\
-              <val>${element.LBZZOBJ}</val>\n\
-            </field>\n\
-            <field column="ZZUNIT">\n\
-              <val>${element.TBZZUNIT}</val>\n\
-            </field>\n\
-            <field column="ZZUNIT_name">\n\
-              <val>${element.LBZZUNIT}</val>\n\
-            </field>\n\
-            <field column="ZZFIELD1">\n\
-              <val>${element.TBZZLOAN}</val>\n\
-            </field>\n\
-            <field column="ZZFIELD1_name">\n\
-              <val>${element.LBZZLOAN}</val>\n\
-            </field>\n\
-            <field column="VBUND">\n\
-              <val>${element.TBVBUND}</val>\n\
-            </field>\n\
-            <field column="VBUND_name">\n\
-              <val>${element.LBVBUND}</val>\n\
-            </field>\n\
-            <field column="SGTXT">\n\
-              <val>${element.SGTXT}</val>\n\
-            </field>\n\
-            <field column="GEBER">\n\
-              <val>${element.TBGEBER}</val>\n\
-            </field>\n\
-            <field column="GEBER_name">\n\
-              <val>${element.LBGEBER}</val>\n\
-            </field>\n\
-          </dataRow>\n\
-        </modelCRUD>\n\
-      </operation>`;
+    + `,${element.BUKRS},${this.TBNUMTR},${element.GJAHR},${element.WRBTR}`
+    + `,${element.HKONT},${element.HKONT_NAME},${element.KOSTL},${element.KOSTL_NAME}`
+    + `,${element.FISTL},${element.FISTL_NAME},${element.FKBER},${element.FKBER_NAME}`
+    + `,${element.PRZNR},${element.PRZNR_NAME},${element.ZZOBJ_NAME},${element.ZZOBJ}`
+    + `,${element.ZZUNIT},${element.ZZUNIT_NAME},${element.TBZZLOAN},${element.LBZZLOAN}`
+    + `,${element.VBUND},${element.VBUND_NAME},${element.SGTXT},${element.GEBER},${element.GEBER_NAME}`;
     }
 
       console.log(this.save_log);

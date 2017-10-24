@@ -24,7 +24,7 @@ export class DialogSearchComponent implements OnInit {
   result_s: any[];
   reslist = RESLIST;
   SearchList: TableList;
-  xmlTBZZPMT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlZZPMT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
                     <id>1000000</id>
                     <Value>000000300200005</Value>
@@ -32,7 +32,7 @@ export class DialogSearchComponent implements OnInit {
                     <description>สบก.</description>
                   </row>
                 </table>`;
-  xmlTBFISTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlFISTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>100</id>
                   <Value>0300210101110000</Value>
@@ -76,7 +76,7 @@ export class DialogSearchComponent implements OnInit {
                   <description>รถนั่งส่วนกลาง</description>
                 </row>
                 </table>`;
-  xmlTBPRZNR = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlPRZNR = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000343</id>
                   <Value>1000L0633000</Value>
@@ -102,7 +102,7 @@ export class DialogSearchComponent implements OnInit {
                   <description>ส่งเสริม เผยแพร่แ...</description>
                 </row>
                 </table>`;
-   xmlTBKOSTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   xmlKOSTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
                     <id>50001</id>
                     <Value>0300200001</Value>
@@ -140,7 +140,7 @@ export class DialogSearchComponent implements OnInit {
                     <description>สำหรับทดสอบสินทรัพย์</description>
                   </row>
                 </table>`;
-  xmlTBFKBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlFKBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000091</id>
                   <Value>030021000L0633</Value>
@@ -168,7 +168,7 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
 
   // เพิ่มรหัสบัญชีแยกประเภท
-  xmlTBHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
                   <id>1000002</id>
                   <Value>53000</Value>
@@ -206,7 +206,7 @@ export class DialogSearchComponent implements OnInit {
                   <description>ขนส่งสินค้า</description>
                 </row>
                 </table>`;
-  xmlTBGEBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  xmlGEBER = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
                     <id>1000150</id>
                     <Value>6011220</Value>
@@ -253,42 +253,42 @@ export class DialogSearchComponent implements OnInit {
     console.log('N: ' + this.name_t);
     console.log('Y: ' + this.year_t);
     switch (this.code_t) {
-      case 'TBKOSTL':
+      case 'KOSTL':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBFKBER': // รหัสกิจกรรมหหลัก
+      case 'FKBER': // รหัสกิจกรรมหหลัก
         this.createdXml();
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBFISTL': // รหัสงบประมาณ
+      case 'FISTL': // รหัสงบประมาณ
         // this.createdXml();
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBZZPMT':
+      case 'ZZPMT':
         // this.createdXml();
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBPRZNR':
+      case 'PRZNR':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBZZOBJ':
+      case 'ZZOBJ':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBZZLOAN':
+      case 'ZZLOAN':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBHKONT':
+      case 'HKONT':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'TBGEBER':
+      case 'GEBER':
         this.resourcesList(this.name_t);
         break;
     }
@@ -297,45 +297,45 @@ export class DialogSearchComponent implements OnInit {
   resourcesList(name_r) {
    console.log('L: ' + this.code_t);
     switch (this.code_t) {
-      case 'TBKOSTL':
-        this.gatherItem(this.xmlTBKOSTL); // for TEST
+      case 'KOSTL':
+        this.gatherItem(this.xmlKOSTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBFKBER': // รหัสกิจกรรมหลัก
+      case 'FKBER': // รหัสกิจกรรมหลัก
         // this.sentItem(this.xml_s, name_r); // TEST-SERVICE
         // this.getItem(this.result_s);
-        this.gatherItem(this.xmlTBFKBER); // for TEST
+        this.gatherItem(this.xmlFKBER); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBFISTL': // รหัสงบประมาณ
+      case 'FISTL': // รหัสงบประมาณ
         // this.sentItem(xml_s);
         // this.gatherItem(this.xml_r);
-        this.gatherItem(this.xmlTBFISTL); // for TEST
+        this.gatherItem(this.xmlFISTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBZZPMT':
+      case 'ZZPMT':
         // this.sentItem(xml_s);
         // this.gatherItem(this.xml_r);
-        this.gatherItem(this.xmlTBZZPMT); // for TEST
+        this.gatherItem(this.xmlZZPMT); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBPRZNR':
-        this.gatherItem(this.xmlTBPRZNR); // for TEST
+      case 'PRZNR':
+        this.gatherItem(this.xmlPRZNR); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBZZOBJ':
-        this.gatherItem(this.xmlTBKOSTL); // for TEST
+      case 'ZZOBJ':
+        this.gatherItem(this.xmlKOSTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBZZLOAN':
-        this.gatherItem(this.xmlTBKOSTL); // for TEST
+      case 'ZZLOAN':
+        this.gatherItem(this.xmlKOSTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBHKONT':
-        this.gatherItem(this.xmlTBHKONT); // for TEST
+      case 'HKONT':
+        this.gatherItem(this.xmlHKONT); // for TEST
         this.displayItem(name_r);
         break;
-      case 'TBGEBER': // แหล่งของเงิน พิเศษ
+      case 'GEBER': // แหล่งของเงิน พิเศษ
         this.checkYearGEBER();
         this.displayItem(name_r);
         break;
@@ -347,7 +347,7 @@ export class DialogSearchComponent implements OnInit {
     console.log(this.year_t);
     if (this.year_t == '2560') {
       console.log('T-Y');
-      this.gatherItem(this.xmlTBGEBER);
+      this.gatherItem(this.xmlGEBER);
     } else {
       this.gatherItem('');
     }
