@@ -195,7 +195,7 @@ export class DialogSaveComponent implements OnInit {
     + `,${element.HKONT},${element.HKONT_NAME},${element.KOSTL},${element.KOSTL_NAME}`
     + `,${element.FISTL},${element.FISTL_NAME},${element.FKBER},${element.FKBER_NAME}`
     + `,${element.PRZNR},${element.PRZNR_NAME},${element.ZZOBJ_NAME},${element.ZZOBJ}`
-    + `,${element.ZZUNIT},${element.ZZUNIT_NAME},${element.TBZZLOAN},${element.LBZZLOAN}`
+    + `,${element.ZZUNIT},${element.ZZUNIT_NAME},${element.ZZFIELD1},${element.ZZFIELD1_NAME}`
     + `,${element.VBUND},${element.VBUND_NAME},${element.SGTXT},${element.GEBER},${element.GEBER_NAME}`;
     }
 
@@ -226,7 +226,11 @@ export class DialogSaveComponent implements OnInit {
 
   showDetail() {
     console.log('Show Detail');
-    this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr});
+    this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr, new: false});
+  }
+
+  newDoc() {
+    this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr, new: true});
   }
 
   toSearch() {

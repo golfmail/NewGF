@@ -218,7 +218,7 @@
           </strong><asp:RequiredFieldValidator ControlToValidate="TBXBLNR" ErrorMessage="กรุณากรอกการอ้างอิง" ForeColor="Tomato" ID="rvXBLNR" runat="server">*</asp:RequiredFieldValidator>
         </td>
         <td style="height: 18px; width: 144px;">
-            <asp:TextBox [(ngModel)]="LUSERID" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBZZLOAN" runat="server" Width="250px"></asp:TextBox>
+            <asp:TextBox [(ngModel)]="LUSERID" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="ZZFIELD1_NAME" runat="server" Width="250px"></asp:TextBox>
         </td>
 
         <td style="height: 18px">
@@ -282,10 +282,10 @@
 <table style="width: 100%;">
   <tr>
     <md-tab-group selectedIndex="0" #tabGroup class="selected-tab-{{tabGroup.selectedIndex}}">
-      <md-tab label="ข้อมูลทั่วไป" class="disable-select" mat-ripple="disableRipple">
+      <md-tab label="ข้อมูลทั่วไป" class="disable-select" mat-ripple="disableRipple" >
           <div id="gfForm1">
             <br>
-              <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" id="section1" style="width: 100%;">
+              <table border="0" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" id="section1" style="width: 100%;">
                 <tr>
                   <td align="left" colspan="4" style="background-color: #eeeef7; height: 18px;">
                     <span style="color: black">
@@ -295,6 +295,7 @@
                 </tr>
                 <tr>
                   <td align="left" style="height: 18px; width: 162px;">
+                    <br>
                     &nbsp;<strong>
                       <!--Update_Ton3--><Label [ngClass]="contentBlue" ID="cssBLART" runat="server">ประเภทรายการขอเบิก</Label>
                     </strong>
@@ -333,13 +334,13 @@
                   </td>
                 </tr>
                 <tr>
-                  <td align="left" style="height: 17px; width: 162px;">
+                  <td align="left" style="height: 25px; width: 162px;">
                     &nbsp;<strong>
                       <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssGEBER" runat="server">แหล่งของเงิน</Label>
                     </strong>
                     <asp:RequiredFieldValidator ControlToValidate="GEBER" ErrorMessage="กรุณากรอกรหัสแหล่งของเงิน" ForeColor="Tomato" ID="RequiredFieldValidator4" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
                   </td>
-                  <td colspan="3" style="height: 17px">
+                  <td colspan="3">
                     <select [(ngModel)]="YEAR" [disabled]="DSTBALL" style="width: 50px">
                       <option *ngFor="let c of yearList" [ngValue]="c.YESR">{{c.YESR}}</option>
                     </select>
@@ -373,19 +374,15 @@
                 </tr>
                 <tr>
                   <td align="left" colspan="4" style="background-color: #f0eef8; height: 18px;">
-                    &nbsp;<strong style="color: #595467; font-size: 12px;">
-                      ข้อมูลผู้รับเงิน
-                    </strong>
+                    &nbsp;<strong style="color: #595467; font-size: 12px;">ข้อมูลผู้รับเงิน</strong>
                   </td>
                 </tr>
                 <tr>
                   <td align="left" style="height: 18px; width: 162px;">
-                    &nbsp;<strong>
-                      <!--Update_Ton3--><Label [ngClass]="contentRed" ID="cssSearch_term" runat="server">
-                        เลขประจำตัวบัตรประชาชน/<br/>
-                        &nbsp;เลขประจำตัวผู้เสียภาษี
-                      </Label>
-                    </strong><asp:RequiredFieldValidator ControlToValidate="tbSearch_term" ErrorMessage="กรุณากรอกเลขประจำตัวบัตรประชาชน/" ForeColor="Tomato" ID="rvSearch_term" runat="server">*</asp:RequiredFieldValidator>
+                    <strong>&nbsp;
+                    <Label [ngClass]="contentRed">เลขประจำตัวบัตรประชาชน/</Label>
+                    <br>&nbsp;
+                    <Label [ngClass]="contentRed">เลขประจำตัวผู้เสียภาษี</Label></strong>
                   </td>
                   <td style="height: 18px; width: 244px;">
                     <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="tbSearch_term"  class="fontContentBlack" ID="tbSearch_term" MaxLength="13" runat="server" Width="120px">
@@ -428,13 +425,12 @@
                 </tr>
                 <tr style="font-weight: bold">
                   <td align="center" colspan="4" rowspan="2">
-                    <strong></strong>
-                    <!--Update_Ton--><textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" style="Width: 653px"></textarea>
-                    <!--Update_Ton--><!-- <asp:TextBox Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" Width="653px"></asp:TextBox> -->
+                    <br>
+                    <textarea type="textarea" [disabled]="DSTBALL" Font-Size="11px" ForeColor="#666666" Height="73px" ID="tbTLine" runat="server" TextMode="MultiLine" style="Width: 653px"></textarea>
                   </td>
                 </tr>
-                <tr></tr>
-                <tr>
+                <tr ></tr>
+                <tr style="height: 18px;">
                   <td align="center" colspan="4" rowspan="1"></td>
                 </tr>
               </table>
@@ -458,14 +454,15 @@
 
 
 
-              <table border="1" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
+              <table border="0" bordercolor="#f5f5f5" cellpadding="0" cellspacing="0" class="defaultTableBody" id="TBDetailTable" width="100%">
                 <tr>
                   <td style="height: 22px; width: 140px;">
-                    &nbsp;<strong class="fontContentBlack">ลำดับ</strong> &nbsp; &nbsp;
+                    &nbsp;<strong class="fontContentBlack">
+                      ลำดับ</strong> &nbsp; &nbsp;
                     <Label Font-Bold="False" ForeColor="#666666" ID="lbNUMBER" runat="server" Text="">{{lbNUMBER}}</Label>
                   </td>
                   <td style="color: #666666; font-weight: bold; height: 22px; width: 299px;">
-                    <Label Font-Bold="True" ForeColor="#666666" ID="lbPk" runat="server" TabIndex="-1" Visible="False">PK</Label>
+                    <Label Font-Bold="True" ForeColor="#666666" ID="lbPk" runat="server" TabIndex="-1" Visible="False"></Label>
                     <Label Font-Bold="False" ForeColor="#666666" ID="lbBschl" runat="server" TabIndex="-1" Visible="False"></Label>&nbsp;
                   </td>
                   <td style="color: #000000; font-weight: bold; height: 22px; width: 154px;" valign="middle">
@@ -596,9 +593,8 @@
                     </strong>
                   </td>
                   <td style="height: 18px; width: 299px;">
-                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px">
-                    <!--Update_Ton--><!-- <asp:TextBox [(ngModel)]="TBZZLOAN" class="fontContentBlack" ID="TBZZLOAN" MaxLength="14" runat="server" Width="112px"></asp:TextBox> -->
-                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('TBZZLOAN','cssZZLOAN')" CausesValidation="False" Height="20px" ID="BTZZLOAN" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
+                    <!--Update_Ton--><input type="text" [disabled]="DSTBALL" [(ngModel)]="ZZFIELD1" class="fontContentBlack" ID="ZZFIELD1" MaxLength="14" runat="server" Width="112px">
+                    <!--Update_Ton--><ImageButton [hidden]="SHOWBT" (click)="openDialog('ZZFIELD1','cssZZLOAN')" CausesValidation="False" Height="20px" ID="BTZZLOAN" ImageAlign="AbsMiddle" ImageUrl="assets/Images/SearchIcon.jpg" runat="server" ToolTip="ค้นหา" Width="22px"></ImageButton>
                   </td>
                   <td style="height: 18px; width: 154px;" valign="middle">
                     <strong>
@@ -615,7 +611,7 @@
                 <tr>
                   <td style="height: 18px; width: 140px;">&nbsp;</td>
                   <td colspan="4" style="height: 18px">
-                    <asp:TextBox [(ngModel)]="LBZZLOAN" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="LBZZLOAN" runat="server" Width="250px"></asp:TextBox>
+                    <asp:TextBox [(ngModel)]="ZZFIELD1_NAME" TextMode="ReadOnly"  BackColor="White" BorderColor="White" BorderStyle="Solid" ForeColor="#666666" ID="ZZFIELD1_NAME" runat="server" Width="250px"></asp:TextBox>
                   </td>
                 </tr>
                 <tr>
@@ -657,18 +653,14 @@
                   </td>
                 </tr>
                 <tr>
-                <td align="center" colspan="5" style="height: 18px" [hidden]="HIDEBT">
-                  <!-- <asp:Button (click)="formEdit();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="จัดเก็บรายการนี้ลงตาราง"/> -->
-                  <!-- <asp:Button (click)="formDelete();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnDel" OnClick="btnSend_Click" runat="server" Text="ลบข้อมูลรายการนี้"/> -->
-                  <!-- <asp:Button  (click)="formNew();" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnSend" OnClick="btnSend_Click" runat="server" Text="สร้างข้อมูลใหม่"/> -->
+                <td align="center" colspan="5" style="height: 25px" [hidden]="HIDEBT">
                   <button [disabled]="BTSAVE" (click)="formEdit()">จัดเก็บรายการนี้ลงตาราง</button>
                   <button [disabled]="BTDEL" (click)="formDelete()">ลบข้อมูลรายการนี้</button>
                   <button [disabled]="BTNEW" (click)="formNew()">สร้างข้อมูลรายการใหม่</button>
                 </td>
               </tr>
-              </table>
-              <!-- <br> -->
-              </md-expansion-panel>
+            </table>
+          </md-expansion-panel>
 
               </td>
               </tr>
@@ -770,18 +762,14 @@
                     </ul>
                     </div>
                   </pagination-template>
-                  <!-- <pagination-controls
-                    (pageChange)="page = $event"
-                    previousLabel="ย้อนกลับ"
-                    nextLabel="ถัดไป">
-                  </pagination-controls> -->
 
                 </div>
                 </td>
               </tr>
               <tr id="TRAnotation1" runat="server" style="height: 21px" visible="false">
                 <td style="width: 747px">
-                  <Label ID="lbAnotationTitle" runat="server" Text="คำอธิบาย:"></Label>
+                  &nbsp;
+                  <Label ID="lbAnotationTitle" runat="server" Text="คำอธิบาย:"></Label>&nbsp;
                   <asp:Image ID="imAnotation" ImageUrl="assets/Images/Icon/record_(show)_16x16.gif" runat="server"/>
                   <Label ID="lbAnotation3" runat="server" Text="คลิกเพื่อแสดงรายการขอเบิก"></Label>
                 </td>
@@ -815,10 +803,10 @@
             <tr>
               <td style="height: 37px; width: 103px;"></td>
               <td style="color: #ffffff; height: 37px; padding-left: 4px; padding-right: 4px; white-space: nowrap;" valign="middle">
-                <span  *ngIf="selectForm==2||!selectForm" (click)="selectForm=1"  style="cursor: pointer">
-                  « ก่อนหน้า
+                <span  *ngIf="tabGroup.selectedIndex==0||!tabGroup.selectedIndex" (click)="tabGroup.selectedIndex=1"  style="cursor: pointer">
+                    ถัดไป »
                 </span>
-                <span *ngIf="selectForm==1" (click)="selectForm=2" id="dbtNext" style="cursor: pointer">ถัดไป »</span>
+                <span *ngIf="tabGroup.selectedIndex==1" (click)="tabGroup.selectedIndex=0" id="dbtNext" style="cursor: pointer">« ก่อนหน้า</span>
               </td>
             </tr>
           </table>

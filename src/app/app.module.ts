@@ -63,6 +63,7 @@ import { MaterialModule } from '@angular/material';
 import { forwardRef } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { DialogSaveComponent } from './controls/dialog-save/dialog-save.component';
+import { CheckWebComponent } from './web-browser/check-web/check-web.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { DialogSaveComponent } from './controls/dialog-save/dialog-save.componen
     ListDetailComponent,
     DialogSearchComponent,
     DialogSaveComponent,
+    CheckWebComponent,
 
   ],
   imports: [

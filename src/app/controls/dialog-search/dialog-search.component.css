@@ -11,7 +11,7 @@ body {
 :host >>> table {
     border-collapse: collapse;
     width: 100%;
-    /* border: 1px solid #ddd; */
+    border: 0px solid #ddd;
     /* display: flex; */
     /* flex-direction: column; */
     /* max-height: 300px;

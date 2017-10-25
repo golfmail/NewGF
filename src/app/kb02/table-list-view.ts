@@ -18,7 +18,7 @@ export class TableList {
     PRZNR: string; // รหัสกิจกรรมย่อย
     ZZOBJ_NAME: string; // รหัสบัญชีย่อย
     ZZUNIT: string; // รหัสเจ้าของบัญชีย่อย
-    TBZZLOAN: string; // รหัสหมวดพัสดุ
+    ZZFIELD1: string; // รหัสหมวดพัสดุ
     VBUND: string; // รหัสหน่วยงานคู่ค้า
 
     // OTHER
@@ -34,7 +34,7 @@ export class TableList {
     PRZNR_NAME: string; // (N) ชื่อกิจกรรมย่อย
     ZZOBJ: string; // (N) รหัสบัญชีย่อย
     ZZUNIT_NAME: string; // (N) รหัสเจ้าของบัญชีย่อย
-    LBZZLOAN: string; // (N) รหัสหมวดพัสดุ
+    ZZFIELD1_NAME: string; // (N) รหัสหมวดพัสดุ
     VBUND_NAME: string; // (N) รหัสหน่วยงานคู่ค้า
     LBKBLNR: String;
 

@@ -63,7 +63,7 @@ export class Kb021Component implements OnInit  {
     {id: 'TBZZPMT', Val: ''},
     {id: 'LBZZPMT', Val: ''},
     {id: 'LUSERID', Val: ''},
-    {id: 'DDGSBER', Val: ''}, // IDBLART
+    {id: 'DDGSBER', Val: ''},
     {id: 'IDBLART', Val: ''},
     {id: 'IDDATEA', Val: ''},
     {id: 'IDDATEI', Val: ''},
@@ -105,7 +105,7 @@ export class Kb021Component implements OnInit  {
   WRBTR = ''; // จำนวนเงินที่ขอเบิก            [Send to API]
 
   ZZOBJ = ''; // รหัสบัญชีย่อย
-  TBZZLOAN = ''; // รหัสหมวดพัสดุ
+  ZZFIELD1 = ''; // รหัสหมวดพัสดุ
   PRZNR = ''; // รหัสกิจกรรมย่อย
   TBKBLNR = ''; // เลขที่เอกสารสำรองเงิน
   ZZUNIT = ''; // รหัสเจ้าของบัญชีย่อย
@@ -138,7 +138,7 @@ export class Kb021Component implements OnInit  {
   FISTL_NAME: String;
   PRZNR_NAME: String;
   ZZOBJ_NAME: String;
-  LBZZLOAN: String;
+  ZZFIELD1_NAME: String;
   HKONT_NAME: String;
   ZZUNIT_NAME: String; // (N) รหัสเจ้าของบัญชีย่อย
   VBUND_NAME: String; // (N) รหัสหน่วยงานคู่ค้า
@@ -282,9 +282,9 @@ export class Kb021Component implements OnInit  {
                 this.ZZOBJ = this.resultTB;
                 this.ZZOBJ_NAME = this.resultLB;
                 break;
-              case 'TBZZLOAN': // รหัสหมวดพัสดุ
-                this.TBZZLOAN = this.resultTB;
-                this.LBZZLOAN = this.resultLB;
+              case 'ZZFIELD1': // รหัสหมวดพัสดุ
+                this.ZZFIELD1 = this.resultTB;
+                this.ZZFIELD1_NAME = this.resultLB;
                 break;
               case 'PRZNR': // รหัสกิจกรรมย่อย
                 this.PRZNR = this.resultTB; // Set Value
@@ -368,8 +368,7 @@ export class Kb021Component implements OnInit  {
   onNewDoc() {
     this.router.navigate(['/kb021']);
     this.EXPAND = true;
-    this.SAVELIST = []; // Clear List
-    this.SAVELIST = [];
+    // this.SAVELIST = [];
     this.SHOWTR = true; // Hide Doc
     this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Hide 3 Button Log
@@ -418,17 +417,17 @@ export class Kb021Component implements OnInit  {
     this.lbNUMBER = i + 1;
     this.valuelist = i + 1;
     this.selectedList = save; // => Selected
-    this.BUKRS = save.BUKRS;
-    this.LBBUKRS = save.LBBUKRS;
-    this.TBBLDAT = save.TBBLDAT;
-    this.TBBUDAT = save.TBBUDAT;
-    this.TBZZPMT = save.TBZZPMT;
-    this.LBZZPMT = save.LBZZPMT;
-    this.TBXBLNR = save.TBXBLNR;
-    this.GEBER = save.GEBER; // แหล่งของเงิน
-    this.GEBER_NAME = save.GEBER_NAME;
-    this.tbSearch_term = save.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
-    this.tbBankn = save.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
+    // this.BUKRS = save.BUKRS;
+    // this.LBBUKRS = save.LBBUKRS;
+    // this.TBBLDAT = save.TBBLDAT;
+    // this.TBBUDAT = save.TBBUDAT;
+    // this.TBZZPMT = save.TBZZPMT;
+    // this.LBZZPMT = save.LBZZPMT;
+    // this.TBXBLNR = save.TBXBLNR;
+    // this.GEBER = save.GEBER; // แหล่งของเงิน
+    // this.GEBER_NAME = save.GEBER_NAME;
+    // this.tbSearch_term = save.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+    // this.tbBankn = save.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
     this.HKONT = save.HKONT; // รหัสบัญชีแยกประเภททั่วไป
     this.KOSTL = save.KOSTL; // รหัสศูนย์ต้นทุน
     this.FISTL = save.FISTL; // รหัสงบประมาณ
@@ -437,7 +436,7 @@ export class Kb021Component implements OnInit  {
     this.PRZNR = save.PRZNR; // รหัสกิจกรรมย่อย
     this.ZZOBJ = save.ZZOBJ; // รหัสบัญชีย่อย
     this.ZZUNIT = save.ZZUNIT; // รหัสเจ้าของบัญชีย่อย
-    this.TBZZLOAN = save.TBZZLOAN; // รหัสหมวดพัสดุ
+    this.ZZFIELD1 = save.ZZFIELD1; // รหัสหมวดพัสดุ
     this.VBUND = save.VBUND; // รหัสหน่วยงานคู่ค้า
 
     this.GJAHR = save.GJAHR; // ปีบัญชี
@@ -450,17 +449,16 @@ export class Kb021Component implements OnInit  {
     this.PRZNR_NAME = save.PRZNR_NAME; // (N) ชื่อกิจกรรมย่อย
     this.ZZOBJ_NAME = save.ZZOBJ_NAME; // (N) รหัสบัญชีย่อย
     this.ZZUNIT_NAME = this.ZZUNIT_NAME; // (N) รหัสเจ้าของบัญชีย่อย
-    this.LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+    this.ZZFIELD1_NAME = this.ZZFIELD1_NAME; // (N) รหัสหมวดพัสดุ
     this.VBUND_NAME = this.VBUND_NAME; // (N) รหัสหน่วยงานคู่ค้า
 
-    this.IDFISTL = save.IDFISTL; // (ID) รหัสงบประมาณ
-    this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
-    this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
-    this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
-    this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
-    this.IDBLART = save.IDBLART; // (ID) Doc. Type
-    this.IDDATEA = save.IDDATEA; // (ID) Account Date
-    this.IDDATEI = save.IDDATEI; // (ID) Date Invoic
+  //   this.IDFISTL = save.IDFISTL; // (ID) รหัสงบประมาณ
+  //   this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
+  //   this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
+  //   this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+  //   this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+  //   this.IDDATEA = save.IDDATEA; // (ID) Account Date
+  //   this.IDDATEI = save.IDDATEI; // (ID) Date Invoic
   }
 
   checkform() {
@@ -492,7 +490,7 @@ export class Kb021Component implements OnInit  {
     //   this.ValidateList.push(tHead + 'รหัสกิจกรรมย่อย');
     // } if (!this.ZZOBJ) {
     //   this.ValidateList.push(tHead + 'รหัสบัญชีย่อย');
-    // } if (!this.TBZZLOAN) {
+    // } if (!this.ZZFIELD1) {
     //   this.ValidateList.push(tHead + 'รหัสหมวดพัสดุ');
     } if (!this.WRBTR) {
       this.ValidateList.push(tHead + 'จำนวนเงินขอเบิก');
@@ -606,6 +604,14 @@ export class Kb021Component implements OnInit  {
     console.log('A: ' + this.IDDATEA + ', I: ' + this.IDDATEI);
   }
 
+  coverDate() {
+    const A = (this.IDDATEA.split('-'));
+    const I = (this.IDDATEI.split('-'));
+    this.DATEA = new Date(this.IDDATEA); // วันที่เอกสาร
+    this.DATEI = new Date(this.IDDATEI);
+  }
+
+
   chkValidate() {
     console.log(this.FISTL.length);
     const F_FISTL = this.FISTL.substr(0, 5); // รหัสงบประมาณ 5 หลักแรก
@@ -696,7 +702,7 @@ export class Kb021Component implements OnInit  {
           PRZNR: this.PRZNR, // รหัสกิจกรรมย่อย
           ZZOBJ: this.ZZOBJ, // รหัสบัญชีย่อย
           ZZUNIT: this.ZZUNIT, // รหัสเจ้าของบัญชีย่อย
-          TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+          ZZFIELD1: this.ZZFIELD1, // รหัสหมวดพัสดุ
           VBUND: this.VBUND, // รหัสหน่วยงานคู่ค้า
           IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
@@ -715,7 +721,7 @@ export class Kb021Component implements OnInit  {
           PRZNR_NAME: this.PRZNR_NAME, // (N) ชื่อกิจกรรมย่อย
           ZZOBJ_NAME: this.ZZOBJ_NAME, // (N) รหัสบัญชีย่อย
           ZZUNIT_NAME: this.ZZUNIT_NAME, // (N) รหัสเจ้าของบัญชีย่อย
-          LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+          ZZFIELD1_NAME: this.ZZFIELD1_NAME, // (N) รหัสหมวดพัสดุ
           VBUND_NAME: this.VBUND_NAME, // (N) รหัสหน่วยงานคู่ค้า
           }];
         // alert(SAVELIST.length);
@@ -743,7 +749,7 @@ export class Kb021Component implements OnInit  {
           PRZNR: this.PRZNR, // รหัสกิจกรรมย่อย
           ZZOBJ: this.ZZOBJ, // รหัสบัญชีย่อย
           ZZUNIT: this.ZZUNIT, // รหัสเจ้าของบัญชีย่อย
-          TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+          ZZFIELD1: this.ZZFIELD1, // รหัสหมวดพัสดุ
           VBUND: this.VBUND, // รหัสหน่วยงานคู่ค้า
           IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
           IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
@@ -762,7 +768,7 @@ export class Kb021Component implements OnInit  {
           PRZNR_NAME: this.PRZNR_NAME, // (N) ชื่อกิจกรรมย่อย
           ZZOBJ_NAME: this.ZZOBJ_NAME, // (N) รหัสบัญชีย่อย
           ZZUNIT_NAME: this.ZZUNIT_NAME, // (N) รหัสเจ้าของบัญชีย่อย
-          LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+          ZZFIELD1_NAME: this.ZZFIELD1_NAME, // (N) รหัสหมวดพัสดุ
           VBUND_NAME: this.VBUND_NAME, // (N) รหัสหน่วยงานคู่ค้า
           });
 
@@ -822,7 +828,7 @@ export class Kb021Component implements OnInit  {
       PRZNR: this.PRZNR, // รหัสกิจกรรมย่อย
       ZZOBJ: this.ZZOBJ, // รหัสบัญชีย่อย
       ZZUNIT: this.ZZUNIT, // รหัสเจ้าของบัญชีย่อย
-      TBZZLOAN: this.TBZZLOAN, // รหัสหมวดพัสดุ
+      ZZFIELD1: this.ZZFIELD1, // รหัสหมวดพัสดุ
       VBUND: this.VBUND, // รหัสหน่วยงานคู่ค้า
       IDFISTL: this.IDFISTL, // (ID) รหัสงบประมาณ
       IDKOSTL: this.IDKOSTL, // (ID) รหัสศูนย์ต้นทุน
@@ -841,7 +847,7 @@ export class Kb021Component implements OnInit  {
       PRZNR_NAME: this.PRZNR_NAME, // (N) ชื่อกิจกรรมย่อย
       ZZOBJ_NAME: this.ZZOBJ_NAME, // (N) รหัสบัญชีย่อย
       ZZUNIT_NAME: this.ZZUNIT_NAME, // (N) รหัสเจ้าของบัญชีย่อย
-      LBZZLOAN: this.LBZZLOAN, // (N) รหัสหมวดพัสดุ
+      ZZFIELD1_NAME: this.ZZFIELD1_NAME, // (N) รหัสหมวดพัสดุ
       VBUND_NAME: this.VBUND_NAME, // (N) รหัสหน่วยงานคู่ค้า
       });
       this.lbNUMBER = this.SAVELIST.length + 1;
@@ -876,7 +882,7 @@ export class Kb021Component implements OnInit  {
       this.SAVELIST[lbNUMBER].PRZNR = this.PRZNR; // รหัสกิจกรรมย่อย
       this.SAVELIST[lbNUMBER].ZZOBJ = this.ZZOBJ; // รหัสบัญชีย่อย
       this.SAVELIST[lbNUMBER].ZZUNIT = this.ZZUNIT; // รหัสเจ้าของบัญชีย่อย
-      this.SAVELIST[lbNUMBER].TBZZLOAN = this.TBZZLOAN; // รหัสหมวดพัสดุ
+      this.SAVELIST[lbNUMBER].ZZFIELD1 = this.ZZFIELD1; // รหัสหมวดพัสดุ
       this.SAVELIST[lbNUMBER].VBUND = this.VBUND; // รหัสหน่วยงานคู่ค้า
       this.SAVELIST[lbNUMBER].IDFISTL = this.IDFISTL; // (ID) รหัสงบประมาณ
       this.SAVELIST[lbNUMBER].IDKOSTL = this.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
@@ -895,7 +901,7 @@ export class Kb021Component implements OnInit  {
       this.SAVELIST[lbNUMBER].PRZNR_NAME = this.PRZNR_NAME; // (N) ชื่อกิจกรรมย่อย
       this.SAVELIST[lbNUMBER].ZZOBJ_NAME = this.ZZOBJ_NAME; // (N) รหัสบัญชีย่อย
       this.SAVELIST[lbNUMBER].ZZUNIT_NAME = this.ZZUNIT_NAME; // (N) รหัสเจ้าของบัญชีย่อย
-      this.SAVELIST[lbNUMBER].LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+      this.SAVELIST[lbNUMBER].ZZFIELD1_NAME = this.ZZFIELD1_NAME; // (N) รหัสหมวดพัสดุ
       this.SAVELIST[lbNUMBER].VBUND_NAME = this.VBUND_NAME; // (N) รหัสหน่วยงานคู่ค้า
 
       this.lbNUMBER = this.SAVELIST.length + 1;
@@ -979,7 +985,12 @@ export class Kb021Component implements OnInit  {
         if (selection) {
           this.resultTB = selection.value;
           this.resultLB = selection.name;
-          this.onGetDocSearch(this.resultTB, this.GJAHR);
+          if (selection.new === false) {
+            this.onGetDocSearch(this.resultTB, this.GJAHR);
+          } else if (selection.new === true) {
+            this.onGetNewDoc();
+          }
+
           // this.onDisable(); // Disable Textbox on Page after Success!
           // this.onEnableInput('N'); // N = Disable All Input this Page
           // this.onColor('N'); // 'N' = Change Color Content Black on Page after Success!
@@ -1019,6 +1030,7 @@ export class Kb021Component implements OnInit  {
   }
 
   onGetDocSearch(BELNR, GJAHR) {
+    this.SAVELIST = [];
     this.EXPAND = false;
     const jsonHead = this.madejson(BELNR, GJAHR);
     this.getServiceDoc(jsonHead); // send json to Service and Get Result
@@ -1026,6 +1038,16 @@ export class Kb021Component implements OnInit  {
     // After Get Doc Detail
     this.BELNR = BELNR;
     this.setDcotype(); // SET Document Type
+    this.onEnableInput('N'); // N = Diable All Input
+    this.onColor('N'); // N = No Color
+    this.onShowDocID();
+
+  }
+
+  onGetNewDoc() {
+    this.SAVELIST = [];
+    this.EXPAND = true;
+    // After Get Doc Detail
     this.onEnableInput('N'); // N = Diable All Input
     this.onColor('N'); // N = No Color
     this.onShowDocID();
@@ -1055,6 +1077,7 @@ export class Kb021Component implements OnInit  {
           this.SAVELIST = result.Detail;
           this.setHeader();
           this.setDcotype();
+          // this.coverDate();
           console.log( this.SAVELIST);
           // this.setDocData();
         } else {
@@ -1085,6 +1108,8 @@ export class Kb021Component implements OnInit  {
     this.TBKBLNR  = this.HEADLIST.KBLNR;
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
+    console.log(this.IDDATEA);
+    this.coverDate();
   }
 
   setDocData () {
@@ -1109,7 +1134,7 @@ export class Kb021Component implements OnInit  {
     this.PRZNR = this.SAVELIST[n].PRZNR; // รหัสกิจกรรมย่อย
     this.ZZOBJ = this.SAVELIST[n].ZZOBJ; // รหัสบัญชีย่อย
     this.ZZUNIT = this.SAVELIST[n].ZZUNIT; // รหัสเจ้าของบัญชีย่อย
-    this.TBZZLOAN = this.SAVELIST[n].TBZZLOAN; // รหัสหมวดพัสดุ
+    this.ZZFIELD1 = this.SAVELIST[n].ZZFIELD1; // รหัสหมวดพัสดุ
     this.VBUND = this.SAVELIST[n].VBUND; // รหัสหน่วยงานคู่ค้า
 
     this.GJAHR = this.SAVELIST[n].GJAHR; // ปีบัญชี
@@ -1122,7 +1147,7 @@ export class Kb021Component implements OnInit  {
     this.PRZNR_NAME = this.SAVELIST[n].PRZNR_NAME; // (N) ชื่อกิจกรรมย่อย
     this.ZZOBJ_NAME = this.SAVELIST[n].ZZOBJ_NAME; // (N) รหัสบัญชีย่อย
     this.ZZUNIT_NAME = this.ZZUNIT_NAME; // (N) รหัสเจ้าของบัญชีย่อย
-    this.LBZZLOAN = this.LBZZLOAN; // (N) รหัสหมวดพัสดุ
+    this.ZZFIELD1_NAME = this.ZZFIELD1_NAME; // (N) รหัสหมวดพัสดุ
     this.VBUND_NAME = this.VBUND_NAME; // (N) รหัสหน่วยงานคู่ค้า
 
     this.IDFISTL = this.SAVELIST[n].IDFISTL; // (ID) รหัสงบประมาณ
@@ -1167,7 +1192,7 @@ export class Kb021Component implements OnInit  {
     this.FISTL_NAME = 'โครงการจัดตั้งศูนย์ค';
     this.PRZNR_NAME = '';
     this.ZZOBJ_NAME = '';
-    this.LBZZLOAN = '';
+    this.ZZFIELD1_NAME = '';
     this.HKONT_NAME = 'ค่าซ่อมแซมและค่าบำรุงรักษา';
     this.ZZUNIT_NAME = ''; // (N) รหัสเจ้าของบัญชีย่อย
     this.VBUND_NAME = ''; // (N) รหัสหน่วยงานคู่ค้า

@@ -54,9 +54,9 @@
     <span>
         <button [disabled]="BTSHOW" id="BTSHOW" (click)="showDetail()">แสดงข้อมูล</button>
         <button [disabled]="BTEDIT" id="BTEDIT" (click)="dialogRef.close()">กลับไปแก้ไขข้อมูล</button>
-        <button [disabled]="BTNEW" (click)="dialogRef.close()">สร้างเอกสารใหม่</button>
+        <button [disabled]="BTNEW" (click)="newDoc()">สร้างเอกสารใหม่</button>
     </span>
-    <span >
+    <span>
         <button [disabled]="BTSEARCH" (click)="toSearch()" >ค้นหาเอกสาร</button>
         <button [disabled]="BTLOG" (click)="dialogRef.close()">Log</button>
         <img [hidden]="SAVEDLOG" src="./../../../assets/Images/checked_64.png" align="middle" alt="saved to log" height="20" width="20">

@@ -151,19 +151,20 @@ ul li{
   /* min-width: 0!important;
   padding: 3px!important;
   margin: 3px!important; */
-  background-color: #F0F0D0;
+  background-color: #C0C1D6;
   font-size: 12px !important;
   font-weight: bold;
-  color: black !important;
+  color: rgb(53, 53, 53) !important;
   height: 25px !important;
+  opacity: 1;
 }
 
-:host >>> .mat-tab-header {
+:host >>> md-tab-header {
   background-color: #8399CB;
 }
 :host >>> .mat-tab-label-active {
   background-color: rgb(255, 255, 158);
-  color: black !important;
+  color: rgb(53, 53, 53) !important;
 }
 :host >>> .selected-tab-0 md-ink-bar {
   background-color: #8296C8;
@@ -173,4 +174,8 @@ ul li{
 }
 
 
+br {
+  display: block;
+  margin: 3px 0;
+}
 
