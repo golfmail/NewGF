@@ -40,37 +40,37 @@ export class DialogSearchComponent implements OnInit {
                   <description>ครุภัณฑ์ต่ำกว่า 1 ล</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>1000087</id>
                   <Value>0300210101000000</Value>
                   <Name>รายการงบประจำ</Name>
                   <description>รายการงบประจำ</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>1000088</id>
                   <Value>0300210101110001</Value>
                   <Name>โต๊ะทำงานระดับ 3-6</Name>
                   <description>โต๊ะทำงานระดับ 3-6</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>1000089</id>
                   <Value>0300210101110002</Value>
                   <Name>เครื่องโทรศัพท์</Name>
                   <description>เครื่องโทรศัพท์</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>104</id>
                   <Value>0300210101110003</Value>
                   <Name>เครื่องถ่ายเอกสารระบงบประจำ</Name>
                   <description>เครื่องถ่ายเอกสารระบ</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>105</id>
                   <Value>0300210101110007</Value>
                   <Name>เครื่องกรองน้ำ</Name>
                   <description>เครื่องกรองน้ำ</description>
                 </row>
                 <row>
-                  <id>101</id>
+                  <id>1000084</id>
                   <Value>0300210101110022</Value>
                   <Name>รถนั่งส่วนกลาง</Name>
                   <description>รถนั่งส่วนกลาง</description>
@@ -104,37 +104,37 @@ export class DialogSearchComponent implements OnInit {
                 </table>`;
    xmlKOSTL = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <row>
-                    <id>50001</id>
+                    <id>101</id>
                     <Value>0300200001</Value>
                     <Name>กกม.</Name>
                     <description>กลุ่มงานกฎหมาย</description>
                   </row>
                   <row>
-                    <id>50006</id>
+                    <id>101</id>
                     <Value>0300200003</Value>
                     <Name>กปป.</Name>
                     <description>กลุ่มงานป้องปรามการเงินนอกระบบ</description>
                   </row>
                   <row>
-                    <id>50005</id>
+                    <id>101</id>
                     <Value>0300200004</Value>
                     <Name>กตน.</Name>
                     <description>กลุ่มตรวจสอบภายใน</description>
                   </row>
                   <row>
-                    <id>50004</id>
+                    <id>101</id>
                     <Value>0300200005</Value>
                     <Name>สบก.</Name>
                     <description>สำนักบริหารกลาง</description>
                   </row>
                   <row>
-                    <id>50002</id>
+                    <id>101</id>
                     <Value>0300200007</Value>
                     <Name>สตป.</Name>
                     <description>สำนักตรวจสอบและประเมินผล</description>
                   </row>
                   <row>
-                    <id>50000</id>
+                    <id>101</id>
                     <Value>0300200000</Value>
                     <Name>สปกค.</Name>
                     <description>สำหรับทดสอบสินทรัพย์</description>
@@ -170,37 +170,37 @@ export class DialogSearchComponent implements OnInit {
   // เพิ่มรหัสบัญชีแยกประเภท
   xmlHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
-                  <id>1000002</id>
+                  <id>1000001</id>
                   <Value>53000</Value>
                   <Name>ค่าใช้จ่ายค่าที่ปรึกษา</Name>
                   <description>ค่าใช้จ่ายค่าที่ปรึกษา</description>
                 </row>
                 <row>
-                  <id>51800</id>
+                  <id>1000016</id>
                   <Value>51800</Value>
                   <Name>ค่าวัสดุ</Name>
                   <description>ค่าวัสดุ</description>
                 </row>
                 <row>
-                  <id>52000</id>
+                  <id>1000011</id>
                   <Value>52000</Value>
                   <Name>ค่าซ่อมแซมและค่าบำรุงรักษา</Name>
                   <description>ค่าซ่อมแซมและค่าบำรุงรักษา</description>
                 </row>
                 <row>
-                  <id>51200</id>
+                  <id>1000004</id>
                   <Value>51200</Value>
                   <Name>ค/จเหมาบริการ-ภายนอก</Name>
                   <description>ค/จเหมาบริการ-ภายนอก</description>
                 </row>
                 <row>
-                  <id>57000</id>
+                  <id>1000005</id>
                   <Value>57000</Value>
                   <Name>ค่าใช้จ่ายบุคลากรอื่น</Name>
                   <description>ค่าใช้จ่ายบุคลากรอื่น</description>
                 </row>
                 <row>
-                  <id>54000</id>
+                  <id>1000006</id>
                   <Value>54000</Value>
                   <Name>ขนส่งสินค้า</Name>
                   <description>ขนส่งสินค้า</description>
@@ -267,7 +267,7 @@ export class DialogSearchComponent implements OnInit {
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'ZZPMT':
+      case 'TBZZPMT':
         // this.createdXml();
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
@@ -280,7 +280,7 @@ export class DialogSearchComponent implements OnInit {
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
-      case 'ZZLOAN':
+      case 'ZZFIELD1':
         this.resourcesList(this.name_t);
         console.log('C: ' + this.code_t);
         break;
@@ -313,7 +313,7 @@ export class DialogSearchComponent implements OnInit {
         this.gatherItem(this.xmlFISTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'ZZPMT':
+      case 'TBZZPMT':
         // this.sentItem(xml_s);
         // this.gatherItem(this.xml_r);
         this.gatherItem(this.xmlZZPMT); // for TEST
@@ -327,7 +327,7 @@ export class DialogSearchComponent implements OnInit {
         this.gatherItem(this.xmlKOSTL); // for TEST
         this.displayItem(name_r);
         break;
-      case 'ZZLOAN':
+      case 'ZZFIELD1':
         this.gatherItem(this.xmlKOSTL); // for TEST
         this.displayItem(name_r);
         break;

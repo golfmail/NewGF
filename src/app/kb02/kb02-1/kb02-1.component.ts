@@ -95,10 +95,10 @@ export class Kb021Component implements OnInit  {
   TBXBLNR = 'P6000001';
   GEBER = '6011220'; // แหล่งของเงิน
   GEBER_NAME = 'งบรายจ่ายอื่น/งบสรก.';
-  tbSearch_term = '3011005842123'; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี      [Send to API]
-  tbBankn = '1701013835'; // เลขที่บัญชีเงินฝากธนาคาร
+  tbSearch_term = '9000080000004'; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี      [Send to API]
+  tbBankn = '00000201'; // เลขที่บัญชีเงินฝากธนาคาร
 
-  HKONT = '5104010107'; // รหัสบัญชีแยกประเภททั่วไป       [Send to API]
+  HKONT = '53000'; // รหัสบัญชีแยกประเภททั่วไป       [Send to API]
   KOSTL = '0300200005'; // รหัสศูนย์ต้นทุน        [Send to API]
   FISTL = '0300213001120001'; // รหัสงบประมาณ   [Send to API]
   FKBER = '030021000E0482'; // รหัสกิจกรรมหลัก             [Send to API]
@@ -130,6 +130,9 @@ export class Kb021Component implements OnInit  {
   // TEXT
   SGTXT = '';
 
+  // TYPE DOC
+  DOCTYPE;
+
   // Hard coding for #Label
   LBTERM: String;
   LBKBLNR: String; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
@@ -157,14 +160,15 @@ export class Kb021Component implements OnInit  {
   // IDWRBTR: string; // (ID) จำนวนเงินที่ขอเบิก
 
   // Hard coding for Value ID
-  IDFISTL = '100';
-  IDKOSTL = '101';
-  IDHKONT = '1000002';
+  IDFISTL = '100'; // รหัสงบประมาณ
+  IDKOSTL = '101'; // รหัสศูนย์ต้นทุน
+  IDHKONT = '1000002'; // บัญชีแยกประเภท
   IDWRBTR = '1000';
   IDSTERM = '2032400000';
   IDBLART = '';
   IDDATEA = '01/01/2017'; // (ID) Account Date
   IDDATEI = '02/01/2017'; // (ID) Date Invoiced
+  IDVENDER = '1000010'; // Vender ID
 
   // Hard coding for UserID
   LUSERID = this.TBZZPMT + '10' ; // UserID: หน่วยเบอกจ่าย + 10
@@ -588,8 +592,19 @@ export class Kb021Component implements OnInit  {
         case 'K8': this.selectedblart = this.soblartList[4].id; break;
         default: break;
       }
-      // this.selectedZlsch = '2';
-      // this.selectedblart = '2';
+    }
+
+    switch (this.IDBLART) {
+      case 'K0': this.DOCTYPE = this.typeDocList.K0; break;
+      case 'K1': this.DOCTYPE = this.typeDocList.K1; break;
+      case 'K8': this.DOCTYPE = this.typeDocList.K8; break;
+      case 'KC': this.DOCTYPE = this.typeDocList.KC; break;
+      case 'KD': this.DOCTYPE = this.typeDocList.KD; break;
+      case 'KE': this.DOCTYPE = this.typeDocList.KE; break;
+      case 'KF': this.DOCTYPE = this.typeDocList.KF; break;
+      case 'KL': this.DOCTYPE = this.typeDocList.KL; break;
+      case 'KM': this.DOCTYPE = this.typeDocList.KM; break;
+      default: this.DOCTYPE = ''; break;
     }
   }
 
@@ -602,6 +617,25 @@ export class Kb021Component implements OnInit  {
     this.IDDATEA = DA.getDate() + '/' + (DA.getMonth() + 1) + '/' + DA.getFullYear();
     this.IDDATEI = DI.getDate() + '/' + (DI.getMonth() + 1 ) + '/' + DI.getFullYear();
     console.log('A: ' + this.IDDATEA + ', I: ' + this.IDDATEI);
+  }
+
+  getVender() {
+    const tHead = 'กรุณากรอก';
+    if (this.tbSearch_term === '9000080000004' && this.tbBankn === '00000201') {
+      this.IDVENDER = '1000010';
+      this.LBTERM = 'บริษัท มาร์ช จำกัด';
+    } else if (this.tbSearch_term === '5401599010370' && this.tbBankn === '0000006552') {
+      this.IDVENDER = '1000009';
+      this.LBTERM = 'บริษัท กรุงเทพ จำกัด';
+    } else if (this.tbSearch_term === '9000080000004' && this.tbBankn === '8905686551') {
+      this.IDVENDER = '121';
+      this.LBTERM = 'SeedFarm';
+    } else if (this.tbSearch_term === '1234567891234' && this.tbBankn === '8905686552') {
+      this.IDVENDER = '120';
+      this.LBTERM = 'Patio Fun, Inc.';
+    } else {
+      this.ValidateList.push(tHead + ' รหัสประจำตัวผู้เสียภาษีและเลขที่บัญชี ให้ตรงกัน');
+    }
   }
 
   coverDate() {
@@ -678,6 +712,7 @@ export class Kb021Component implements OnInit  {
     this.getDcotype(); // get IDBLART
     this.getDateAI(); // Get Date
     this.chkValidate(); // Check Validate form
+    this.getVender();
     if (this.ValidateList.length <= 0) { // && this.is_valid === true
     this.valuelist = 0;
     if (typeof this.SAVELIST === 'undefined' && this.lbNUMBER === 0) { // this.saveTable
@@ -1109,6 +1144,7 @@ export class Kb021Component implements OnInit  {
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
     console.log(this.IDDATEA);
+    console.log(this.HEADLIST.ZLSCH);
     this.coverDate();
   }
 
@@ -1185,7 +1221,7 @@ export class Kb021Component implements OnInit  {
   }
 
   setTest() {
-    this.LBTERM = 'มหาวิทยาลัยธรรมศาสตร์';
+    this.LBTERM = ''; // บริษัท มาร์ช จำกัด
     this.LBKBLNR = ''; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
     this.KOSTL_NAME = 'สำนักบริหารกลาง';
     this.FKBER_NAME = 'การติดตาม เร่งรัด การดำเน';
