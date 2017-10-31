@@ -372,7 +372,7 @@ export class Kb021Component implements OnInit  {
   onNewDoc() {
     this.router.navigate(['/kb021']);
     this.EXPAND = true;
-    // this.SAVELIST = [];
+    // this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
     this.SHOWTR = true; // Hide Doc
     this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Hide 3 Button Log
@@ -527,7 +527,9 @@ export class Kb021Component implements OnInit  {
 
   numberWithCommas(x) {
     const number = x.toString();
+
     let baht = number.split('.')[0];
+    // let nav = baht.split('-')[0];
     const cents = (number.split('.')[1] || '') + '00';
     baht = baht.split('').reverse().join('')
         .replace(/(\d{3}(?!$))/g, '$1,')
@@ -608,6 +610,13 @@ export class Kb021Component implements OnInit  {
     }
   }
 
+  setGEBER() {
+    const yearGEBER = '25' +  this.GEBER.substr(0, 2);
+    console.log(this.YEAR);
+    this.YEAR = Number(yearGEBER);
+    console.log(this.YEAR);
+  }
+
   // Get Account,Invoiced Date
   getDateAI() {
     // alert(this.DATEACC);
@@ -624,15 +633,19 @@ export class Kb021Component implements OnInit  {
     if (this.tbSearch_term === '9000080000004' && this.tbBankn === '00000201') {
       this.IDVENDER = '1000010';
       this.LBTERM = 'บริษัท มาร์ช จำกัด';
+      this.LIFNR = '1000000038';
     } else if (this.tbSearch_term === '5401599010370' && this.tbBankn === '0000006552') {
       this.IDVENDER = '1000009';
       this.LBTERM = 'บริษัท กรุงเทพ จำกัด';
+      this.LIFNR = '1000000011';
     } else if (this.tbSearch_term === '9000080000004' && this.tbBankn === '8905686551') {
       this.IDVENDER = '121';
       this.LBTERM = 'SeedFarm';
+      this.LIFNR = 'SeedFarm';
     } else if (this.tbSearch_term === '1234567891234' && this.tbBankn === '8905686552') {
       this.IDVENDER = '120';
       this.LBTERM = 'Patio Fun, Inc.';
+      this.LIFNR = 'Patio';
     } else {
       this.ValidateList.push(tHead + ' รหัสประจำตัวผู้เสียภาษีและเลขที่บัญชี ให้ตรงกัน');
     }
@@ -831,6 +844,7 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST.splice(row, 1); // Delete with ลำดับ
     console.log('Total array: ' + this.SAVELIST.length);
     this.lbNUMBER = this.SAVELIST.length + 1;
+    this.getTotal(); // sum
     // if (this.valuelist > 0) {
     //   let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
     //   console.log('Del No. ' + lbNUMBER);
@@ -888,6 +902,8 @@ export class Kb021Component implements OnInit  {
       this.lbNUMBER = this.SAVELIST.length + 1;
       this.BTDEL = true;
       this.BTNEW = true;
+      this.getTotal(); // sum
+
   }
 
   formEdit() {
@@ -948,6 +964,7 @@ export class Kb021Component implements OnInit  {
       this.BTDEL = true;
       this.BTNEW = true;
     }
+    this.getTotal(); // Sum
 
   }
 
@@ -1112,6 +1129,8 @@ export class Kb021Component implements OnInit  {
           this.SAVELIST = result.Detail;
           this.setHeader();
           this.setDcotype();
+          this.setGEBER();
+          // this.addCredit(); // TEST
           // this.coverDate();
           console.log( this.SAVELIST);
           // this.setDocData();
@@ -1122,6 +1141,22 @@ export class Kb021Component implements OnInit  {
         console.log('ERROR');
       }
     });
+  }
+
+  // TEST ADD CREDIT
+  addCredit() {
+    // this.SAVELIST.unshift({WRBTR: this.WRBTR});
+    console.log('unshif');
+    this.SAVELIST.unshift({
+      HKONT_NAME: this.LBTERM,
+      HKONT: this.LIFNR,
+      KOSTL: this.KOSTL,
+      FISTL: this.FISTL,
+      FKBER: this.FKBER,
+      WRBTR: Number(-this.HEADLIST.SUMCOST
+      )});
+    this.HKONT = this.SAVELIST[0].HKONT;
+    this.HKONT_NAME = this.SAVELIST[0].HKONT_NAME;
   }
 
   setHeader() {
