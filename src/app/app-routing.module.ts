@@ -1,3 +1,5 @@
+import { LogReportComponent } from './log-report/log-report.component';
+import { ReportReportComponent } from './report-report/report-report.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Kb021Component } from './kb02/kb02-1/kb02-1.component';
@@ -15,7 +17,15 @@ const routes: Routes = [
     {
         path: 'Kb023',
         component: Kb023Component
-    }
+    },
+    {
+        path: 'report',
+        component: ReportReportComponent
+    },
+    {
+        path: 'logreport',
+        component: LogReportComponent
+    },
 ];
 
 @NgModule({

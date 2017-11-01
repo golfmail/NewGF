@@ -58,7 +58,7 @@
     </span>
     <span>
         <button [disabled]="BTSEARCH" (click)="toSearch()" >ค้นหาเอกสาร</button>
-        <button [disabled]="BTLOG" (click)="dialogRef.close()">Log</button>
+        <button [disabled]="BTLOG" (click)="showLog()">Log</button>
         <img [hidden]="SAVEDLOG" src="./../../../assets/Images/checked_64.png" align="middle" alt="saved to log" height="20" width="20">
       </span>
   </div>

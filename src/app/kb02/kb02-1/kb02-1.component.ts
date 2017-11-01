@@ -1172,6 +1172,7 @@ export class Kb021Component implements OnInit  {
     this.TBKBLNR  = this.HEADLIST.KBLNR;
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
+    this.LOGNO    = this.HEADLIST.LOGNO;
     console.log(this.tbSearch_term);
     console.log(this.HEADLIST.ZLSCH);
     this.coverDate();
@@ -1263,6 +1264,10 @@ export class Kb021Component implements OnInit  {
 
   callFunction() {
     console.log('Call Function! - Work');
+  }
+
+  showLog() {
+    window.open('./logreport?docid=' + this.LOGNO);
   }
 
 

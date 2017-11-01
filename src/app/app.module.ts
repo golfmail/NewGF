@@ -1,4 +1,6 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+﻿import { LogReportComponent } from './log-report/log-report.component';
+import { ReportReportComponent } from './report-report/report-report.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -108,6 +110,8 @@ import { CheckWebComponent } from './web-browser/check-web/check-web.component';
     DialogSearchComponent,
     DialogSaveComponent,
     CheckWebComponent,
+    LogReportComponent,
+    ReportReportComponent
 
   ],
   imports: [

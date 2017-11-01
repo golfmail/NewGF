@@ -1,0 +1,226 @@
+<TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=1 cellPadding=0 width="100%"  align=left>
+  <td>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </td>
+  <td>
+    <TBODY>
+      <TR align=left>
+        <TD vAlign=top height=20>
+          <P class=sapTxtH1 style="BACKGROUND-COLOR: #f7f7f7">
+            <span lang="th">
+              <span style="background-color: #F7F7F7">
+                เอกสารการบัญชี</span>
+            </span>
+          </P>
+        </TD>
+      </TR>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%">
+        <tbody>
+          <tr *ngFor="let kb02 of observableBooks| async">
+            <td *ngFor="let header of kb02.header">
+              <TR class=sapTxtSml>
+                <TD valign=top>ชื่อผู้ใช้</TD>
+                <TD valign=top>:</TD>
+                <TD valign=top>{{header.a_logno}} </TD>
+                <TD valign=top>&nbsp;</TD>
+              </TR>
+              <TR class=sapTxtSml>
+                <TD valign=top>แบบฟอร์ม</TD>
+                <TD valign=top>:</TD>
+                <TD valign=top>ขบ02 - ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ </TD>
+                <TD valign=top>&nbsp;</TD>
+              </TR>
+              <TR class=sapTxtSml>
+                <TD valign=top>SAP R/3 Log No.</TD>
+                <TD valign=top>:</TD>
+                <TD valign=top>{{header.a_logyear}} - {{header.a_logno}}</TD>
+                <TD valign=top>&nbsp;</TD>
+              </TR>
+              <TR class=sapTxtSml>
+                <TD valign=top>วันที่บันทึกรายการ</TD>
+                <TD valign=top>:</TD>
+                <TD valign=top>{{header.a_cpudt}}  -  {{header.a_cputime}}</TD>
+                <TD valign=top>&nbsp;</TD>
+              </TR>
+              <TR class=sapTxtSml>
+                <TD valign=top>
+                  <IMG SRC="icon_print.GIF" WIDTH="16" HEIGHT="16" BORDER=0 ALT="" class="noprint">&nbsp;&nbsp;
+                  <a class="noprint" href=javascript:window.print();>Print</a>
+                </TD>
+                <TD valign=top>&nbsp;</TD>
+                <TD valign=top>&nbsp;</TD>
+                <TD valign=top>&nbsp;</TD>
+              </TR>
+            </td>
+          </tr>
+        </tbody>
+      </TABLE>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%" >
+        <tbody>
+          <td *ngFor="let kb02 of observableBooks| async">
+            <tr *ngFor="let header of kb02.header">
+              <TD>เลขที่่เอกสาร</TD>
+              <TD>: {{header.b_gjahr}} - {{header.b_belnr}}</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD>ส่วนราชการ</TD>
+              <TD>: {{header.a_bukrs}} - {{header.a_bukrs_name}}</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD>หน่วยเบิกจ่าย</TD>
+              <TD>: {{header.a_zzpmt}} - {{header.a_zzpmt_name}}</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD>สถานะเอกสาร</TD>
+              <TD>: เอกสารผ่านรายการ</TD>
+            </tr>
+          </td>
+          <td *ngFor="let kb02 of observableBooks| async" align=right>
+            <tr *ngFor="let header of kb02.header">
+              <TD align=right>&nbsp;&nbsp;</TD>
+              <TD align=right>&nbsp;&nbsp;</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD align=right>การอ้างอิง&nbsp;:</TD>
+              <TD>{{header.a_xblnr}}</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD align=right>วันที่ผ่านรายการ&nbsp;:</TD>
+              <TD>{{header.a_budat}}</TD>
+            </tr>
+            <tr *ngFor="let header of kb02.header">
+              <TD align=right>วันที่นำเข้าข้อมูล&nbsp;:</TD>
+              <TD>{{header.a_cpudt}}</TD>
+            </tr>
+          </td>
+        </tbody>
+      </TABLE>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%" cellpadding=3 cellspacing=0>
+        <tr>
+          <Td>
+            <tr>
+
+              <TABLE id='mytable' class=sapTxtSml border=0 width="100%" cellpadding=3 cellspacing=0 >
+                <thead>
+                  <TR class=sapTxtSml align=center bgcolor=#84AEAE>
+                    <TH rowspan=2 width="5%" style='border-top: 1px solid black;'>บรรทัดรายการที่</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;'>เดบิต/เครดิต</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=left>รหัสบัญชี</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=left>ชื่อบัญชี</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>จำนวนเงินขอเบิก</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>ฐานภาษี</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>ภาษี</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>ค่าปรับ</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>จำนวนเงินขอรับ</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=right>&nbsp;</TH>
+                    <TH colspan=2 style='border-bottom: 1px solid black; border-top: 1px solid black;'>เงินฝาก</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;'>เจ้าของเงินฝาก</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=left>เจ้าของบัญชีย่อย</TH>
+                    <TH rowspan=2 style='border-top: 1px solid black;' align=left>บัญชีย่อย</TH>
+                  </TR>
+                  <TR class=sapTxtSml align=center bgcolor=#84AEAE style='border-bottom: 1px solid black;'>
+                    <TH>คลัง</TH>
+                    <TH>ธ.พาณิชย์</TH>
+                  </TR>
+                  <TR class=sapTxtSml align=center bgcolor=#84AEAE>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;'>&nbsp;</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;'>&nbsp;</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>รหัสงบประมาณ</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>งบประมาณ</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=right>&nbsp;</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>หน่วยต้นทุน</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>หมวดรายจ่าย</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>การกำหนด</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>กิจกรรมย่อย</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>กิจกรรมหลัก</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;'>&nbsp;</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;'>&nbsp;</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;'>เอกสารสำรองเงินงบประมาณ</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>หมวดพัสดุ</TH>
+                    <TH style='border-bottom: 1px solid black; border-top: 1px solid gray;' align=left>รหัสหน่วยงานคู่ค้า (Trading Partner)</TH>
+                  </TR>
+
+                </thead>
+                <tbody>
+                  <TD *ngFor="let kb02 of observableBooks2| async"  class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data ">
+                      {{data.head_no}}{{data.detail_no}}
+                      <br>&nbsp;</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async">
+                    <TR *ngFor="let data of kb02.data ">
+                      {{data.head_type}}{{data.detail_type}}
+                      <br>&nbsp;</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data ">{{data.head_lifnr}}{{data.detai_hkont}}
+                      <br>{{data.head_fistl}}{{data.detai_fistl}}</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data ">{{data.head_name1}}{{data.detai_hkont_name}}
+                      <br>{{data.head_fistl_name}}{{data.detail_fistl_name}}</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2 align=right>
+                    <TR *ngFor="let data of kb02.data ">{{data.head_sumcost}}{{data.detail_wrbtr}}
+                      <br>&nbsp;</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data " >
+                      0.00
+                      <br>{{data.head_kostl}}{{data.detail_kostl}}</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data " >
+                      <label>0.00</label>
+                      <br>{{data.head_geber}}{{data.detail_geber}}</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data " >0.00
+                      <br>&nbsp;</TR>
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data ;let J=index " >
+                      <ng-container *ngIf="J==0">
+                        <label> {{data.head_sumcost}}
+                          <br>&nbsp;</label>
+                      </ng-container>
+                      <ng-container *ngIf="J!=0">
+                        <label>{{data.detail_wrbtr}}
+                          <br>{{data.detail_prznr}}</label>
+                      </ng-container>
+
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+
+                      <TR *ngFor="let data of kb02.data ;let J=index " >
+                        <ng-container *ngIf="J==0">
+                          <label>  <br>P{{data.head_gsber}}{{data.detail_fkber}}
+                            &nbsp;</label>
+                        </ng-container>
+                        <ng-container *ngIf="J!=0" >
+                          <label> <br>{{data.head_gsber}}{{data.detail_fkber}}</label>
+                        </ng-container>
+                      </TR>           
+                  </TD>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data " >
+                      <br>{{data.detail_fkber_name}}</TR>
+                  </TD>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <TD *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                    <TR *ngFor="let data of kb02.data ">
+                      <br>{{data.head_vbund}}{{data.detail_vbund}}</TR>
+                  </TD>
+                </tbody>
+              </TABLE>
+              </tr>
+          </Td>
+          </tr>
+      </TABLE>
+  </td>
+  <td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+</TABLE>

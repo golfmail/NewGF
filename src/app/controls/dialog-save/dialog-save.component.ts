@@ -229,6 +229,10 @@ export class DialogSaveComponent implements OnInit {
     this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr, new: false});
   }
 
+  showLog() {
+    window.open('./logreport?docid=' + this.LOGNO);
+  }
+
   newDoc() {
     this.dialogRef.close({value: this.TBNUMTR, name: this.name_tr, new: true});
   }

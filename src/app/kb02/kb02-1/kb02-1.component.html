@@ -822,7 +822,7 @@
   <button (click)="formSend()" [hidden]="HIDEBT">จำลองการบันทึก</button>
   <button (click)="onNewDoc()" [hidden]="AFTDOC">สร้างเอกสารใหม่</button>
   <button [hidden]="AFTDOC">พิมพ์รายงาน</button>
-  <button [hidden]="AFTDOC">Log</button>
+  <button (click)="showLog()" [hidden]="AFTDOC">Log</button>
 </div>
 
 <!-- <asp:Button CausesValidation="False" Font-Names="Tahoma" Font-Size="11px" Height="21px" ID="btnNewDoc" OnClick="btnNewDoc_Click" runat="server" Text="สร้างเอกสารใหม่" Visible="False"/> -->
