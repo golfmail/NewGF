@@ -127,7 +127,7 @@ md-spinner {
 
 }
 
-ul li{
+.custom-pagination ul li{
   display: inline;
 }
 

@@ -39,8 +39,8 @@ export class DialogSaveComponent implements OnInit {
   // LUSERID = '';
   // DDGSBER = '';
   // IDBLART = '';
-  // IDDATEA = '';
-  // IDDATEI = '';
+  // BLDAT = '';
+  // BUDAT = '';
   // TBXBLNR = '';
   // tbSearch_term = '';
   // LIFNR = '';
@@ -178,7 +178,7 @@ export class DialogSaveComponent implements OnInit {
     this.save_log = ''; // Clear TEST-ONLY
     this.save_log = `${this.LOGYEAR},${this.LOGNO},${this.SAVEHEAD.BUKRS},`
     + `${this.SAVEHEAD.LBBUKRS},${this.SAVEHEAD.TBZZPMT},${this.SAVEHEAD.LBZZPMT},${this.SAVEHEAD.LUSERID},${this.SAVEHEAD.DDGSBER},`
-    + `${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.IDDATEA},${this.SAVEHEAD.IDDATEI},${this.SAVEHEAD.TBXBLNR},`
+    + `${this.SAVEHEAD.IDBLART},${this.SAVEHEAD.BLDAT},${this.SAVEHEAD.BUDAT},${this.SAVEHEAD.TBXBLNR},`
     + `${this.SAVEHEAD.tbSearch_term},${this.SAVEHEAD.LIFNR},${this.SAVEHEAD.LBTERM},${this.SAVEHEAD.ZLSCH},${this.CPUDT},${this.CPUTIME},`
     + `${this.SAVEHEAD.TBKBLNR},${this.SAVEHEAD.LBKBLNR},${this.SAVEHEAD.SUMCOST}`;
 

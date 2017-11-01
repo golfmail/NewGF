@@ -65,8 +65,8 @@ export class Kb021Component implements OnInit  {
     {id: 'LUSERID', Val: ''},
     {id: 'DDGSBER', Val: ''},
     {id: 'IDBLART', Val: ''},
-    {id: 'IDDATEA', Val: ''},
-    {id: 'IDDATEI', Val: ''},
+    {id: 'BLDAT', Val: ''},
+    {id: 'BUDAT', Val: ''},
     {id: 'TBXBLNR', Val: ''},
     {id: 'tbSearch_term', Val: ''},
     {id: 'LIFNR', Val: ''},
@@ -88,8 +88,6 @@ export class Kb021Component implements OnInit  {
   ddZlschList: string[] = ['จ่ายตรงเข้าบัญชีเงินฝากธนาคารของผู้ขาย/คู่สัญญา', 'จ่ายผ่านบัญชีเงินฝากธนาคารของหน่วยงาน'];
   BUKRS = '0302';
   LBBUKRS = 'สนงใปลัดกระทรวงการคลัง';
-  TBBLDAT = '25 กรกฎาคม 2559';
-  TBBUDAT = '25 กรกฎาคม 2559';
   TBZZPMT = '0300200005'; // หน่วยเบิกจ่าย
   LBZZPMT = 'สำนักบริการกลาง';
   TBXBLNR = 'P6000001';
@@ -166,8 +164,8 @@ export class Kb021Component implements OnInit  {
   IDWRBTR = '1000';
   IDSTERM = '2032400000';
   IDBLART = '';
-  IDDATEA = '01/01/2017'; // (ID) Account Date
-  IDDATEI = '02/01/2017'; // (ID) Date Invoiced
+  BLDAT = '01/01/2017'; // (ID) วันที่เอกสาร A
+  BUDAT = '02/01/2017'; // (ID) วันที่ผ่านรายการ I
   IDVENDER = '1000010'; // Vender ID
 
   // Hard coding for UserID
@@ -372,12 +370,16 @@ export class Kb021Component implements OnInit  {
   onNewDoc() {
     this.router.navigate(['/kb021']);
     this.EXPAND = true;
-    // this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
+    this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
     this.SHOWTR = true; // Hide Doc
     this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Hide 3 Button Log
     this.onColor('Y');
     this.onEnableInput('Y'); // Y = Enable All Input
+    this.lbNUMBER = this.SAVELIST.length + 1;
+    this.setDocData(); // Set for TEST
+
+    this.setHeader(); // Set for TEST
   }
 
   onSelectDate(typeDate) {
@@ -423,8 +425,6 @@ export class Kb021Component implements OnInit  {
     this.selectedList = save; // => Selected
     // this.BUKRS = save.BUKRS;
     // this.LBBUKRS = save.LBBUKRS;
-    // this.TBBLDAT = save.TBBLDAT;
-    // this.TBBUDAT = save.TBBUDAT;
     // this.TBZZPMT = save.TBZZPMT;
     // this.LBZZPMT = save.LBZZPMT;
     // this.TBXBLNR = save.TBXBLNR;
@@ -461,20 +461,20 @@ export class Kb021Component implements OnInit  {
   //   this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
   //   this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
   //   this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
-  //   this.IDDATEA = save.IDDATEA; // (ID) Account Date
-  //   this.IDDATEI = save.IDDATEI; // (ID) Date Invoic
+  //   this.BLDAT = save.BLDAT; // (ID) Account Date
+  //   this.BUDAT = save.BUDAT; // (ID) Date Invoic
   }
 
   checkform() {
-    //
+    this.ValidateList = [];
     const tHead = 'กรุณากรอก';
     if (!this.BUKRS) {
       this.ValidateList.push(tHead + 'รหัสหน่วยงาน');
-    } if (!this.TBBLDAT) {
+    } if (!this.BLDAT) {
       this.ValidateList.push(tHead + 'วันที่เอกสาร');
     } if (!this.DDGSBER) {
       this.ValidateList.push(tHead + 'รหัสพื้นที่');
-    } if (!this.TBBUDAT) {
+    } if (!this.BUDAT) {
       this.ValidateList.push(tHead + 'วันที่ผ่านรายการ');
     } if (!this.TBZZPMT) {
       this.ValidateList.push(tHead + 'รหัสหน่วยเบิกจ่าย');
@@ -620,12 +620,12 @@ export class Kb021Component implements OnInit  {
   // Get Account,Invoiced Date
   getDateAI() {
     // alert(this.DATEACC);
-    console.log(this.DATEI);
+    // console.log(this.DATEI);
     const DA = this.DATEA;
     const DI = this.DATEI;
-    this.IDDATEA = DA.getDate() + '/' + (DA.getMonth() + 1) + '/' + DA.getFullYear();
-    this.IDDATEI = DI.getDate() + '/' + (DI.getMonth() + 1 ) + '/' + DI.getFullYear();
-    console.log('A: ' + this.IDDATEA + ', I: ' + this.IDDATEI);
+    this.BLDAT = DA.getDate() + '/' + (DA.getMonth() + 1) + '/' + DA.getFullYear();
+    this.BUDAT = DI.getDate() + '/' + (DI.getMonth() + 1 ) + '/' + DI.getFullYear();
+    console.log('A: ' + this.BLDAT + ', I: ' + this.BUDAT);
   }
 
   getVender() {
@@ -652,10 +652,10 @@ export class Kb021Component implements OnInit  {
   }
 
   coverDate() {
-    const A = (this.IDDATEA.split('-'));
-    const I = (this.IDDATEI.split('-'));
-    this.DATEA = new Date(this.IDDATEA); // วันที่เอกสาร
-    this.DATEI = new Date(this.IDDATEI);
+    const A = (this.BLDAT.split('-'));
+    const I = (this.BUDAT.split('-'));
+    this.DATEA = new Date(this.BLDAT); // วันที่เอกสาร
+    this.DATEI = new Date(this.BUDAT);
   }
 
 
@@ -733,8 +733,8 @@ export class Kb021Component implements OnInit  {
         this.SAVELIST = [{
           BUKRS: this.BUKRS,
           LBBUKRS: this.LBBUKRS,
-          TBBLDAT: this.TBBLDAT,
-          TBBUDAT: this.TBBUDAT,
+          BLDAT: this.BLDAT,
+          BUDAT: this.BUDAT,
           TBZZPMT: this.TBZZPMT,
           LBZZPMT: this.LBZZPMT,
           TBXBLNR: this.TBXBLNR,
@@ -758,8 +758,6 @@ export class Kb021Component implements OnInit  {
           IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
           IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
           IDBLART: this.IDBLART, // (ID) Doc. Type
-          IDDATEA: this.IDDATEA, // (ID) Account Date
-          IDDATEI: this.IDDATEI, // (ID) Date Invoic
           GJAHR: this.GJAHR, // ปีบัญชี
           SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
           HKONT_NAME: this.HKONT_NAME, // (N) ชื่อบัญชีแยกประเภททั่วไป
@@ -780,8 +778,8 @@ export class Kb021Component implements OnInit  {
         this.SAVELIST.push({
           BUKRS: this.BUKRS,
           LBBUKRS: this.LBBUKRS,
-          TBBLDAT: this.TBBLDAT,
-          TBBUDAT: this.TBBUDAT,
+          BLDAT: this.BLDAT,
+          BUDAT: this.BUDAT,
           TBZZPMT: this.TBZZPMT,
           LBZZPMT: this.LBZZPMT,
           TBXBLNR: this.TBXBLNR,
@@ -805,8 +803,6 @@ export class Kb021Component implements OnInit  {
           IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
           IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
           IDBLART: this.IDBLART, // (ID) Doc. Type
-          IDDATEA: this.IDDATEA, // (ID) Account Date
-          IDDATEI: this.IDDATEI, // (ID) Date Invoic
           GJAHR: this.GJAHR, // ปีบัญชี
           SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
           HKONT_NAME: this.HKONT_NAME, // (N) ชื่อบัญชีแยกประเภททั่วไป
@@ -860,8 +856,8 @@ export class Kb021Component implements OnInit  {
     this.SAVELIST.push({
       BUKRS: this.BUKRS,
       LBBUKRS: this.LBBUKRS,
-      TBBLDAT: this.TBBLDAT,
-      TBBUDAT: this.TBBUDAT,
+      BLDAT: this.BLDAT,
+      BUDAT: this.BUDAT,
       TBZZPMT: this.TBZZPMT,
       LBZZPMT: this.LBZZPMT,
       TBXBLNR: this.TBXBLNR,
@@ -885,8 +881,6 @@ export class Kb021Component implements OnInit  {
       IDWRBTR: this.IDWRBTR, // (ID) จำนวนเงินที่ขอเบิก
       IDSTERM: this.IDSTERM, // (ID) เลขประจำตัวผู้เสียภาษี
       IDBLART: this.IDBLART, // (ID) Doc. Type
-      IDDATEA: this.IDDATEA, // (ID) Account Date
-      IDDATEI: this.IDDATEI, // (ID) Date Invoic
       GJAHR: this.GJAHR, // ปีบัญชี
       SGTXT: this.SGTXT, // รายละเอียดบรรทัดรายการ
       HKONT_NAME: this.HKONT_NAME, // (N) ชื่อบัญชีแยกประเภททั่วไป
@@ -916,8 +910,8 @@ export class Kb021Component implements OnInit  {
     if (this.lbNUMBER <= this.SAVELIST.length) {
       this.SAVELIST[lbNUMBER].BUKRS = this.BUKRS;
       this.SAVELIST[lbNUMBER].LBBUKRS = this.LBBUKRS;
-      this.SAVELIST[lbNUMBER].TBBLDAT = this.TBBLDAT;
-      this.SAVELIST[lbNUMBER].TBBUDAT = this.TBBUDAT;
+      this.SAVELIST[lbNUMBER].BLDAT = this.BLDAT;
+      this.SAVELIST[lbNUMBER].BUDAT = this.BUDAT;
       this.SAVELIST[lbNUMBER].TBZZPMT = this.TBZZPMT;
       this.SAVELIST[lbNUMBER].LBZZPMT = this.LBZZPMT;
       this.SAVELIST[lbNUMBER].TBXBLNR = this.TBXBLNR;
@@ -941,8 +935,8 @@ export class Kb021Component implements OnInit  {
       this.SAVELIST[lbNUMBER].IDWRBTR = this.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
       this.SAVELIST[lbNUMBER].IDSTERM = this.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
       this.SAVELIST[lbNUMBER].IDBLART = this.IDBLART; // (ID) Doc. Type
-      this.SAVELIST[lbNUMBER].IDDATEA = this.IDDATEA; // (ID) Account Date
-      this.SAVELIST[lbNUMBER].IDDATEI = this.IDDATEI; // (ID) Date Invoic
+      this.SAVELIST[lbNUMBER].BLDAT = this.BLDAT; // (ID) Account Date
+      this.SAVELIST[lbNUMBER].BUDAT = this.BUDAT; // (ID) Date Invoic
       this.SAVELIST[lbNUMBER].GJAHR = this.GJAHR; // ปีบัญชี
       this.SAVELIST[lbNUMBER].SGTXT = this.SGTXT; // รายละเอียดบรรทัดรายการ
       this.SAVELIST[lbNUMBER].HKONT_NAME = this.HKONT_NAME; // (N) ชื่อบัญชีแยกประเภททั่วไป
@@ -1016,11 +1010,11 @@ export class Kb021Component implements OnInit  {
       // <field column="BLART">\n\
       //   <val>${element.IDBLART}</val>\n\
       // </field>\n\
-      // <field column="TBBLDAT">\n\
-      //   <val>${element.IDDATEA}</val>\n\
+      // <field column="BLDAT">\n\
+      //   <val>${element.BLDAT}</val>\n\
       // </field>\n\
-      // <field column="TBBUDAT">\n\
-      //   <val>${element.IDDATEI}</val>\n\
+      // <field column="BUDAT">\n\
+      //   <val>${element.BUDAT}</val>\n\
       // </field>\n\
       // ^ รอ Service Adempire พร้อม
     }
@@ -1067,8 +1061,8 @@ export class Kb021Component implements OnInit  {
       'LUSERID' : this.LUSERID,
       'DDGSBER' : this.DDGSBER,
       'IDBLART' : this.IDBLART,
-      'IDDATEA' : this.IDDATEA,
-      'IDDATEI' : this.IDDATEI,
+      'BLDAT' : this.BLDAT,
+      'BUDAT' : this.BUDAT,
       'TBXBLNR' : this.TBXBLNR,
       'tbSearch_term' : this.tbSearch_term,
       'LIFNR'   : this.LIFNR,
@@ -1133,7 +1127,7 @@ export class Kb021Component implements OnInit  {
           // this.addCredit(); // TEST
           // this.coverDate();
           console.log( this.SAVELIST);
-          // this.setDocData();
+          this.setDocData();
         } else {
           console.log('NO DATA');
         }
@@ -1168,8 +1162,8 @@ export class Kb021Component implements OnInit  {
     this.LUSERID  = this.HEADLIST.LUSERID;
     this.DDGSBER  = this.HEADLIST.GSBER;
     this.IDBLART  = this.HEADLIST.BLART;
-    this.IDDATEA  = this.HEADLIST.BLDAT;
-    this.IDDATEI  = this.HEADLIST.BUDAT;
+    this.BLDAT  = this.HEADLIST.BLDAT;
+    this.BUDAT  = this.HEADLIST.BUDAT;
     this.TBXBLNR  = this.HEADLIST.XBLNR;
     this.tbSearch_term = this.HEADLIST.SEARCH_TERM;
     this.LIFNR    = this.HEADLIST.LIFNR;
@@ -1178,7 +1172,7 @@ export class Kb021Component implements OnInit  {
     this.TBKBLNR  = this.HEADLIST.KBLNR;
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
-    console.log(this.IDDATEA);
+    console.log(this.tbSearch_term);
     console.log(this.HEADLIST.ZLSCH);
     this.coverDate();
   }
@@ -1186,17 +1180,17 @@ export class Kb021Component implements OnInit  {
   setDocData () {
     console.log(this.SAVELIST);
     const n = 0;
-    this.BUKRS = this.SAVELIST[n].BUKRS;
-    this.LBBUKRS = this.SAVELIST[n].LBBUKRS;
-    this.TBBLDAT = this.SAVELIST[n].TBBLDAT;
-    this.TBBUDAT = this.SAVELIST[n].TBBUDAT;
-    this.TBZZPMT = this.SAVELIST[n].TBZZPMT;
-    this.LBZZPMT = this.SAVELIST[n].LBZZPMT;
-    this.TBXBLNR = this.SAVELIST[n].TBXBLNR;
+    // this.BUKRS = this.SAVELIST[n].BUKRS;
+    // this.LBBUKRS = this.SAVELIST[n].LBBUKRS;
+    // this.BLDAT = this.SAVELIST[n].BLDAT;
+    // this.BUDAT = this.SAVELIST[n].BUDAT;
+    // this.TBZZPMT = this.SAVELIST[n].TBZZPMT;
+    // this.LBZZPMT = this.SAVELIST[n].LBZZPMT;
+    // this.TBXBLNR = this.SAVELIST[n].TBXBLNR;
     this.GEBER = this.SAVELIST[n].GEBER; // แหล่งของเงิน
     this.GEBER_NAME = this.SAVELIST[n].GEBER_NAME;
-    this.tbSearch_term = this.SAVELIST[n].tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
-    this.tbBankn = this.SAVELIST[n].tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
+    // this.tbSearch_term = this.SAVELIST[n].tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+    // this.tbBankn = this.SAVELIST[n].tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
     this.HKONT = this.SAVELIST[n].HKONT; // รหัสบัญชีแยกประเภททั่วไป
     this.KOSTL = this.SAVELIST[n].KOSTL; // รหัสศูนย์ต้นทุน
     this.FISTL = this.SAVELIST[n].FISTL; // รหัสงบประมาณ
@@ -1227,8 +1221,6 @@ export class Kb021Component implements OnInit  {
     this.IDWRBTR = this.SAVELIST[n].IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
     this.IDSTERM = this.SAVELIST[n].IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
     this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
-    this.IDDATEA = this.SAVELIST[n].IDDATEA; // (ID) Account Date
-    this.IDDATEI = this.SAVELIST[n].IDDATEI; // (ID) Date Invoic
   }
 
   setYear() {
@@ -1275,8 +1267,10 @@ export class Kb021Component implements OnInit  {
 
 
   ngOnInit() {
-    // ปีบัญชีและงวด เริ่มต้น
-    this.setYear();
+
+
+    // ใส่ค่าต่างๆ ไว้เพื่อเทส
+    this.setTest();
 
     // เมื่อมีการส่งค่ามาจาก Search หรืออื่นๆ
     this.route.queryParams
@@ -1285,8 +1279,10 @@ export class Kb021Component implements OnInit  {
       this.onGetDocSearch(params.BELNR, params.GJAHR);
     });
 
-    // ใส่ค่าต่างๆ ไว้เพื่อเทส
-    this.setTest();
+    // ปีบัญชีและงวด เริ่มต้น
+    this.setYear();
+
+
   }
 
 }
