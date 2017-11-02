@@ -385,7 +385,6 @@ export class Kb021Component implements OnInit  {
   onSelectDate(typeDate) {
     // ปีบัญชี และ งวด เริ่มต้น
     if (typeDate === 'inv') {
-      console.log(this.DATEINV);
       if (this.DATEINV.month >= 10 ) {
         this.GJAHR = Number(this.DATEINV.year) + 1;
         console.log('f' + this.GJAHR);
@@ -529,12 +528,16 @@ export class Kb021Component implements OnInit  {
     const number = x.toString();
 
     let baht = number.split('.')[0];
-    // let nav = baht.split('-')[0];
+    let nav = '';
+    if (baht.indexOf('-') === 0) {
+      nav = '-';
+      baht = baht.slice(1);
+    }
     const cents = (number.split('.')[1] || '') + '00';
     baht = baht.split('').reverse().join('')
         .replace(/(\d{3}(?!$))/g, '$1,')
         .split('').reverse().join('');
-    return baht + '.' + cents.slice(0, 2);
+    return nav + baht + '.' + cents.slice(0, 2);
   }
 
   numberWithDecimal(x) {
@@ -612,15 +615,11 @@ export class Kb021Component implements OnInit  {
 
   setGEBER() {
     const yearGEBER = '25' +  this.GEBER.substr(0, 2);
-    console.log(this.YEAR);
     this.YEAR = Number(yearGEBER);
-    console.log(this.YEAR);
   }
 
   // Get Account,Invoiced Date
   getDateAI() {
-    // alert(this.DATEACC);
-    // console.log(this.DATEI);
     const DA = this.DATEA;
     const DI = this.DATEI;
     this.BLDAT = DA.getDate() + '/' + (DA.getMonth() + 1) + '/' + DA.getFullYear();
@@ -656,6 +655,9 @@ export class Kb021Component implements OnInit  {
     const I = (this.BUDAT.split('-'));
     this.DATEA = new Date(this.BLDAT); // วันที่เอกสาร
     this.DATEI = new Date(this.BUDAT);
+    this.DATEACC = {year: this.DATEA.getFullYear(), month: this.DATEA.getMonth() + 1, day: this.DATEA.getDate()};
+    this.DATEINV = {year: this.DATEI.getFullYear(), month: this.DATEI.getMonth() + 1, day: this.DATEI.getDate()};
+    this.setYear();
   }
 
 
@@ -1123,9 +1125,9 @@ export class Kb021Component implements OnInit  {
           this.SAVELIST = result.Detail;
           this.setHeader();
           this.setDcotype();
+          this.setNavCredit();
           this.setGEBER();
           // this.addCredit(); // TEST
-          // this.coverDate();
           console.log( this.SAVELIST);
           this.setDocData();
         } else {
@@ -1173,8 +1175,6 @@ export class Kb021Component implements OnInit  {
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
     this.LOGNO    = this.HEADLIST.LOGNO;
-    console.log(this.tbSearch_term);
-    console.log(this.HEADLIST.ZLSCH);
     this.coverDate();
   }
 
@@ -1222,6 +1222,10 @@ export class Kb021Component implements OnInit  {
     this.IDWRBTR = this.SAVELIST[n].IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
     this.IDSTERM = this.SAVELIST[n].IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
     this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
+  }
+
+  setNavCredit() {
+    this.SAVELIST[0].WRBTR = - this.SAVELIST[0].WRBTR;
   }
 
   setYear() {
