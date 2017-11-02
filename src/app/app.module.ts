@@ -43,13 +43,9 @@ import { ListViewComponent } from './controls/list-view/list-view.component';
 import { DropDownViewComponent } from './controls/drop-down-view/drop-down-view.component';
 import { Tab } from './controls/drop-down-view/drop-down-view.interface';
 import { ListDetailComponent } from './controls/list-detail/list-detail.component';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
-// import { PopupModule } from 'ng2-opd-popup';
-//calenda
 import { JsonpModule } from '@angular/http';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdDialog,
   MdToolbarModule,
   MdButtonModule,
@@ -61,11 +57,12 @@ import { MdDialog,
   MdNativeDateModule} from '@angular/material';
 import { DialogSearchComponent } from './controls/dialog-search/dialog-search.component';
 import { MaterialModule } from '@angular/material';
-// import { ReactiveFormsModule } from '@angular/forms';
 import { forwardRef } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { DialogSaveComponent } from './controls/dialog-save/dialog-save.component';
 import { CheckWebComponent } from './web-browser/check-web/check-web.component';
+import { HomeComponent } from './home/home.component';
+import { LauncherComponent } from './launcher/launcher.component';
 
 
 @NgModule({
@@ -111,7 +108,9 @@ import { CheckWebComponent } from './web-browser/check-web/check-web.component';
     DialogSaveComponent,
     CheckWebComponent,
     LogReportComponent,
-    ReportReportComponent
+    ReportReportComponent,
+    HomeComponent,
+    LauncherComponent
 
   ],
   imports: [

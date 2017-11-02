@@ -28,7 +28,7 @@ export class GridViewComponent implements OnInit {
   selectedDoc(doc, index) {
     console.log(this.RESLIST[index].BELNR); // TEST-ONLY
     console.log('RLINK = ' + this.RLINK); // TEST-ONLY
-    this.router.navigate([this.RLINK], { queryParams: { BELNR: doc, GJAHR: this.RESLIST[index].GJAHR } });
+    this.router.navigate([{ outlets: { aux: ['kb021'] } }]);
   }
 
   sortByTh(property, text) {
