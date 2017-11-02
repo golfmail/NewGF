@@ -39,7 +39,7 @@ export class Kb023Component implements OnInit {
   RADIO_TYPE = 'web';
 
   RESLIST: any[] = [];
-  RLINK = '/kb021';
+  RLINK = 'kb021';
 
   // Disable & Show
   DSTBALL;

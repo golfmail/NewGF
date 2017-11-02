@@ -11,7 +11,7 @@ import { Kb023Component } from './kb02/kb02-3/kb02-3.component';
 const routes: Routes = [
   {
     path: '',
-    component: Kb02Component
+    redirectTo: '/kb02', pathMatch: 'full'
   },
     {
       path: 'kb02',

@@ -368,7 +368,7 @@ export class Kb021Component implements OnInit  {
 
   // button: สร้างเอกสารใหม่
   onNewDoc() {
-    this.router.navigate(['/kb021']);
+    this.router.navigate(['/kb02',{ outlets: { aux: ['kb021'] } }]);
     this.EXPAND = true;
     this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
     this.SHOWTR = true; // Hide Doc

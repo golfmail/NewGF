@@ -28,7 +28,16 @@ export class GridViewComponent implements OnInit {
   selectedDoc(doc, index) {
     console.log(this.RESLIST[index].BELNR); // TEST-ONLY
     console.log('RLINK = ' + this.RLINK); // TEST-ONLY
-    this.router.navigate([{ outlets: { aux: ['kb021'] } }]);
+    // this.router.navigate([{ outlets: { aux: ['kb021'] } }]);
+    // [routerLink]="['/kb02',{ outlets: { aux: ['kb021'] } }]"
+    // [routerLink]="['/kb02',{outlets: {aux: [this.RLINK], queryParams: { BELNR: doc, GJAHR: this.RESLIST[index].GJAHR } }}]"
+    // this.RLINK = 'kb021'
+    let navExtra: any = {
+      queryParams: { BELNR: doc, GJAHR: this.RESLIST[index].GJAHR },
+      outlets: { aux: [this.RLINK] }
+    };
+    console.log(navExtra);
+    this.router.navigate(['/kb02', navExtra], navExtra);
   }
 
   sortByTh(property, text) {
