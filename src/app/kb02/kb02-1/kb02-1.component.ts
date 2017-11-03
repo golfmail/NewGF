@@ -660,6 +660,33 @@ export class Kb021Component implements OnInit  {
     this.setYear();
   }
 
+  setVender() {
+    console.log(this.LIFNR )
+    if (this.LIFNR === '1000000038') {
+      this.IDVENDER = '1000010';
+      this.LBTERM = 'บริษัท มาร์ช จำกัด';
+      this.tbSearch_term = '9000080000004';
+      this.tbBankn = '00000201';
+    } else if (this.LIFNR === '1000000011') {
+      this.IDVENDER = '1000009';
+      this.LBTERM = 'บริษัท กรุงเทพ จำกัด';
+      this.tbSearch_term = '5401599010370';
+      this.tbBankn = '0000006552';
+    } else if (this.LIFNR === 'SeedFarm') {
+      this.IDVENDER = '121';
+      this.LBTERM = 'SeedFarm';
+      this.tbSearch_term = '9000080000004';
+      this.tbBankn = '8905686551';
+    } else if (this.LIFNR === 'Patio') {
+      this.IDVENDER = '120';
+      this.LBTERM = 'Patio Fun, Inc.';
+      this.tbSearch_term = '1234567891234';
+      this.tbBankn = '8905686552';
+    } else {
+    }
+    console.log(this.tbBankn);
+  }
+
 
   chkValidate() {
     console.log(this.FISTL.length);
@@ -1130,6 +1157,7 @@ export class Kb021Component implements OnInit  {
           // this.addCredit(); // TEST
           console.log( this.SAVELIST);
           this.setDocData();
+          this.lbNUMBER = 1;
         } else {
           console.log('NO DATA');
         }
@@ -1175,7 +1203,10 @@ export class Kb021Component implements OnInit  {
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
     this.LOGNO    = this.HEADLIST.LOGNO;
+    this.tbBankn  = this.HEADLIST.Detail[1].tbBankn;
     this.coverDate();
+    this.setVender();
+    // console.log(this.GJAHR );
   }
 
   setDocData () {
@@ -1203,7 +1234,7 @@ export class Kb021Component implements OnInit  {
     this.ZZFIELD1 = this.SAVELIST[n].ZZFIELD1; // รหัสหมวดพัสดุ
     this.VBUND = this.SAVELIST[n].VBUND; // รหัสหน่วยงานคู่ค้า
 
-    this.GJAHR = this.SAVELIST[n].GJAHR; // ปีบัญชี
+    // this.GJAHR = this.SAVELIST[n].GJAHR; // ปีบัญชี
     this.SGTXT = this.SAVELIST[n].SGTXT; // รายละเอียดบรรทัดรายการ
 
     this.HKONT_NAME = this.SAVELIST[n].HKONT_NAME; // (ช) ชื่อบัญชีแยกประเภททั่วไป

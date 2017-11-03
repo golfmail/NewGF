@@ -7,6 +7,10 @@
 })
 export class UserLoginProfileComponent implements OnInit {
 
+  UID = '030020000510';
+  TIME = new Date();
+  TIMELOGIN = this.TIME.getHours() + ':' + this.TIME.getMinutes() + ':' + this.TIME.getSeconds();
+
   constructor() {}
 
   ngOnInit() {

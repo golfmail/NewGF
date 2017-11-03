@@ -27,14 +27,14 @@
             <strong class="fontContentRed">เลขที่ใบขอเบิกเงิน</strong>
            </td>
           <td style="width: 176px;">
-            <input type="text" [(ngModel)]="BELNR1">
+            <input type="text" [(ngModel)]="BELNR1s">
             <!-- <asp:TextBox ID="tbBELNRFrom" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox> -->
           </td>
           <td style="width: 42px;">
             &nbsp;<strong>ถึง</strong>
           </td>
           <td style="width: 459px">
-              <input type="text" [(ngModel)]="BELNR2">
+              <input type="text" [(ngModel)]="BELNR2s">
             <!-- <asp:TextBox ID="tbBELNRTo" runat="server" ForeColor="#333333" MaxLength="10"></asp:TextBox> -->
           </td>
           </tr>
@@ -98,14 +98,14 @@
               <strong class="fontContentGreen">การอ้างอิง</strong>
             </td>
             <td style="width: 190px">
-              <input type="text" [(ngModel)]="TBXBLNR1">
+              <input type="text" [(ngModel)]="TBXBLNR1s">
               <!-- <asp:TextBox ID="TBXBLNR" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox> -->
             </td>
             <td style="width: 37px">
               &nbsp;<strong>ถึง</strong>
             </td>
             <td style="width: 190px">
-                <input type="text" [(ngModel)]="TBXBLNR2">
+                <input type="text" [(ngModel)]="TBXBLNR2s">
               <!-- <asp:TextBox ID="tbXBLNRTo" runat="server" MaxLength="16" ForeColor="#333333"></asp:TextBox> -->
             </td>
           </tr>
@@ -129,13 +129,13 @@
                 <strong class="fontContentGreen">ประเภทเอกสาร</strong>
             </td>
             <td>
-              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART1" class="fontContentBlack" style="width: 100%">
+              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART1s" class="fontContentBlack" style="width: 100%">
                 <option *ngFor="let o of typeDocList" [ngValue]="o.id">{{o.Name}}</option>
               </select>
             </td>
             <td></td>
             <td>
-              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART2" class="fontContentBlack" style="width: 100%">
+              <select [disabled]="DSTBALL" [(ngModel)]="IDBLART2s" class="fontContentBlack" style="width: 100%">
                 <option *ngFor="let o of typeDocList" [ngValue]="o.id">{{o.Name}}</option>
               </select>
             </td>

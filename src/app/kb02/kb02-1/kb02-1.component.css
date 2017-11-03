@@ -160,17 +160,19 @@ md-spinner {
 }
 
 :host >>> md-tab-header {
-  background-color: #8399CB;
+  background-color: #4B6D96;
 }
 :host >>> .mat-tab-label-active {
-  background-color: rgb(255, 255, 158);
+  background-color: #FFFFFF;
   color: rgb(53, 53, 53) !important;
+  border: 1px;
+  border-color: #C0C1D6;
 }
 :host >>> .selected-tab-0 md-ink-bar {
-  background-color: #8296C8;
+  background-color: #C0C1D6;
 }
 :host >>> .selected-tab-1 md-ink-bar {
-  background-color: #8296C8;
+  background-color: #C0C1D6;
 }
 
 

@@ -44,7 +44,7 @@ export class GridViewComponent implements OnInit {
     this.txsort = text;
     this.isDesc = !this.isDesc;
     this.column = property;
-    let direction = this.isDesc ? 1 : -1;
+    const direction = this.isDesc ? 1 : -1;
 
     this.RESLIST.sort(function(a, b){
       if (a[property] < b[property]) {
@@ -67,6 +67,23 @@ export class GridViewComponent implements OnInit {
         this.sortby = 'มากไปน้อย';
       }
     } else {}
+  }
+
+  sortByNu(property, text) {
+    this.txsort = text;
+    this.isDesc = !this.isDesc;
+    this.column = property;
+    const direction = this.isDesc ? 1 : -1;
+
+    this.RESLIST.sort(function(a, b){
+      if (a[property] < b[property]) {
+          return -1 * direction;
+      } else if ( a[property] - b[property]) {
+          return 1 * direction;
+      } else {
+          return 0;
+      }
+    });
   }
 
   coverDate(num) {

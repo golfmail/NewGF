@@ -45,14 +45,18 @@ export class Kb023Component implements OnInit {
   DSTBALL;
   SHOWBT;
 
-  // Input Text
+  // TAB 2 ----------//----------//----------//
   TBBUKRS = '2109'; // รหัสงบประมาณ
   TBZZPMT = '2100900006'; // รหัสหน่วยเบิกจ่าย
-  TBXBLNR1 = ''; // การอ้างอิง 1
-  TBXBLNR2 = ''; // การอ้างอิง 2
+  TBXBLNR1s = ''; // การอ้างอิง 1
+  TBXBLNR2s = ''; // การอ้างอิง 2
+  TBXBLNR1 = '';
+  TBXBLNR2 = '';
   TBSTERM = ''; // รหัสประจำตัวผู้เสียภาษี
-  IDBLART1 = this.typeDocList[0].id; // ประเภทเอกสาร
-  IDBLART2 = this.typeDocList[0].id; // ประเภทเอกสาร
+  IDBLART1s = this.typeDocList[0].id; // ประเภทเอกสาร
+  IDBLART2s = this.typeDocList[0].id; // ประเภทเอกสาร
+  IDBLART1;
+  IDBLART2;
 
   // Label
   LBBUKRS = 'กรมอนามัย'; // TEST รหัสงบประมาณ
@@ -64,14 +68,16 @@ export class Kb023Component implements OnInit {
   F_DATEC: String;
   T_DATEC: String;
 
-  // ปีงบประมาณ
+  // TAB 1 ----------//----------//----------//
+  // - // เลขที่ใบขอเบิก
+  BELNR1s = '10000745';
+  BELNR2s = '10000747';
+  BELNR1  = '';
+  BELNR2  = '';
+  // - // ปีงบประมาณ
   yearList: any[] = [];
   GJAHR = new Date();
-  YEAR = Number(this.GJAHR.getFullYear());
-
-  // เลขที่ใบขอเบิก
-  BELNR1 = '10000745';
-  BELNR2 = '10000747';
+  YEAR  = Number(this.GJAHR.getFullYear());
 
   // User ID
   USERID;
@@ -117,12 +123,40 @@ export class Kb023Component implements OnInit {
 
   // TEST
   onSearch(tab) {
+    this.checkPram();
     this.RESLIST = [];
     this.notFound = true;
     this.forResult = true;
     this.coverDateFT();
     this.genXMLSearch(tab);
     this.sendXMLSearch(tab); // TEST
+  }
+
+  checkPram() {
+    this.BELNR1 = this.BELNR1s;
+    this.BELNR2 = this.BELNR2s;
+    this.TBXBLNR1 = this.TBXBLNR1s;
+    this.TBXBLNR2 = this.TBXBLNR2s;
+    this.IDBLART1 = this.IDBLART1s;
+    this.IDBLART2 = this.IDBLART2s;
+
+    if (this.TBXBLNR1s === '') {
+      this.TBXBLNR1 = this.TBXBLNR2;
+    } else if (this.TBXBLNR2s === '') {
+      this.TBXBLNR2 = this.TBXBLNR1;
+    }
+
+    if (this.IDBLART1s === '') {
+      this.IDBLART1 = this.IDBLART2;
+    } else if (this.IDBLART2s === '') {
+      this.IDBLART2 = this.IDBLART1;
+    }
+
+    if (this.BELNR1s === '')  {
+      this.BELNR1 = this.BELNR2;
+    } else if (this.BELNR2s === '') {
+      this.BELNR2 = this.BELNR1;
+    }
   }
 
   coverDateFT() {

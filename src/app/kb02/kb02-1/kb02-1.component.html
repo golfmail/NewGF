@@ -195,7 +195,8 @@
           </strong>
         </td>
         <td style="height: 18px; width: 338px;">
-          <asp:TextBox [(ngModel)]="BELNR" TextMode="ReadOnly" class="fontContentBlack" ID="BELNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox>
+          <Label class="fontContentBlack">{{BELNR}} &nbsp; {{GJAHR}}</Label>
+          <!-- <asp:TextBox [(ngModel)]="BELNR" TextMode="ReadOnly" class="fontContentBlack" ID="BELNR" MaxLength="16" runat="server" TabIndex="6"></asp:TextBox> -->
         </td>
         <td style="height: 18px; width: 144px;">
           <strong>
@@ -231,13 +232,13 @@
       <tr [hidden]="SHOWTR" id="afterSuccess4" bgcolor="#FFFFE1" >
         <td colspan="4" style="height: 21px">&nbsp;</td>
       </tr>
-      <tr id="ucKb02_1_trExcel1">
+      <tr [hidden]="HIDEBT" id="ucKb02_1_trExcel1">
 	      <!--Update_Ton3--><td style="height: 18px">&nbsp;<span id="cssUploadExcel" [ngClass]="contentGreen" style="font-weight:bold;">ดึงข้อมูลจากไฟล์</span></td>
 	      <td style="height: 18px"><a onclick="OpenWindow('pages/Attribute_Excel.aspx?DocumentNo=kb02&amp;Status=add',450,120); return false;" id="ucKb02_1_btUpLoadExcel" class="POSelection" href="javascript:__doPostBack('ucKb02_1$btUpLoadExcel','')" style="font-family:tahoma;font-size:11px;font-weight:normal;">แนบไฟล์</a></td>
 	      <td style="height: 18px">&nbsp;</td>
 	      <td style="height: 18px"> &nbsp;</td>
       </tr>
-      <tr>
+      <tr [hidden]="HIDEBT">
         <td colspan="4" style="height: 21px">&nbsp;</td>
       </tr>
     </table>
@@ -742,7 +743,7 @@
                 <div class="defaultTableBody">
                   <div>
                   </div>
-                    <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+                    <pagination-template *ngIf="SAVELIST.length > 5" #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
                       <div class="custom-pagination">
                       <ul role="navigation" aria-label="Pagination">
                         <li class="pagination-previous" [class.disabled]="p.isFirstPage()">
