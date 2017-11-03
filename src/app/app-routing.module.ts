@@ -11,12 +11,25 @@ import { Kb023Component } from './kb02/kb02-3/kb02-3.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/kb02', pathMatch: 'full'
+    redirectTo: '/lch', pathMatch: 'full'
   },
+
     {
-      path: 'kb02',
-      component: Kb02Component,
+        path: 'report',
+        component: ReportReportComponent
+    },
+    {
+        path: 'logreport',
+        component: LogReportComponent
+    },
+    {
+      path: 'lch',
+      component: LauncherComponent,
       children: [
+        {
+          path: 'kb02',
+          component: Kb02Component,
+        },
         {
           path: 'kb021',
           component: Kb021Component,
@@ -33,16 +46,7 @@ const routes: Routes = [
           outlet: 'aux'
         },
       ]
-    },
-
-    {
-        path: 'report',
-        component: ReportReportComponent
-    },
-    {
-        path: 'logreport',
-        component: LogReportComponent
-    },
+    }
 ];
 
 @NgModule({
