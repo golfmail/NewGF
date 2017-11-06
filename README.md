@@ -2,13 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.4.
 
-**Library** :
+**Library**
   ngx-pagination [Pagination for Angular (v2+)](http://michaelbromley.github.io/ngx-pagination/)    
   `npm install ngx-pagination --save`
 
   Angular Material : [Angular Material and Angular CDK](https://material.angular.io)
   `npm install --save @angular/material @angular/cdk`
   `npm install --save @angular/animations` [more document setting.](https://material.angular.io/guide/getting-started)
+
+  morgan : [read more](https://www.npmjs.com/package/morgan)
+  `npm install morgan`
+
+  pg-promise : [read more](https://www.npmjs.com/package/pg-promise)
+  `npm install pg-promise`
+
+  express
 
 
 ## Development server
