@@ -346,6 +346,7 @@ ol li{
     FONT-STYLE: normal;
     FONT-FAMILY: tahoma, arial, sans-serif;
     overflow:hidden;
+
   }
   .sapTxtSml2 {
     FONT-WEIGHT: normal;
@@ -353,9 +354,11 @@ ol li{
     COLOR: #000000;
     FONT-STYLE: normal;
     FONT-FAMILY: tahoma, arial, sans-serif;
-    white-space:nowrap; 
+    white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+    border-top: 1px solid black;
+    margin:0px;
   }
 
   .sapTxtTtlSml {
@@ -620,7 +623,7 @@ ol li{
     COLOR: #000! important;
     PADDING-TOP: 0px! important;
     FONT-FAMILY: tahoma, arial, sans-serif! important;
-    BACKGROUND-COLOR: #fff! important
+    BACKGROUND-COLOR: #fff! important;
   }
 
   #header {
@@ -1096,10 +1099,13 @@ ol li{
   .tr_even {
     background-color: #eaeaea;
   }
-  .odd {
-    color: red;
-  }
-  .even {
-    color: blue;
-  }
-  
+  tr:nth-child(even) {
+    border: 0px;
+    margin:0px;
+    background-color: #fcf8c7}
+    tr:nth-child(odd) {
+      border: 0px;
+      margin:0px;
+      background-color: #eaeaea}
+
+
