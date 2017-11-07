@@ -3,10 +3,8 @@ import { Component, OnInit, forwardRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
-// import { GridViewComponent } from 'app/controls/grid-view/grid-view.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
-// import { Kb021Component } from 'app/kb02/kb02-1/kb02-1.component';
 
 @Component({
   selector: 'app-kb02-3',
@@ -70,8 +68,8 @@ export class Kb023Component implements OnInit {
 
   // TAB 1 ----------//----------//----------//
   // - // เลขที่ใบขอเบิก
-  BELNR1s = '10000745';
-  BELNR2s = '10000747';
+  BELNR1s = '10001002';
+  BELNR2s = '';
   BELNR1  = '';
   BELNR2  = '';
   // - // ปีงบประมาณ
@@ -82,17 +80,17 @@ export class Kb023Component implements OnInit {
   // User ID
   USERID;
 
-  // XML / JSON
-  xml_searchDoc = ''; // Gen XML for send to service
+  // JSON
   json_searchDoc = '';
 
   // Hide
   forAdmin: boolean;
   forResult: boolean;
   notFound: Boolean = true;
+  noAddOn: Boolean = true; // Test for Add-On # ลบออกเมื่อ service log ไม่จำเป็นต้องใช้
   H_WAIT: Boolean = true;
 
-  // Process
+  // Processing anime
   DATAWRONG = 'ไม่พบผลการค้นหา';
 
   // TEST ONLY
@@ -121,15 +119,14 @@ export class Kb023Component implements OnInit {
     dialogRef.componentInstance.name_t = nametx;
   }
 
-  // TEST
   onSearch(tab) {
     this.checkPram();
     this.RESLIST = [];
     this.notFound = true;
     this.forResult = true;
     this.coverDateFT();
-    this.genXMLSearch(tab);
-    this.sendXMLSearch(tab); // TEST
+    this.genJSONSearch(tab);
+    this.sendJSONSearch(tab);
   }
 
   checkPram() {
@@ -164,83 +161,28 @@ export class Kb023Component implements OnInit {
     this.T_DATEC = this.T_DATE.getDate() + '/' + Number(this.T_DATE.getMonth() + 1) + '/' + this.T_DATE.getFullYear();
   }
 
-  genXMLSearch(tab) {
+  genJSONSearch(tab) {
     this.json_searchDoc = '';
     if (tab === 0) {
-      this.xml_searchDoc = '';
-      this.xml_searchDoc = `<operation>
-      <modelCRUD>
-        <tableName>SearchDocT1</tableName>
-          <recordID>0</recordID>
-            <action>CreateUpdate</action>
-              <dataRow>
-                <field column="BELNR1">
-                  <val>${this.BELNR1}</val>
-                </field>
-                <field column="BELNR2">
-                  <val>${this.BELNR2}</val>
-                </field>
-                <field column="GJAHR">
-                  <val>${this.YEAR}</val>
-                </field>
-			        </dataRow>
-		      </modelCRUD>
-        </operation>`;
-        // Change to JSON
       this.json_searchDoc = `{"BELNR1": "${this.BELNR1}",
                               "BELNR2": "${this.BELNR2}",
                               "GJAHR": "${this.YEAR - 543}"}`;
     } else if (tab === 1) {
-      this.xml_searchDoc = '';
-      this.xml_searchDoc = `<operation>
-      <modelCRUD>
-        <tableName>SearchDocT2</tableName>
-          <recordID>0</recordID>
-            <action>CreateUpdate</action>
-              <dataRow>
-                <field column="DATETYPE">
-                  <val>${this.SELECTED_DATE}</val>
-                </field>
-                <field column="F_DATE">
-                  <val>${this.F_DATEC}</val>
-                </field>
-                <field column="T_DATE">
-                  <val>${this.T_DATEC}</val>
-                </field>
-                <field column="TBXBLNR1">
-                  <val>${this.TBXBLNR1}</val>
-                </field>
-                <field column="TBXBLNR2">
-                  <val>${this.TBXBLNR2}</val>
-                </field>
-                <field column="TBSTERM">
-                  <val>${this.TBSTERM}</val>
-                </field>
-                <field column="IDBLART1">
-                  <val>${this.IDBLART1}</val>
-                </field>
-                <field column="IDBLART2">
-                  <val>${this.IDBLART2}</val>
-                </field>
-			        </dataRow>
-		      </modelCRUD>
-        </operation>`;
-        // JSON
-        this.json_searchDoc = `{"DATETYPE":"${this.SELECTED_DATE}",
-                                "F_DATE": "${this.F_DATEC}",
-                                "T_DATE": "${this.T_DATEC}",
-                                "TBXBLNR1": "${this.TBXBLNR1}",
-                                "TBXBLNR2": "${this.TBXBLNR2}",
-                                "TBSTERM": "${this.TBSTERM}",
-                                "IDBLART1": "${this.IDBLART1}",
-                                "IDBLART2": "${this.IDBLART2}"}`;
+      this.json_searchDoc = `{"DATETYPE":"${this.SELECTED_DATE}",
+                              "F_DATE": "${this.F_DATEC}",
+                              "T_DATE": "${this.T_DATEC}",
+                              "TBXBLNR1": "${this.TBXBLNR1}",
+                              "TBXBLNR2": "${this.TBXBLNR2}",
+                              "TBSTERM": "${this.TBSTERM}",
+                              "IDBLART1": "${this.IDBLART1}",
+                              "IDBLART2": "${this.IDBLART2}"}`;
     }
     // console.log(this.json_searchDoc);
   }
 
-  sendXMLSearch(tab) {
-    // รอ service log พร้อมใช้งาน
+  sendJSONSearch(tab) {
     this.H_WAIT = false;
+    this.noAddOn = true; // TEST
     const headers = new Headers();
     headers.append('Content-Type', 'application/json;charset=UTF-8');
     const options = new RequestOptions();
@@ -281,6 +223,7 @@ export class Kb023Component implements OnInit {
       console.log(error);
       this.DATAWRONG = 'การเชื่อมต่อกับ service log ไม่สมบูรณ์ : ' + '(' + error.status + ') ' + error.statusText;
       this.notFound = false;
+      this.noAddOn = false; // TEST
     });
 
   }
@@ -295,8 +238,6 @@ export class Kb023Component implements OnInit {
 
   }
 
-
-
   ngOnInit() {
     // this.MenuTop.onClick(this.route.url); // TEST
     this.MenuTop.topMenu_s = 'fontMenuTop'; // TEST
@@ -306,7 +247,6 @@ export class Kb023Component implements OnInit {
     // For Selected Years
     if (this.GJAHR.getMonth() >= 9 ) {
       this.GJAHR.setFullYear(Number(this.GJAHR.getFullYear()) + 544);
-      // console.log('f' + this.GJAHR); // TEST
     } else {
       this.GJAHR.setFullYear(Number(this.GJAHR.getFullYear()) + 543);
     }
@@ -315,7 +255,6 @@ export class Kb023Component implements OnInit {
     iGJAHR = iGJAHR - 8;
     for (let index = -7; index < 7; index++) {
       iGJAHR = iGJAHR + 1;
-      // console.log(iGJAHR); // TEST
       this.yearList.push({YESR: iGJAHR});
 
     }
