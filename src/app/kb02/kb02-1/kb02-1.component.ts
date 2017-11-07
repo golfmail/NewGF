@@ -82,6 +82,35 @@ export class Kb021Component implements OnInit  {
     'KE': 'KE - ขอเบิก(2.ข)', 'KF': 'KF - ขอเบิก(2.ข) กันเงิน', 'KL': 'KL - ใบสำคัญงปม(2)',
     'KM': 'KM - ใบสำคัญงปม(2) กันเงิน'};
 
+  M_IDFISTL = [
+    { val: '0300210101110000', id: '100'},
+    { val: '0300210101110000', id: '100'},
+    { val: '0300210101000000', id: '100'},
+    { val: '0300210101110001', id: '100'},
+    { val: '0300210101110002', id: '100'},
+    { val: '0300210101110003', id: '104'},
+    { val: '0300210101110007', id: '105'},
+    { val: '0300210101110022', id: '100'}
+  ];
+
+  M_IDKOSTL = [
+    { val: '0300200001', id: '101'},
+    { val: '0300200003', id: '101'},
+    { val: '0300200004', id: '101'},
+    { val: '0300200005', id: '101'},
+    { val: '0300200007', id: '101'},
+    { val: '0300200000', id: '101'}
+  ];
+
+  M_IDHKONT = [
+    { val: '53000', id: '1000002'},
+    { val: '51800', id: '1000016'},
+    { val: '52000', id: '1000011'},
+    { val: '51200', id: '1000004'},
+    { val: '57000', id: '1000005'},
+    { val: '54000', id: '1000006'}
+  ];
+
   ValidateList: string[] = [];
   DDGSBER = '1000'; // รหัสพื้นที่
 
@@ -98,7 +127,7 @@ export class Kb021Component implements OnInit  {
 
   HKONT = '53000'; // รหัสบัญชีแยกประเภททั่วไป       [Send to API]
   KOSTL = '0300200005'; // รหัสศูนย์ต้นทุน        [Send to API]
-  FISTL = '0300213001120001'; // รหัสงบประมาณ   [Send to API]
+  FISTL = '0300210101110000'; // รหัสงบประมาณ   [Send to API]
   FKBER = '030021000E0482'; // รหัสกิจกรรมหลัก             [Send to API]
   WRBTR = ''; // จำนวนเงินที่ขอเบิก            [Send to API]
 
@@ -368,9 +397,10 @@ export class Kb021Component implements OnInit  {
 
   // button: สร้างเอกสารใหม่
   onNewDoc() {
-    this.router.navigate(['/kb02',{ outlets: { aux: ['kb021'] } }]);
+    this.router.navigate(['/kb02', { outlets: { aux: ['kb021'] } }]);
     this.EXPAND = true;
     this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
+
     this.SHOWTR = true; // Hide Doc
     this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Hide 3 Button Log
@@ -378,8 +408,10 @@ export class Kb021Component implements OnInit  {
     this.onEnableInput('Y'); // Y = Enable All Input
     this.lbNUMBER = this.SAVELIST.length + 1;
     this.setDocData(); // Set for TEST
+    this.getValueIDList();
 
     this.setHeader(); // Set for TEST
+    // this.getValueIDList();
   }
 
   onSelectDate(typeDate) {
@@ -661,7 +693,7 @@ export class Kb021Component implements OnInit  {
   }
 
   setVender() {
-    console.log(this.LIFNR )
+    // console.log(this.LIFNR )
     if (this.LIFNR === '1000000038') {
       this.IDVENDER = '1000010';
       this.LBTERM = 'บริษัท มาร์ช จำกัด';
@@ -755,6 +787,7 @@ export class Kb021Component implements OnInit  {
     this.getDateAI(); // Get Date
     this.chkValidate(); // Check Validate form
     this.getVender();
+    this.getValueID(this.lbNUMBER, this.IDFISTL, this.IDKOSTL, this.IDHKONT);
     if (this.ValidateList.length <= 0) { // && this.is_valid === true
     this.valuelist = 0;
     if (typeof this.SAVELIST === 'undefined' && this.lbNUMBER === 0) { // this.saveTable
@@ -930,13 +963,15 @@ export class Kb021Component implements OnInit  {
   }
 
   formEdit() {
+
     // console.log('Log: Edit');
     // this.lbNUMBER
     // let lbNUMBER = Number(document.getElementById('lbNUMBER').textContent);
     let lbNUMBER = Number(this.lbNUMBER);
-    console.log('Edit No. ' + lbNUMBER);
+    // console.log('Edit No. ' + lbNUMBER);
     lbNUMBER = lbNUMBER - 1; // ตำแหน่ง Array
     if (this.lbNUMBER <= this.SAVELIST.length) {
+      this.getValueID(lbNUMBER, this.IDFISTL, this.IDKOSTL, this.IDHKONT);
       this.SAVELIST[lbNUMBER].BUKRS = this.BUKRS;
       this.SAVELIST[lbNUMBER].LBBUKRS = this.LBBUKRS;
       this.SAVELIST[lbNUMBER].BLDAT = this.BLDAT;
@@ -1078,6 +1113,51 @@ export class Kb021Component implements OnInit  {
       });
 
 
+  }
+
+  getValueIDList() {
+    const LIST = this.SAVELIST;
+    // console.log(LIST);
+    for (let index = 0; index < LIST.length; index++) {
+      const element = LIST[index];
+      this.getValueID(index, element.IDFISTL, element.IDKOSTL, element.IDHKONT);
+    }
+  }
+
+  getValueID(index, ID_FISTL, ID_KOSTL, ID_HKONT) {
+    // console.log('IDKOSTL: ', this.IDKOSTL);
+    let id;
+    if (ID_FISTL === '' || ID_FISTL === undefined ) {
+      id = '';
+      id = this.getID(this.FISTL, this.M_IDFISTL);
+      this.IDFISTL = id;
+      this.SAVELIST[index].IDFISTL = id;
+    }
+    if (ID_KOSTL === '' || ID_KOSTL === undefined) {
+      id = '';
+      id = this.getID(this.KOSTL, this.M_IDKOSTL);
+      this.IDKOSTL = id;
+      this.SAVELIST[index].IDKOSTL = id;
+    }
+    if (ID_HKONT === '' || ID_HKONT === undefined) {
+      id = '';
+      id = this.getID(this.HKONT, this.M_IDHKONT);
+      this.IDHKONT = id;
+      this.SAVELIST[index].IDHKONT = id;
+    }
+    // console.log('IDKOSTL: ', this.IDKOSTL);
+    // console.log('IDHKONT: ', this.IDHKONT);
+  }
+
+  getID (VALUE, ID) {
+    console.log(VALUE, ID);
+    for (let index = 0; index < ID.length; index++) {
+      const element = ID[index];
+      if (element.val === VALUE) {
+        // console.log(element.val);
+        return element.id;
+      }
+    }
   }
 
   madeHeadDoc() {

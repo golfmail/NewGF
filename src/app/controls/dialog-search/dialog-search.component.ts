@@ -170,7 +170,7 @@ export class DialogSearchComponent implements OnInit {
   // เพิ่มรหัสบัญชีแยกประเภท
   xmlHKONT = `<table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <row>
-                  <id>1000001</id>
+                  <id>1000002</id>
                   <Value>53000</Value>
                   <Name>ค่าใช้จ่ายค่าที่ปรึกษา</Name>
                   <description>ค่าใช้จ่ายค่าที่ปรึกษา</description>
