@@ -181,3 +181,22 @@ br {
   margin: 3px 0;
 }
 
+.pointerEnable {
+  cursor: pointer !important;
+  color: black !important;
+   
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    user-select: none;
+
+}
+
+.pointerDisable {
+  cursor: default;
+  color: rgb(214, 213, 213);
+}
+
+
+
+

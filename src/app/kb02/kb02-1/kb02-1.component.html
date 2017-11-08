@@ -442,8 +442,38 @@
             <br>
               <table border="0" cellpadding="0" cellspacing="0" id="section2" width="100%">
               <tr>
+                <td colspan="7" style="background-color: #eeeef7">
+                  <table style="background-color: #eeeef7"  border="0" cellpadding="0" cellspacing="0" width="98%">
+                    <tr>
+                      <td>
+                        <strong>
+                          <span style="color: #595467; font-size: 12px;">รายละเอียดเอกสาร&nbsp;</span>
+                        </strong>
+                        <span *ngIf="panel==false">
+                          <img  alt="กดเพื่อ แสดง/ซ่อน รายละเอียดเอกสาร" id="switchTag" (click)="panel=true" src="assets/Images/Icon/collapse.gif" style="cursor: pointer; transform: rotate(180deg);"/>
+                        </span>
+                        <span *ngIf="panel==true">
+                          <img alt="กดเพื่อ แสดง/ซ่อน รายละเอียดเอกสาร" id="switchTag" (click)="panel=false" src="assets/Images/Icon/collapse.gif" style="cursor: pointer;"/>
+                        </span>
+                      </td>
+                      <td class="pointerEnable" align="right" *ngIf="showdoc==true">
+                        <span [class.pointerDisable]="lbNUMBER === 1"
+                          [class.selected]="SAVELIST === selectedList"
+                          (click)="onSelect(SAVELIST[lbNUMBER-2],lbNUMBER-2)"
+                        >&laquo; ก่อนหน้า </span>
+                        <span>{{lbNUMBER}}/{{SAVELIST.length}}</span>
+                        <span [class.pointerDisable]="lbNUMBER === SAVELIST.length"
+                          [class.selected]="SAVELIST === selectedList"
+                          (click)="onSelect(SAVELIST[lbNUMBER],lbNUMBER)"
+                        > ถัดไป &raquo;</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr *ngIf="panel==true">
               <td>
-              <md-expansion-panel [expanded]='EXPAND'>
+              <!-- <md-expansion-panel [expanded]='EXPAND'>
                 <md-expansion-panel-header>
                   <md-panel-title>
                     รายละเอียดเอกสาร
@@ -455,7 +485,7 @@
                   </md-panel-title>
                   <md-panel-description>
                   </md-panel-description>
-                </md-expansion-panel-header>
+                </md-expansion-panel-header> -->
                 <br>
 
 
@@ -666,7 +696,7 @@
                 </td>
               </tr>
             </table>
-          </md-expansion-panel>
+          <!-- </md-expansion-panel> -->
 
               </td>
               </tr>

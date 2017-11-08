@@ -206,6 +206,8 @@ export class Kb021Component implements OnInit  {
   LIFNR = ''; // LIFNR
   ZLSCH = ''; // ZLSCH
   SUMCOST: Number = 0; // เงินรวม
+  panel = true;
+  showdoc = false;
 
   // Corlor Content
   contentBlue   = 'fontContentBlue';
@@ -394,6 +396,7 @@ export class Kb021Component implements OnInit  {
     this.SHOWTR = false; // Show Doc
     this.HIDEBT = true; // Hide จำลองการบันทึก & 3 Save
     this.AFTDOC = false; // Show 3 Button Log
+    this.showdoc = true;
   }
 
   onHideDocID() {
@@ -401,6 +404,7 @@ export class Kb021Component implements OnInit  {
     this.SHOWTR = true; // Show Doc
     this.HIDEBT = false; // Hide จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Show 3 Button Log
+    this.showdoc = false;
   }
 
   // button: สร้างเอกสารใหม่
@@ -412,6 +416,7 @@ export class Kb021Component implements OnInit  {
     this.SHOWTR = true; // Hide Doc
     this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
     this.AFTDOC = true; // Hide 3 Button Log
+    this.showdoc = false;
     this.onColor('Y');
     this.onEnableInput('Y'); // Y = Enable All Input
     this.lbNUMBER = this.SAVELIST.length + 1;
@@ -456,52 +461,57 @@ export class Kb021Component implements OnInit  {
   }
 
   onSelect(save: TableList, i): void {
-    // document.getElementById('lbNUMBER').innerText = i + 1;
-    this.BTDEL = false;
-    this.BTNEW = false;
-    this.lbNUMBER = i + 1;
-    this.valuelist = i + 1;
-    this.selectedList = save; // => Selected
-    // this.BUKRS = save.BUKRS;
-    // this.LBBUKRS = save.LBBUKRS;
-    // this.TBZZPMT = save.TBZZPMT;
-    // this.LBZZPMT = save.LBZZPMT;
-    // this.TBXBLNR = save.TBXBLNR;
-    // this.GEBER = save.GEBER; // แหล่งของเงิน
-    // this.GEBER_NAME = save.GEBER_NAME;
-    // this.tbSearch_term = save.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
-    // this.tbBankn = save.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
-    this.HKONT = save.HKONT; // รหัสบัญชีแยกประเภททั่วไป
-    this.KOSTL = save.KOSTL; // รหัสศูนย์ต้นทุน
-    this.FISTL = save.FISTL; // รหัสงบประมาณ
-    this.FKBER = save.FKBER; // รหัสกิจกรรมหลัก
-    this.WRBTR = save.WRBTR; // จำนวนเงินที่ขอเบิก
-    this.PRZNR = save.PRZNR; // รหัสกิจกรรมย่อย
-    this.ZZOBJ = save.ZZOBJ; // รหัสบัญชีย่อย
-    this.ZZUNIT = save.ZZUNIT; // รหัสเจ้าของบัญชีย่อย
-    this.ZZFIELD1 = save.ZZFIELD1; // รหัสหมวดพัสดุ
-    this.VBUND = save.VBUND; // รหัสหน่วยงานคู่ค้า
+    if (i >= 0 && i < this.SAVELIST.length) {
+      // document.getElementById('lbNUMBER').innerText = i + 1;
+      this.BTDEL = false;
+      this.BTNEW = false;
+      this.lbNUMBER = i + 1;
+      this.valuelist = i + 1;
+      this.selectedList = save; // => Selected
+      // this.BUKRS = save.BUKRS;
+      // this.LBBUKRS = save.LBBUKRS;
+      // this.TBZZPMT = save.TBZZPMT;
+      // this.LBZZPMT = save.LBZZPMT;
+      // this.TBXBLNR = save.TBXBLNR;
+      // this.GEBER = save.GEBER; // แหล่งของเงิน
+      // this.GEBER_NAME = save.GEBER_NAME;
+      // this.tbSearch_term = save.tbSearch_term; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+      // this.tbBankn = save.tbBankn; // เลขที่บัญชีเงินฝากธนาคาร
+      this.HKONT = save.HKONT; // รหัสบัญชีแยกประเภททั่วไป
+      this.KOSTL = save.KOSTL; // รหัสศูนย์ต้นทุน
+      this.FISTL = save.FISTL; // รหัสงบประมาณ
+      this.FKBER = save.FKBER; // รหัสกิจกรรมหลัก
+      this.WRBTR = save.WRBTR; // จำนวนเงินที่ขอเบิก
+      this.PRZNR = save.PRZNR; // รหัสกิจกรรมย่อย
+      this.ZZOBJ = save.ZZOBJ; // รหัสบัญชีย่อย
+      this.ZZUNIT = save.ZZUNIT; // รหัสเจ้าของบัญชีย่อย
+      this.ZZFIELD1 = save.ZZFIELD1; // รหัสหมวดพัสดุ
+      this.VBUND = save.VBUND; // รหัสหน่วยงานคู่ค้า
 
-    this.GJAHR = save.GJAHR; // ปีบัญชี
-    this.SGTXT = save.SGTXT; // รายละเอียดบรรทัดรายการ
+      // this.GJAHR = save.GJAHR; // ปีบัญชี
+      this.SGTXT = save.SGTXT; // รายละเอียดบรรทัดรายการ
 
-    this.HKONT_NAME = save.HKONT_NAME; // (ช) ชื่อบัญชีแยกประเภททั่วไป
-    this.KOSTL_NAME = save.KOSTL_NAME; // (N) ชื่อศูนย์ต้นทุน
-    this.FISTL_NAME = save.FISTL_NAME; // (N) ชื่องบประมาณ
-    this.FKBER_NAME = save.FKBER_NAME; // (N) ชื่อกิจกรรมหลัก
-    this.PRZNR_NAME = save.PRZNR_NAME; // (N) ชื่อกิจกรรมย่อย
-    this.ZZOBJ_NAME = save.ZZOBJ_NAME; // (N) รหัสบัญชีย่อย
-    this.ZZUNIT_NAME = this.ZZUNIT_NAME; // (N) รหัสเจ้าของบัญชีย่อย
-    this.ZZFIELD1_NAME = this.ZZFIELD1_NAME; // (N) รหัสหมวดพัสดุ
-    this.VBUND_NAME = this.VBUND_NAME; // (N) รหัสหน่วยงานคู่ค้า
+      this.HKONT_NAME = save.HKONT_NAME; // (ช) ชื่อบัญชีแยกประเภททั่วไป
+      this.KOSTL_NAME = save.KOSTL_NAME; // (N) ชื่อศูนย์ต้นทุน
+      this.FISTL_NAME = save.FISTL_NAME; // (N) ชื่องบประมาณ
+      this.FKBER_NAME = save.FKBER_NAME; // (N) ชื่อกิจกรรมหลัก
+      this.PRZNR_NAME = save.PRZNR_NAME; // (N) ชื่อกิจกรรมย่อย
+      this.ZZOBJ_NAME = save.ZZOBJ_NAME; // (N) รหัสบัญชีย่อย
+      this.ZZUNIT_NAME = this.ZZUNIT_NAME; // (N) รหัสเจ้าของบัญชีย่อย
+      this.ZZFIELD1_NAME = this.ZZFIELD1_NAME; // (N) รหัสหมวดพัสดุ
+      this.VBUND_NAME = this.VBUND_NAME; // (N) รหัสหน่วยงานคู่ค้า
 
-  //   this.IDFISTL = save.IDFISTL; // (ID) รหัสงบประมาณ
-  //   this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
-  //   this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
-  //   this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
-  //   this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
-  //   this.BLDAT = save.BLDAT; // (ID) Account Date
-  //   this.BUDAT = save.BUDAT; // (ID) Date Invoic
+    //   this.IDFISTL = save.IDFISTL; // (ID) รหัสงบประมาณ
+    //   this.IDKOSTL = save.IDKOSTL; // (ID) รหัสศูนย์ต้นทุน
+    //   this.IDHKONT = save.IDHKONT; // (ID) รหัสบัญชีแยกประเภททั่วไป
+    //   this.IDWRBTR = save.IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
+    //   this.IDSTERM = save.IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
+    //   this.BLDAT = save.BLDAT; // (ID) Account Date
+    //   this.BUDAT = save.BUDAT; // (ID) Date Invoic
+    console.log(i);
+    console.log(this.selectedList);
+
+    }
   }
 
   checkform() {
@@ -1230,6 +1240,7 @@ export class Kb021Component implements OnInit  {
     this.PRZNR_NAME = '';
     this.ZZOBJ_NAME = '';
     this.ZZFIELD1_NAME = '';
+    this.HKONT = '';
     this.HKONT_NAME = '';
     this.ZZUNIT_NAME = ''; // (N) รหัสเจ้าของบัญชีย่อย
     this.VBUND_NAME = ''; // (N) รหัสหน่วยงานคู่ค้า
@@ -1378,6 +1389,8 @@ export class Kb021Component implements OnInit  {
     this.IDWRBTR = this.SAVELIST[n].IDWRBTR; // (ID) จำนวนเงินที่ขอเบิก
     this.IDSTERM = this.SAVELIST[n].IDSTERM; // (ID) เลขประจำตัวผู้เสียภาษี
     this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
+
+    this.selectedList = this.SAVELIST[n];
   }
 
   setNavCredit() {
