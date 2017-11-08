@@ -235,6 +235,7 @@ export class Kb021Component implements OnInit  {
   resultTB: string;
   resultLB: string;
   resultID: string;
+  resultNW: Boolean;
   xml: string;
   xml_log: string;
 
@@ -393,6 +394,13 @@ export class Kb021Component implements OnInit  {
     this.SHOWTR = false; // Show Doc
     this.HIDEBT = true; // Hide จำลองการบันทึก & 3 Save
     this.AFTDOC = false; // Show 3 Button Log
+  }
+
+  onHideDocID() {
+    // + Function for Show Doc.Number | Hiden 3 Button
+    this.SHOWTR = true; // Show Doc
+    this.HIDEBT = false; // Hide จำลองการบันทึก & 3 Save
+    this.AFTDOC = true; // Show 3 Button Log
   }
 
   // button: สร้างเอกสารใหม่
@@ -1095,12 +1103,13 @@ export class Kb021Component implements OnInit  {
         if (selection) {
           this.resultTB = selection.value;
           this.resultLB = selection.name;
+          this.resultNW = selection.new;
           if (selection.new === false) {
             this.onGetDocSearch(this.resultTB, this.GJAHR);
           } else if (selection.new === true) {
             this.onGetNewDoc();
           }
-
+          console.log(this.resultNW, selection.new);
           // this.onDisable(); // Disable Textbox on Page after Success!
           // this.onEnableInput('N'); // N = Disable All Input this Page
           // this.onColor('N'); // 'N' = Change Color Content Black on Page after Success!
@@ -1200,13 +1209,49 @@ export class Kb021Component implements OnInit  {
   }
 
   onGetNewDoc() {
+    this.onHideDocID();
     this.SAVELIST = [];
     this.EXPAND = true;
-    // After Get Doc Detail
-    this.onEnableInput('N'); // N = Diable All Input
-    this.onColor('N'); // N = No Color
-    this.onShowDocID();
+    this.onEnableInput('Y'); // N = Diable All Input
+    this.onColor('Y'); // N = No Color
+    this.clearValueAll();
+  }
 
+  clearValueAll() {
+    this.LBTERM = ''; // บริษัท มาร์ช จำกัด
+    this.LBKBLNR = ''; // ชื่อเลขที่เอกสารสำรองเงินงบประมาณ
+    this.KOSTL = '';
+    this.KOSTL_NAME = '';
+    this.FKBER_NAME = '';
+    this.FISTL = '';
+    this.FISTL_NAME = '';
+    this.FKBER = '';
+    this.FKBER_NAME = '';
+    this.PRZNR_NAME = '';
+    this.ZZOBJ_NAME = '';
+    this.ZZFIELD1_NAME = '';
+    this.HKONT_NAME = '';
+    this.ZZUNIT_NAME = ''; // (N) รหัสเจ้าของบัญชีย่อย
+    this.VBUND_NAME = ''; // (N) รหัสหน่วยงานคู่ค้า
+    this.DATEI = new Date();
+    this.DATEA = new Date();
+    this.GJAHR = '';
+    this.SGTXT = '';
+    this.GEBER = '';
+    this.GEBER_NAME = '';
+    this.WRBTR = ''
+
+    // this.tbSearch_term = ''; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
+    // this.tbBankn = ''; // เลขที่บัญชีเงินฝากธนาคาร
+
+    this.IDFISTL = ''; // (ID) รหัสงบประมาณ
+    this.IDKOSTL = ''; // (ID) รหัสศูนย์ต้นทุน
+    this.IDHKONT = ''; // (ID) รหัสบัญชีแยกประเภททั่วไป
+    this.IDWRBTR = ''; // (ID) จำนวนเงินที่ขอเบิก
+    this.IDSTERM = ''; // (ID) เลขประจำตัวผู้เสียภาษี
+    this.IDBLART = ''; // (ID) Doc. Type
+
+    this.lbNUMBER = 1; // รีเซ็ทลำดับ
   }
 
   madejson(BELNR, GJAHR) {
