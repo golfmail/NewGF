@@ -407,25 +407,7 @@ export class Kb021Component implements OnInit  {
     this.showdoc = false;
   }
 
-  // button: สร้างเอกสารใหม่
-  onNewDoc() {
-    this.router.navigate(['/kb02', { outlets: { aux: ['kb021'] } }]);
-    this.EXPAND = true;
-    this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
 
-    this.SHOWTR = true; // Hide Doc
-    this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
-    this.AFTDOC = true; // Hide 3 Button Log
-    this.showdoc = false;
-    this.onColor('Y');
-    this.onEnableInput('Y'); // Y = Enable All Input
-    this.lbNUMBER = this.SAVELIST.length + 1;
-    this.setDocData(); // Set for TEST
-    this.getValueIDList();
-
-    this.setHeader(); // Set for TEST
-    // this.getValueIDList();
-  }
 
   onSelectDate(typeDate) {
     // ปีบัญชี และ งวด เริ่มต้น
@@ -666,6 +648,7 @@ export class Kb021Component implements OnInit  {
   setGEBER() {
     const yearGEBER = '25' +  this.GEBER.substr(0, 2);
     this.YEAR = Number(yearGEBER);
+    console.log(this.YEAR, this.GEBER);
   }
 
   // Get Account,Invoiced Date
@@ -705,9 +688,11 @@ export class Kb021Component implements OnInit  {
     const I = (this.BUDAT.split('-'));
     this.DATEA = new Date(this.BLDAT); // วันที่เอกสาร
     this.DATEI = new Date(this.BUDAT);
+    console.log(this.BUDAT );
     this.DATEACC = {year: this.DATEA.getFullYear(), month: this.DATEA.getMonth() + 1, day: this.DATEA.getDate()};
     this.DATEINV = {year: this.DATEI.getFullYear(), month: this.DATEI.getMonth() + 1, day: this.DATEI.getDate()};
     this.setYear();
+    this.getDateAI();
   }
 
   setVender() {
@@ -1115,6 +1100,7 @@ export class Kb021Component implements OnInit  {
           this.resultLB = selection.name;
           this.resultNW = selection.new;
           if (selection.new === false) {
+            console.log(this.resultTB, this.GJAHR);
             this.onGetDocSearch(this.resultTB, this.GJAHR);
           } else if (selection.new === true) {
             this.onGetNewDoc();
@@ -1215,6 +1201,7 @@ export class Kb021Component implements OnInit  {
     this.onEnableInput('N'); // N = Diable All Input
     this.onColor('N'); // N = No Color
     this.onShowDocID();
+    // this.setYear();
 
   }
 
@@ -1225,6 +1212,28 @@ export class Kb021Component implements OnInit  {
     this.onEnableInput('Y'); // N = Diable All Input
     this.onColor('Y'); // N = No Color
     this.clearValueAll();
+    this.setYear();
+  }
+
+  // button: สร้างเอกสารใหม่
+  onNewDoc() {
+    // this.router.navigate(['/kb02', { outlets: { aux: ['kb021'] } }]);
+    this.EXPAND = true;
+    this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
+
+    this.SHOWTR = true; // Hide Doc
+    this.HIDEBT = false; // Show จำลองการบันทึก & 3 Save
+    this.AFTDOC = true; // Hide 3 Button Log
+    this.showdoc = false;
+    this.onColor('Y');
+    this.onEnableInput('Y'); // Y = Enable All Input
+    this.lbNUMBER = this.SAVELIST.length + 1;
+    this.setDocData(); // Set for TEST
+    this.getValueIDList();
+
+    this.setHeader(); // Set for TEST
+    // this.getValueIDList();
+    console.log(this.BUDAT);
   }
 
   clearValueAll() {
@@ -1289,7 +1298,7 @@ export class Kb021Component implements OnInit  {
           this.setHeader();
           this.setDcotype();
           this.setNavCredit();
-          this.setGEBER();
+          // this.setGEBER();
           // this.addCredit(); // TEST
           console.log( this.SAVELIST);
           this.setDocData();
@@ -1339,7 +1348,8 @@ export class Kb021Component implements OnInit  {
     this.LBKBLNR  = this.HEADLIST.KBLNR_NAME;
     this.SUMCOST  = Number(this.HEADLIST.SUMCOST);
     this.LOGNO    = this.HEADLIST.LOGNO;
-    this.tbBankn  = this.HEADLIST.Detail[1].tbBankn;
+    // this.tbBankn  = this.HEADLIST.Detail[1].tbBankn;
+    console.log(this.HEADLIST.BUDAT);
     this.coverDate();
     this.setVender();
     // console.log(this.GJAHR );
@@ -1391,6 +1401,7 @@ export class Kb021Component implements OnInit  {
     this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
 
     this.selectedList = this.SAVELIST[n];
+    // this.setGEBER();
   }
 
   setNavCredit() {
@@ -1398,6 +1409,7 @@ export class Kb021Component implements OnInit  {
   }
 
   setYear() {
+    
     // ปีบัญชี
     if (this.DATEINV.month >= 10 ) {
       this.GJAHR = Number(this.DATEINV.year) + 1;
@@ -1412,6 +1424,8 @@ export class Kb021Component implements OnInit  {
       this.ddMonat = this.DATEINV.month - 9;
     }
 
+    console.log(this.DATEINV, this.GJAHR);
+    this.yearList = [];
     this.YEAR = this.GJAHR + 543;
     let iGJAHR = this.GJAHR + 543;
     iGJAHR = iGJAHR - 8;
@@ -1419,6 +1433,8 @@ export class Kb021Component implements OnInit  {
       iGJAHR = iGJAHR + 1;
       this.yearList.push({YESR: iGJAHR});
     }
+
+    this.setGEBER();
   }
 
   setTest() {

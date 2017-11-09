@@ -19,11 +19,11 @@ export class LogReportComponent implements OnInit {
   errorMessage: String;
   docid;
   // TEST Online =>
-  // url = 'http:///52.221.246.71:3000/api/getKb02Header/';
-  // url2 = 'http:///52.221.246.71:3000/api/kbo2LogReport/';
+  url = 'http:///52.221.246.71:3000/api/getKb02Header/';
+  url2 = 'http:///52.221.246.71:3000/api/kbo2LogReport/';
   // TEST local =>
-  url = 'http:///localhost:3000/api/getKb02Header/';
-  url2 = 'http:///localhost:3000/api/kbo2LogReport/';
+  // url = 'http:///localhost:3000/api/getKb02Header/';
+  // url2 = 'http:///localhost:3000/api/kbo2LogReport/';
   constructor(
     private http: Http,
     private route: ActivatedRoute,
