@@ -24,6 +24,7 @@
           <asp:RequiredFieldValidator ControlToValidate="TBBLDAT" ErrorMessage="กรุณาเลือกวันที่เอกสาร" ForeColor="Tomato" ID="rvBLDAT" runat="server">*</asp:RequiredFieldValidator>
         </td>
         <td style="color: #000000; height: 18px">
+            <!-- <input type="date" name="" id="" date-format="DD MMMM YYYY" [value]="DATEA | date:'yyyy-MM-dd'"> -->
           <!--Update_Ton-->
           <!-- <input type="text" [disabled]="DSTBALL" [(ngModel)]="TBBLDAT" class="fontContentBlack" ID="TBBLDAT" MaxLength="8" runat="server" Width="100px" TabIndex="1">
           &nbsp;&nbsp;<img [hidden]="SHOWBT" id="calendar1" runat="server" src="assets/Images/imgCal.jpg"/>  -->
@@ -37,7 +38,7 @@
       <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="newItem.EndTime"  ngbDatepicker #d1="ngbDatepicker" required>
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
        <md-input-container style="width: 144px;">
-        <input mdInput [(ngModel)]="DATEA" [mdDatepicker]="aDatepicker"
+        <input mdInput [(ngModel)]="DATEA" data-date-format='yy-mm-dd' [mdDatepicker]="aDatepicker"
         (ngModelChange)="DATEACC = onSelectDate('a')" [disabled]="DSTBALL">
         <!-- <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button> -->
         <md-datepicker-toggle mdSuffix [for]="aDatepicker" [disabled]="DSTBALL"></md-datepicker-toggle>
@@ -657,7 +658,7 @@
                     </strong><asp:RequiredFieldValidator ControlToValidate="WRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
                   </td>
                   <td style="height: 18px; width: 299px;">
-                    <input type="number" [disabled]="DSTBALL" required [(ngModel)]="WRBTR" class="fontContentBlack" ID="WRBTR" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
+                    <input  [disabled]="DSTBALL" required [(ngModel)]="WRBTR" class="fontContentBlack" ID="WRBTR" min="0" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
                   </td>
                   <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
                     <Label Font-Bold="True" id="lblAugdtTitle" runat="server" Text="วันที่หักล้าง / เลขที่เอกสารหักล้าง " Visible="False"></Label>&nbsp;

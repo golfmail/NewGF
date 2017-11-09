@@ -442,6 +442,11 @@ export class Kb021Component implements OnInit  {
     }
   }
 
+  coverDTH(date){
+date = date + 'x';
+    return date;
+  };
+
   onSelect(save: TableList, i): void {
     if (i >= 0 && i < this.SAVELIST.length) {
       // document.getElementById('lbNUMBER').innerText = i + 1;
@@ -573,10 +578,16 @@ export class Kb021Component implements OnInit  {
   }
 
   numberWithDecimal(x) {
+    
     const number = x.toString();
     const baht = number.split('.')[0];
     const cents = (number.split('.')[1] || '') + '00';
+    console.log('x', baht + '.' + cents.slice(0, 2));
     return baht + '.' + cents.slice(0, 2);
+  }
+
+  setW(w) {
+    console.log('W', w);
   }
 
   // Get Doc. type
@@ -1217,7 +1228,7 @@ export class Kb021Component implements OnInit  {
 
   // button: สร้างเอกสารใหม่
   onNewDoc() {
-    // this.router.navigate(['/kb02', { outlets: { aux: ['kb021'] } }]);
+    this.router.navigate(['/lch', { outlets: { aux: ['kb021'] } }]);
     this.EXPAND = true;
     this.SAVELIST.shift(); // ลบรายการแรกออก (เครดิต) // พร้อมเทส
 
@@ -1401,11 +1412,13 @@ export class Kb021Component implements OnInit  {
     this.IDBLART = this.SAVELIST[n].IDBLART; // (ID) Doc. Type
 
     this.selectedList = this.SAVELIST[n];
+    // this.WRBTR = this.numberWithDecimal(this.WRBTR);
     // this.setGEBER();
   }
 
   setNavCredit() {
-    this.SAVELIST[0].WRBTR = - this.SAVELIST[0].WRBTR;
+    this.SAVELIST[0].WRBTR = '-'  + this.numberWithDecimal(this.SAVELIST[0].WRBTR).toString();
+    console.log('WRBTR', this.SAVELIST[0].WRBTR);
   }
 
   setYear() {
