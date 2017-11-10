@@ -442,10 +442,10 @@ export class Kb021Component implements OnInit  {
     }
   }
 
-  coverDTH(date){
-date = date + 'x';
+  coverDTH(date) {
+    date = date + 'x';
     return date;
-  };
+  }
 
   onSelect(save: TableList, i): void {
     if (i >= 0 && i < this.SAVELIST.length) {
@@ -1274,7 +1274,7 @@ date = date + 'x';
     this.SGTXT = '';
     this.GEBER = '';
     this.GEBER_NAME = '';
-    this.WRBTR = ''
+    this.WRBTR = '';
 
     // this.tbSearch_term = ''; // เลขประจำตัวบัตรประชาชน/เลขประจำตัวผู้เสียภาษี
     // this.tbBankn = ''; // เลขที่บัญชีเงินฝากธนาคาร
@@ -1426,7 +1426,6 @@ date = date + 'x';
   }
 
   setYear() {
-    
     // ปีบัญชี
     if (this.DATEINV.month >= 10 ) {
       this.GJAHR = Number(this.DATEINV.year) + 1;
