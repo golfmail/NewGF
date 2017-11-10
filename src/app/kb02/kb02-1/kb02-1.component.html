@@ -658,7 +658,8 @@
                     </strong><asp:RequiredFieldValidator ControlToValidate="WRBTR" ErrorMessage="กรุณากรอกจำนวนเงินที่ขอเบิก" ForeColor="Tomato" ID="RequiredFieldValidator6" runat="server" ValidationGroup="kb02">*</asp:RequiredFieldValidator>
                   </td>
                   <td style="height: 18px; width: 299px;">
-                    <input  [disabled]="DSTBALL" required [(ngModel)]="WRBTR" class="fontContentBlack" ID="WRBTR" min="0" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
+                    <input [hidden]="AFTDOC" [disabled]="true" required [ngModel]="noNegative(WRBTR)" class="fontContentBlack" ID="WRBTR" min="0" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >
+                    <input [hidden]="HIDEBT" [disabled]="DSTBALL" required [(ngModel)]="WRBTR" class="fontContentBlack" ID="WRBTR" min="0" MaxLength="15" style="text-align: right" TabIndex="24" Width="112px" >&nbsp; <strong>บาท</strong>
                   </td>
                   <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
                     <Label Font-Bold="True" id="lblAugdtTitle" runat="server" Text="วันที่หักล้าง / เลขที่เอกสารหักล้าง " Visible="False"></Label>&nbsp;

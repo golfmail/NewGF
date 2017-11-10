@@ -578,7 +578,6 @@ date = date + 'x';
   }
 
   numberWithDecimal(x) {
-    
     const number = x.toString();
     const baht = number.split('.')[0];
     const cents = (number.split('.')[1] || '') + '00';
@@ -586,8 +585,13 @@ date = date + 'x';
     return baht + '.' + cents.slice(0, 2);
   }
 
-  setW(w) {
+  noNegative(w) {
     console.log('W', w);
+    let number = w.toString();
+    if (number.indexOf('-') === 0) {
+      number = number.slice(1);
+    }
+    return number;
   }
 
   // Get Doc. type
