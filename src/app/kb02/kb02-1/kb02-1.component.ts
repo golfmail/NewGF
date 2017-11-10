@@ -1476,6 +1476,10 @@ date = date + 'x';
     window.open('./logreport?docid=' + this.LOGNO);
   }
 
+  printLog() {
+    window.open('./report?docid=' + this.LOGNO);
+  }
+
 
   ngOnInit() {
 

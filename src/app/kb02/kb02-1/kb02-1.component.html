@@ -859,7 +859,7 @@
 <div>
   <button (click)="formSend()" [hidden]="HIDEBT">จำลองการบันทึก</button>
   <button (click)="onNewDoc()" [hidden]="AFTDOC">สร้างเอกสารใหม่</button>
-  <button [hidden]="AFTDOC">พิมพ์รายงาน</button>
+  <button (click)="printLog()" [hidden]="AFTDOC">พิมพ์รายงาน</button>
   <button (click)="showLog()" [hidden]="AFTDOC">Log</button>
 </div>
 

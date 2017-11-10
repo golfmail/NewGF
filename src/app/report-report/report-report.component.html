@@ -1,3 +1,359 @@
-<p>
-  report-report works!
-</p>
+<TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=1 border=0 cellPadding=0 width="100%" align=left style="background-color: #fff">
+  <thead>
+    <td>
+      <tr class="noprint" align=center style="background-color: #fff">
+        <IMG SRC="icon_print.GIF" WIDTH="16" HEIGHT="16" BORDER=0 ALT="" class="noprint">&nbsp;&nbsp;
+        <a class="noprint" href=javascript:window.print();>Print</a>
+      </tr>
+
+    </td>
+    <td align=center>
+      <TR align=center style="background-color: #fff">
+        <TD vAlign=top height=20 style="background-color: #fff">
+          <P class=sapTxtH1 style="BACKGROUND-COLOR: #fff">
+            <span lang="th">
+              <span style="background-color: #fff">
+                รายงานขอเบิกเงินคงคลัง</span>
+            </span>
+          </P>
+          <P class=sapTxtH1 style="BACKGROUND-COLOR: #fff">
+            <span lang="th">
+              <span style="background-color: #fff">
+                ขบ02 - ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</span>
+            </span>
+          </P>
+        </TD>
+      </TR>
+    </td>
+  </thead>
+  <td>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </td>
+  <td>
+    <thead>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%">
+
+        <td *ngFor="let kb02 of observableBooks| async">
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD>เลขที่เอกสาร</TD>
+            <TD>: {{header.b_gjahr}} - {{header.b_belnr}}</TD>
+          </tr>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD>ประเภทเอกสาร</TD>
+            <TD>: {{header.a_blart}} -
+              <ng-container *ngIf="header.a_blart=='K0'">
+                เงินจ่ายสิ้นเดือน
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='K1'">
+                  ลูกหนี้เงินยืม
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='K8'">
+                  เงินอุดหนุน
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KC'">
+                  ขอเบิก(1.ข)
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KD'">
+                  กันเงิน
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KE'">
+                  ขอเบิก(2.ข)
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KF'">
+                  ขอเบิก(2.ข) กันเงิน
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KL'">
+                  ใบสำคัญงปม(2)
+              </ng-container>
+              <ng-container *ngIf="header.a_blart=='KM'">
+                  ใบสำคัญงปม(2) กันเงิน
+              </ng-container>
+
+
+            </TD>
+          </tr>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD>ส่วนราชการ</TD>
+            <TD>: {{header.a_bukrs}} - {{header.a_bukrs_name}}</TD>
+          </tr>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD>หน่วยเบิกจ่าย</TD>
+            <TD>: {{header.a_zzpmt}} - {{header.a_zzpmt_name}}</TD>
+          </tr>
+        </td>
+        <td *ngFor="let kb02 of observableBooks| async" align=right>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD align=left>วันที่เอกสาร&nbsp;</TD>
+            <TD align=left>: {{header.a_bldat}}</TD>
+          </tr>
+
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD align=left>วันที่ผ่านรายการ&nbsp;</TD>
+            <TD align=left>: {{header.a_budat}}</TD>
+          </tr>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD align=left>สถานะ&nbsp;</TD>
+            <TD align=left>: เอกสารผ่านรายการ</TD>
+          </tr>
+          <tr *ngFor="let header of kb02.header" style="background-color: #fff">
+            <TD align=left>การอ้างอิง&nbsp;</TD>
+            <TD align=left>: {{header.a_xblnr}}</TD>
+          </tr>
+        </td>
+      </TABLE>
+    </thead>
+    <TBODY>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%" cellpadding=3 cellspacing=0 style="background-color: #fff">
+        <tr>
+          <Td>
+            <tr>
+              <TABLE id='mytable' border=0 width="100%" cellpadding=3 cellspacing=0>
+                <thead>
+                  <TR class=sapTxtSml align=center>
+                    <TH rowspan=5 width="5%" style='border-left: 1px solid black;border-bottom: 1px solid black;border-top: 1px solid black; '
+                      align=center>บรรทัดรายการที่</TH>
+                    <TH rowspan=5 style='border-bottom: 1px solid black;border-top: 1px solid black; ' align=center>เดบิต/เครดิต</TH>
+                    <TH rowspan=5 style='border-bottom: 1px solid black; border-top: 1px solid black;' align=center>รหัสบัญชี</TH>
+                    <TH rowspan=5 style='border-bottom: 1px solid black; border-top: 1px solid black;' align=center>ชื่อบัญชี</TH>
+                    <TH rowspan=1 colspan="2" style='border-bottom: 1px solid black;border-top: 1px solid black;' align=center>จำนวนเงินขอเบิก</TH>
+                    <TH rowspan=1 colspan="2" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=left>ฐานภาษี</TH>
+                    <TH rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-top: 1px solid black; ' align=left>ภาษี &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TH>
+                    <TH rowspan=1 colspan="2" style='border-bottom: 1px solid black;border-top: 1px solid black; ' align=left>ค่าปรับ</TH>
+
+                    <TH rowspan=1 colspan="4" style='border-bottom: 1px solid black;border-top: 1px solid black;' align=left>จำนวนเงินขอรับ</TH>
+                    <TH rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;'
+                      align=left></TH>
+
+                  </TR>
+                  <TR>
+                    <TH rowspan=2 align=right>การกำหนด</TH>
+                    <TH rowspan=2 colspan="1" align=right>หน่วยต้นทุน</TH>
+                    <TH rowspan=2 colspan="2" align=center>แหล่งเงินทุน</TH>
+                    <TH rowspan=2 colspan="1" align=right></TH>
+                    <TH colspan=2 colspan="2" style='border-bottom: 1px solid black;'>เงินฝาก</TH>
+                    <TH rowspan=2 colspan="1">&nbsp;</TH>
+                    <TH rowspan=2 colspan="1">เจ้าของเงินฝาก</TH>
+                    <TH rowspan=2 colspan="1" align=left>เจ้าของบัญชีย่อย</TH>
+
+                    <TH rowspan=2 colspan="1" align=left>บัญชีย่อย</TH>
+                    <TH rowspan=2 colspan="1" style='border-right: 1px solid black;' align=left></TH>
+                  </TR>
+                  <TR class=sapTxtSml align=center>
+                    <TH>คลัง</TH>
+                    <TH>ธ.พาณิชย์</TH>
+                  </TR>
+                  <TR class=sapTxtSml align=center>
+
+                    <TH colspan="1" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=center>รหัสงบประมาณ</TH>
+                    <TH colspan="1" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=left></TH>
+
+                    <TH colspan="2" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=left></TH>
+                    <TH colspan="5" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=center>กิจกรรมหลัก</TH>
+                    <TH colspan="2" style='border-bottom: 1px solid black; border-top: 1px solid black;' align=center>กิจกรรมย่อย</TH>
+                    <TH rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-top: 1px solid black;border-right: 1px solid black;'
+                      align=left></TH>
+                  </TR>
+                  <TR>
+                    <TH colspan="2" style='border-bottom: 1px solid black;' align=left>เอกสารสำรองเงินงบประมาณ</TH>
+                    <TH colspan="2" style='border-bottom: 1px solid black;'>เอกสารกันเงิน</TH>
+                    <TH colspan="7" style='border-bottom: 1px solid black;' align=left>&nbsp;ข้อความในรายการ</TH>
+                    <TH rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-right: 1px solid black;' align=left></TH>
+                  </TR>
+
+                </thead>
+                <ng-container *ngFor="let kb02 of observableBooks2| async" class=sapTxtSml2>
+                  <tr></tr>
+                  <tr *ngFor="let data of kb02.data;let J=index" class=sapTxtSml2>
+                    <td style='border-left: 1px solid black;' valign="top">{{data.head_no}}{{data.detail_no}}
+
+                      <br>&nbsp;</td>
+                    <td valign="top">{{data.head_type}}{{data.detail_type}}
+                      <br>&nbsp;</td>
+                    <td valign="top">
+                      &nbsp;{{data.head_lifnr}}{{data.detai_hkont}}
+                      <!-- <br>&nbsp;{{data.head_fistl}}{{data.detai_fistl}} -->
+                    </td>
+                    <td valign="top">
+                      &nbsp;{{data.head_name1}}{{data.detai_hkont_name}}
+                      <!--    <br>&nbsp;{{data.head_fistl_name}}{{data.detail_fistl_name}}-->
+                    </td>
+                    <td colspan="2">
+                      <tr>
+                        <td align=center colspan="4">
+                          <!--จำนวนเงินขอเบิก -->
+                          {{data.head_sumcost | number:'.2'}} {{data.detail_wrbtr | number:'.2'}}
+                        </td>
+                      </tr>
+                      <tr align=right>
+                        <td colspan="1">
+                          <!--การกำหนด -->
+                        </td>
+                        <td align=right colspan="1">
+                          <!--หน่วยต้นทุน -->
+                          {{data.head_kostl}}{{data.detail_kostl}}
+                        </td>
+                      </tr>
+                      <tr align=right>
+                        <td colspan="1">
+                          <!--รหัสงบ -->
+                          {{data.head_fistl}}{{data.detai_fistl}}
+                        </td>
+                        <td align=right colspan="1">
+                          <!--ชื่อรหัสงบ -->
+                          {{data.head_fistl_name}}{{data.detail_fistl_name}}
+                        </td>
+                      </tr>
+                      <TR>
+                        <td align=center>
+                          &nbsp;
+                        </td>
+                      </TR>
+                    </td>
+
+
+                    <td colspan="2" align=right>
+                      <tr>
+                        <!--ฐานภาษี-->
+                        <td colspan="1" align=right>
+                          &nbsp;0.00
+                        </td>
+                        <td colspan="1" align=right>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      <tr>
+                        <!--แหล่งเงินทุน-->
+                        <td colspan="1" align=right>
+                          {{data.head_geber}}{{data.detail_geber}}
+                        </td>
+                        <td colspan="1" align=right>
+                          {{data.head_geber_name}}{{data.detail_geber_name}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <TR>
+                          <td colspan="2" align=center>
+                            &nbsp;
+                          </td>
+                        </TR>
+                        <tr>
+                          <td colspan="2" align=center>
+                            <!--เอกสารกันเงิน -->
+                            000
+                          </td>
+                        </tr>
+                    </td>
+
+
+                    <td colspan="7">
+                      <TR>
+                        <td colspan="1" align=center>
+                          <!--ภาษี -->
+                          0.00
+                        </td>
+                        <td colspan="/" align=center>
+                          <!-- ค่าปรับ -->
+                          0.00
+                        </td>
+
+
+                        <td colspan="4" align=left>
+                          <!-- จำนวนเงินที่ขอรับ -->
+                          {{data.head_sumcost | number:'.2'}} {{data.detail_wrbtr | number:'.2'}}
+                        </td>
+                      </TR>
+                      <TR>
+                        <td colspan="2" align=center>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td colspan="5" align=center>
+                          &nbsp;
+                        </td>
+                      </TR>
+
+                      <TR>
+                        <td colspan="2" align=center>
+                          <!-- กิจกรรมหลัก-->
+                          <ng-container *ngIf="J==0">
+                            P{{data.head_gsber}}{{data.detail_fkber}}
+                          </ng-container>
+                          <ng-container *ngIf="J!=0">
+                            {{data.head_gsber}}{{data.detail_fkber}}
+                          </ng-container>
+                        </td>
+                        <td colspan="3" align=center>
+                          <!-- ชื่อ กิจกรรมหลัก-->
+                          {{data.detail_fkber_name}}
+                        </td>
+                        <td colspan="2" align=right>
+                          <!-- ชื่อ กิจกรรมย่อย-->
+                          <ng-container *ngIf="J==0">
+                            &nbsp;
+                          </ng-container>
+                          <ng-container *ngIf="J!=0">
+                            {{data.detail_prznr}}
+                          </ng-container>
+                        </td>
+                      </TR>
+                      <TR>
+                        <td colspan="8" align=left>
+
+                          {{data.head_sgtxt}}{{data.detail_sgtxt}} &nbsp;
+
+                        </td>
+
+                      </TR>
+                    </td>
+                    <td style='border-right: 1px solid black;'>
+
+                    </td>
+
+                    </tr>
+
+                </ng-container>
+              </TABLE>
+
+              </tr>
+              <tr>
+                <footer>
+
+
+                  <TABLE id='mytable' class=sapTxtSml border=0 width="100%" cellpadding=3 cellspacing=0 style="background-color: #fff">
+                    <TR class=sapTxtSml align=center>
+                      <TD rowspan=1 colspan="2" style='border-top: 1px solid black;border-left: 1px solid black;border-right: 1px solid black;'
+                        align=left>&nbsp;&nbsp;&nbsp;หมายเหตุ&nbsp;&nbsp;__________________________________________________________________________________________________________</TD>
+                    </TR>
+                    <TR class=sapTxtSml align=center>
+                      <TD rowspan=1 colspan="1" style='border-left: 1px solid black; ' align=left>&nbsp;&nbsp;&nbsp;ผู้บันทึก&nbsp;&nbsp;________________________________________________________________</TD>
+                      <TD rowspan=1 colspan="1" style='border-right: 1px solid black; ' align=left>&nbsp;&nbsp;&nbsp;ผู้อนุมัติ&nbsp;&nbsp;________________________________________________________________</TD>
+                    </TR>
+                    <TR class=sapTxtSml align=center>
+                      <TD rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_________________________________________________________)
+                        <br>&nbsp;</TD>
+                      <TD rowspan=1 colspan="1" style='border-bottom: 1px solid black;border-right: 1px solid black;' align=left>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(_________________________________________________________)
+                        <br>&nbsp;</TD>
+                    </TR>
+                  </TABLE>
+
+
+
+                </footer>
+              </tr>
+          </Td>
+          </tr>
+      </TABLE>
+      <table>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      </table>
+
+      <!--    <div class="divFooter">UNCLASSIFIED</div> -->
+  </td>
+  <td>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </td>
+
+</TABLE>
