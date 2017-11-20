@@ -5,11 +5,23 @@ var bodyParser = require('body-parser');
 var api = require('./api/index');
 
 var app = express();
+const path = require('path');
 
 
 ///////////////////////
 // Server Middleware
 ///////////////////////
+
+// set static path [dist & api]
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/api', require('./api/index.js'));
+
+// set * to index.html
+app.get('*', function (req, res){
+    res.sendFile(path.join(__dirname, 'dist/index.html'),{
+        new:{"n":1}
+    });
+});
 
 app.use(logger(app.get("env") === "production" ? "combined" : "dev"));
 

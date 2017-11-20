@@ -16,7 +16,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   pg-promise : [read more](https://www.npmjs.com/package/pg-promise)
   `npm install pg-promise`
 
-  express
+  pm2 : P(rocess) M(anager) 2 [read more](https://www.npmjs.com/package/pm2)
 
 
 ## Development server
