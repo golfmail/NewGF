@@ -77,8 +77,8 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
-        if (err.code >= 100 && err.code < 600) {
-            res.status(err.code)
+        if (statusCode >= 100 && statusCode < 600) {
+            res.status(statusCode)
             .json({
                 status: 'error',
                 message: err
