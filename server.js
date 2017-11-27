@@ -78,17 +78,17 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         if (statusCode >= 100 && statusCode < 600) {
-            res.status(statusCode)
-            .json({
-                status: 'error',
-                message: err
-            });
+            res.status(statusCode);
+            // .json({
+            //     status: 'error',
+            //     message: err
+            // });
         } else {
-            res.status(500 )
-            .json({
-                status: 'error',
-                message: err
-            });
+            res.status(500);
+            // .json({
+            //     status: 'error',
+            //     message: err
+            // });
         }
         
     });
