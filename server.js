@@ -12,17 +12,6 @@ const path = require('path');
 // Server Middleware
 ///////////////////////
 
-// set static path [dist & api]
-app.use(express.static(path.join(__dirname, 'dist')));
-app.use('/api', require('./api/index.js'));
-
-// set * to index.html
-app.get('*', function (req, res){
-    res.sendFile(path.join(__dirname, 'dist/index.html'),{
-        new:{"n":1}
-    });
-});
-
 app.use(logger(app.get("env") === "production" ? "combined" : "dev"));
 
 // parse application/json
@@ -44,7 +33,18 @@ app.use(function(req, res, next) {
 // API Queries
 //////////////////
 
-app.use('/', api);
+app.use('/api', api);
+
+// set static path [dist & api]
+app.use(express.static(path.join(__dirname, 'dist')));
+// app.use('/api', require('./api/index.js'));
+
+// set * to index.html
+app.get('*', function (req, res){
+    res.sendFile(path.join(__dirname, 'dist/index.html'),{
+        new:{"n":1}
+    });
+});
 
 
 //////////////////
@@ -53,7 +53,7 @@ app.use('/', api);
 
 app.set("env", process.env.NODE_ENV || "development");
 app.set("host", process.env.HOST || "0.0.0.0");
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 80);
 
 app.listen(app.get("port"), function () {
     console.log('\n' + '**********************************');
@@ -88,7 +88,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500)
+    res.status(err.status || 5000)
     .json({
         status: 'error',
         message: err.message

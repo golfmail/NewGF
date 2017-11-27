@@ -409,22 +409,8 @@ export class Kb021Component implements OnInit  {
 
 
 
-  onSelectDate(typeDate) {
+  onSelectDate() {
     // ปีบัญชี และ งวด เริ่มต้น
-    if (typeDate === 'inv') {
-      if (this.DATEINV.month >= 10 ) {
-        this.GJAHR = Number(this.DATEINV.year) + 1;
-        console.log('f' + this.GJAHR);
-      } else {
-        this.GJAHR = this.DATEINV.year;
-        console.log(this.GJAHR);
-      }
-      if (this.DATEINV.month < 10) {
-          this.ddMonat = this.DATEINV.month + 3;
-      } else {
-        this.ddMonat = this.DATEINV.month - 9;
-      }
-    } else if (typeDate === 'i') {
       if (this.DATEI.getMonth() >= 9 ) {
         this.GJAHR = Number(this.DATEI.getFullYear()) + 1;
         console.log('f' + this.GJAHR);
@@ -439,7 +425,6 @@ export class Kb021Component implements OnInit  {
         this.ddMonat = this.DATEI.getMonth() - 8;
         console.log(this.DATEI.getMonth());
       }
-    }
   }
 
   coverDTH(date) {

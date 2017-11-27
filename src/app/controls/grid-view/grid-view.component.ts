@@ -21,6 +21,7 @@ export class GridViewComponent implements OnInit {
   column: String = 'BELNR';
   txsort: String = 'เลขที่ใบขอเบิกเงิน';
   sortby: String = 'น้อยไปมาก';
+  page;
 
   constructor(private router: Router) {}
 

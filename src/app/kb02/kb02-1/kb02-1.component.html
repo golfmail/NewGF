@@ -39,27 +39,11 @@
        <img class="input-group-addon" (click)="d1.toggle()" src="assets/Images/imgCal.jpg"/> -->
        <md-input-container style="width: 144px;">
         <input mdInput [(ngModel)]="DATEA" data-date-format='yy-mm-dd' [mdDatepicker]="aDatepicker"
-        (ngModelChange)="DATEACC = onSelectDate('a')" [disabled]="DSTBALL">
+         [disabled]="DSTBALL">
         <!-- <button mdSuffix [mdDatepickerToggle]="aDatepicker"></button> -->
         <md-datepicker-toggle mdSuffix [for]="aDatepicker" [disabled]="DSTBALL"></md-datepicker-toggle>
       </md-input-container>
       <md-datepicker #aDatepicker></md-datepicker>
-          <!-- <tr>
-            <form class="form-inline">
-              <div class="form-group">
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="DATEACC" ngbDatepicker #d="ngbDatepicker"
-                         (ngModelChange)="DATEACC = onSelectDate('acc')" >
-                  <button class="input-group-addon" (click)="d.toggle()" type="button">
-                    <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <hr/>
-            <pre>Model: {{ DATEACC | json }}</pre>
-          </tr> -->
         </td>
       </tr>
       <tr>
@@ -95,28 +79,11 @@
 
           <md-input-container style="width: 144px;">
             <input mdInput [(ngModel)]="DATEI" [mdDatepicker]="iDatepicker"
-            (ngModelChange)="DATEINV = onSelectDate('i')" [disabled]="DSTBALL">
+            (ngModelChange)="onSelectDate()" [disabled]="DSTBALL">
             <md-datepicker-toggle mdSuffix [for]="iDatepicker" [disabled]="DSTBALL"></md-datepicker-toggle>
             <!-- <button mdSuffix [mdDatepickerToggle]="iDatepicker"></button> -->
           </md-input-container>
           <md-datepicker #iDatepicker></md-datepicker>
-          <!-- <tr>
-            <form class="form-inline">
-              <div class="form-group">
-                <div class="input-group">
-                  <input class="form-control" placeholder="dd-mm-yyyy" name="dp"  ngbDatepicker #dinv="ngbDatepicker"
-                         [(ngModel)]="DATEINV" (ngModelChange)="DATEINV = onSelectDate('inv')">
-
-                  <button class="input-group-addon" (click)="dinv.toggle()" type="button">
-                    <img src="assets/Images/imgCal.jpg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <hr/>
-            <pre>Model: {{ DATEINV | json }}</pre>
-          </tr> -->
         </td>
       </tr>
       <tr>
@@ -664,7 +631,7 @@
                   <td style="height: 18px; width: 154px; visibility: hidden;" valign="middle" >
                     <Label Font-Bold="True" id="lblAugdtTitle" runat="server" Text="วันที่หักล้าง / เลขที่เอกสารหักล้าง " Visible="False"></Label>&nbsp;
                   </td>
-                  <td colspan="2" style="height: 18px; width: 159px;">
+                  <td colspan="2" style="height: 18px; width: 159px; visibility: hidden;">
                     <Label class="fontContentBlack" ID="lblAugdt" runat="server"></Label>
                     <asp:LinkButton CausesValidation="False" Font-Underline="False" ID="lnkAugbl" runat="server"></asp:LinkButton>&nbsp;<asp:Button CausesValidation="False" Font-Names="Tahoma" Font-Size="11px" Height="23px" ID="btnDisplayFi" runat="server" Text="แสดงเอกสาร" Visible="False" Width="75px"/>
                   </td>

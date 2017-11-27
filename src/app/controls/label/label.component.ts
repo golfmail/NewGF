@@ -9,8 +9,7 @@ export class LabelComponent implements OnInit {
   @Input('Text')
   Text: string;
 
-  @Input('Visible')
-  visible: boolean;
+  @Input() visible: boolean;
 
   constructor() {}
 
