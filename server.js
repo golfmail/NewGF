@@ -53,7 +53,7 @@ app.get('*', function (req, res){
 
 app.set("env", process.env.NODE_ENV || "development");
 app.set("host", process.env.HOST || "0.0.0.0");
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 80);
 
 app.listen(app.get("port"), function () {
     console.log('\n' + '**********************************');
