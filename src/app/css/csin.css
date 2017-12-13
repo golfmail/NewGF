@@ -1,0 +1,250 @@
+.prtlBody {
+	MARGIN: 0px; BACKGROUND-COLOR: #ffffff
+}
+.sapTOCH3Lnk {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #225a8d; LINE-HEIGHT: 150%; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapTOCH4Lnk {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; MARGIN-LEFT: 25px; COLOR: #225a8d; LINE-HEIGHT: 150%; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapTOCH5Lnk {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; MARGIN-LEFT: 50px; COLOR: #225a8d; LINE-HEIGHT: 150%; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnkSml {
+	COLOR: #225a8d; TEXT-DECORATION: underline
+}
+.sapLnkSml:visited {
+	COLOR: #756183; TEXT-DECORATION: underline
+}
+.sapLnkSml:hover {
+	COLOR: #4b8bc7; TEXT-DECORATION: underline
+}
+.sapLnkSml:active {
+	COLOR: #ff9a00; TEXT-DECORATION: underline
+}
+.sapLnkSmlTax {
+	FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: #225a8d; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLnk {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #225a8d; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnk:link {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #225a8d; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnk:visited {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #756183; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnk:hover {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #4b8bc7; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnk:active {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #ff9a00; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapLnk:link .sapTxtStd {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #225a8d; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLnk:visited .sapTxtStd {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #756183; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLnk:hover .sapTxtStd {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #4b8bc7; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLnk:active .sapTxtStd {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #ff9a00; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapBtnStdIcon {
+	BORDER-RIGHT: #2f2f47 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #f1f8ff 1px solid; PADDING-LEFT: 4px; FONT-WEIGHT: normal; FONT-SIZE: x-small; PADDING-BOTTOM: 0px; BORDER-LEFT: #f1f8ff 1px solid; CURSOR: hand; PADDING-TOP: 0px; BORDER-BOTTOM: #2f2f47 1px solid; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; WHITE-SPACE: nowrap; HEIGHT: 16px; BACKGROUND-COLOR: #f7f7f7; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.sapBtnStd {
+	BORDER-RIGHT: #2f2f47 1px solid; PADDING-RIGHT: 4px; BORDER-TOP: #f1f8ff 1px solid; PADDING-LEFT: 4px; FONT-WEIGHT: normal; FONT-SIZE: x-small; PADDING-BOTTOM: 0px; BORDER-LEFT: #f1f8ff 1px solid; CURSOR: hand; PADDING-TOP: 0px; BORDER-BOTTOM: #2f2f47 1px solid; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif; WHITE-SPACE: nowrap; HEIGHT: 16px; BACKGROUND-COLOR: #e0edfb; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.sapBtnStd:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.sapBtnStd:hover {
+	COLOR: #ff9100; TEXT-DECORATION: none
+}
+.sapBtnStd:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.sapBtnStd:active {
+	COLOR: #ff9100; TEXT-DECORATION: none
+}
+.sapLic {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLicSml {
+	FONT-WEIGHT: normal; FONT-SIZE: 0.7em; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapLicItem {
+	LIST-STYLE-IMAGE: url(/images/listcube.gif)
+}
+.sapLicWhl {
+	MARGIN: 0px 0px 0px -15px
+}
+.sapEdfTxtEnbl {
+	BORDER-RIGHT: #cacaca 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #cacaca 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 1.65ex; PADDING-BOTTOM: 0px; BORDER-LEFT: #cacaca 1px solid; PADDING-TOP: 0px; BORDER-BOTTOM: #cacaca 1px solid; FONT-FAMILY: tahoma, arial,sans-serif; HEIGHT: 1.4em; BACKGROUND-COLOR: #ffffff
+}
+.sapTxtStd {
+	FONT-WEIGHT: normal; FONT-SIZE: x-small; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapTxtH1 {
+	FONT-WEIGHT: bold; FONT-SIZE: medium; COLOR: #225a8d; FONT-FAMILY: arial,sans-serif
+}
+.sapTxtH2 {
+	FONT-WEIGHT: bold; FONT-SIZE: small; COLOR: #225a8d; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapTxtH3 {
+	FONT-WEIGHT: bold; FONT-SIZE: small; MARGIN: 15px 0px 3px; COLOR: #225a8d; FONT-FAMILY: arial,sans-serif
+}
+.sapTxtH4 {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #225a8d; FONT-STYLE: italic; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapTxtH5 {
+	FONT-SIZE: x-small; COLOR: #225a8d; FONT-FAMILY: tahoma, arial,sans-serif; TEXT-DECORATION: underline
+}
+.sapTxtH6 {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #ff9900; FONT-FAMILY: tahoma, arial,sans-serif
+}    
+.sapTxtH7 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #993333; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapTxtH8 {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #008040; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapContents {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #000000; LINE-HEIGHT: 100%; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapCode {
+	FONT-SIZE: 10pt; FONT-FAMILY: Courier New
+}
+.sapTblTtl {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #225a8d; FONT-FAMILY: tahoma, arial,sans-serif; BACKGROUND-COLOR: #efefef
+}
+.sapTxtSml {
+	FONT-WEIGHT: normal; FONT-SIZE: 7pt; COLOR: #000000; FONT-STYLE: normal; FONT-FAMILY: tahoma, arial,sans-serif
+}
+.sapTxtTtlSml {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.6em; MARGIN: 0px; COLOR: #225a8d
+}
+.sapTxtTtl {
+	FONT-WEIGHT: bold; FONT-SIZE: 0.7em; MARGIN: 0px; COLOR: #225a8d
+}
+BODY {
+	MARGIN: 6px; FONT-FAMILY: Tahoma, Arial, sans-serif
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 12px; MARGIN: 0px; PADDING-TOP: 6px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 6px; PADDING-TOP: 0px
+}
+A {
+	COLOR: #225a8d; TEXT-DECORATION: underline
+}
+A:link {
+	COLOR: #225a8d
+}
+A:visited {
+	COLOR: #756183
+}
+A:hover {
+	COLOR: #4b8bc7
+}
+A:active {
+	COLOR: #ff9a00
+}
+.whiteBody {
+	SCROLLBAR-FACE-COLOR: #f7f7f7; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #225a8d; SCROLLBAR-3DLIGHT-COLOR: #d6e3e7; SCROLLBAR-ARROW-COLOR: #394142; SCROLLBAR-TRACK-COLOR: #ffffff; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; SCROLLBAR-BASE-COLOR: #f7f7f7; BACKGROUND-COLOR: #ffffff
+}
+.blueBody {
+	SCROLLBAR-FACE-COLOR: #f7f7f7; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #225a8d; SCROLLBAR-3DLIGHT-COLOR: #d6e3e7; SCROLLBAR-ARROW-COLOR: #394142; SCROLLBAR-TRACK-COLOR: #d6e3e7; SCROLLBAR-DARKSHADOW-COLOR: #d6e3e7; SCROLLBAR-BASE-COLOR: #f7f7f7; BACKGROUND-COLOR: #d6e3e7
+}
+.sdnHdr2 {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; MARGIN: 6px 0px 5px; COLOR: #225a8d; FONT-FAMILY: arial, sans-serif
+}
+.sdnRed {
+	COLOR: #ff0000
+}
+.sdnAuthorImg {
+	FLOAT: left
+}
+.sdnDevArea {
+	BACKGROUND-COLOR: #eeeeee
+}
+.sdnDevAreaHdr {
+	MARGIN-TOP: 5px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 5px; COLOR: #ffffff; PADDING-TOP: 5px; BACKGROUND-COLOR: #999999
+}
+.sdnAuthor {
+	FONT-SIZE: 8pt; COLOR: #757575; FONT-FAMILY: tahoma, arial, sans-serif
+}
+#content UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 20px; LIST-STYLE-IMAGE: url(/mimes/ico4x8_listcube.gif); PADDING-BOTTOM: 0px; MARGIN: 9px 0px 12px; PADDING-TOP: 0px
+}
+#content OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 20px; PADDING-BOTTOM: 0px; MARGIN: 9px 0px 12px 6px; PADDING-TOP: 0px
+}
+#content LI {
+	MARGIN-TOP: -7px; FONT-SIZE: x-small; MARGIN-BOTTOM: 10px; LINE-HEIGHT: 120%
+}
+#sourcecode {
+	MARGIN-LEFT: 5%; VERTICAL-ALIGN: top; COLOR: #225a8d; FONT-FAMILY: tahoma, arial, helvetica, sans-serif; BACKGROUND-COLOR: #fff
+}
+#sourcecode #header {
+	FONT-WEIGHT: bold; WIDTH: 200px; COLOR: #000; BACKGROUND-COLOR: #d6e3e7
+}
+#sourcecode #headerdescription {
+	FONT-WEIGHT: bold; WIDTH: 450px; COLOR: #000; BACKGROUND-COLOR: #d6e3e7
+}
+#sourcecode A {
+	MARGIN: 0px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#sourcecode A:link {
+	MARGIN: 0px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#sourcecode A:visited {
+	MARGIN: 0px; BACKGROUND-COLOR: transparent; TEXT-DECORATION: none
+}
+#sourcecode #file {
+	WIDTH: 200px
+}
+#sourcecode #description {
+	WIDTH: 450px
+}
+#sourcecode #box {
+	WIDTH: 655px; BORDER-BOTTOM: #d6e3e7 1px solid; BACKGROUND-COLOR: #fff
+}
+#methods {
+	MARGIN-LEFT: 5%
+}
+.codeextract {
+	FONT-SIZE: 0.9em; MARGIN-LEFT: 5%; FONT-STYLE: italic
+}
+#methods #guielements {
+	FONT-SIZE: 0.8em; MARGIN-LEFT: 5%
+}
+.guielementname {
+	FONT-WEIGHT: bold
+}
+.sapOrange {
+	FONT-WEIGHT: bold; COLOR: #ff9a00
+}
+.sdnTable {
+	MARGIN: 0px 0px 12px; BORDER-COLLAPSE: collapse
+}
+.sdnTable TD {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; PADDING-TOP: 6px
+}
+.sdnTableHeader {
+	FONT-WEIGHT: bold; COLOR: #ffffff; BACKGROUND-COLOR: #999999
+}
+
+#jive-footer TD {
+	BORDER-TOP: #cccccc 1px solid; FONT-WEIGHT: bold; FONT-SIZE: 0.7em; PADDING-TOP: 5px; TEXT-ALIGN: center
+}
+#jive-footer TD A {
+	COLOR: #666; TEXT-DECORATION: none
+}
+#jive-footer TD A:hover {
+	TEXT-DECORATION: underline
+}

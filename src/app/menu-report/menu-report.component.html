@@ -1,0 +1,872 @@
+<TABLE style="BORDER-COLLAPSE: collapse" cellSpacing=1 border=0 cellPadding=0 width="100%" align=left style="background-color: #fff">
+  <tr>
+    <td>
+      <tr>
+
+      </tr>
+    </td>
+    <td class=sapTxtTtl align=center>
+      <TR class=sapTxtTtl align=center style="background-color: #fff">
+        <TD vAlign=top height=20 style="background-color: #fff">
+          <ng-container *ngFor="let kb02 of observableBooks| async" style="background-color: #fff">
+            <ng-container *ngFor="let header of kb02.header;let K=index  " style="background-color: #fff">
+              <ng-container *ngIf="K=='0'">
+                <P class=sapTxtTtl style="BACKGROUND-COLOR: #fff">
+                  <span lang="th">
+                    <span style="background-color: #fff">
+                      รายงานขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)
+                      <ng-container *ngIf="type=='d'">
+                        ประเภทรายวัน
+                      </ng-container>
+                      <ng-container *ngIf="type=='w'">
+                        ประเภทรายสัปดาห์
+                      </ng-container>
+                      <ng-container *ngIf="type=='m'">
+                        ประเภทรายเดือน
+                      </ng-container>
+                    </span>
+                  </span>
+                </P>
+                <P class=sapTxtTtl style="BACKGROUND-COLOR: #fff">
+                  <span lang="th">
+                    <span style="background-color: #fff"> ประจำวันที่ {{start | slice:0:2}}
+                      <ng-container *ngIf="(start | slice:3:5) =='01'">
+                        มกราคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='02'">
+                        กุมภาพันธ์
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='03'">
+                        มีนาคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='04'">
+                        เมษายน
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='05'">
+                        พฤษภาคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='06'">
+                        มิถุนายน
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='07'">
+                        กรกฎาคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='08'">
+                        สิงหาคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='09'">
+                        กันยายายน
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='10'">
+                        ตุลาคม
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='11'">
+                        พฤศจิกายน
+                      </ng-container>
+                      <ng-container *ngIf="(start | slice:3:5) =='12'">
+                        ธันวาคม
+                      </ng-container>
+
+                      {{startyear}}
+
+                      <ng-container *ngIf="start!==end">
+
+
+                        ถึง {{end | slice:0:2}}
+
+                        <ng-container *ngIf="(end | slice:3:5) =='01'">
+                          มกราคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='02'">
+                          กุมภาพันธ์
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='03'">
+                          มีนาคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='04'">
+                          เมษายน
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='05'">
+                          พฤษภาคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='06'">
+                          มิถุนายน
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='07'">
+                          กรกฎาคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='08'">
+                          สิงหาคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='09'">
+                          กันยายายน
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='10'">
+                          ตุลาคม
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='11'">
+                          พฤศจิกายน
+                        </ng-container>
+                        <ng-container *ngIf="(end | slice:3:5) =='12'">
+                          ธันวาคม
+                        </ng-container>
+                        {{endyear}}
+                      </ng-container>
+                      ของผู้บันทึก {{username}} </span>
+
+                  </span>
+                </P>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </TD>
+      </TR>
+    </td>
+    <td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+  </tr>
+  <tr rowspan=5>&nbsp;</tr>
+  <tr>
+    <td>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </td>
+
+    <td>
+      <TABLE id='mytable' class=sapTxtSml border=0 width="100%" cellpadding=1 cellspacing=0 style="background-color: #fff;">
+        <thead>
+          <ng-container *ngFor="let kb02 of observableBooks3| async" style="background-color: #fff">
+            <ng-container *ngFor="let header of kb02.header;let K=index  " style="background-color: #fff">
+              <TR>
+                <TD colspan="3">วันที่รายงาน</TD>
+
+                <TD colspan="2">
+                  {{date| date:'dd.MM.yyyy HH:mm:ss'}}
+                </TD>
+                <TD colspan="2">จำนวนเอกสารรวมทั้งสิ้น</TD>
+                <TD colspan="3"> {{ kb02.header[0].count}}</TD>
+              </TR>
+              <tr>
+                &nbsp;
+              </tr>
+              <tr>
+                &nbsp;
+              </tr>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngFor="let kb02 of observableBooks| async" style="background-color: #fff">
+            <ng-container *ngFor="let header of kb02.header;let K=index  " style="background-color: #fff">
+              <ng-container *ngIf="K=='0'">
+
+                <TR style="BACKGROUND-COLOR: #339933">
+                  <TD colspan="3">วันที่นำส่งข้อมูล</TD>
+                  <TD colspan="2"> {{ kb02.header[0].a_cpudt}}</TD>
+                  <TD colspan="2">จำนวนเอกสาร</TD>
+                  <TD colspan="4">{{ kb02.header[0].count}} </TD>
+                </TR>
+                <TR style="BACKGROUND-COLOR:#69c0ec">
+                  <TD colspan="3" style='border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;'>หน่วยเบิกจ่าย</TD>
+                  <TD colspan="2" style='border-top: 1px solid black;border-bottom: 1px solid black;'> 00000{{ kb02.header[0].ZZPMT}}</TD>
+                  <TD colspan="2" style='border-top: 1px solid black;border-bottom: 1px solid black;'>แหล่งที่มา</TD>
+                  <TD colspan="4" style='border-top: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;'>GIN INTRA </TD>
+
+                </TR>
+                <TR style="BACKGROUND-COLOR: #e6e9fe">
+                  <TD colspan="3" style='border-left: 1px solid black;'>
+                    เลขที่เอกสาร
+                  </TD>
+                  <TD>
+                    :{{ kb02.header[K].GJAHR}} - {{ kb02.header[K].BELNR}}
+                  </TD>
+                  <TD colspan="7" style='border-right: 1px solid black;'>
+                    &nbsp;
+                  </TD>
+                </TR>
+                <TR style="BACKGROUND-COLOR: #e6e9fe">
+                  <TD colspan="3" style='border-left: 1px solid black;'>
+                    ส่วนราชการ
+                  </TD>
+                  <TD>
+                    :{{ kb02.header[K].BUKRS}} - {{ kb02.header[K].BUKRS_NAME}}
+                  </TD>
+                  <TD align=left>
+                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                  </TD>
+                  <TD align=left>
+                    วันที่ผ่านรายการ
+                  </TD>
+                  <TD>
+                    &nbsp;
+                  </TD>
+                  <TD colspan="3" align=left>
+                    : {{ kb02.header[K].a_budat}}
+                  </TD>
+                  <TD style='border-right: 1px solid black;' align=right>&nbsp;</TD>
+                </TR>
+                <TR style="BACKGROUND-COLOR: #e6e9fe">
+                  <TD colspan="3" style='border-left: 1px solid black;'>
+                    ประเภทเอกสาร
+                  </TD>
+                  <TD>
+                    : {{header.BLART}} -
+                    <ng-container *ngIf="header.BLART=='K0'">
+                      เงินจ่ายสิ้นเดือน
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='K1'">
+                      ลูกหนี้เงินยืม
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='K8'">
+                      เงินอุดหนุน
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KC'">
+                      ขอเบิก(1.ข)
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KD'">
+                      กันเงิน
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KE'">
+                      ขอเบิก(2.ข)
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KF'">
+                      ขอเบิก(2.ข) กันเงิน
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KL'">
+                      ใบสำคัญงปม(2)
+                    </ng-container>
+                    <ng-container *ngIf="header.BLART=='KM'">
+                      ใบสำคัญงปม(2) กันเงิน
+                    </ng-container>
+                  </TD>
+                  <TD align=left>
+                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                  </TD>
+                  <TD align=left>
+                    วันที่เอกสาร
+                  </TD>
+                  <TD>
+                    &nbsp;
+                  </TD>
+                  <TD colspan="3" align=left>
+                    : {{ kb02.header[K].a_bldat}}
+                  </TD>
+                  <TD style='border-right: 1px solid black;' align=right>&nbsp;</TD>
+                </TR>
+
+                <TR style="BACKGROUND-COLOR: #e6e9fe">
+                  <TD colspan="3" style='border-left: 1px solid black;'>
+                    สถานะเอกสาร
+                  </TD>
+                  <TD>
+                    : เอกสารผ่านรายการ
+                  </TD>
+                  <TD align=left>
+                    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                  </TD>
+                  <TD align=left>
+                    การอ้างอิง
+                  </TD>
+                  <TD>
+                    &nbsp;
+                  </TD>
+                  <TD colspan="3" align=left>
+                    : {{ kb02.header[K].XBLNR}}
+                  </TD>
+                  <TD style='border-right: 1px solid black;' align=right>&nbsp;</TD>
+                </TR>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <TR class=sapTxtSml align=center>
+              <TH rowspan=4 style='BACKGROUND-COLOR:#e6e9fe;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+              <TH rowspan=4 width="5%" style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;border-top: 1px solid black; '
+                align=left>บรรทัดรายการที่</TH>
+              <TH rowspan=4 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black;border-top: 1px solid black; ' align=left>เดบิต/เครดิต</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=left>รหัสบัญชี</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=left>ชื่อบัญชี</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black;' align=right>จำนวนเงินขอเบิก</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=right>ฐานภาษี</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black; ' align=right>ภาษี</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black; ' align=right>ค่าปรับ</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black;' align=right>จำนวนเงินขอรับ</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+            </TR>
+            <TR class=sapTxtSml align=center>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1; border-left: 1px solid black;' align=left>การกำหนด</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>ศูนย์ต้นทุน</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เงินฝากคลัง</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เงินฝากธ.พาณิชย์</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เจ้าของเงินฝาก</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>เจ้าของบัญชีย่อย</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>บัญชีย่อย</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+            </TR>
+            <TR class=sapTxtSml align=center>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>แหล่งของเงิน</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>รหัสงบประมาณ</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>กิจกรรมหลัก</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>กิจกรรมย่อย</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>รหัสพื้นที่</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>&nbsp;</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+            </TR>
+            <TR type=hidden class=sapTxtSml align=center>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>เอกสารสำรองเงินงบประมาณ</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black;' align=left>เอกสารกันเงิน</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>หมวดพัสดุ</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>รหัสหน่วยคู่ค้า (Trading Partner)</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>&nbsp;</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+              <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+            </TR>
+          <ng-container *ngFor="let kb02 of observableBooks| async" style="background-color: #fff">
+            <ng-container *ngFor="let header of kb02.header;let K=index  " style="background-color: #fff">
+              <ng-container *ngIf=" K==0">
+
+                  <tr style="background-color: #fcf8c7" >
+                      <TD  align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                      <td align=left style='border-left: 1px solid black;'>
+                        00{{ kb02.header[K].ITEMNO}}
+                      </td>
+                      <td align=left style='border-left: 1px solid black;'>
+                        เครดิต
+                      </td>
+                      <td align=left style='border-left: 1px solid black;'>
+                        {{ kb02.header[K].LIFNR}}
+                      </td>
+                      <td align=left style='border-left: 1px solid black;'>
+                        {{ kb02.header[K].NAME1}}
+                      </td>
+                      <td align=right style='border-left: 1px solid black;'>
+                        {{ kb02.header[K].SUMCOST}}
+                      </td>
+                      <td align=right style='border-left: 1px solid black;'>
+                        0.00</td>
+                      <td align=right style='border-left: 1px solid black;'>
+                        0.00</td>
+                      <td align=right style='border-left: 1px solid black;'>
+                        0.00</td>
+                      <td align=right style='border-right: 1px solid black;border-left: 1px solid black;'>{{ kb02.header[K].SUMCOST}}</td>
+                      <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                    </tr>
+                    <tr style="background-color: #fcf8c7" >
+                      <TD  align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                      <TD align=left style='border-left: 1px solid black;'>&nbsp;</TD>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'>{{ kb02.header[K].KOSTL}}</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                    </tr>
+                    <tr style="background-color: #fcf8c7" >
+                      <TD  align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <!---แหล่งของเงิน -->
+                      <td style='border-left: 1px solid black;'>{{ kb02.header[K].GEBER}} - {{ kb02.header[K].GEBER_NAME}}</td>
+                      <!--รหัสงบประมาณ -->
+                      <td style='border-left: 1px solid black;'>{{ kb02.header[K].FISTL}} - {{ kb02.header[K].FISTL_NAME}}</td>
+                      <!---รหัสกิจกรรมหลัก -->
+                      <td style='border-left: 1px solid black;'>
+    
+    
+                        {{ kb02.header[K].FKBER}} - {{ kb02.header[K].FKBER_NAME}}
+    
+                      </td>
+                      <!-- รหัสกิจกรรมย่อย-->
+                      <td style='border-left: 1px solid black;'>{{ kb02.header[K].PRZNR}}</td>
+                      <!-- 	รหัสพื้นที่ -->
+                      <td style='border-left: 1px solid black;'>{{ kb02.header[K].GSBER}}</td>
+                      <td style='border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                      <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                    </tr>
+                    <tr style="background-color: #fcf8c7" >
+                       <TD  align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>000</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>{{ kb02.header[K].VBUND}}</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                      <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                    </tr>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+        </thead>
+        <tr></tr>
+        <ng-container *ngFor="let kb02 of observableBooks| async" style="background-color: #fff">
+          <ng-container *ngFor="let header of kb02.header;let J=index  " style="background-color: #fff">
+
+            <ng-container *ngIf="header.ITEMNO=='1' && J>0">
+              <TR>
+                <TD colspan="11" style='border-left: 1px solid black;border-bottom: 1px solid black;border-right: 1px solid black;'></TD>
+
+              </TR>
+
+              <ng-container *ngIf="kb02.header[J].a_cpudt!==kb02.header[J-1].a_cpudt">
+                <TR>
+                  <TD colspan="11">
+                    &nbsp;
+                  </TD>
+                </TR>
+                <TR style="BACKGROUND-COLOR: #339933">
+                  <TD colspan="3" style='border-bottom: 1px solid black;'>วันที่นำส่งข้อมูล</TD>
+                  <TD colspan="2" style='border-bottom: 1px solid black;'> {{ kb02.header[J].a_cpudt}}</TD>
+                  <TD colspan="2" style='border-bottom: 1px solid black;'>จำนวนเอกสาร</TD>
+                  <TD colspan="4" style='border-bottom: 1px solid black;'>{{ kb02.header[J].count}} </TD>
+                </TR>
+
+                <TR style="BACKGROUND-COLOR:#69c0ec">
+                  <TD colspan="3" style='border-left: 1px solid black;border-bottom: 1px solid black;'>หน่วยเบิกจ่าย</TD>
+                  <TD colspan="2" style='border-bottom: 1px solid black;'> 00000{{ kb02.header[J].ZZPMT}}</TD>
+                  <TD colspan="2" style='border-bottom: 1px solid black;'>แหล่งที่มา</TD>
+                  <TD colspan="4" style='border-bottom: 1px solid black;border-right: 1px solid black;'>GIN INTRA </TD>
+                </TR>
+              </ng-container>
+              <ng-container *ngIf="kb02.header[J].a_cpudt==kb02.header[J-1].a_cpudt">
+                <ng-container *ngIf="kb02.header[J].ZZPMT!==kb02.header[J-1].ZZPMT">
+                    <TR style="BACKGROUND-COLOR:#69c0ec">
+                    <TD colspan="3" style='border-left: 1px solid black;border-bottom: 1px solid black;'>หน่วยเบิกจ่าย</TD>
+                    <TD colspan="2" style='border-bottom: 1px solid black;'> {{ kb02.header[J].ZZPMT}}</TD>
+                    <TD colspan="2" style='border-bottom: 1px solid black;'>แหล่งที่มา</TD>
+                    <TD colspan="4" style='border-bottom: 1px solid black;border-right: 1px solid black;'>GIN INTRA </TD>
+
+                  </TR>
+                </ng-container>
+              </ng-container>
+              <TR style="BACKGROUND-COLOR: #e6e9fe">
+                <TD colspan="3" style='border-left: 1px solid black;'>
+                  เลขที่เอกสาร
+                </TD>
+                <TD>
+                  :{{ kb02.header[J].GJAHR}} - {{ kb02.header[J].BELNR}}
+                </TD>
+                <TD colspan="7" style='border-right: 1px solid black;'>
+                  &nbsp;
+                </TD>
+              </TR>
+              <TR style="BACKGROUND-COLOR: #e6e9fe">
+
+                <TD colspan="3" style='border-left: 1px solid black;'>
+                  ส่วนราชการ
+                </TD>
+                <TD>
+                  :{{ kb02.header[J].BUKRS}} - {{ kb02.header[J].BUKRS_NAME}}
+                </TD>
+                <TD align=left>
+                  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                </TD>
+                <TD align=left>
+                  วันที่ผ่านรายการ
+                </TD>
+                <TD>
+                  &nbsp;
+                </TD>
+                <TD colspan="3" align=left>
+                  : {{ kb02.header[J].a_budat}}
+                </TD>
+                <TD colspan="2" style='border-right: 1px solid black;' align=right>&nbsp;</TD>
+              </TR>
+                <TR style="BACKGROUND-COLOR: #e6e9fe">
+                <TD colspan="3" style='border-left: 1px solid black;'>
+                  ประเภทเอกสาร
+                </TD>
+                <TD>
+                  : {{header.BLART}} -
+                  <ng-container *ngIf="header.BLART=='K0'">
+                    เงินจ่ายสิ้นเดือน
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='K1'">
+                    ลูกหนี้เงินยืม
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='K8'">
+                    เงินอุดหนุน
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KC'">
+                    ขอเบิก(1.ข)
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KD'">
+                    กันเงิน
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KE'">
+                    ขอเบิก(2.ข)
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KF'">
+                    ขอเบิก(2.ข) กันเงิน
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KL'">
+                    ใบสำคัญงปม(2)
+                  </ng-container>
+                  <ng-container *ngIf="header.BLART=='KM'">
+                    ใบสำคัญงปม(2) กันเงิน
+                  </ng-container>
+                </TD>
+                <TD align=left>
+                  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                </TD>
+                <TD align=left>
+                  วันที่เอกสาร
+                </TD>
+                <TD>
+                  &nbsp;
+                </TD>
+                <TD colspan="4" style='border-right: 1px solid black;'>
+                  : {{ kb02.header[J].a_bldat}}
+                </TD>
+              </TR>
+
+              <TR style="BACKGROUND-COLOR: #e6e9fe">
+                <TD colspan="3" style='border-left: 1px solid black;'>
+                  สถานะเอกสาร
+                </TD>
+                <TD>
+                  : เอกสารผ่านรายการ
+                </TD>
+                <TD align=left>
+                  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                </TD>
+                <TD align=left>
+                  การอ้างอิง
+                </TD>
+                <TD>
+                  &nbsp;
+                </TD>
+                <TD colspan="4" align=left style='border-right: 1px solid black;'>
+                  : {{ kb02.header[J].XBLNR}}
+                </TD>
+              </TR>
+
+              <TR class=sapTxtSml align=center>
+                  
+                        <TH rowspan=4 style='BACKGROUND-COLOR:#e6e9fe;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+                        <TH rowspan=4 width="5%" style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;border-top: 1px solid black; '
+                          align=left>บรรทัดรายการที่</TH>
+                        <TH rowspan=4 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black;border-top: 1px solid black; ' align=left>เดบิต/เครดิต</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=left>รหัสบัญชี</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=left>ชื่อบัญชี</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black;' align=right>จำนวนเงินขอเบิก</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; border-top: 1px solid black;' align=right>ฐานภาษี</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black; ' align=right>ภาษี</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black; ' align=right>ค่าปรับ</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;border-top: 1px solid black;' align=right>จำนวนเงินขอรับ</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+                      </TR>
+                      <TR class=sapTxtSml align=center>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1; border-left: 1px solid black;' align=left>การกำหนด</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>ศูนย์ต้นทุน</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เงินฝากคลัง</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เงินฝากธ.พาณิชย์</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>เจ้าของเงินฝาก</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>เจ้าของบัญชีย่อย</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>บัญชีย่อย</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+                      </TR>
+                      <TR class=sapTxtSml align=center>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>แหล่งของเงิน</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>รหัสงบประมาณ</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>กิจกรรมหลัก</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>กิจกรรมย่อย</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>รหัสพื้นที่</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black;' align=left>&nbsp;</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+                      </TR>
+                      <TR type=hidden class=sapTxtSml align=center>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>เอกสารสำรองเงินงบประมาณ</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black;' align=left>เอกสารกันเงิน</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>หมวดพัสดุ</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>รหัสหน่วยคู่ค้า (Trading Partner)</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black; border-left: 1px solid black;' align=left>&nbsp;</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#6cbec1;border-bottom: 1px solid black;border-left: 1px solid black; ' align=left>&nbsp;</TH>
+                        <TH rowspan=1 style='BACKGROUND-COLOR:#e6e9fe;border-right: 1px solid black;border-left: 1px solid black;' align=right>&nbsp;</TH>
+                      </TR>
+                      <tr style=' background-color: #fcf8c7'>
+                          <TD align=left style=' background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                          <td align=left style=' border-left: 1px solid black;'>
+                            00{{ kb02.header[J].ITEMNO}}
+                          </td>
+                          <td align=left style='border-left: 1px solid black;'>
+                            เครดิต
+                          </td>
+                          <td align=left style='border-left: 1px solid black;'>
+                            {{ kb02.header[J].LIFNR}}
+                          </td>
+                          <td align=left style='border-left: 1px solid black;'>
+                            {{ kb02.header[J].NAME1}}
+                          </td>
+                          <td align=right style='border-left: 1px solid black;'>
+                            {{ kb02.header[J].SUMCOST}}
+                          </td>
+                          <td align=right style='border-left: 1px solid black;'>
+                            0.00</td>
+                          <td align=right style='border-left: 1px solid black;'>
+                            0.00</td>
+                          <td align=right style='border-left: 1px solid black;'>
+                            0.00</td>
+                          <td align=right style='border-right: 1px solid black;border-left: 1px solid black;'>{{ kb02.header[J].SUMCOST}}</td>
+                          <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                        </tr>
+                        <tr style=' background-color: #fcf8c7'>
+                          <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                          <TD align=left style='border-left: 1px solid black;'>&nbsp;</TD>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'>{{ kb02.header[J].KOSTL}}</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                        </tr>
+                        <tr style=' background-color: #fcf8c7'>
+                          <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <!---แหล่งของเงิน -->
+                          <td style='border-left: 1px solid black;'>{{ kb02.header[J].GEBER}} - {{ kb02.header[J].GEBER_NAME}}</td>
+                          <!--รหัสงบประมาณ -->
+                          <td style='border-left: 1px solid black;'>{{ kb02.header[J].FISTL}} - {{ kb02.header[J].FISTL_NAME}}</td>
+                          <!---รหัสกิจกรรมหลัก -->
+                          <td style='border-left: 1px solid black;'>
+                            P{{ kb02.header[J].GSBER}}
+          
+                          </td>
+                          <!-- รหัสกิจกรรมย่อย-->
+                          <td style='border-left: 1px solid black;'>{{ kb02.header[J].PRZNR}}</td>
+                          <!-- 	รหัสพื้นที่ -->
+                          <td style='border-left: 1px solid black;'>{{ kb02.header[J].GSBER}}</td>
+                          <td style='border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                          <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                        </tr>
+                        <tr style=' background-color: #fcf8c7'>
+                          <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>000</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>{{ kb02.header[J].VBUND}}</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                          <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                        </tr>
+            </ng-container>
+            
+            <ng-container *ngIf="header.ITEMNO%2==0">
+                <tr style=' background-color: #fcf8c7'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td align=left style='border-left: 1px solid black;'>
+                    <ng-container *ngIf="header.ITEMNO<='9'">
+                      00{{ kb02.header[J].ITEMNO_SHOW}}
+    
+                    </ng-container>
+                    <ng-container *ngIf="header.ITEMNO >'9'">
+                      0{{ kb02.header[J].ITEMNO_SHOW}}
+                    </ng-container>
+                  </td>
+                  <td align=left style='border-left: 1px solid black;'>
+                    เดบิต
+                  </td>
+                  <td align=left style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].HKONT}}
+    
+                  </td>
+    
+                  <td align=left style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].HKONT_NAME}}
+    
+                  </td>
+                  <td align=right style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].WRBTR}}
+    
+                  </td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-right: 1px solid black;border-left: 1px solid black;'>{{ kb02.header[J].SUMCOST}}</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr style=' background-color: #fcf8c7'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <TD align=left style='border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].KOSTL}}</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr style=' background-color: #fcf8c7'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <!---แหล่งของเงิน -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].GEBER}} - {{ kb02.header[J].GEBER_NAME}}</td>
+                  <!--รหัสงบประมาณ -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].FISTL}} - {{ kb02.header[J].FISTL_NAME}}</td>
+                  <!---รหัสกิจกรรมหลัก -->
+                  <td style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].FKBER}} - {{ kb02.header[J].FKBER_NAME}}
+    
+                  </td>
+                  <!-- รหัสกิจกรรมย่อย-->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].PRZNR}}</td>
+                  <!-- 	รหัสพื้นที่ -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].GSBER}}</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr style=' background-color: #fcf8c7'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>000</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>{{ kb02.header[J].VBUND}}</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+              </ng-container>
+    
+              <ng-container *ngIf="header.ITEMNO%2!=0">
+                <tr  style='background-color: #eaeaea' >
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td align=left style='border-left: 1px solid black;'>
+                    <ng-container *ngIf="header.ITEMNO<='9'">
+                      00{{ kb02.header[J].ITEMNO_SHOW}}
+    
+                    </ng-container>
+                    <ng-container *ngIf="header.ITEMNO >'9'">
+                      0{{ kb02.header[J].ITEMNO_SHOW}}
+                    </ng-container>
+                  </td>
+                  <td align=left style='border-left: 1px solid black;'>
+                    เดบิต
+                  </td>
+                  <td align=left style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].HKONT}}
+    
+                  </td>
+    
+                  <td align=left style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].HKONT_NAME}}
+    
+                  </td>
+                  <td align=right style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].WRBTR}}
+    
+                  </td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-left: 1px solid black;'>
+                    0.00</td>
+                  <td align=right style='border-right: 1px solid black;border-left: 1px solid black;'>{{ kb02.header[J].SUMCOST}}</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr  style='background-color: #eaeaea'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <TD align=left style='border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].KOSTL}}</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr  style='background-color: #eaeaea'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <!---แหล่งของเงิน -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].GEBER}} - {{ kb02.header[J].GEBER_NAME}}</td>
+                  <!--รหัสงบประมาณ -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].FISTL}} - {{ kb02.header[J].FISTL_NAME}}</td>
+                  <!---รหัสกิจกรรมหลัก -->
+                  <td style='border-left: 1px solid black;'>
+    
+    
+                    {{ kb02.header[J].FKBER}} - {{ kb02.header[J].FKBER_NAME}}
+    
+                  </td>
+                  <!-- รหัสกิจกรรมย่อย-->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].PRZNR}}</td>
+                  <!-- 	รหัสพื้นที่ -->
+                  <td style='border-left: 1px solid black;'>{{ kb02.header[J].GSBER}}</td>
+                  <td style='border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+                <tr  style='background-color: #eaeaea'>
+                  <TD align=left style='background-color: #e6e9fe;border-left: 1px solid black;'>&nbsp;</TD>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>000</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'>{{ kb02.header[J].VBUND}}</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;'> &nbsp;</td>
+                  <td style='background-color: #e6e9fe;border-right: 1px solid black;'> &nbsp;</td>
+                </tr>
+              </ng-container>
+    
+              </ng-container>
+            </ng-container>
+            <TR  style='BACKGROUND-COLOR:#e6e9fe'>
+              <TD colspan=11 style='border-right: 1px solid black;border-left: 1px solid black;border-bottom: 1px solid black;'>
+                &nbsp;
+              </TD>
+            </TR>
+          </TABLE>
+        </td>
+        <td>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+      </tr>
+    </TABLE>

@@ -35,11 +35,10 @@ app.use(function(req, res, next) {
 
 app.use('/api', api);
 
-// set static path [dist & api]
+// set static path [dist] [created by: 'ng build']
 app.use(express.static(path.join(__dirname, 'dist')));
-// app.use('/api', require('./api/index.js'));
 
-// set * to index.html
+// set all url to index.html [dist]
 app.get('*', function (req, res){
     res.sendFile(path.join(__dirname, 'dist/index.html'),{
         new:{"n":1}

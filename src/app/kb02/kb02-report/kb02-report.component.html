@@ -1,0 +1,55 @@
+<user-profiles ID="UcUserProfiles1"></user-profiles>
+<form-header ID="UcFormHeader1"></form-header>
+<div width="100%" style="padding:10px">
+    <fieldset style="padding:10px; width:850px" >
+        <legend class="feildsetTag">เงื่อนไข</legend>
+        <div width="80%">
+          <table  class="defaultTableBodyShot" width="80%">
+            <tr>
+              <td>
+                <strong class="fontContentBlue">เรียกดูรายงานตาม</strong>
+              </td>
+              <td class="tdCenter">
+                <input type="radio" value="user" id="user" name="type" [(ngModel)]="RADIO_TYPE">
+                <label align="center" for="user">ผู้บันทึก</label>
+              </td>
+              <td>
+                <input type="radio" value="zzpmt" id="zzpmt" name="type" [(ngModel)]="RADIO_TYPE">
+                <label align="center" for="zzpmt">หน่วยเบิกจ่าย</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong class="fontContentBlue">ประเภทรายงาน</strong>
+              </td>
+              <td>
+                <select [(ngModel)]="DATE_TYPE">
+                  <option *ngFor="let c of dateList" [ngValue]="c.TYPE">{{c.DATE}}</option>
+                </select>
+              </td>
+              <td>
+                <strong class="fontContentBlue">วันที่รายงาน</strong>
+              </td>
+              <td>
+                <md-input-container style="width: 100px">
+                  <input mdInput [(ngModel)]="T_DATE" [mdDatepicker]="tDatepicker">
+                  <md-datepicker-toggle mdSuffix [for]="tDatepicker"></md-datepicker-toggle>
+                </md-input-container>
+                <md-datepicker #tDatepicker></md-datepicker>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  <strong class="fontContentBlack">รหัสหน่วยเบิกจ่าย</strong>
+              </td>
+              <td>0300200005</td>
+              <td>สำนักงานเลขานุการกรม</td>
+            </tr>
+          </table>
+        </div>
+        <hr>
+        <div align="center">
+          <button (click)="onSearch()">เรียกดูรายงาน</button>
+        </div>
+    </fieldset>
+</div>

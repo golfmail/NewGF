@@ -38,7 +38,7 @@ export class GridViewComponent implements OnInit {
       outlets: { aux: [this.RLINK] }
     };
     console.log(navExtra);
-    this.router.navigate(['/lch', navExtra], navExtra);
+    this.router.navigate(['/lch/kb02', navExtra], navExtra);
   }
 
   sortByTh(property, text) {

@@ -18,6 +18,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
   pm2 : P(rocess) M(anager) 2 [read more](https://www.npmjs.com/package/pm2)
 
+  ngx-pipes: 
+  `npm install ngx-pipes --save `
+
 
 ## Development server
 

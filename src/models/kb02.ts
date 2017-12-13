@@ -4,6 +4,7 @@ export class kb02 {
     //public data,
     public id,
     public name,
+    public NAME1,
     public  a_logyear,
     public  a_logno,
     public  a_bukrs,
@@ -64,8 +65,9 @@ export class kb02 {
     public  detail_prznr,
     public  detail_fkber,
     public  detail_fkber_name,
-    public  detail_vbund    
-   
+    public  detail_vbund,
+    public head_no,
+    public detail_no
   //  data: kb02[]
     ) {}
     }

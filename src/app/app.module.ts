@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {NgPipesModule} from 'ngx-pipes';
 
 import { AppComponent } from './app.component';
 import { Kb02Component } from './kb02/kb02.component';
@@ -63,6 +64,10 @@ import { DialogSaveComponent } from './controls/dialog-save/dialog-save.componen
 import { CheckWebComponent } from './web-browser/check-web/check-web.component';
 import { HomeComponent } from './home/home.component';
 import { LauncherComponent } from './launcher/launcher.component';
+import { MenuReportComponent } from 'app/menu-report/menu-report.component';
+import { MenuReportZzpmtComponent } from 'app/menu-report-zzpmt/menu-report-zzpmt.component';
+import { SaveListsComponent } from './save-lists/save-lists.component';
+import { Kb02ReportComponent } from './kb02/kb02-report/kb02-report.component';
 
 
 @NgModule({
@@ -110,7 +115,11 @@ import { LauncherComponent } from './launcher/launcher.component';
     LogReportComponent,
     ReportReportComponent,
     HomeComponent,
-    LauncherComponent
+    LauncherComponent,
+    MenuReportComponent,
+    MenuReportZzpmtComponent,
+    SaveListsComponent,
+    Kb02ReportComponent
 
   ],
   imports: [
@@ -119,7 +128,6 @@ import { LauncherComponent } from './launcher/launcher.component';
     MaterialModule,
     FormsModule,
     HttpModule,
-    // MdDialog,
     MdButtonModule, MdCheckboxModule,
     MdTooltipModule,
     BrowserAnimationsModule,
@@ -127,10 +135,9 @@ import { LauncherComponent } from './launcher/launcher.component';
     MdDatepickerModule,
     MdInputModule,
     MdNativeDateModule,
-    // ReactiveFormsModule
     MdToolbarModule,
-    NgxPaginationModule
-    //  JsonpModule, NgbModule.forRoot()
+    NgxPaginationModule,
+    NgPipesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

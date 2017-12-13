@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <td></td>
+    <td>
+      <div>
+          <span><strong>ระบบเบิกจ่าย</strong></span>
+      </div>
+      <div>
+        <span>
+            ขอเบิกเงิน,ขอจ่ายโดยส่วนราชการ,ขอถอนคืนรายได้,บันทึกรายการเงินประกัน,หนังสือรับรองภาษีหัก ณ ที่จ่าย,อนุมัติเบิก และอนุมัติจ่าย 
+        </span>
+      </div>
+      <div>
+        <span (click)="showMenu('kb')">» ขอเบิกเงิน</span>
+        <ul *ngIf="kb==true">
+          <li>
+              <A routerLinkActive="active" routerLink="/lch/kb02"><B>ขบ02</B> » ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
+              » <img routerLinkActive="active" routerLink="/lch/kb02report" src="assets/Images/Icon/report_v10.gif" alt="ขอเบิก">
+          </li>
+          <li>
+              <A><B>ขบ03</B> » ขอเบิกเงินนอกงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<!-- src="images/Icon/report_v10.gif" -->
