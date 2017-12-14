@@ -20,6 +20,7 @@ import { MdNativeDateModule } from '@angular/material';
 import { PaginationInstance } from 'ngx-pagination';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
+import { Kb02Component } from 'app/kb02/kb02.component';
 
 @Component({
   selector: 'kb02-1',
@@ -31,6 +32,10 @@ import { Kb023Component } from '../../kb02/kb02-3/kb02-3.component';
 
 // @Injectable()
 export class Kb021Component implements OnInit  {
+
+  // SET: Header | Decsription
+  // headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+  description = 'สร้างขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
 
   public config: PaginationInstance = {
     id: 'custom',
@@ -265,7 +270,8 @@ export class Kb021Component implements OnInit  {
     private httpService: Http,
     private route: ActivatedRoute,
     private router: Router,
-    private _Kb023Component: Kb023Component) {
+    private _Kb023Component: Kb023Component,
+    private parent: Kb02Component) {
   }
 
   detailSave() {
@@ -1466,7 +1472,8 @@ export class Kb021Component implements OnInit  {
 
 
   ngOnInit() {
-
+    // Update Description Header
+    this.parent.updateHeader(this.description);
 
     // ใส่ค่าต่างๆ ไว้เพื่อเทส
     this.setTest();

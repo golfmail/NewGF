@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LauncherComponent implements OnInit {
 
+  LINK_HOME = '/';
+
   constructor() { }
 
   ngOnInit() {

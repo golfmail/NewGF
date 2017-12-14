@@ -1,0 +1,13 @@
+
+span {
+    cursor: pointer;
+}
+
+ul li {
+    cursor: pointer;
+    margin-bottom:0;
+}
+
+.menulistpage {
+    padding: 15px;
+}

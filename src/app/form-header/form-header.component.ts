@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit , Input} from '@angular/core';
 
 @Component({
   selector: 'form-header',
@@ -7,9 +7,14 @@
 })
 export class FormHeaderComponent implements OnInit {
 
+  @Input() headerText;
+  @Input() description;
+
   constructor() {}
 
   ngOnInit() {
+    // this.headerText = 'หัวข้อ';
+    // this.discription = 'รายละเอียดหัวข้อ';
   }
 
 }

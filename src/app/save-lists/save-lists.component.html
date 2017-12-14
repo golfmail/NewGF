@@ -1,26 +1,40 @@
-<table>
+<user-profiles ID="UcUserProfiles1"></user-profiles>
+<form-header [headerText]="headerText" [description]="description" ID="UcFormHeader1"></form-header>
+<table class="menulistpage">
   <tr>
-    <td></td>
-    <td>
-      <div>
-          <span><strong>ระบบเบิกจ่าย</strong></span>
+    <td width="120px" vAlign="top"  align="left">
+      <img src="assets/Images/img_menuItems/menuitem2.jpg" alt="">
+    </td>
+    <td vAlign="top">
+      <div (click)="showMenu('kb_list')">
+        <span class="menuItems"><strong>ระบบเบิกจ่าย</strong></span>
       </div>
-      <div>
-        <span>
+      <div (click)="showMenu('kb_list')">
+        <span class="menuItemDescription">
             ขอเบิกเงิน,ขอจ่ายโดยส่วนราชการ,ขอถอนคืนรายได้,บันทึกรายการเงินประกัน,หนังสือรับรองภาษีหัก ณ ที่จ่าย,อนุมัติเบิก และอนุมัติจ่าย 
         </span>
       </div>
-      <div>
-        <span (click)="showMenu('kb')">» ขอเบิกเงิน</span>
-        <ul *ngIf="kb==true">
+      <!-- menu KB -->
+      <div *ngIf="kb_list==true">
+        <span class="menuItems" (click)="showMenu('kb1')">» ขอเบิกเงิน</span><br>
+        <ul *ngIf="kb1==true" class="menuItems" style="list-style-type: none; margin:0; FONT-SIZE: 11px;">
           <li>
-              <A routerLinkActive="active" routerLink="/lch/kb02"><B>ขบ02</B> » ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
-              » <img routerLinkActive="active" routerLink="/lch/kb02report" src="assets/Images/Icon/report_v10.gif" alt="ขอเบิก">
+            <a class="ReportMenuItem">ขบ01 » ขอเบิกเงินงบประมาณที่ต้องอ้างใบสั่งซื้อฯ</a>
+            » <img src="assets/Images/Icon/report_v10.gif" alt="ขอเบิก">
           </li>
           <li>
-              <A><B>ขบ03</B> » ขอเบิกเงินนอกงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
+            <A class="ReportMenuItem" routerLinkActive="active" routerLink="/lch/kb02"><B>ขบ02</B> » ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
+            » <img routerLinkActive="active" routerLink="/lch/kb02report" src="assets/Images/Icon/report_v10.gif" alt="ขอเบิก">
+          </li>
+          <li>
+              <A class="ReportMenuItem"><B>ขบ03</B> » ขอเบิกเงินนอกงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>
           </li>
         </ul>
+        <span class="menuItems" (click)="showMenu('kb')">» ขอถอนคืนรายได้</span><br>
+        <span class="menuItems" (click)="showMenu('kb')">» ขอจ่ายโดยส่วนราชการ</span><br>
+        <span class="menuItems" (click)="showMenu('kb')">» บันทึกรายการเงินประกัน</span><br>
+        <span class="menuItems" (click)="showMenu('kb')">» การบันทึกเบิกเกินส่งคืน/ล้างลูกหนี้เงินยืม/คืนเงินทดรองราชการ</span><br>
+        
       </div>
     </td>
   </tr>

@@ -7,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaveListsComponent implements OnInit {
 
-  kb: Boolean = false; // ขบ - ขอเบิก
+  // SET: Header | Decsription
+  headerText = 'บันทึกรายการ';
+  description = 'สร้าง/บันทึก/ค้นหา/เปลี่ยนแปลง เอกสาร';
+
+  kb_list: Boolean = false; // ระบบขอเบิก
+  kb1: Boolean = false; // ขบ - ขอเบิก
+  kb2: Boolean = false;
+  kb3: Boolean = false;
+  kb4: Boolean = false;
+  kb5: Boolean = false;
 
   constructor() { }
 
   showMenu(menu) {
-    if (menu === 'kb') {
-      this.kb = (this.kb === true ? false : true);
+    if (menu === 'kb1') {
+      this.kb1 = (this.kb1 === true ? false : true);
+    } else if (menu === 'kb_list') {
+      this.kb_list = (this.kb_list === true ? false : true);
     }
   }
 

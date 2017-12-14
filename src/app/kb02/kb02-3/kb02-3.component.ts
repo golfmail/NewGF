@@ -5,6 +5,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { DialogSearchComponent } from 'app/controls/dialog-search/dialog-search.component';
 import { MenuTopComponent } from 'app/menu-top/menu-top.component';
 import { Http, Headers, RequestOptions} from '@angular/http';
+import { Kb02Component } from 'app/kb02/kb02.component';
 
 @Component({
   selector: 'app-kb02-3',
@@ -13,6 +14,10 @@ import { Http, Headers, RequestOptions} from '@angular/http';
   providers: [MenuTopComponent ] // , Kb021Component
 })
 export class Kb023Component implements OnInit {
+
+  // SET: Header | Decsription
+  // headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+  description = 'ค้นหาขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
 
   dateList  =  [
     {id: 'CPUDT', Name: 'วันที่บันทึกรายการ'},
@@ -100,8 +105,11 @@ export class Kb023Component implements OnInit {
   // to show Data on KB021
   SBELNR: String = '';
 
-  constructor(private route: Router, private MenuTop: MenuTopComponent, public dialog: MdDialog,
-              private httpService: Http) {
+  constructor(private route: Router,
+              private MenuTop: MenuTopComponent,
+              public dialog: MdDialog,
+              private httpService: Http,
+              private parent: Kb02Component) {
     // TEST
     console.log('Route x:' + route.url);
     // this.GridViewComponent.RLINK = '/kb021';
@@ -239,6 +247,9 @@ export class Kb023Component implements OnInit {
   }
 
   ngOnInit() {
+    // Update Description Header
+    this.parent.updateHeader(this.description);
+
     // this.MenuTop.onClick(this.route.url); // TEST
     this.MenuTop.topMenu_s = 'fontMenuTop'; // TEST
     this.forAdmin = true; // TEST NOT ADMIN

@@ -1,15 +1,15 @@
 <user-profiles ID="UcUserProfiles1"></user-profiles>
-<form-header ID="UcFormHeader1"></form-header>
+<form-header [headerText]="headerText" [description]="description" ID="UcFormHeader1"></form-header>
 <div width="100%" style="padding:10px">
     <fieldset style="padding:10px; width:850px" >
         <legend class="feildsetTag">เงื่อนไข</legend>
         <div width="80%">
           <table  class="defaultTableBodyShot" width="80%">
             <tr>
-              <td>
+              <td width="160px">
                 <strong class="fontContentBlue">เรียกดูรายงานตาม</strong>
               </td>
-              <td class="tdCenter">
+              <td width="160px" class="tdCenter">
                 <input type="radio" value="user" id="user" name="type" [(ngModel)]="RADIO_TYPE">
                 <label align="center" for="user">ผู้บันทึก</label>
               </td>
@@ -38,12 +38,12 @@
                 <md-datepicker #tDatepicker></md-datepicker>
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="RADIO_TYPE=='zzpmt'">
               <td>
                   <strong class="fontContentBlack">รหัสหน่วยเบิกจ่าย</strong>
               </td>
               <td>0300200005</td>
-              <td>สำนักงานเลขานุการกรม</td>
+              <td colspan="2">สำนักงานเลขานุการกรม</td>
             </tr>
           </table>
         </div>

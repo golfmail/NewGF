@@ -240,7 +240,7 @@ export class DialogSaveComponent implements OnInit {
   toSearch() {
     this.dialogRef.close();
     // this.router.navigate(['/Kb023']);
-    this.router.navigate(['/lch', { outlets: { aux: ['Kb023'] } }]);
+    this.router.navigate(['/lch/kb02', { outlets: { aux: ['Kb023'] } }]);
   }
 
   ngOnInit() {

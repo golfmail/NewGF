@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Kb02ReportComponent implements OnInit {
 
+  // SET: Header | Decsription
+  headerText = 'รายงานขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+  description = 'ค้นหารายงานขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
+
   RADIO_TYPE = 'user';
   DATE_TYPE = 'd';
   dateList: any[] = [];

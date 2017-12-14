@@ -1069,7 +1069,7 @@ var DialogSaveComponent = (function () {
     DialogSaveComponent.prototype.toSearch = function () {
         this.dialogRef.close();
         // this.router.navigate(['/Kb023']);
-        this.router.navigate(['/lch', { outlets: { aux: ['Kb023'] } }]);
+        this.router.navigate(['/lch/kb02', { outlets: { aux: ['Kb023'] } }]);
     };
     DialogSaveComponent.prototype.ngOnInit = function () {
     };
@@ -2968,7 +2968,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/form-header/form-header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table style=\"background-color: #ebf0b6\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody>\r\n  <tr>\r\n    <td style=\"WIDTH: 12px\">&nbsp;</td>\r\n    <td class=\"userHeader\">&nbsp;<span id=\"UcFormHeader1_lbHeader\">ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)</span></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td class=\"userHeaderDesc\">&nbsp;<span id=\"UcFormHeader1_lbHeaderDescription\">สร้างขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</span></td>\r\n  </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<table style=\"background-color: #ebf0b6\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n  <tbody>\r\n  <tr>\r\n    <td style=\"WIDTH: 12px\">&nbsp;</td>\r\n    <td class=\"userHeader\">&nbsp;<span id=\"UcFormHeader1_lbHeader\">{{headerText}}</span></td>\r\n  </tr>\r\n  <tr>\r\n    <td>&nbsp;</td>\r\n    <td class=\"userHeaderDesc\">&nbsp;<span id=\"UcFormHeader1_lbHeaderDescription\">{{description}}</span></td>\r\n  </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 
@@ -2992,9 +2992,19 @@ var FormHeaderComponent = (function () {
     function FormHeaderComponent() {
     }
     FormHeaderComponent.prototype.ngOnInit = function () {
+        // this.headerText = 'หัวข้อ';
+        // this.discription = 'รายละเอียดหัวข้อ';
     };
     return FormHeaderComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], FormHeaderComponent.prototype, "headerText", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+    __metadata("design:type", Object)
+], FormHeaderComponent.prototype, "description", void 0);
 FormHeaderComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
         selector: 'form-header',
@@ -3111,6 +3121,7 @@ module.exports = "<div>\r\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_app_menu_top_menu_top_component__ = __webpack_require__("../../../../../src/app/menu-top/menu-top.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__kb02_kb02_3_kb02_3_component__ = __webpack_require__("../../../../../src/app/kb02/kb02-3/kb02-3.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_app_kb02_kb02_component__ = __webpack_require__("../../../../../src/app/kb02/kb02.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3130,13 +3141,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var Kb021Component = (function () {
-    function Kb021Component(dialog, httpService, route, router, _Kb023Component) {
+    function Kb021Component(dialog, httpService, route, router, _Kb023Component, parent) {
         this.dialog = dialog;
         this.httpService = httpService;
         this.route = route;
         this.router = router;
         this._Kb023Component = _Kb023Component;
+        this.parent = parent;
+        // SET: Header | Decsription
+        // headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+        this.description = 'สร้างขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
         this.config = {
             id: 'custom',
             itemsPerPage: 5,
@@ -4484,6 +4500,8 @@ var Kb021Component = (function () {
     };
     Kb021Component.prototype.ngOnInit = function () {
         var _this = this;
+        // Update Description Header
+        this.parent.updateHeader(this.description);
         // ใส่ค่าต่างๆ ไว้เพื่อเทส
         this.setTest();
         // เมื่อมีการส่งค่ามาจาก Search หรืออื่นๆ
@@ -4507,10 +4525,10 @@ Kb021Component = __decorate([
     })
     // @Injectable()
     ,
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_material__["e" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_material__["e" /* MdDialog */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__kb02_kb02_3_kb02_3_component__["a" /* Kb023Component */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__kb02_kb02_3_kb02_3_component__["a" /* Kb023Component */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_material__["e" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_material__["e" /* MdDialog */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* Http */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_9__kb02_kb02_3_kb02_3_component__["a" /* Kb023Component */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__kb02_kb02_3_kb02_3_component__["a" /* Kb023Component */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_10_app_kb02_kb02_component__["a" /* Kb02Component */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10_app_kb02_kb02_component__["a" /* Kb02Component */]) === "function" && _f || Object])
 ], Kb021Component);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=kb02-1.component.js.map
 
 /***/ }),
@@ -4612,6 +4630,7 @@ module.exports = "<div width=\"100%\">\r\n<fieldset id=\"fldstBody\" style=\"z-i
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_controls_dialog_search_dialog_search_component__ = __webpack_require__("../../../../../src/app/controls/dialog-search/dialog-search.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__ = __webpack_require__("../../../../../src/app/menu-top/menu-top.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_app_kb02_kb02_component__ = __webpack_require__("../../../../../src/app/kb02/kb02.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4627,12 +4646,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var Kb023Component = (function () {
-    function Kb023Component(route, MenuTop, dialog, httpService) {
+    function Kb023Component(route, MenuTop, dialog, httpService, parent) {
         this.route = route;
         this.MenuTop = MenuTop;
         this.dialog = dialog;
         this.httpService = httpService;
+        this.parent = parent;
+        // SET: Header | Decsription
+        // headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+        this.description = 'ค้นหาขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
         this.dateList = [
             { id: 'CPUDT', Name: 'วันที่บันทึกรายการ' },
             { id: 'BUDAT', Name: 'วันที่ผ่านรายการ' },
@@ -4815,6 +4839,8 @@ var Kb023Component = (function () {
         }
     };
     Kb023Component.prototype.ngOnInit = function () {
+        // Update Description Header
+        this.parent.updateHeader(this.description);
         // this.MenuTop.onClick(this.route.url); // TEST
         this.MenuTop.topMenu_s = 'fontMenuTop'; // TEST
         this.forAdmin = true; // TEST NOT ADMIN
@@ -4843,10 +4869,10 @@ Kb023Component = __decorate([
         styles: [__webpack_require__("../../../../../src/app/kb02/kb02-3/kb02-3.component.css")],
         providers: [__WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__["a" /* MenuTopComponent */]] // , Kb021Component
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__["a" /* MenuTopComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__["a" /* MenuTopComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MdDialog */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Http */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__["a" /* MenuTopComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_menu_top_menu_top_component__["a" /* MenuTopComponent */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["e" /* MdDialog */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* Http */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_app_kb02_kb02_component__["a" /* Kb02Component */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_app_kb02_kb02_component__["a" /* Kb02Component */]) === "function" && _e || Object])
 ], Kb023Component);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=kb02-3.component.js.map
 
 /***/ }),
@@ -4872,7 +4898,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/kb02/kb02-report/kb02-report.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<user-profiles ID=\"UcUserProfiles1\"></user-profiles>\r\n<form-header ID=\"UcFormHeader1\"></form-header>\r\n<div width=\"100%\" style=\"padding:10px\">\r\n    <fieldset style=\"padding:10px; width:850px\" >\r\n        <legend class=\"feildsetTag\">เงื่อนไข</legend>\r\n        <div width=\"80%\">\r\n          <table  class=\"defaultTableBodyShot\" width=\"80%\">\r\n            <tr>\r\n              <td>\r\n                <strong class=\"fontContentBlue\">เรียกดูรายงานตาม</strong>\r\n              </td>\r\n              <td class=\"tdCenter\">\r\n                <input type=\"radio\" value=\"user\" id=\"user\" name=\"type\" [(ngModel)]=\"RADIO_TYPE\">\r\n                <label align=\"center\" for=\"user\">ผู้บันทึก</label>\r\n              </td>\r\n              <td>\r\n                <input type=\"radio\" value=\"zzpmt\" id=\"zzpmt\" name=\"type\" [(ngModel)]=\"RADIO_TYPE\">\r\n                <label align=\"center\" for=\"zzpmt\">หน่วยเบิกจ่าย</label>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <strong class=\"fontContentBlue\">ประเภทรายงาน</strong>\r\n              </td>\r\n              <td>\r\n                <select [(ngModel)]=\"DATE_TYPE\">\r\n                  <option *ngFor=\"let c of dateList\" [ngValue]=\"c.TYPE\">{{c.DATE}}</option>\r\n                </select>\r\n              </td>\r\n              <td>\r\n                <strong class=\"fontContentBlue\">วันที่รายงาน</strong>\r\n              </td>\r\n              <td>\r\n                <md-input-container style=\"width: 100px\">\r\n                  <input mdInput [(ngModel)]=\"T_DATE\" [mdDatepicker]=\"tDatepicker\">\r\n                  <md-datepicker-toggle mdSuffix [for]=\"tDatepicker\"></md-datepicker-toggle>\r\n                </md-input-container>\r\n                <md-datepicker #tDatepicker></md-datepicker>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                  <strong class=\"fontContentBlack\">รหัสหน่วยเบิกจ่าย</strong>\r\n              </td>\r\n              <td>0300200005</td>\r\n              <td>สำนักงานเลขานุการกรม</td>\r\n            </tr>\r\n          </table>\r\n        </div>\r\n        <hr>\r\n        <div align=\"center\">\r\n          <button (click)=\"onSearch()\">เรียกดูรายงาน</button>\r\n        </div>\r\n    </fieldset>\r\n</div>"
+module.exports = "<user-profiles ID=\"UcUserProfiles1\"></user-profiles>\r\n<form-header [headerText]=\"headerText\" [description]=\"description\" ID=\"UcFormHeader1\"></form-header>\r\n<div width=\"100%\" style=\"padding:10px\">\r\n    <fieldset style=\"padding:10px; width:850px\" >\r\n        <legend class=\"feildsetTag\">เงื่อนไข</legend>\r\n        <div width=\"80%\">\r\n          <table  class=\"defaultTableBodyShot\" width=\"80%\">\r\n            <tr>\r\n              <td width=\"160px\">\r\n                <strong class=\"fontContentBlue\">เรียกดูรายงานตาม</strong>\r\n              </td>\r\n              <td width=\"160px\" class=\"tdCenter\">\r\n                <input type=\"radio\" value=\"user\" id=\"user\" name=\"type\" [(ngModel)]=\"RADIO_TYPE\">\r\n                <label align=\"center\" for=\"user\">ผู้บันทึก</label>\r\n              </td>\r\n              <td>\r\n                <input type=\"radio\" value=\"zzpmt\" id=\"zzpmt\" name=\"type\" [(ngModel)]=\"RADIO_TYPE\">\r\n                <label align=\"center\" for=\"zzpmt\">หน่วยเบิกจ่าย</label>\r\n              </td>\r\n            </tr>\r\n            <tr>\r\n              <td>\r\n                <strong class=\"fontContentBlue\">ประเภทรายงาน</strong>\r\n              </td>\r\n              <td>\r\n                <select [(ngModel)]=\"DATE_TYPE\">\r\n                  <option *ngFor=\"let c of dateList\" [ngValue]=\"c.TYPE\">{{c.DATE}}</option>\r\n                </select>\r\n              </td>\r\n              <td>\r\n                <strong class=\"fontContentBlue\">วันที่รายงาน</strong>\r\n              </td>\r\n              <td>\r\n                <md-input-container style=\"width: 100px\">\r\n                  <input mdInput [(ngModel)]=\"T_DATE\" [mdDatepicker]=\"tDatepicker\">\r\n                  <md-datepicker-toggle mdSuffix [for]=\"tDatepicker\"></md-datepicker-toggle>\r\n                </md-input-container>\r\n                <md-datepicker #tDatepicker></md-datepicker>\r\n              </td>\r\n            </tr>\r\n            <tr *ngIf=\"RADIO_TYPE=='zzpmt'\">\r\n              <td>\r\n                  <strong class=\"fontContentBlack\">รหัสหน่วยเบิกจ่าย</strong>\r\n              </td>\r\n              <td>0300200005</td>\r\n              <td colspan=\"2\">สำนักงานเลขานุการกรม</td>\r\n            </tr>\r\n          </table>\r\n        </div>\r\n        <hr>\r\n        <div align=\"center\">\r\n          <button (click)=\"onSearch()\">เรียกดูรายงาน</button>\r\n        </div>\r\n    </fieldset>\r\n</div>"
 
 /***/ }),
 
@@ -4894,6 +4920,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var Kb02ReportComponent = (function () {
     function Kb02ReportComponent() {
+        // SET: Header | Decsription
+        this.headerText = 'รายงานขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+        this.description = 'ค้นหารายงานขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
         this.RADIO_TYPE = 'user';
         this.DATE_TYPE = 'd';
         this.dateList = [];
@@ -4999,7 +5028,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/kb02/kb02.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GF.NET_BODY\" style=\"background-color: #edf1fd; width: 750px;\">\r\n  <tr>\r\n    <td align=\"left\">\r\n      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%\">\r\n        <tr>\r\n          <td>\r\n            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%\">\r\n              <tr>\r\n                <td>\r\n                  <user-profiles ID=\"UcUserProfiles1\"></user-profiles>\r\n                </td>\r\n                <td style=\"width: 9px;\" valign=\"top\">\r\n                  <menu-top ID=\"UcMenuTop1\"></menu-top>\r\n                </td>\r\n              </tr>\r\n            </table>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <td>\r\n            <form-header ID=\"UcFormHeader1\"></form-header>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <td style=\"background-color: #ffffff;\">\r\n            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n              <tr>\r\n                <td style=\"border-top-color: #006699; border-top-width: 0px;\">\r\n                  <table border=\"0\" cellpadding=\"7\" cellspacing=\"0\" width=\"900\">\r\n                    <tr>\r\n                      <td>\r\n                        <!-- <kb02-1></kb02-1> -->\r\n                        <!-- <kb02-2></kb02-2> -->\r\n                        <!-- <kb02-3></kb02-3> -->\r\n                         <router-outlet name=\"aux\"></router-outlet>\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </td>\r\n              </tr>\r\n            </table>\r\n            <!--<span TextBox BackColor=\"White\" BorderColor=\"White\" BorderStyle=\"Solid\" ForeColor=\"White\" ID=\"htbPageAttribute\" runat=\"server\" Width=\"122px\">[htbPageAttribute]</span>\r\n            <span TextBox BackColor=\"White\" BorderColor=\"White\" BorderStyle=\"Solid\" ForeColor=\"White\" ID=\"tbPopupCheck\" runat=\"server\" Width=\"122px\">[tbPopupCheck]</span>-->\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </td>\r\n  </tr>\r\n</table>\r\n"
+module.exports = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GF.NET_BODY\" style=\"background-color: #edf1fd; width: 750px;\">\r\n  <tr>\r\n    <td align=\"left\">\r\n      <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%\">\r\n        <tr>\r\n          <td>\r\n            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 100%\">\r\n              <tr>\r\n                <td>\r\n                  <user-profiles ID=\"UcUserProfiles1\"></user-profiles>\r\n                </td>\r\n                <td style=\"width: 9px;\" valign=\"top\">\r\n                  <menu-top ID=\"UcMenuTop1\"></menu-top>\r\n                </td>\r\n              </tr>\r\n            </table>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <td>\r\n            <form-header [headerText]=\"headerText\" [description]=\"description\" ID=\"UcFormHeader1\"></form-header>\r\n          </td>\r\n        </tr>\r\n        <tr>\r\n          <td style=\"background-color: #ffffff;\">\r\n            <table border=\"1\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n              <tr>\r\n                <td style=\"border-top-color: #006699; border-top-width: 0px;\">\r\n                  <table border=\"0\" cellpadding=\"7\" cellspacing=\"0\" width=\"900\">\r\n                    <tr>\r\n                      <td>\r\n                        <!-- <kb02-1></kb02-1> -->\r\n                        <!-- <kb02-2></kb02-2> -->\r\n                        <!-- <kb02-3></kb02-3> -->\r\n                         <router-outlet name=\"aux\"></router-outlet>\r\n                      </td>\r\n                    </tr>\r\n                  </table>\r\n                </td>\r\n              </tr>\r\n            </table>\r\n            <!--<span TextBox BackColor=\"White\" BorderColor=\"White\" BorderStyle=\"Solid\" ForeColor=\"White\" ID=\"htbPageAttribute\" runat=\"server\" Width=\"122px\">[htbPageAttribute]</span>\r\n            <span TextBox BackColor=\"White\" BorderColor=\"White\" BorderStyle=\"Solid\" ForeColor=\"White\" ID=\"tbPopupCheck\" runat=\"server\" Width=\"122px\">[tbPopupCheck]</span>-->\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </td>\r\n  </tr>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -5021,7 +5050,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var Kb02Component = (function () {
     function Kb02Component() {
+        // SET: Header | Decsription
+        this.headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
+        this.description = 'สร้างขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
     }
+    Kb02Component.prototype.updateHeader = function (_description) {
+        this.description = _description;
+    };
     Kb02Component.prototype.ngOnInit = function () {
     };
     return Kb02Component;
@@ -5089,7 +5124,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/launcher/launcher.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GFMISTB\" style=\"width: 1000px;\">\r\n    <tr>\r\n      <td style=\"background-image: url(assets/Images/header_section_bg.jpg); background-repeat: repeat-x;\">\r\n        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GF.NET_Header\" style=\"height: 100px\">\r\n          <tr>\r\n            <td width=\"150px\">\r\n              <!-- <img alt=\"GFMIS Web Online\" src=\"assets/Images/header_section_01.jpg\" /> -->\r\n              <asp:ImageButton CausesValidation=\"False\" Enable=\"false\" Enabled=\"False\" ID=\"imgBtDefault\" ImageUrl=\"assets/Images/header_section_01.jpg\" OnClick=\"imgBtDefault_Click\"></asp:ImageButton>\r\n            </td>\r\n            <td width=\"100%\">\r\n              <img alt=\"GFMIS Web Online\" height=\"100\" src=\"assets/Images/img_headers/header_theme03.jpg\" width=\"750\"/>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td width=\"100%\">\r\n        <table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\r\n          <tr>\r\n            <td align=\"left\" bgcolor=\"8399cb\" style=\"width: 150px;\" valign=\"top\">\r\n              <user-login-profile ID=\"ubLoginProfileBCH01\"></user-login-profile>\r\n              <menu-left ID=\"UcMenuLeft1\"></menu-left>\r\n            </td>\r\n            <td align=\"left\" valign=\"top\">\r\n              <router-outlet></router-outlet>\r\n              <!-- <app-save-lists></app-save-lists> -->\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td style=\"background-color: #000000\">\r\n        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"height: 50px; width: 100%;\">\r\n          <tr>\r\n            <td align=\"left\" style=\"background-color: #112759; width: 150px;\" valign=\"top\">&nbsp;</td>\r\n            <td align=\"right\" style=\"background-color: #000000;\" valign=\"middle\">\r\n              <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"footer\" width=\"100%\">\r\n                <tr>\r\n                  <td align=\"right\" width=\"99%\">\r\n                    <br/>\r\n                    ระบบบริหารการเงินการคลังภาครัฐแบบอิเล็กทรอนิกส์<br/>\r\n                    Government Fiscal Management Information System\r\n                  </td>\r\n                  <td width=\"1%\">&nbsp;</td>\r\n                </tr>\r\n                <tr>\r\n                  <td align=\"right\" colspan=\"2\">&nbsp;</td>\r\n                </tr>\r\n              </table>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n\r\n"
+module.exports = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GFMISTB\" style=\"width: 1000px;\">\r\n    <tr>\r\n      <td style=\"background-image: url(assets/Images/header_section_bg.jpg); background-repeat: repeat-x;\">\r\n        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" id=\"GF.NET_Header\" style=\"height: 100px\">\r\n          <tr>\r\n            <td width=\"150px\" [routerLink]=\"LINK_HOME\">\r\n              <!-- <img alt=\"GFMIS Web Online\" src=\"assets/Images/header_section_01.jpg\" /> -->\r\n              <asp:ImageButton CausesValidation=\"False\" Enable=\"false\" Enabled=\"False\" ID=\"imgBtDefault\" ImageUrl=\"assets/Images/header_section_01.jpg\" OnClick=\"imgBtDefault_Click\"></asp:ImageButton>\r\n            </td>\r\n            <td width=\"100%\">\r\n              <img alt=\"GFMIS Web Online\" height=\"100\" src=\"assets/Images/img_headers/header_theme03.jpg\" width=\"750\"/>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td width=\"100%\">\r\n        <table style=\"BACKGROUND-COLOR: #edf1fd\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\r\n          <tr>\r\n            <td align=\"left\" bgcolor=\"8399cb\" style=\"width: 150px;\" valign=\"top\">\r\n              <user-login-profile ID=\"ubLoginProfileBCH01\"></user-login-profile>\r\n              <menu-left ID=\"UcMenuLeft1\"></menu-left>\r\n            </td>\r\n            <td align=\"left\" valign=\"top\">\r\n              <router-outlet></router-outlet>\r\n              <!-- <app-save-lists></app-save-lists> -->\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td style=\"background-color: #000000\">\r\n        <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"height: 50px; width: 100%;\">\r\n          <tr>\r\n            <td align=\"left\" style=\"background-color: #112759; width: 150px;\" valign=\"top\">&nbsp;</td>\r\n            <td align=\"right\" style=\"background-color: #000000;\" valign=\"middle\">\r\n              <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"footer\" width=\"100%\">\r\n                <tr>\r\n                  <td align=\"right\" width=\"99%\">\r\n                    <br/>\r\n                    ระบบบริหารการเงินการคลังภาครัฐแบบอิเล็กทรอนิกส์<br/>\r\n                    Government Fiscal Management Information System\r\n                  </td>\r\n                  <td width=\"1%\">&nbsp;</td>\r\n                </tr>\r\n                <tr>\r\n                  <td align=\"right\" colspan=\"2\">&nbsp;</td>\r\n                </tr>\r\n              </table>\r\n            </td>\r\n          </tr>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n  </table>\r\n\r\n"
 
 /***/ }),
 
@@ -5111,6 +5146,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var LauncherComponent = (function () {
     function LauncherComponent() {
+        this.LINK_HOME = '/';
     }
     LauncherComponent.prototype.ngOnInit = function () {
     };
@@ -5776,7 +5812,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\r\nspan {\r\n    cursor: pointer;\r\n}\r\n\r\nul li {\r\n    cursor: pointer;\r\n    margin-bottom:0;\r\n}\r\n\r\n.menulistpage {\r\n    padding: 15px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -5789,7 +5825,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/save-lists/save-lists.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table>\r\n  <tr>\r\n    <td></td>\r\n    <td>\r\n      <div>\r\n          <span><strong>ระบบเบิกจ่าย</strong></span>\r\n      </div>\r\n      <div>\r\n        <span>\r\n            ขอเบิกเงิน,ขอจ่ายโดยส่วนราชการ,ขอถอนคืนรายได้,บันทึกรายการเงินประกัน,หนังสือรับรองภาษีหัก ณ ที่จ่าย,อนุมัติเบิก และอนุมัติจ่าย \r\n        </span>\r\n      </div>\r\n      <div>\r\n        <span (click)=\"showMenu('kb')\">» ขอเบิกเงิน</span>\r\n        <ul *ngIf=\"kb==true\">\r\n          <li>\r\n              <A routerLinkActive=\"active\" routerLink=\"/lch/kb02\"><B>ขบ02</B> » ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>\r\n              » <img routerLinkActive=\"active\" routerLink=\"/lch/kb02report\" src=\"assets/Images/Icon/report_v10.gif\" alt=\"ขอเบิก\">\r\n          </li>\r\n          <li>\r\n              <A><B>ขบ03</B> » ขอเบิกเงินนอกงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </td>\r\n  </tr>\r\n</table>\r\n\r\n<!-- src=\"images/Icon/report_v10.gif\" -->"
+module.exports = "<user-profiles ID=\"UcUserProfiles1\"></user-profiles>\r\n<form-header [headerText]=\"headerText\" [description]=\"description\" ID=\"UcFormHeader1\"></form-header>\r\n<table class=\"menulistpage\">\r\n  <tr>\r\n    <td width=\"120px\" vAlign=\"top\"  align=\"left\">\r\n      <img src=\"assets/Images/img_menuItems/menuitem2.jpg\" alt=\"\">\r\n    </td>\r\n    <td vAlign=\"top\">\r\n      <div (click)=\"showMenu('kb_list')\">\r\n        <span class=\"menuItems\"><strong>ระบบเบิกจ่าย</strong></span>\r\n      </div>\r\n      <div (click)=\"showMenu('kb_list')\">\r\n        <span class=\"menuItemDescription\">\r\n            ขอเบิกเงิน,ขอจ่ายโดยส่วนราชการ,ขอถอนคืนรายได้,บันทึกรายการเงินประกัน,หนังสือรับรองภาษีหัก ณ ที่จ่าย,อนุมัติเบิก และอนุมัติจ่าย \r\n        </span>\r\n      </div>\r\n      <!-- menu KB -->\r\n      <div *ngIf=\"kb_list==true\">\r\n        <span class=\"menuItems\" (click)=\"showMenu('kb1')\">» ขอเบิกเงิน</span><br>\r\n        <ul *ngIf=\"kb1==true\" class=\"menuItems\" style=\"list-style-type: none; margin:0; FONT-SIZE: 11px;\">\r\n          <li>\r\n            <a class=\"ReportMenuItem\">ขบ01 » ขอเบิกเงินงบประมาณที่ต้องอ้างใบสั่งซื้อฯ</a>\r\n            » <img src=\"assets/Images/Icon/report_v10.gif\" alt=\"ขอเบิก\">\r\n          </li>\r\n          <li>\r\n            <A class=\"ReportMenuItem\" routerLinkActive=\"active\" routerLink=\"/lch/kb02\"><B>ขบ02</B> » ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>\r\n            » <img routerLinkActive=\"active\" routerLink=\"/lch/kb02report\" src=\"assets/Images/Icon/report_v10.gif\" alt=\"ขอเบิก\">\r\n          </li>\r\n          <li>\r\n              <A class=\"ReportMenuItem\"><B>ขบ03</B> » ขอเบิกเงินนอกงบประมาณที่ไม่อ้างใบสั่งซื้อฯ</A>\r\n          </li>\r\n        </ul>\r\n        <span class=\"menuItems\" (click)=\"showMenu('kb')\">» ขอถอนคืนรายได้</span><br>\r\n        <span class=\"menuItems\" (click)=\"showMenu('kb')\">» ขอจ่ายโดยส่วนราชการ</span><br>\r\n        <span class=\"menuItems\" (click)=\"showMenu('kb')\">» บันทึกรายการเงินประกัน</span><br>\r\n        <span class=\"menuItems\" (click)=\"showMenu('kb')\">» การบันทึกเบิกเกินส่งคืน/ล้างลูกหนี้เงินยืม/คืนเงินทดรองราชการ</span><br>\r\n        \r\n      </div>\r\n    </td>\r\n  </tr>\r\n</table>\r\n\r\n<!-- src=\"images/Icon/report_v10.gif\" -->"
 
 /***/ }),
 
@@ -5811,11 +5847,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SaveListsComponent = (function () {
     function SaveListsComponent() {
-        this.kb = false; // ขบ - ขอเบิก
+        // SET: Header | Decsription
+        this.headerText = 'บันทึกรายการ';
+        this.description = 'สร้าง/บันทึก/ค้นหา/เปลี่ยนแปลง เอกสาร';
+        this.kb_list = false; // ระบบขอเบิก
+        this.kb1 = false; // ขบ - ขอเบิก
+        this.kb2 = false;
+        this.kb3 = false;
+        this.kb4 = false;
+        this.kb5 = false;
     }
     SaveListsComponent.prototype.showMenu = function (menu) {
-        if (menu === 'kb') {
-            this.kb = (this.kb === true ? false : true);
+        if (menu === 'kb1') {
+            this.kb1 = (this.kb1 === true ? false : true);
+        }
+        else if (menu === 'kb_list') {
+            this.kb_list = (this.kb_list === true ? false : true);
         }
     };
     SaveListsComponent.prototype.ngOnInit = function () {
