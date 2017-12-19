@@ -5,9 +5,13 @@ span {
 
 ul li {
     cursor: pointer;
-    margin-bottom:0;
+    margin-bottom:2px;
 }
 
 .menulistpage {
     padding: 15px;
+}
+
+.ReportMenuItem_d {
+    
 }
