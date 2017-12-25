@@ -10,6 +10,7 @@ export class Kb02Component implements OnInit {
   // SET: Header | Decsription
   headerText = 'ขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ (ขบ. 02)';
   description = 'สร้างขอเบิกเงินงบประมาณที่ไม่อ้างใบสั่งซื้อฯ';
+  m_header = 'ระบบเบิกจ่าย';
 
   constructor() {}
 

@@ -20,10 +20,10 @@
           <tr>
             <td align="left" bgcolor="8399cb" style="width: 150px;" valign="top">
               <user-login-profile ID="ubLoginProfileBCH01"></user-login-profile>
-              <menu-left ID="UcMenuLeft1"></menu-left>
+              <menu-left ID="UcMenuLeft1" [header]='m_header'></menu-left>
             </td>
             <td align="left" valign="top">
-              <router-outlet></router-outlet>
+              <router-outlet (activate)="handleUserUpdated($event)"></router-outlet>
               <!-- <app-save-lists></app-save-lists> -->
             </td>
           </tr>
