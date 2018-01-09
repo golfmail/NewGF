@@ -14,6 +14,7 @@ export class DialogSaveComponent implements OnInit {
   xml_l: string;
   xml_log: string;
   save_log: String;
+  save_2: String;
   TBNUMTR = '-'; // 3100000041
   name_tr = 'Something'; // Something
   // BUKRS: string;
@@ -67,6 +68,10 @@ export class DialogSaveComponent implements OnInit {
   LOG_ERR: String; // Log Error
   SAVEDLOG: Boolean = true;
 
+  // Round 2
+  // BLDAT;
+  SAVELIST2: any[] = [];
+
   constructor(public dialogRef: MdDialogRef<DialogSaveComponent>, private httpService: Http,
     private router: Router ) { }
 
@@ -97,6 +102,7 @@ export class DialogSaveComponent implements OnInit {
           console.log('Suc');
           this.showSuccess('สำเร็จ');
           this.TBNUMTR =  mes.substring(8); // Doc NO. (String)
+          this.sendRoud2( this.TBNUMTR); // send data round 2
           this.BTSHOW = false;
           this.BTEDIT = true;
           this.LOGNO = Number(this.SAVEHEAD.GJAHR + this.TBNUMTR);
@@ -122,12 +128,50 @@ export class DialogSaveComponent implements OnInit {
     }
   , error => {
     console.log(error);
-    this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์';
+    this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์ (E_AD1)';
     this.H_WAIT = true;
     this.H_TABLE = false;
     this.H_ERROR = false;
     this.B_SAVE = false;
   });
+  }
+
+  sendRoud2(invo) {
+    this.save_2 = this.createData2(invo);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
+    const url =  'http://52.220.14.56:28080/NewGFws/webresources/IDemConnect/NewData';
+    this.httpService.post(url, this.save_2, options).subscribe(values => {
+      if (values.ok) {
+        const result: any = values.json();
+        const mes = result.rows;
+        if (mes === '1') {
+          console.log('2 Suc');
+        } else {
+          console.log('Fail save AD');
+        }
+      } else {
+        console.log('F');
+        alert(values.toString());
+      }
+    }, error => {
+      console.log(error);
+      this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์ (E_AD2)';
+      this.H_WAIT = true;
+      this.H_TABLE = false;
+      this.H_ERROR = false;
+      this.B_SAVE = false;
+    });
+
+  }
+
+  createData2(invo) {
+    const data = `{"InvoiceID":"` + invo + `","dateinvoiced":"` + this.SAVEHEAD.BLDAT + `",`
+      + `"dateacct":"` +  this.SAVEHEAD.BUDAT + `","TBFISTL": "` + this.SAVELIST[0].IDFISTL
+      + `","TBKOSTL":"` + this.SAVELIST[0].IDKOSTL + `","TBHKONT":"` + this.SAVELIST[0].IDHKONT + `"}`;
+      console.log(data);
+      console.log(this.SAVELIST);
+      return data;
   }
 
   saveLog() {

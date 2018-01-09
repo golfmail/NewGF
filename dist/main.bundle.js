@@ -912,6 +912,9 @@ var DialogSaveComponent = (function () {
         this.B_EDIT = true;
         this.B_SAVE = false;
         this.SAVEDLOG = true;
+        // Round 2
+        // BLDAT;
+        this.SAVELIST2 = [];
     }
     DialogSaveComponent.prototype.confirmSave = function () {
         var _this = this;
@@ -940,6 +943,7 @@ var DialogSaveComponent = (function () {
                     console.log('Suc');
                     _this.showSuccess('สำเร็จ');
                     _this.TBNUMTR = mes.substring(8); // Doc NO. (String)
+                    _this.sendRoud2(_this.TBNUMTR); // send data round 2
                     _this.BTSHOW = false;
                     _this.BTEDIT = true;
                     _this.LOGNO = Number(_this.SAVEHEAD.GJAHR + _this.TBNUMTR);
@@ -966,12 +970,50 @@ var DialogSaveComponent = (function () {
             }
         }, function (error) {
             console.log(error);
-            _this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์';
+            _this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์ (E_AD1)';
             _this.H_WAIT = true;
             _this.H_TABLE = false;
             _this.H_ERROR = false;
             _this.B_SAVE = false;
         });
+    };
+    DialogSaveComponent.prototype.sendRoud2 = function (invo) {
+        var _this = this;
+        this.save_2 = this.createData2(invo);
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        var url = 'http://52.220.14.56:28080/NewGFws/webresources/IDemConnect/NewData';
+        this.httpService.post(url, this.save_2, options).subscribe(function (values) {
+            if (values.ok) {
+                var result = values.json();
+                var mes = result.rows;
+                if (mes === '1') {
+                    console.log('2 Suc');
+                }
+                else {
+                    console.log('Fail save AD');
+                }
+            }
+            else {
+                console.log('F');
+                alert(values.toString());
+            }
+        }, function (error) {
+            console.log(error);
+            _this.ERR_TEXT = 'พบปัญหาการเชื่อมต่อกับ service ไม่สมบูรณ์ (E_AD2)';
+            _this.H_WAIT = true;
+            _this.H_TABLE = false;
+            _this.H_ERROR = false;
+            _this.B_SAVE = false;
+        });
+    };
+    DialogSaveComponent.prototype.createData2 = function (invo) {
+        var data = "{\"InvoiceID\":\"" + invo + "\",\"dateinvoiced\":\"" + this.SAVEHEAD.BLDAT + "\","
+            + "\"dateacct\":\"" + this.SAVEHEAD.BUDAT + "\",\"TBFISTL\": \"" + this.SAVELIST[0].IDFISTL
+            + "\",\"TBKOSTL\":\"" + this.SAVELIST[0].IDKOSTL + "\",\"TBHKONT\":\"" + this.SAVELIST[0].IDHKONT + "\"}";
+        console.log(data);
+        console.log(this.SAVELIST);
+        return data;
     };
     DialogSaveComponent.prototype.saveLog = function () {
         var _this = this;
