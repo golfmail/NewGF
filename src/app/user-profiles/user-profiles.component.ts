@@ -9,6 +9,11 @@ export class UserProfilesComponent implements OnInit {
 
   constructor() {}
 
+  firstname = 'สมชาย';
+  lastname  = 'ใจดี';
+  position  = 'ผู้บันทึกข้อมูล';
+  institution  = 'สำนักบริการกลาง';
+
   ngOnInit() {
   }
 

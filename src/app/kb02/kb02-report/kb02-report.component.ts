@@ -18,6 +18,9 @@ export class Kb02ReportComponent implements OnInit {
   S_DATE;
   E_DATE;
 
+  TBZZPMT = '0300200005'; // หน่วยเบิกจ่าย
+  LBZZPMT = 'สำนักบริการกลาง';
+
   constructor() { }
 
   onSearch() {
